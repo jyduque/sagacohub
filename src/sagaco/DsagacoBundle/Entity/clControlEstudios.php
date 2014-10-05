@@ -1,0 +1,539 @@
+<?php
+
+namespace sagaco\DsagacoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * vi_control_estudios
+ *
+ * @ORM\Table(name="vi_control_estudios")
+ * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clControlEstudiosRepository")
+ */
+class clControlEstudios
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="co_control_estudios", type="integer")
+     */
+    private $coControlEstudios;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tx_primer_nombre", type="string", length=20)
+     */
+    private $txPrimerNombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tx_segund_nombre", type="string", length=20, nullable=true)
+     */
+    private $txSegundNombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tx_primer_apellido", type="string", length=20)
+     */
+    private $txPrimerApellido;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tx_segund_apellido", type="string", length=20, nullable=true)
+     */
+    private $txSegundApellido;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nu_cedula", type="integer")
+     */
+    private $nuCedula;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="in_sexo", type="string", length=1)
+     */
+    private $inSexo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="in_nacionalidad", type="string", length=1)
+     */
+    private $inNacionalidad;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="in_estado_civil", type="string", length=1)
+     */
+    private $inEstadoCivil;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tx_tipo_ingreso", type="string", length=50)
+     */
+    private $txTipoIngreso;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tx_carrera", type="string", length=50)
+     */
+    private $txCarrera;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tx_correo_electronico", type="string", length=80)
+     */
+    private $txCorreoElectronico;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tx_telefo_casa", type="string", length=16, nullable=true)
+     */
+    private $txTelefoCasa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tx_telefo_celular", type="string", length=15, nullable=true)
+     */
+    private $txTelefoCelular;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tx_lugar_residencia", type="text", nullable=true)
+     */
+    private $txLugarResidencia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tx_descripcion", type="text", nullable=true)
+     */
+    private $txDescripcion;
+    
+    /** @ORM\OneToOne(targetEntity="sagaco\DsagacoBundle\Entity\clBenefiEstudiante") */
+    protected $tb_benefi_estudiante;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set coControlEstudios
+     *
+     * @param integer $coControlEstudios
+     * @return vi_control_estudios
+     */
+    public function setCoControlEstudios($coControlEstudios)
+    {
+        $this->coControlEstudios = $coControlEstudios;
+
+        return $this;
+    }
+
+    /**
+     * Get coControlEstudios
+     *
+     * @return integer 
+     */
+    public function getCoControlEstudios()
+    {
+        return $this->coControlEstudios;
+    }
+
+    /**
+     * Set txPrimerNombre
+     *
+     * @param string $txPrimerNombre
+     * @return vi_control_estudios
+     */
+    public function setTxPrimerNombre($txPrimerNombre)
+    {
+        $this->txPrimerNombre = $txPrimerNombre;
+
+        return $this;
+    }
+
+    /**
+     * Get txPrimerNombre
+     *
+     * @return string 
+     */
+    public function getTxPrimerNombre()
+    {
+        return $this->txPrimerNombre;
+    }
+
+    /**
+     * Set txSegundNombre
+     *
+     * @param string $txSegundNombre
+     * @return vi_control_estudios
+     */
+    public function setTxSegundNombre($txSegundNombre)
+    {
+        $this->txSegundNombre = $txSegundNombre;
+
+        return $this;
+    }
+
+    /**
+     * Get txSegundNombre
+     *
+     * @return string 
+     */
+    public function getTxSegundNombre()
+    {
+        return $this->txSegundNombre;
+    }
+
+    /**
+     * Set txPrimerApellido
+     *
+     * @param string $txPrimerApellido
+     * @return vi_control_estudios
+     */
+    public function setTxPrimerApellido($txPrimerApellido)
+    {
+        $this->txPrimerApellido = $txPrimerApellido;
+
+        return $this;
+    }
+
+    /**
+     * Get txPrimerApellido
+     *
+     * @return string 
+     */
+    public function getTxPrimerApellido()
+    {
+        return $this->txPrimerApellido;
+    }
+
+    /**
+     * Set txSegundApellido
+     *
+     * @param string $txSegundApellido
+     * @return vi_control_estudios
+     */
+    public function setTxSegundApellido($txSegundApellido)
+    {
+        $this->txSegundApellido = $txSegundApellido;
+
+        return $this;
+    }
+
+    /**
+     * Get txSegundApellido
+     *
+     * @return string 
+     */
+    public function getTxSegundApellido()
+    {
+        return $this->txSegundApellido;
+    }
+
+    /**
+     * Set nuCedula
+     *
+     * @param integer $nuCedula
+     * @return vi_control_estudios
+     */
+    public function setNuCedula($nuCedula)
+    {
+        $this->nuCedula = $nuCedula;
+
+        return $this;
+    }
+
+    /**
+     * Get nuCedula
+     *
+     * @return integer 
+     */
+    public function getNuCedula()
+    {
+        return $this->nuCedula;
+    }
+
+    /**
+     * Set inSexo
+     *
+     * @param string $inSexo
+     * @return vi_control_estudios
+     */
+    public function setInSexo($inSexo)
+    {
+        $this->inSexo = $inSexo;
+
+        return $this;
+    }
+
+    /**
+     * Get inSexo
+     *
+     * @return string 
+     */
+    public function getInSexo()
+    {
+        return $this->inSexo;
+    }
+
+    /**
+     * Set inNacionalidad
+     *
+     * @param string $inNacionalidad
+     * @return vi_control_estudios
+     */
+    public function setInNacionalidad($inNacionalidad)
+    {
+        $this->inNacionalidad = $inNacionalidad;
+
+        return $this;
+    }
+
+    /**
+     * Get inNacionalidad
+     *
+     * @return string 
+     */
+    public function getInNacionalidad()
+    {
+        return $this->inNacionalidad;
+    }
+
+    /**
+     * Set inEstadoCivil
+     *
+     * @param string $inEstadoCivil
+     * @return vi_control_estudios
+     */
+    public function setInEstadoCivil($inEstadoCivil)
+    {
+        $this->inEstadoCivil = $inEstadoCivil;
+
+        return $this;
+    }
+
+    /**
+     * Get inEstadoCivil
+     *
+     * @return string 
+     */
+    public function getInEstadoCivil()
+    {
+        return $this->inEstadoCivil;
+    }
+
+    /**
+     * Set txTipoIngreso
+     *
+     * @param string $txTipoIngreso
+     * @return vi_control_estudios
+     */
+    public function setTxTipoIngreso($txTipoIngreso)
+    {
+        $this->txTipoIngreso = $txTipoIngreso;
+
+        return $this;
+    }
+
+    /**
+     * Get txTipoIngreso
+     *
+     * @return string 
+     */
+    public function getTxTipoIngreso()
+    {
+        return $this->txTipoIngreso;
+    }
+
+    /**
+     * Set txCarrera
+     *
+     * @param string $txCarrera
+     * @return vi_control_estudios
+     */
+    public function setTxCarrera($txCarrera)
+    {
+        $this->txCarrera = $txCarrera;
+
+        return $this;
+    }
+
+    /**
+     * Get txCarrera
+     *
+     * @return string 
+     */
+    public function getTxCarrera()
+    {
+        return $this->txCarrera;
+    }
+
+    /**
+     * Set txCorreoElectronico
+     *
+     * @param string $txCorreoElectronico
+     * @return vi_control_estudios
+     */
+    public function setTxCorreoElectronico($txCorreoElectronico)
+    {
+        $this->txCorreoElectronico = $txCorreoElectronico;
+
+        return $this;
+    }
+
+    /**
+     * Get txCorreoElectronico
+     *
+     * @return string 
+     */
+    public function getTxCorreoElectronico()
+    {
+        return $this->txCorreoElectronico;
+    }
+
+    /**
+     * Set txTelefoCasa
+     *
+     * @param string $txTelefoCasa
+     * @return vi_control_estudios
+     */
+    public function setTxTelefoCasa($txTelefoCasa)
+    {
+        $this->txTelefoCasa = $txTelefoCasa;
+
+        return $this;
+    }
+
+    /**
+     * Get txTelefoCasa
+     *
+     * @return string 
+     */
+    public function getTxTelefoCasa()
+    {
+        return $this->txTelefoCasa;
+    }
+
+    /**
+     * Set txTelefoCelular
+     *
+     * @param string $txTelefoCelular
+     * @return vi_control_estudios
+     */
+    public function setTxTelefoCelular($txTelefoCelular)
+    {
+        $this->txTelefoCelular = $txTelefoCelular;
+
+        return $this;
+    }
+
+    /**
+     * Get txTelefoCelular
+     *
+     * @return string 
+     */
+    public function getTxTelefoCelular()
+    {
+        return $this->txTelefoCelular;
+    }
+
+    /**
+     * Set txLugarResidencia
+     *
+     * @param string $txLugarResidencia
+     * @return vi_control_estudios
+     */
+    public function setTxLugarResidencia($txLugarResidencia)
+    {
+        $this->txLugarResidencia = $txLugarResidencia;
+
+        return $this;
+    }
+
+    /**
+     * Get txLugarResidencia
+     *
+     * @return string 
+     */
+    public function getTxLugarResidencia()
+    {
+        return $this->txLugarResidencia;
+    }
+
+    /**
+     * Set txDecripcion
+     *
+     * @param string $txDecripcion
+     * @return vi_control_estudios
+     */
+    public function setTxDecripcion($txDecripcion)
+    {
+        $this->txDecripcion = $txDecripcion;
+
+        return $this;
+    }
+
+    /**
+     * Get txDecripcion
+     *
+     * @return string 
+     */
+    public function getTxDecripcion()
+    {
+        return $this->txDecripcion;
+    }
+    
+    /**
+     * Set tb_benefi_estudiante
+     *
+     * @param string $tb_benefi_estudiante
+     * @return vi_control_estudios
+     */
+    public function settb_benefi_estudiante($tb_benefi_estudiante)
+    {
+        $this->tb_benefi_estudiante = $tb_benefi_estudiante;
+
+        return $this;
+    }
+    
+    /**
+     * Get tb_benefi_estudiante
+     *
+     * @return string 
+     */
+    public function gettb_benefi_estudiante()
+    {
+        return $this->tb_benefi_estudiante;
+    }
+}

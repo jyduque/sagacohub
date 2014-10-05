@@ -1,0 +1,7 @@
+parameters:
+#    cita.example.class: sagaco\CitaBundle\Example
+
+services:
+#    cita.example:
+#        class: %cita.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

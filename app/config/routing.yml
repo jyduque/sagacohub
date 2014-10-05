@@ -1,0 +1,35 @@
+info:
+    resource: "@InfoBundle/Resources/config/routing.yml"
+    prefix:   /
+
+admin:
+    resource: "@AdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+prueba:
+    resource: "@PruebaBundle/Resources/config/routing.yml"
+    prefix:   /
+
+entrevista:
+    resource: "@EntrevistaBundle/Resources/config/routing.yml"
+    prefix:   /
+
+cita:
+    resource: "@CitaBundle/Resources/config/routing.yml"
+    prefix:   /
+
+dsagaco:
+    resource: "@DsagacoBundle/Resources/config/routing.yml"
+    prefix:   /
+
+pg_cita:
+    path:     /cita/
+    defaults: { _controller: CitaBundle:Default:cita}
+
+pg_info:
+    path:     /info/{pagina}/
+    defaults: { _controller: InfoBundle:Default:info}
+    
+pg_rol:
+    path:     /rol/
+    defaults: { _controller: AdminBundle:Default:rol}

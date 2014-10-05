@@ -1,0 +1,179 @@
+<?php
+
+namespace sagaco\DsagacoBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * tp_caso
+ *
+ * @ORM\Table(name="tp_caso")
+ * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clCasoRepository")
+ */
+class clCaso
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="co_caso", type="integer")
+     */
+    private $coCaso;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tx_tipo_caso", type="string", length=50)
+     */
+    private $txTipoCaso;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tx_semest_actual", type="string", length=6)
+     */
+    private $txSemestActual;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tx_descripcion", type="text", nullable=true)
+     */
+    private $txDescripcion;
+    
+    /** @ORM\ManyToOne(targetEntity="sagaco\DsagacoBundle\Entity\clTipoCaso") */
+    protected $tb_tipo_caso;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set coCaso
+     *
+     * @param integer $coCaso
+     * @return tp_caso
+     */
+    public function setCoCaso($coCaso)
+    {
+        $this->coCaso = $coCaso;
+
+        return $this;
+    }
+
+    /**
+     * Get coCaso
+     *
+     * @return integer 
+     */
+    public function getCoCaso()
+    {
+        return $this->coCaso;
+    }
+
+    /**
+     * Set txTipoCaso
+     *
+     * @param string $txTipoCaso
+     * @return tp_caso
+     */
+    public function setTxTipoCaso($txTipoCaso)
+    {
+        $this->txTipoCaso = $txTipoCaso;
+
+        return $this;
+    }
+
+    /**
+     * Get txTipoCaso
+     *
+     * @return string 
+     */
+    public function getTxTipoCaso()
+    {
+        return $this->txTipoCaso;
+    }
+
+    /**
+     * Set txSemestActual
+     *
+     * @param string $txSemestActual
+     * @return tp_caso
+     */
+    public function setTxSemestActual($txSemestActual)
+    {
+        $this->txSemestActual = $txSemestActual;
+
+        return $this;
+    }
+
+    /**
+     * Get txSemestActual
+     *
+     * @return string 
+     */
+    public function getTxSemestActual()
+    {
+        return $this->txSemestActual;
+    }
+
+    /**
+     * Set txDescripcion
+     *
+     * @param string $txDescripcion
+     * @return tp_caso
+     */
+    public function setTxDescripcion($txDescripcion)
+    {
+        $this->txDescripcion = $txDescripcion;
+
+        return $this;
+    }
+
+    /**
+     * Get txDescripcion
+     *
+     * @return string 
+     */
+    public function getTxDescripcion()
+    {
+        return $this->txDescripcion;
+    }
+    
+    /**
+     * Set tb_tipo_caso
+     *
+     * @param string $tb_tipo_caso
+     * @return tp_caso
+     */
+    public function settb_tipo_caso($tb_tipo_caso)
+    {
+        $this->tb_tipo_caso = $tb_tipo_caso;
+
+        return $this;
+    }
+    
+    /**
+     * Get tb_tipo_caso
+     *
+     * @return string 
+     */
+    public function gettb_tipo_caso()
+    {
+        return $this->tb_tipo_caso;
+    }
+}
