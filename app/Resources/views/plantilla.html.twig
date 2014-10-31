@@ -1,0 +1,32 @@
+{% extends '::base.html.twig' %}
+{# Enlace de hojas de estilos CCS #}
+{% block hojaestilos %}
+    {# Bootstrap #}
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" media="screen">
+
+    {# HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries #}
+    {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
+{% endblock %}
+
+{# Contenido de la pagina #}
+{% block contenido %}
+    <header>
+        <h1>CUPON</h1>
+        <nav>
+            <ul>
+                <li>Oferta del día</li>
+                <li><a href="#">Ofertas recientes</a></li>
+                <li><a href="#">Mis ofertas</a></li>
+            </ul>
+        </nav>
+    </header>    
+{% endblock %}
+
+{# Enlace y contenido de javascripts #}
+{% block javascripts %}
+    {# jQuery (necessary for Bootstraps JavaScript plugins) #}
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    
+    {# Include all JavaScripts, compiled by Assetic #}
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
+{% endblock %} 

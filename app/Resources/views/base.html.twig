@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block titulo %}Sagaco{% endblock %} | UNET</title>
+        
+        {# Enlace de hojas de estilos CCS #}
+        {% block hojaestilos %}{% endblock %}
+        
+        {# Icon de la aplicacion BUSCAR EL ICON #}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+    
+    {# Contenido de la pagina #}
+    <body id="{% block id '' %}"> <!-- El bloque id se asigna un valor por defecto vacio para aquellas plantillas que no lo definen -->
+        {% block contenido %}{% endblock %}
+            
+        {# Pie de pagina #}
+        <footer>
+            {% block piepagina %}{% endblock %}
+        </footer>
+            
+        {# Enlace y contenido de javascripts #}
+        {% block javascripts %}{% endblock %}        
     </body>
 </html>
