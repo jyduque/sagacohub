@@ -23,3 +23,4 @@ nbproject
 .settings
 .sublime-project
 .tm_properties
+!/web/css/bootstrap.css

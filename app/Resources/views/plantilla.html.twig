@@ -2,26 +2,68 @@
 {# Enlace de hojas de estilos CCS #}
 {% block hojaestilos %}
     {# Bootstrap #}
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" media="screen">
-
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" media="screen"> 
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">    
+    
     {# HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries #}
     {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
-{% endblock %}
+{% endblock %} {# -- Fin hojas de estilos CCS #}
 
-{# Contenido de la pagina #}
-{% block contenido %}
-    <header>
-        <h1>CUPON</h1>
-        <nav>
-            <ul>
-                <li>Oferta del día</li>
-                <li><a href="#">Ofertas recientes</a></li>
-                <li><a href="#">Mis ofertas</a></li>
-            </ul>
-        </nav>
-    </header>    
-{% endblock %}
+{# Cuerpo de pagina #}
+{% block cuerpo %}
+    <div class="navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="row navbar-blanca">
+                <div class="col-xs-2 col-sm-1 col-lg-1">
+                    <a title="UNET" href="#">
+                        <img src="../../../web/images/logo-unet_con_texto_azul2.png" alt="UNET"/>
+                    </a>
+                </div>
+                <div class="col-xs-10 col-sm-5 col-lg-3">
+                    <h5>Servicio Automatizado para la Atención de la Coordinación de Orientación</h5>
+                </div>
+                <div class="col-lg-4 visible-md">dsas</div>
+                <div class="col-sm-6 col-lg-4 visible-sm visible-md visible-lg">
+                    <p class="text-right-sinmargen">
+                        <small class="text-muted">Contactenos: +58 276 353.42.22 | computacion@unet.edu.ve</small>
+                    </p>
+                </div>
+            </div>
+            <div class="row navbar-inverse">
+                <div class="col-md-2">
+                    
+                </div>
+                <div class="col-md-8">fasdf</div>
+                <div class="col-md-2">safa</div>
+            </div>
+            <div class="row navbar-blanca">
+                <div class="col-md-2">fasf</div>
+                <div class="col-md-8">fas</div>
+                <div class="col-md-2">faff</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+      {# Main component for a primary marketing message or call to action #}
+      <div class="jumbotron">
+        <h1>Hello </h1>
+        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+        <p>To see the difference between static and fixed top navbars, just scroll.</p>
+        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+        <p>To see the difference between static and fixed top navbars, just scroll.</p>
+        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+        <p>To see the difference between static and fixed top navbars, just scroll.</p>
+        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+        <p>To see the difference between static and fixed top navbars, just scroll.</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="#" role="button">View navbar docs &raquo;</a>
+        </p>
+      </div>
+    </div> {# /container #}
+{% endblock %} {# -- Fin Cuerpo de pagina #}
 
+    
 {# Enlace y contenido de javascripts #}
 {% block javascripts %}
     {# jQuery (necessary for Bootstraps JavaScript plugins) #}

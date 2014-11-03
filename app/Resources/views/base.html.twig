@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {# Informacion en pestana del navegador #}
         <title>{% block titulo %}Sagaco{% endblock %} | UNET</title>
         
         {# Enlace de hojas de estilos CCS #}
@@ -12,8 +13,9 @@
     </head>
     
     {# Contenido de la pagina #}
-    <body id="{% block id '' %}"> <!-- El bloque id se asigna un valor por defecto vacio para aquellas plantillas que no lo definen -->
-        {% block contenido %}{% endblock %}
+    <body id="{% block id '' %}"> {# El bloque id se asigna un valor por defecto vacio para aquellas plantillas que no lo definen #}
+        {# Cuerpo de pagina #}
+        {% block cuerpo %}{% endblock %}
             
         {# Pie de pagina #}
         <footer>
