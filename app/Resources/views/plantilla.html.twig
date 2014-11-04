@@ -12,36 +12,44 @@
 {# Cuerpo de pagina #}
 {% block cuerpo %}
     <div class="navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="row navbar-blanca">
-                <div class="col-xs-2 col-sm-1 col-lg-1">
-                    <a title="UNET" href="#">
-                        <img src="../../../web/images/logo-unet_con_texto_azul2.png" alt="UNET"/>
-                    </a>
-                </div>
-                <div class="col-xs-10 col-sm-5 col-lg-3">
-                    <h5>Servicio Automatizado para la Atención de la Coordinación de Orientación</h5>
-                </div>
-                <div class="col-lg-4 visible-md">dsas</div>
-                <div class="col-sm-6 col-lg-4 visible-sm visible-md visible-lg">
-                    <p class="text-right-sinmargen">
-                        <small class="text-muted">Contactenos: +58 276 353.42.22 | computacion@unet.edu.ve</small>
-                    </p>
-                </div>
-            </div>
-            <div class="row navbar-inverse">
-                <div class="col-md-2">
                     
-                </div>
-                <div class="col-md-8">fasdf</div>
-                <div class="col-md-2">safa</div>
+        {# Barra del logo y Nombre del Sistema #}
+        <div class="row navbar-blanca">
+            <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
+                <a title="UNET" href="#">
+                    <img src="../../../web/images/logo-unet_con_texto_azul2.png" alt="UNET"/>
+                </a>
             </div>
-            <div class="row navbar-blanca">
-                <div class="col-md-2">fasf</div>
-                <div class="col-md-8">fas</div>
-                <div class="col-md-2">faff</div>
+            <div class="col-xs-10 col-sm-5 col-md-3 col-lg-3">
+                <h5>Servicio Automatizado para la Atención de la Coordinación de Orientación</h5>
             </div>
-        </div>
+            <div class="col-sm-6 col-md-8 col-lg-8 visible-sm visible-lg">
+                <p class="text-right-sinmargen">
+                    <small class="text-muted">Contactenos: +58 276 353.42.22 | computacion@unet.edu.ve</small>
+                </p>
+            </div>
+        </div> {#-- Fin barra logo ---#}
+
+        {# Menu #}
+        <div class="row navbar-inverse">
+            <div class="col-md-2">
+              fasdfsddsfs  
+            </div>
+            <div class="col-md-8">fasdf</div>
+            <div class="col-md-2">safa</div>
+        </div> {#-- Fin Menu --#}
+
+        {# Barra de ruta #}
+        <div class="container navbar-blanca">                
+            <ul class="breadcrumb-modi">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Library</a></li>
+                <li><a href="#">Library</a></li>
+                <li><a href="#">Library</a></li>
+                <li><a href="#">Library</a></li>
+                <li class="active">Data</li>
+            </ul>                              
+        </div> {#-- Fin Barra de ruta --#}        
     </div>
     
     <div class="container">
