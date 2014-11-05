@@ -6298,13 +6298,13 @@ button.close {
 /*! De aquí hacia abajo comienzan los css modificados */
 
 body {
-  padding-top: 90px;
-  padding-bottom: 90px;
+  padding-top: 120px;
+  padding-bottom: 10px;
 }
 
 @media screen and (max-width: 768px) {
   body {
-    padding-top: 140px;
+    padding-top: 180px;
     padding-bottom: 0px;
   }
 }

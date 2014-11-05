@@ -42,32 +42,31 @@
         {# Barra de ruta #}
         <div class="container navbar-blanca">                
             <ul class="breadcrumb-modi">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Library</a></li>
-                <li><a href="#">Library</a></li>
-                <li><a href="#">Library</a></li>
-                <li><a href="#">Library</a></li>
-                <li class="active">Data</li>
+                <li><a href="#"><small>Inicio</small></a></li>
+                <li><a href="#"><small>Library</small></a></li>
+                <li><a href="#"><small>Library</small></a></li>
+                <li><a href="#"><small>Library</small></a></li>
+                <li><a href="#"><small>Library</small></a></li>
+                <li class="active"><small>Data</small></li>
             </ul>                              
         </div> {#-- Fin Barra de ruta --#}        
     </div>
     
     <div class="container">
+        <div class="well bs-component">
       {# Main component for a primary marketing message or call to action #}
-      <div class="jumbotron">
-        <h1>Hello </h1>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="#" role="button">View navbar docs &raquo;</a>
-        </p>
-      </div>
+            <form class="form-horizontal" role="form">
+                <fieldset>
+                    {# Titulo del requisito #}
+                    <legend>
+                        {% block nbr_requisito %}{% endblock %}
+                    </legend> {#-- Fin Titulo del requisito #}
+                    
+                    {# Campos de la Forma #}
+                    {% block campos %}{% endblock %}{#-- Fin Campos de la Forma #}                    
+                </fieldset>
+            </form>
+        </div>
     </div> {# /container #}
 {% endblock %} {# -- Fin Cuerpo de pagina #}
 
