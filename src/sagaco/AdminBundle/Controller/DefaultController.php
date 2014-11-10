@@ -3,30 +3,39 @@
 namespace sagaco\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use sagaco\DsagacoBundle\Entity\clGrupoRol;
+use sagaco\AdminBundle\Form\Backend\clGrupoRolType;
 use Doctrine\ORM\Mapping as ORM;
 
 class DefaultController extends Controller
 {
     public function rolAction()
     {
-        // CODIGO PARA INSERTAR DATOS CON DOCTRINE2
-        
-        $objGrupo = new clGrupoRol();
-        $objConsulGrupo = new clGrupoRol();
-        
-                
-        $objGrupo->setCoTipoRol(2);
-        $objGrupo->setTxDescripcion('prueba2');
-        
         $em = $this->getDoctrine()->getManager();
-        $em->persist($objGrupo);
-        $em->flush(); 
+        $peticion = $this->getRequest();
         
-        // CODIGO OBTENER INFORMACION CON DOCTRINE2
+        // Crea el objeto de la entidad clGrupoRol para manejar la tabla tb_grupo_rol        
+        $objGrupo = new clGrupoRol();
         
-        $objConsulGrupo = $em->getRepository('DsagacoBundle:clGrupoRol')->find(5);
+        // Crea el objeto del formulario clGrupoRolType para enviar a la plantilla
+        $objGrupo->setTxDescripcion('prueb');
+        $objFormulario = $this->createForm(new clGrupoRolType(), $objGrupo);
         
-        return $this->render('AdminBundle:Default:pgRol.html.twig',array('visRol' => $objConsulGrupo));              
+        $objFormulario->handleRequest($peticion);
+        
+        if ($objFormulario->isValid())
+        {
+            $em->persist($objGrupo);
+            $em->flush();
+            
+            //$this->get('session')->getFlashBag()->add('info', 'Los datos del rol se han actualizado correctamente');
+ 
+            return $this->redirect($this->generateUrl('pg_rol'));
+        }
+        
+        return $this->render('AdminBundle:Default:pgRol.html.twig', array(
+            'form' => $objFormulario->createView(),
+        ));
     }
 }

@@ -54,8 +54,19 @@
     
     <div class="container">
         <div class="well bs-component">
-        {#  Creación de los formularios #}            
-            {% block twigformulario %}{% endblock %}              
+      {# Main component for a primary marketing message or call to action #}
+            
+            <form class="form-horizontal" role="form">
+                <fieldset>
+                    {# Titulo del requisito #}
+                    <legend>
+                        {% block nbr_requisito %}{% endblock %}
+                    </legend> {#-- Fin Titulo del requisito #}
+                    
+                    {# Campos de la Forma #}
+                    {% block campos %}{% endblock %}{#-- Fin Campos de la Forma #}                    
+                </fieldset>
+            </form>                
         </div>
     </div> {# /container #}
 {% endblock %} {# -- Fin Cuerpo de pagina #}

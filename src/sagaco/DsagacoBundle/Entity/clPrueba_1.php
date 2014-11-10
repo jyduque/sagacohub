@@ -42,6 +42,9 @@ class clPrueba
      */
     private $txDescripcion;
     
+    /** @ORM\ManyToOne(targetEntity="sagaco\DsagacoBundle\Entity\clPersona") */
+    protected $tb_persona;
+
     /**
      * Get id
      *
@@ -119,5 +122,28 @@ class clPrueba
     public function getTxDescripcion()
     {
         return $this->txDescripcion;
+    }
+    
+    /**
+     * Set tb_persona
+     *
+     * @param string $tb_persona
+     * @return tp_prueba
+     */
+    public function settb_persona($tb_persona)
+    {
+        $this->tb_persona = $tb_persona;
+
+        return $this;
+    }
+    
+    /**
+     * Get tb_persona
+     *
+     * @return string 
+     */
+    public function gettb_persona()
+    {
+        return $this->tb_persona;
     }
 }

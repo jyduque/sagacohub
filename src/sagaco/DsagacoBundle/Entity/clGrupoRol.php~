@@ -1,7 +1,6 @@
 <?php
 
 namespace sagaco\DsagacoBundle\Entity;
-use Doctrine\Common\Collections\ArrayCollection;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -18,8 +17,7 @@ class clGrupoRol
      *
      * @ORM\Column(name="co_tipo_rol", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="seq_grupo_rol", initialValue=1, allocationSize=1)
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $coTipoRol;
 

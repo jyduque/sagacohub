@@ -5,12 +5,12 @@ namespace sagaco\DsagacoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * tp_prueba
+ * tb_tipo_caso
  *
- * @ORM\Table(name="tp_prueba")
- * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clPruebaRepository")
+ * @ORM\Table(name="tb_tipo_caso")
+ * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clTipoCasoRepository")
  */
-class clPrueba
+class clTipoCaso
 {
     /**
      * @var integer
@@ -24,16 +24,16 @@ class clPrueba
     /**
      * @var integer
      *
-     * @ORM\Column(name="co_prueba", type="integer")
+     * @ORM\Column(name="co_tipo_caso", type="integer")
      */
-    private $coPrueba;
+    private $coTipoCaso;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_tipo_prueba", type="string", length=8)
+     * @ORM\Column(name="tx_tipo_caso", type="string", length=50)
      */
-    private $txTipoPrueba;
+    private $txTipoCaso;
 
     /**
      * @var string
@@ -41,7 +41,8 @@ class clPrueba
      * @ORM\Column(name="tx_descripcion", type="text", nullable=true)
      */
     private $txDescripcion;
-    
+
+
     /**
      * Get id
      *
@@ -53,56 +54,56 @@ class clPrueba
     }
 
     /**
-     * Set coPrueba
+     * Set coTipoCaso
      *
-     * @param integer $coPrueba
-     * @return tp_prueba
+     * @param integer $coTipoCaso
+     * @return tb_tipo_caso
      */
-    public function setCoPrueba($coPrueba)
+    public function setCoTipoCaso($coTipoCaso)
     {
-        $this->coPrueba = $coPrueba;
+        $this->coTipoCaso = $coTipoCaso;
 
         return $this;
     }
 
     /**
-     * Get coPrueba
+     * Get coTipoCaso
      *
      * @return integer 
      */
-    public function getCoPrueba()
+    public function getCoTipoCaso()
     {
-        return $this->coPrueba;
+        return $this->coTipoCaso;
     }
 
     /**
-     * Set txTipoPrueba
+     * Set txTipoCaso
      *
-     * @param string $txTipoPrueba
-     * @return tp_prueba
+     * @param string $txTipoCaso
+     * @return tb_tipo_caso
      */
-    public function setTxTipoPrueba($txTipoPrueba)
+    public function setTxTipoCaso($txTipoCaso)
     {
-        $this->txTipoPrueba = $txTipoPrueba;
+        $this->txTipoCaso = $txTipoCaso;
 
         return $this;
     }
 
     /**
-     * Get txTipoPrueba
+     * Get txTipoCaso
      *
      * @return string 
      */
-    public function getTxTipoPrueba()
+    public function getTxTipoCaso()
     {
-        return $this->txTipoPrueba;
+        return $this->txTipoCaso;
     }
 
     /**
      * Set txDescripcion
      *
      * @param string $txDescripcion
-     * @return tp_prueba
+     * @return tb_tipo_caso
      */
     public function setTxDescripcion($txDescripcion)
     {

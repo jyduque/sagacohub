@@ -5,12 +5,12 @@ namespace sagaco\DsagacoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * vi_control_estudios
+ * vi_benefi_humanos
  *
- * @ORM\Table(name="vi_control_estudios")
- * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clControlEstudiosRepository")
+ * @ORM\Table(name="vi_benefi_humanos")
+ * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clBenefiHumanosRepository")
  */
-class clControlEstudios
+class clBenefiHumanos
 {
     /**
      * @var integer
@@ -24,44 +24,51 @@ class clControlEstudios
     /**
      * @var integer
      *
-     * @ORM\Column(name="co_control_estudios", type="integer")
+     * @ORM\Column(name="co_benefi_humanos", type="integer")
      */
-    private $coControlEstudios;
+    private $coBenefiHumanos;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_primer_nombre", type="string", length=20)
+     * @ORM\Column(name="tx_primer_nombre", type="string", length=15)
      */
     private $txPrimerNombre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_segund_nombre", type="string", length=20, nullable=true)
+     * @ORM\Column(name="tx_segund_nombre", type="string", length=15, nullable=true)
      */
     private $txSegundNombre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_primer_apellido", type="string", length=20)
+     * @ORM\Column(name="tx_primer_apellido", type="string", length=15)
      */
     private $txPrimerApellido;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_segund_apellido", type="string", length=20, nullable=true)
+     * @ORM\Column(name="tx_segund_apellido", type="string", length=15, nullable=true)
      */
     private $txSegundApellido;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="nu_cedula", type="integer")
+     * @ORM\Column(name="nu_cedula", type="integer", nullable=true)
      */
     private $nuCedula;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tx_parentesco", type="string", length=5)
+     */
+    private $txParentesco;
 
     /**
      * @var string
@@ -87,28 +94,14 @@ class clControlEstudios
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_tipo_ingreso", type="string", length=50)
-     */
-    private $txTipoIngreso;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="tx_carrera", type="string", length=50)
-     */
-    private $txCarrera;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="tx_correo_electronico", type="string", length=80)
+     * @ORM\Column(name="tx_correo_electronico", type="string", length=200, nullable=true)
      */
     private $txCorreoElectronico;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_telefo_casa", type="string", length=16, nullable=true)
+     * @ORM\Column(name="tx_telefo_casa", type="string", length=15, nullable=true)
      */
     private $txTelefoCasa;
 
@@ -132,9 +125,7 @@ class clControlEstudios
      * @ORM\Column(name="tx_descripcion", type="text", nullable=true)
      */
     private $txDescripcion;
-    
-    /** @ORM\OneToOne(targetEntity="sagaco\DsagacoBundle\Entity\clBenefiEstudiante") */
-    protected $tb_benefi_estudiante;
+
 
     /**
      * Get id
@@ -147,33 +138,33 @@ class clControlEstudios
     }
 
     /**
-     * Set coControlEstudios
+     * Set coBenefiHumanos
      *
-     * @param integer $coControlEstudios
-     * @return vi_control_estudios
+     * @param integer $coBenefiHumanos
+     * @return vi_benefi_humanos
      */
-    public function setCoControlEstudios($coControlEstudios)
+    public function setCoBenefiHumanos($coBenefiHumanos)
     {
-        $this->coControlEstudios = $coControlEstudios;
+        $this->coBenefiHumanos = $coBenefiHumanos;
 
         return $this;
     }
 
     /**
-     * Get coControlEstudios
+     * Get coBenefiHumanos
      *
      * @return integer 
      */
-    public function getCoControlEstudios()
+    public function getCoBenefiHumanos()
     {
-        return $this->coControlEstudios;
+        return $this->coBenefiHumanos;
     }
 
     /**
      * Set txPrimerNombre
      *
      * @param string $txPrimerNombre
-     * @return vi_control_estudios
+     * @return vi_benefi_humanos
      */
     public function setTxPrimerNombre($txPrimerNombre)
     {
@@ -196,7 +187,7 @@ class clControlEstudios
      * Set txSegundNombre
      *
      * @param string $txSegundNombre
-     * @return vi_control_estudios
+     * @return vi_benefi_humanos
      */
     public function setTxSegundNombre($txSegundNombre)
     {
@@ -219,7 +210,7 @@ class clControlEstudios
      * Set txPrimerApellido
      *
      * @param string $txPrimerApellido
-     * @return vi_control_estudios
+     * @return vi_benefi_humanos
      */
     public function setTxPrimerApellido($txPrimerApellido)
     {
@@ -242,7 +233,7 @@ class clControlEstudios
      * Set txSegundApellido
      *
      * @param string $txSegundApellido
-     * @return vi_control_estudios
+     * @return vi_benefi_humanos
      */
     public function setTxSegundApellido($txSegundApellido)
     {
@@ -265,7 +256,7 @@ class clControlEstudios
      * Set nuCedula
      *
      * @param integer $nuCedula
-     * @return vi_control_estudios
+     * @return vi_benefi_humanos
      */
     public function setNuCedula($nuCedula)
     {
@@ -285,10 +276,33 @@ class clControlEstudios
     }
 
     /**
+     * Set txParentesco
+     *
+     * @param string $txParentesco
+     * @return vi_benefi_humanos
+     */
+    public function setTxParentesco($txParentesco)
+    {
+        $this->txParentesco = $txParentesco;
+
+        return $this;
+    }
+
+    /**
+     * Get txParentesco
+     *
+     * @return string 
+     */
+    public function getTxParentesco()
+    {
+        return $this->txParentesco;
+    }
+
+    /**
      * Set inSexo
      *
      * @param string $inSexo
-     * @return vi_control_estudios
+     * @return vi_benefi_humanos
      */
     public function setInSexo($inSexo)
     {
@@ -311,7 +325,7 @@ class clControlEstudios
      * Set inNacionalidad
      *
      * @param string $inNacionalidad
-     * @return vi_control_estudios
+     * @return vi_benefi_humanos
      */
     public function setInNacionalidad($inNacionalidad)
     {
@@ -334,7 +348,7 @@ class clControlEstudios
      * Set inEstadoCivil
      *
      * @param string $inEstadoCivil
-     * @return vi_control_estudios
+     * @return vi_benefi_humanos
      */
     public function setInEstadoCivil($inEstadoCivil)
     {
@@ -354,56 +368,10 @@ class clControlEstudios
     }
 
     /**
-     * Set txTipoIngreso
-     *
-     * @param string $txTipoIngreso
-     * @return vi_control_estudios
-     */
-    public function setTxTipoIngreso($txTipoIngreso)
-    {
-        $this->txTipoIngreso = $txTipoIngreso;
-
-        return $this;
-    }
-
-    /**
-     * Get txTipoIngreso
-     *
-     * @return string 
-     */
-    public function getTxTipoIngreso()
-    {
-        return $this->txTipoIngreso;
-    }
-
-    /**
-     * Set txCarrera
-     *
-     * @param string $txCarrera
-     * @return vi_control_estudios
-     */
-    public function setTxCarrera($txCarrera)
-    {
-        $this->txCarrera = $txCarrera;
-
-        return $this;
-    }
-
-    /**
-     * Get txCarrera
-     *
-     * @return string 
-     */
-    public function getTxCarrera()
-    {
-        return $this->txCarrera;
-    }
-
-    /**
      * Set txCorreoElectronico
      *
      * @param string $txCorreoElectronico
-     * @return vi_control_estudios
+     * @return vi_benefi_humanos
      */
     public function setTxCorreoElectronico($txCorreoElectronico)
     {
@@ -426,7 +394,7 @@ class clControlEstudios
      * Set txTelefoCasa
      *
      * @param string $txTelefoCasa
-     * @return vi_control_estudios
+     * @return vi_benefi_humanos
      */
     public function setTxTelefoCasa($txTelefoCasa)
     {
@@ -449,7 +417,7 @@ class clControlEstudios
      * Set txTelefoCelular
      *
      * @param string $txTelefoCelular
-     * @return vi_control_estudios
+     * @return vi_benefi_humanos
      */
     public function setTxTelefoCelular($txTelefoCelular)
     {
@@ -472,7 +440,7 @@ class clControlEstudios
      * Set txLugarResidencia
      *
      * @param string $txLugarResidencia
-     * @return vi_control_estudios
+     * @return vi_benefi_humanos
      */
     public function setTxLugarResidencia($txLugarResidencia)
     {
@@ -492,56 +460,10 @@ class clControlEstudios
     }
 
     /**
-     * Set txDecripcion
-     *
-     * @param string $txDecripcion
-     * @return vi_control_estudios
-     */
-    public function setTxDecripcion($txDecripcion)
-    {
-        $this->txDecripcion = $txDecripcion;
-
-        return $this;
-    }
-
-    /**
-     * Get txDecripcion
-     *
-     * @return string 
-     */
-    public function getTxDecripcion()
-    {
-        return $this->txDecripcion;
-    }
-    
-    /**
-     * Set tb_benefi_estudiante
-     *
-     * @param string $tb_benefi_estudiante
-     * @return vi_control_estudios
-     */
-    public function settb_benefi_estudiante($tb_benefi_estudiante)
-    {
-        $this->tb_benefi_estudiante = $tb_benefi_estudiante;
-
-        return $this;
-    }
-    
-    /**
-     * Get tb_benefi_estudiante
-     *
-     * @return string 
-     */
-    public function gettb_benefi_estudiante()
-    {
-        return $this->tb_benefi_estudiante;
-    }
-
-    /**
      * Set txDescripcion
      *
      * @param string $txDescripcion
-     * @return clControlEstudios
+     * @return vi_benefi_humanos
      */
     public function setTxDescripcion($txDescripcion)
     {
@@ -558,28 +480,5 @@ class clControlEstudios
     public function getTxDescripcion()
     {
         return $this->txDescripcion;
-    }
-
-    /**
-     * Set tb_benefi_estudiante
-     *
-     * @param \sagaco\DsagacoBundle\Entity\clBenefiEstudiante $tbBenefiEstudiante
-     * @return clControlEstudios
-     */
-    public function setTbBenefiEstudiante(\sagaco\DsagacoBundle\Entity\clBenefiEstudiante $tbBenefiEstudiante = null)
-    {
-        $this->tb_benefi_estudiante = $tbBenefiEstudiante;
-
-        return $this;
-    }
-
-    /**
-     * Get tb_benefi_estudiante
-     *
-     * @return \sagaco\DsagacoBundle\Entity\clBenefiEstudiante 
-     */
-    public function getTbBenefiEstudiante()
-    {
-        return $this->tb_benefi_estudiante;
     }
 }

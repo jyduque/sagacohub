@@ -62,6 +62,9 @@ class clCita
     /** @ORM\ManyToOne(targetEntity="sagaco\DsagacoBundle\Entity\clMotivoConsulta") */
     protected $tb_motivo_consulta;
     
+    /** @ORM\ManyToOne(targetEntity="sagaco\DsagacoBundle\Entity\clPersona") */
+    protected $tb_persona;
+
     /**
      * Get id
      *
@@ -232,50 +235,27 @@ class clCita
     {
         return $this->tb_motivo_consulta;
     }
-
+               
     /**
-     * Set tb_horario
+     * Set tb_persona
      *
-     * @param \sagaco\DsagacoBundle\Entity\clHorario $tbHorario
-     * @return clCita
+     * @param string $tb_persona
+     * @return tp_cita
      */
-    public function setTbHorario(\sagaco\DsagacoBundle\Entity\clHorario $tbHorario = null)
+    public function settb_persona($tb_persona)
     {
-        $this->tb_horario = $tbHorario;
+        $this->tb_persona = $tb_persona;
 
         return $this;
     }
-
+    
     /**
-     * Get tb_horario
+     * Get tb_persona
      *
-     * @return \sagaco\DsagacoBundle\Entity\clHorario 
+     * @return string 
      */
-    public function getTbHorario()
+    public function gettb_persona()
     {
-        return $this->tb_horario;
-    }
-
-    /**
-     * Set tb_motivo_consulta
-     *
-     * @param \sagaco\DsagacoBundle\Entity\clMotivoConsulta $tbMotivoConsulta
-     * @return clCita
-     */
-    public function setTbMotivoConsulta(\sagaco\DsagacoBundle\Entity\clMotivoConsulta $tbMotivoConsulta = null)
-    {
-        $this->tb_motivo_consulta = $tbMotivoConsulta;
-
-        return $this;
-    }
-
-    /**
-     * Get tb_motivo_consulta
-     *
-     * @return \sagaco\DsagacoBundle\Entity\clMotivoConsulta 
-     */
-    public function getTbMotivoConsulta()
-    {
-        return $this->tb_motivo_consulta;
+        return $this->tb_persona;
     }
 }

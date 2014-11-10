@@ -1,0 +1,15 @@
+{% extends '::plantilla.html.twig' %}
+
+{% block id 'rol' %}
+    {# Titulo del requisito #}
+    {% block nbr_requisito %}Registrar rol{% endblock %}{#-- Fin Titulo del requisito #}
+    
+    {# Campos de la Forma #}
+    {% block campos %}
+    {{ bootstrap_set_style('horizontal') }}
+    
+    {#Muestra los campos del formulario#}
+    {{ form_row(form.TxDescripcion, {'label': 'Rol'}) }}    
+    {{ form_row(form.Guardar)}}        
+    
+    {% endblock %}{#-- Fin Campos de la Forma #}

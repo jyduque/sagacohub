@@ -5,12 +5,12 @@ namespace sagaco\DsagacoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * th_bitacora
+ * tb_pagina_web
  *
- * @ORM\Table(name="th_bitacora")
- * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clBitacoraRepository")
+ * @ORM\Table(name="tb_pagina_web")
+ * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clPaginaWebRepository")
  */
-class clBitacora
+class clPaginaWeb
 {
     /**
      * @var integer
@@ -24,9 +24,9 @@ class clBitacora
     /**
      * @var integer
      *
-     * @ORM\Column(name="co_bitacora", type="integer")
+     * @ORM\Column(name="co_pagina_web", type="integer")
      */
-    private $coBitacora;
+    private $coPaginaWeb;
 
     /**
      * @var string
@@ -43,22 +43,15 @@ class clBitacora
     private $txDireccIp;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="fh_fecha_hora", type="datetime")
-     */
-    private $fhFechaHora;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="tx_descripcion", type="text", nullable=true)
      */
     private $txDescripcion;
-    
-    /** @ORM\ManyToOne(targetEntity="sagaco\DsagacoBundle\Entity\clPaginaWeb") */
-    protected $tb_pagina_web;
 
+    /** @ORM\ManyToOne(targetEntity="sagaco\DsagacoBundle\Entity\clPersona") */
+    protected $tb_persona;
+    
     /**
      * Get id
      *
@@ -70,33 +63,33 @@ class clBitacora
     }
 
     /**
-     * Set coBitacora
+     * Set coPaginaWeb
      *
-     * @param integer $coBitacora
-     * @return th_bitacora
+     * @param integer $coPaginaWeb
+     * @return tb_pagina_web
      */
-    public function setCoBitacora($coBitacora)
+    public function setCoPaginaWeb($coPaginaWeb)
     {
-        $this->coBitacora = $coBitacora;
+        $this->coPaginaWeb = $coPaginaWeb;
 
         return $this;
     }
 
     /**
-     * Get coBitacora
+     * Get coPaginaWeb
      *
      * @return integer 
      */
-    public function getCoBitacora()
+    public function getCoPaginaWeb()
     {
-        return $this->coBitacora;
+        return $this->coPaginaWeb;
     }
 
     /**
      * Set txDireccUrl
      *
      * @param string $txDireccUrl
-     * @return th_bitacora
+     * @return tb_pagina_web
      */
     public function setTxDireccUrl($txDireccUrl)
     {
@@ -119,7 +112,7 @@ class clBitacora
      * Set txDireccIp
      *
      * @param string $txDireccIp
-     * @return th_bitacora
+     * @return tb_pagina_web
      */
     public function setTxDireccIp($txDireccIp)
     {
@@ -139,33 +132,10 @@ class clBitacora
     }
 
     /**
-     * Set fhFechaHora
-     *
-     * @param \DateTime $fhFechaHora
-     * @return th_bitacora
-     */
-    public function setFhFechaHora($fhFechaHora)
-    {
-        $this->fhFechaHora = $fhFechaHora;
-
-        return $this;
-    }
-
-    /**
-     * Get fhFechaHora
-     *
-     * @return \DateTime 
-     */
-    public function getFhFechaHora()
-    {
-        return $this->fhFechaHora;
-    }
-
-    /**
      * Set txDescripcion
      *
      * @param string $txDescripcion
-     * @return th_bitacora
+     * @return tb_pagina_web
      */
     public function setTxDescripcion($txDescripcion)
     {
@@ -183,50 +153,27 @@ class clBitacora
     {
         return $this->txDescripcion;
     }
-    
+        
     /**
-     * Set tb_pagina_web
+     * Set tb_persona
      *
-     * @param string $tb_pagina_web
-     * @return th_bitacora
+     * @param string $tb_persona
+     * @return tb_pagina_web
      */
-    public function settb_pagina_web($tb_pagina_web)
+    public function settb_persona($tb_persona)
     {
-        $this->tb_pagina_web = $tb_pagina_web;
+        $this->tb_persona = $tb_persona;
 
         return $this;
     }
     
     /**
-     * Get tb_pagina_web
+     * Get tb_persona
      *
      * @return string 
      */
-    public function gettb_pagina_web()
+    public function gettb_persona()
     {
-        return $this->tb_pagina_web;
-    }
-
-    /**
-     * Set tb_pagina_web
-     *
-     * @param \sagaco\DsagacoBundle\Entity\clPaginaWeb $tbPaginaWeb
-     * @return clBitacora
-     */
-    public function setTbPaginaWeb(\sagaco\DsagacoBundle\Entity\clPaginaWeb $tbPaginaWeb = null)
-    {
-        $this->tb_pagina_web = $tbPaginaWeb;
-
-        return $this;
-    }
-
-    /**
-     * Get tb_pagina_web
-     *
-     * @return \sagaco\DsagacoBundle\Entity\clPaginaWeb 
-     */
-    public function getTbPaginaWeb()
-    {
-        return $this->tb_pagina_web;
+        return $this->tb_persona;
     }
 }

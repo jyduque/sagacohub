@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * clPersona
  *
- * @ORM\Table(name="tb_persona")
+ * @ORM\Table()
  * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clPersonaRepository")
  */
 class clPersona
@@ -64,28 +64,5 @@ class clPersona
     public function getTxDescripcion()
     {
         return $this->tx_descripcion;
-    }
-
-    /**
-     * Set prGrupoRol
-     *
-     * @param \sagaco\DsagacoBundle\Entity\clGrupoRol $prGrupoRol
-     * @return clPersona
-     */
-    public function setPrGrupoRol(\sagaco\DsagacoBundle\Entity\clGrupoRol $prGrupoRol = null)
-    {
-        $this->prGrupoRol = $prGrupoRol;
-
-        return $this;
-    }
-
-    /**
-     * Get prGrupoRol
-     *
-     * @return \sagaco\DsagacoBundle\Entity\clGrupoRol 
-     */
-    public function getPrGrupoRol()
-    {
-        return $this->prGrupoRol;
     }
 }

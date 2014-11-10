@@ -5,12 +5,12 @@ namespace sagaco\DsagacoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * tp_prueba
+ * tb_tipo_entrevista
  *
- * @ORM\Table(name="tp_prueba")
- * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clPruebaRepository")
+ * @ORM\Table(name="tb_tipo_entrevista")
+ * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clTipoEntrevistaRepository")
  */
-class clPrueba
+class clTipoEntrevista
 {
     /**
      * @var integer
@@ -24,16 +24,16 @@ class clPrueba
     /**
      * @var integer
      *
-     * @ORM\Column(name="co_prueba", type="integer")
+     * @ORM\Column(name="co_tipo_entrevista", type="integer")
      */
-    private $coPrueba;
+    private $coTipoEntrevista;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_tipo_prueba", type="string", length=8)
+     * @ORM\Column(name="tx_tipo_entrevista", type="string", length=15)
      */
-    private $txTipoPrueba;
+    private $txTipoEntrevista;
 
     /**
      * @var string
@@ -41,7 +41,8 @@ class clPrueba
      * @ORM\Column(name="tx_descripcion", type="text", nullable=true)
      */
     private $txDescripcion;
-    
+
+
     /**
      * Get id
      *
@@ -53,56 +54,56 @@ class clPrueba
     }
 
     /**
-     * Set coPrueba
+     * Set coTipoEntrevista
      *
-     * @param integer $coPrueba
-     * @return tp_prueba
+     * @param integer $coTipoEntrevista
+     * @return tb_tipo_entrevista
      */
-    public function setCoPrueba($coPrueba)
+    public function setCoTipoEntrevista($coTipoEntrevista)
     {
-        $this->coPrueba = $coPrueba;
+        $this->coTipoEntrevista = $coTipoEntrevista;
 
         return $this;
     }
 
     /**
-     * Get coPrueba
+     * Get coTipoEntrevista
      *
      * @return integer 
      */
-    public function getCoPrueba()
+    public function getCoTipoEntrevista()
     {
-        return $this->coPrueba;
+        return $this->coTipoEntrevista;
     }
 
     /**
-     * Set txTipoPrueba
+     * Set txTipoEntrevista
      *
-     * @param string $txTipoPrueba
-     * @return tp_prueba
+     * @param string $txTipoEntrevista
+     * @return tb_tipo_entrevista
      */
-    public function setTxTipoPrueba($txTipoPrueba)
+    public function setTxTipoEntrevista($txTipoEntrevista)
     {
-        $this->txTipoPrueba = $txTipoPrueba;
+        $this->txTipoEntrevista = $txTipoEntrevista;
 
         return $this;
     }
 
     /**
-     * Get txTipoPrueba
+     * Get txTipoEntrevista
      *
      * @return string 
      */
-    public function getTxTipoPrueba()
+    public function getTxTipoEntrevista()
     {
-        return $this->txTipoPrueba;
+        return $this->txTipoEntrevista;
     }
 
     /**
      * Set txDescripcion
      *
      * @param string $txDescripcion
-     * @return tp_prueba
+     * @return tb_tipo_entrevista
      */
     public function setTxDescripcion($txDescripcion)
     {
