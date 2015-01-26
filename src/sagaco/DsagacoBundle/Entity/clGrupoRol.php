@@ -1,14 +1,14 @@
 <?php
 
 namespace sagaco\DsagacoBundle\Entity;
-use Doctrine\Common\Collections\ArrayCollection;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * tb_grupo_rol
+ * ESagaco.tbGrupoRol
  *
- * @ORM\Table(name="tb_grupo_rol")
+ * @ORM\Table(name="e_sagaco.tb_grupo_rol", uniqueConstraints={@ORM\UniqueConstraint(name="uk_tb_grupo_rol_nb_grupo_rol", columns={"nb_grupo_rol"})})
+ * @ORM\Entity
  * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clGrupoRolRepository")
  */
 class clGrupoRol
@@ -16,93 +16,112 @@ class clGrupoRol
     /**
      * @var integer
      *
-     * @ORM\Column(name="co_tipo_rol", type="integer")
+     * @ORM\Column(name="co_grupo_rol", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="seq_grupo_rol", initialValue=1, allocationSize=1)
+     * @ORM\SequenceGenerator(sequenceName="e_sagaco.seq_tb_grupo_rol_co_grupo_rol", allocationSize=1, initialValue=1)
      */
-    private $coTipoRol;
+    private $coGrupoRol;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_descripcion", type="text")
+     * @ORM\Column(name="nb_grupo_rol", type="string", length=20, nullable=false)
      */
-    private $txDescripcion;
+    private $nbGrupoRol;
 
     /**
-     * @ORM\OneToMany(targetEntity="clPersona", mappedBy="clGrupoRol")
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fh_creacion", type="datetime", nullable=false)
      */
-    protected $prPersona;
-    
-    public function __construct()
-    {
-        $this->prPersona = new ArrayCollection();
-    }    
-    
+    private $fhCreacion;
+
     /**
-     * Get coTipoRol
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fh_actualizacion", type="datetime", nullable=false)
+     */
+    private $fhActualizacion;
+
+
+
+    /**
+     * Get coGrupoRol
      *
      * @return integer 
      */
-    public function getCoTipoRol()
+    public function getCoGrupoRol()
     {
-        return $this->coTipoRol;
+        return $this->coGrupoRol;
     }
 
     /**
-     * Set txDescripcion
+     * Set nbGrupoRol
      *
-     * @param string $txDescripcion
-     * @return tb_grupo_rol
+     * @param string $nbGrupoRol
+     * @return clGrupoRol
      */
-    public function setTxDescripcion($txDescripcion)
+    public function setNbGrupoRol($nbGrupoRol)
     {
-        $this->txDescripcion = $txDescripcion;
+        $this->nbGrupoRol = $nbGrupoRol;
 
         return $this;
     }
 
     /**
-     * Get txDescripcion
+     * Get nbGrupoRol
      *
      * @return string 
      */
-    public function getTxDescripcion()
+    public function getNbGrupoRol()
     {
-        return $this->txDescripcion;
+        return $this->nbGrupoRol;
     }
 
     /**
-     * Add prPersona
+     * Set fhCreacion
      *
-     * @param \sagaco\DsagacoBundle\Entity\clPersona $prPersona
+     * @param \DateTime $fhCreacion
      * @return clGrupoRol
      */
-    public function addPrPersona(\sagaco\DsagacoBundle\Entity\clPersona $prPersona)
+    public function setFhCreacion($fhCreacion)
     {
-        $this->prPersona[] = $prPersona;
+        $this->fhCreacion = $fhCreacion;
 
         return $this;
     }
 
     /**
-     * Remove prPersona
+     * Get fhCreacion
      *
-     * @param \sagaco\DsagacoBundle\Entity\clPersona $prPersona
+     * @return \DateTime 
      */
-    public function removePrPersona(\sagaco\DsagacoBundle\Entity\clPersona $prPersona)
+    public function getFhCreacion()
     {
-        $this->prPersona->removeElement($prPersona);
+        return $this->fhCreacion;
     }
 
     /**
-     * Get prPersona
+     * Set fhActualizacion
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @param \DateTime $fhActualizacion
+     * @return clGrupoRol
      */
-    public function getPrPersona()
+    public function setFhActualizacion($fhActualizacion)
     {
-        return $this->prPersona;
+        $this->fhActualizacion = $fhActualizacion;
+
+        return $this;
+    }
+
+    /**
+     * Get fhActualizacion
+     *
+     * @return \DateTime 
+     */
+    public function getFhActualizacion()
+    {
+        return $this->fhActualizacion;
     }
 }

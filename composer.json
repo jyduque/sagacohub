@@ -11,9 +11,9 @@
             "type": "package",
             "package": {
                 "name": "jquery/jquery",
-                "version": "1.11.1",
+                "version": "1.11.2",
                 "dist": {
-                    "url": "http://code.jquery.com/jquery-1.11.1.js",
+                    "url": "http://code.jquery.com/jquery-1.11.2.js",
                     "type": "file"
                 }
             }
@@ -30,11 +30,17 @@
         "symfony/monolog-bundle": "~2.4",
         "sensio/distribution-bundle": "~3.0",
         "sensio/framework-extra-bundle": "~3.0",
-        "incenteev/composer-parameter-handler": "~2.0",
+        "incenteev/composer-parameter-handler": "~2.0",        
+        "twbs/bootstrap": "3.3.*@dev",
         "braincrafted/bootstrap-bundle": "dev-master",
-        "twbs/bootstrap": "3.0.*",
-        "jquery/jquery":  "1.11.*",
-        "oyejorge/less.php": "~1.5"
+        "knplabs/knp-paginator-bundle": "2.4.*@dev",
+        "knplabs/knp-menu": "2.0.*@dev",
+        "knplabs/knp-menu-bundle": "2.0.*@dev",
+        "pimple/pimple": "3.0.*@dev",
+        "jquery/jquery":  "1.11.*",        
+        "components/jquery": "1.11.*",
+        "datatables/datatables": "1.10.4",
+        "oyejorge/less.php": "dev-master"        
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
@@ -49,7 +55,8 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
+            "Braincrafted\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::install"
         ],
         "post-update-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
@@ -57,7 +64,8 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
+            "Braincrafted\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::install"
         ]
     },
     "config": {
