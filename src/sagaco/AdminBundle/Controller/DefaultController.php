@@ -3,39 +3,46 @@
 namespace sagaco\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use sagaco\DsagacoBundle\Entity\clGrupoRol;
-use sagaco\AdminBundle\Form\Backend\clGrupoRolType;
 use Doctrine\ORM\Mapping as ORM;
 
 class DefaultController extends Controller
 {
     public function rolAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $peticion = $this->getRequest();
+        // CREAR EL OBJETO DE LA CLASE clGrupoRol
         
-        // Crea el objeto de la entidad clGrupoRol para manejar la tabla tb_grupo_rol        
         $objGrupo = new clGrupoRol();
+        //$objConsulGrupo = new clGrupoRol();
         
-        // Crea el objeto del formulario clGrupoRolType para enviar a la plantilla
-        $objGrupo->setTxDescripcion('prueb');
-        $objFormulario = $this->createForm(new clGrupoRolType(), $objGrupo);
+                
+        $objGrupo->setCoTipoRol(5);
+        $objGrupo->setTxDescripcion('Prueba con formulario');
         
-        $objFormulario->handleRequest($peticion);
+        //$em = $this->getDoctrine()->getManager();
+        //$em->persist($objGrupo);
+        //$em->flush(); 
         
-        if ($objFormulario->isValid())
-        {
-            $em->persist($objGrupo);
-            $em->flush();
-            
-            //$this->get('session')->getFlashBag()->add('info', 'Los datos del rol se han actualizado correctamente');
+        // CODIGO OBTENER INFORMACION CON DOCTRINE2
+        
+        //$objConsulGrupo = $em->getRepository('DsagacoBundle:clGrupoRol')->find(5);
+        
+        //return $this->render('AdminBundle:Default:pgRol.html.twig',array('visRol' => $objConsulGrupo));              
+        
+        //CREAR FORMULARIO
+        // crea una task y le asigna algunos datos ficticios para este ejemplo
+        //$task = new Task();
+        //$task->setTask('Write a blog post');
+        //$task->setDueDate(new \DateTime('tomorrow'));
  
-            return $this->redirect($this->generateUrl('pg_rol'));
-        }
-        
+        $form = $this->createFormBuilder($objGrupo)
+            ->add('CoTipoRol', 'text', array('attr' => array('help_text' => 'Letters, numbers and underscores are allowed.')))
+            ->add('TxDescripcion', 'text')        
+            ->add('save', 'submit')
+            ->getForm();
+ 
         return $this->render('AdminBundle:Default:pgRol.html.twig', array(
-            'form' => $objFormulario->createView(),
+            'form' => $form->createView(),
         ));
     }
 }

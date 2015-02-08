@@ -4,6 +4,7 @@ namespace sagaco\DsagacoBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
+
 /**
  * clTipoEntrevistaRepository
  *
@@ -11,5 +12,28 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 class clTipoEntrevistaRepository extends EntityRepository
-{
+{ 
+    public function listar(){
+        
+        /* Indexed column (used for fast and accurate table cardinality) */
+        $alias = "a";
+        
+        /* DB tabla a usar */
+        $tableObjectName = 'DsagacoBundle:clTipoEntrevista';
+        
+        /* Campo para ordenar */        
+        $txtOrden = 'nbTipoEntrevista';
+        
+        $objConsulta = $this->getEntityManager()
+                ->createQuery('SELECT '
+                        . $alias .
+                        ' FROM '. $tableObjectName .' '. $alias 
+                        .' ORDER BY a.nbTipoEntrevista ASC');
+
+        try {
+            return $objConsulta->getArrayResult();  
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }         
+    }
 }

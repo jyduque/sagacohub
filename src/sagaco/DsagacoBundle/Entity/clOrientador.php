@@ -5,9 +5,10 @@ namespace sagaco\DsagacoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * tb_orientador
+ * ESagaco.tbOrientador
  *
- * @ORM\Table(name="tb_orientador")
+ * @ORM\Table(name="e_sagaco.tb_orientador", indexes={@ORM\Index(name="IDX_6F75FA7772BC55D8", columns={"co_recurs_humano"})})
+ * @ORM\Entity
  * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clOrientadorRepository")
  */
 class clOrientador
@@ -15,65 +16,66 @@ class clOrientador
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="co_orientador", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="co_orientador", type="integer")
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="e_sagaco.tb_orientador_co_orientador_seq", allocationSize=1, initialValue=1)
      */
     private $coOrientador;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_profesion", type="string", length=15)
+     * @ORM\Column(name="tx_profesion", type="string", length=15, nullable=false)
      */
     private $txProfesion;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_carrer_atendida", type="string", length=50)
+     * @ORM\Column(name="tx_carrer_atendida", type="string", length=50, nullable=false)
      */
     private $txCarrerAtendida;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_comentario", type="text", nullable=true)
+     * @ORM\Column(name="tx_period_vigencia", type="string", length=50, nullable=false)
+     */
+    private $txPeriodVigencia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tx_comentario", type="string", length=255, nullable=true)
      */
     private $txComentario;
 
-    /** @ORM\ManyToOne(targetEntity="sagaco\DsagacoBundle\Entity\clRecursHumanos") */
-    protected $vi_recurs_humanos;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fh_creacion", type="datetime", nullable=false)
+     */
+    private $fhCreacion;
 
     /**
-     * Get id
+     * @var \DateTime
      *
-     * @return integer 
+     * @ORM\Column(name="fh_actualizacion", type="datetime", nullable=false)
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $fhActualizacion;
 
     /**
-     * Set coOrientador
+     * @var \ESagaco.viRecursHumano
      *
-     * @param integer $coOrientador
-     * @return tb_orientador
+     * @ORM\ManyToOne(targetEntity="ESagaco.viRecursHumano")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="co_recurs_humano", referencedColumnName="co_recurs_humano")
+     * })
      */
-    public function setCoOrientador($coOrientador)
-    {
-        $this->coOrientador = $coOrientador;
+    private $coRecursHumano;
 
-        return $this;
-    }
+
 
     /**
      * Get coOrientador
@@ -89,7 +91,7 @@ class clOrientador
      * Set txProfesion
      *
      * @param string $txProfesion
-     * @return tb_orientador
+     * @return clOrientador
      */
     public function setTxProfesion($txProfesion)
     {
@@ -112,7 +114,7 @@ class clOrientador
      * Set txCarrerAtendida
      *
      * @param string $txCarrerAtendida
-     * @return tb_orientador
+     * @return clOrientador
      */
     public function setTxCarrerAtendida($txCarrerAtendida)
     {
@@ -132,10 +134,33 @@ class clOrientador
     }
 
     /**
+     * Set txPeriodVigencia
+     *
+     * @param string $txPeriodVigencia
+     * @return clOrientador
+     */
+    public function setTxPeriodVigencia($txPeriodVigencia)
+    {
+        $this->txPeriodVigencia = $txPeriodVigencia;
+
+        return $this;
+    }
+
+    /**
+     * Get txPeriodVigencia
+     *
+     * @return string 
+     */
+    public function getTxPeriodVigencia()
+    {
+        return $this->txPeriodVigencia;
+    }
+
+    /**
      * Set txComentario
      *
      * @param string $txComentario
-     * @return tb_orientador
+     * @return clOrientador
      */
     public function setTxComentario($txComentario)
     {
@@ -153,50 +178,73 @@ class clOrientador
     {
         return $this->txComentario;
     }
-        
-    /**
-     * Set vi_recurs_humanos
-     *
-     * @param string $vi_recurs_humanos
-     * @return tb_orientador
-     */
-    public function setvi_recurs_humanos($vi_recurs_humanos)
-    {
-        $this->vi_recurs_humanos = $vi_recurs_humanos;
-
-        return $this;
-    }
-    
-    /**
-     * Get vi_recurs_humanos
-     *
-     * @return string 
-     */
-    public function getvi_recurs_humanos()
-    {
-        return $this->vi_recurs_humanos;
-    }
 
     /**
-     * Set vi_recurs_humanos
+     * Set fhCreacion
      *
-     * @param \sagaco\DsagacoBundle\Entity\clRecursHumanos $viRecursHumanos
+     * @param \DateTime $fhCreacion
      * @return clOrientador
      */
-    public function setViRecursHumanos(\sagaco\DsagacoBundle\Entity\clRecursHumanos $viRecursHumanos = null)
+    public function setFhCreacion($fhCreacion)
     {
-        $this->vi_recurs_humanos = $viRecursHumanos;
+        $this->fhCreacion = $fhCreacion;
 
         return $this;
     }
 
     /**
-     * Get vi_recurs_humanos
+     * Get fhCreacion
      *
-     * @return \sagaco\DsagacoBundle\Entity\clRecursHumanos 
+     * @return \DateTime 
      */
-    public function getViRecursHumanos()
+    public function getFhCreacion()
     {
-        return $this->vi_recurs_humanos;
+        return $this->fhCreacion;
+    }
+
+    /**
+     * Set fhActualizacion
+     *
+     * @param \DateTime $fhActualizacion
+     * @return clOrientador
+     */
+    public function setFhActualizacion($fhActualizacion)
+    {
+        $this->fhActualizacion = $fhActualizacion;
+
+        return $this;
+    }
+
+    /**
+     * Get fhActualizacion
+     *
+     * @return \DateTime 
+     */
+    public function getFhActualizacion()
+    {
+        return $this->fhActualizacion;
+    }
+
+    /**
+     * Set coRecursHumano
+     *
+     * @param \sagaco\DsagacoBundle\Entity\ESagaco.viRecursHumano $coRecursHumano
+     * @return clOrientador
+     */
+    public function setCoRecursHumano(\sagaco\DsagacoBundle\Entity\clRecursHumano $coRecursHumano = null)
+    {
+        $this->coRecursHumano = $coRecursHumano;
+
+        return $this;
+    }
+
+    /**
+     * Get coRecursHumano
+     *
+     * @return \sagaco\DsagacoBundle\Entity\ESagaco.viRecursHumano 
+     */
+    public function getCoRecursHumano()
+    {
+        return $this->coRecursHumano;
     }
 }

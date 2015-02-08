@@ -4,6 +4,7 @@ namespace sagaco\DsagacoBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
+
 /**
  * clGrupoRolRepository
  *
@@ -11,5 +12,27 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 class clGrupoRolRepository extends EntityRepository
-{
+{ 
+    public function listar(){
+        
+        /* Indexed column (used for fast and accurate table cardinality) */
+        $alias = "a";
+        
+        /* DB table to use */
+        $tableObjectName = 'DsagacoBundle:clGrupoRol';
+        
+        /* Campo para ordenar */        
+        $txtOrden = 'nbGrupoRol';
+        
+        $objConsulta = $this->getEntityManager()
+                ->createQuery('SELECT '
+                        . $alias .
+                        ' FROM '. $tableObjectName .' '. $alias 
+                        .' ORDER BY '. $alias .'.'. $txtOrden . ' ASC');
+        try {
+            return $objConsulta->getArrayResult();  
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }         
+    }        
 }

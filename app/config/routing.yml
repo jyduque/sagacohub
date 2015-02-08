@@ -3,7 +3,8 @@ info:
     prefix:   /
 
 admin:
-    resource: "@AdminBundle/Resources/config/routing.yml"
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
     prefix:   /
 
 prueba:

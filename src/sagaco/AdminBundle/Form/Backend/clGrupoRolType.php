@@ -1,38 +1,49 @@
 <?php
 
 /**
- * Description of clGrupoRolType
+ * Descripción de la clGrupoRolType
  * La clase crea el formulario para los requerimientos:
+ * - RF-27 Asignar Rol
  * - RF-35 Registrar Rol
+ * - RF-36 Activar Rol
  * - RF-37 Consultar Rol
  * - RF-38 Modificar datos del rol
+ * - RF-39 Desactivar Rol
  * @author Jorge Duque
  */
-
 namespace sagaco\AdminBundle\Form\Backend;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class clGrupoRolType extends AbstractType 
+class clGrupoRolType extends AbstractType
 {
-    //put your code here
-    public function buildForm(FormBuilderInterface $contructor, array $opciones)
+    /**
+     * @param FormBuilderInterface $objConstructor
+     * @param array $arrOpcion
+     */
+    public function buildForm(FormBuilderInterface $objConstructor, array $arrOpcion)
     {
-        $contructor
-            ->add('CoTipoRol')
-            ->add('TxDescripcion')
-            ->add('dueDate', null, array('mapped' => false))
-            ->add('Guardar', 'submit');
+        $objConstructor
+            ->add('nbGrupoRol');
     }
     
+    /**
+     * @param OptionsResolverInterface $resolver
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array('data_class' => 'sagaco\DsagacoBundle\Entity\clGrupoRol'));
+        $resolver->setDefaults(array(
+            'data_class' => 'sagaco\DsagacoBundle\Entity\clGrupoRol'
+        ));
     }
+
+    /**
+     * @return string
+     */
     public function getName()
     {
-        return 'sagaco_adminbundle_clgruporoltype';
+        return 'sagaco_adminbundle_clGrupoRoltype';
     }
 }

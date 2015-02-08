@@ -23,6 +23,8 @@ class AppKernel extends Kernel
             new sagaco\AdminBundle\AdminBundle(),
             new sagaco\InfoBundle\InfoBundle(),
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

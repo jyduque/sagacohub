@@ -1,0 +1,55 @@
+{% extends '::plantilla.html.twig' %}
+
+{% block id 'dvibaremo' %}
+   
+    {% block ruta %}
+    <div class="container navbar-blanca">                
+        <ul class="breadcrumb-modi">
+            <li><a href="#"><small>Inicio</small></a></li>
+            <li><a href="{{ path('pgDviBaremo') }}"><small>DVI baremo</small></a></li>
+            <li class="active"><small>Crear</small></li>
+        </ul>                              
+    </div> 
+    {% endblock %}{#-- Fin Barra de ruta --#}
+    
+    {# Campos de la Forma #}
+    {% block twigformulario %}
+        
+            <fieldset>
+                {# Titulo del requisito #}
+                <legend>Crear DVI baremo
+                    <div class="pull-right">
+                        <a href="{{ path('pgDviBaremo') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar al listado">
+                            <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
+                        </a>                       
+                    </div>
+                </legend>
+                {#Muestra los campos del formulario#}      
+                   
+                {{ form_start(form, { 'style': 'horizontal' }) }}
+                    {{ form_errors(form, { 'global_errors': true }) }}
+                    {{ form_row(form._token) }}
+                    {{ form_row(form.nuDviRespuesta, {'label': 'Respuesta'}) }}
+                    {{ form_row(form.inIntere1, {'label': 'Interes 1'}) }}
+                    {{ form_row(form.inIntere2, {'label': 'Interes 2'}) }}
+                    {{ form_row(form.inIntere21, {'label': 'Interes 3'}) }}
+                    {{ form_row(form.inIntere4, {'label': 'Interes 4'}) }}
+                    {{ form_row(form.inIntere5, {'label': 'Interes 5'}) }}
+                    {{ form_row(form.inIntere6, {'label': 'Interes 6'}) }}
+                    {{ form_row(form.inIntere7, {'label': 'Interes 7'}) }}
+                    {{ form_row(form.inIntere8, {'label': 'Interes 8'}) }}
+                    {{ form_row(form.inIntere9, {'label': 'Interes 9'}) }}
+                    {{ form_row(form.inIntere10, {'label': 'Interes 10'}) }}
+                    {{ form_row(form.inIntere11, {'label': 'Interes 11'}) }}
+                    {{ form_row(form.inIntere12, {'label': 'Interes 12'}) }}
+                    {{ form_row(form.inIntere13, {'label': 'Interes 13'}) }}
+                    {{ form_row(form.inIntere14, {'label': 'Interes 14'}) }}
+                    {{ form_row(form.inIntere15, {'label': 'Interes 15'}) }}
+                    {{ form_row(form.inIntere16, {'label': 'Interes 16'}) }}
+                    {{ form_row(form.inIntere17, {'label': 'Interes 17'}) }}
+                    {{ form_row(form.inIntere18, {'label': 'Interes 18'}) }}
+                {{ form_end(form) }}                
+            </fieldset>         
+            
+        
+    {% endblock %}{#-- Fin Campos de la Forma #}

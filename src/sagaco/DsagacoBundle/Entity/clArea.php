@@ -5,9 +5,9 @@ namespace sagaco\DsagacoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * tb_area
+ * ESagaco.tbArea
  *
- * @ORM\Table(name="tb_area")
+ * @ORM\Table(name="e_sagaco.tb_area")
  * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clAreaRepository")
  */
 class clArea
@@ -15,49 +15,35 @@ class clArea
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="co_area", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="co_area", type="integer")
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="e_sagaco.seq_tb_area_co_area_1", allocationSize=1, initialValue=1)
      */
     private $coArea;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_descripcion", type="text")
+     * @ORM\Column(name="nb_area", type="string", length=255, nullable=false)
      */
-    private $txDescripcion;
-
+    private $nbArea;
 
     /**
-     * Get id
+     * @var \DateTime
      *
-     * @return integer 
+     * @ORM\Column(name="fh_creacion", type="datetime", nullable=false)
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $fhCreacion;
 
     /**
-     * Set coArea
+     * @var \DateTime
      *
-     * @param integer $coArea
-     * @return tb_area
+     * @ORM\Column(name="fh_actualizacion", type="datetime", nullable=false)
      */
-    public function setCoArea($coArea)
-    {
-        $this->coArea = $coArea;
+    private $fhActualizacion;
 
-        return $this;
-    }
+
 
     /**
      * Get coArea
@@ -70,25 +56,71 @@ class clArea
     }
 
     /**
-     * Set txDescripcion
+     * Set nbArea
      *
-     * @param string $txDescripcion
-     * @return tb_area
+     * @param string $nbArea
+     * @return clArea
      */
-    public function setTxDescripcion($txDescripcion)
+    public function setNbArea($nbArea)
     {
-        $this->txDescripcion = $txDescripcion;
+        $this->nbArea = $nbArea;
 
         return $this;
     }
 
     /**
-     * Get txDescripcion
+     * Get nbArea
      *
      * @return string 
      */
-    public function getTxDescripcion()
+    public function getNbArea()
     {
-        return $this->txDescripcion;
+        return $this->nbArea;
+    }
+
+    /**
+     * Set fhCreacion
+     *
+     * @param \DateTime $fhCreacion
+     * @return clArea
+     */
+    public function setFhCreacion($fhCreacion)
+    {
+        $this->fhCreacion = $fhCreacion;
+
+        return $this;
+    }
+
+    /**
+     * Get fhCreacion
+     *
+     * @return \DateTime 
+     */
+    public function getFhCreacion()
+    {
+        return $this->fhCreacion;
+    }
+
+    /**
+     * Set fhActualizacion
+     *
+     * @param \DateTime $fhActualizacion
+     * @return clArea
+     */
+    public function setFhActualizacion($fhActualizacion)
+    {
+        $this->fhActualizacion = $fhActualizacion;
+
+        return $this;
+    }
+
+    /**
+     * Get fhActualizacion
+     *
+     * @return \DateTime 
+     */
+    public function getFhActualizacion()
+    {
+        return $this->fhActualizacion;
     }
 }
