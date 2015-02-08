@@ -5,9 +5,9 @@ namespace sagaco\DsagacoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * tb_tipo_entrevista
+ * ESagaco.tbTipoEntrevista
  *
- * @ORM\Table(name="tb_tipo_entrevista")
+ * @ORM\Table(name="e_sagaco.tb_tipo_entrevista")
  * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clTipoEntrevistaRepository")
  */
 class clTipoEntrevista
@@ -15,56 +15,35 @@ class clTipoEntrevista
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="co_tipo_entrevista", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="co_tipo_entrevista", type="integer")
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="e_sagaco.seq_tb_tipo_entrevista_co_tipo_entrevista", allocationSize=1, initialValue=1)
      */
     private $coTipoEntrevista;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_tipo_entrevista", type="string", length=15)
+     * @ORM\Column(name="nb_tipo_entrevista", type="string", length=30, nullable=false)
      */
-    private $txTipoEntrevista;
+    private $nbTipoEntrevista;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="tx_descripcion", type="text", nullable=true)
+     * @ORM\Column(name="fh_creacion", type="datetime", nullable=false)
      */
-    private $txDescripcion;
-
+    private $fhCreacion;
 
     /**
-     * Get id
+     * @var \DateTime
      *
-     * @return integer 
+     * @ORM\Column(name="fh_actualizacion", type="datetime", nullable=false)
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $fhActualizacion;
 
-    /**
-     * Set coTipoEntrevista
-     *
-     * @param integer $coTipoEntrevista
-     * @return tb_tipo_entrevista
-     */
-    public function setCoTipoEntrevista($coTipoEntrevista)
-    {
-        $this->coTipoEntrevista = $coTipoEntrevista;
 
-        return $this;
-    }
 
     /**
      * Get coTipoEntrevista
@@ -77,48 +56,71 @@ class clTipoEntrevista
     }
 
     /**
-     * Set txTipoEntrevista
+     * Set nbTipoEntrevista
      *
-     * @param string $txTipoEntrevista
-     * @return tb_tipo_entrevista
+     * @param string $nbTipoEntrevista
+     * @return clTipoEntrevista
      */
-    public function setTxTipoEntrevista($txTipoEntrevista)
+    public function setNbTipoEntrevista($nbTipoEntrevista)
     {
-        $this->txTipoEntrevista = $txTipoEntrevista;
+        $this->nbTipoEntrevista = $nbTipoEntrevista;
 
         return $this;
     }
 
     /**
-     * Get txTipoEntrevista
+     * Get nbTipoEntrevista
      *
      * @return string 
      */
-    public function getTxTipoEntrevista()
+    public function getNbTipoEntrevista()
     {
-        return $this->txTipoEntrevista;
+        return $this->nbTipoEntrevista;
     }
 
     /**
-     * Set txDescripcion
+     * Set fhCreacion
      *
-     * @param string $txDescripcion
-     * @return tb_tipo_entrevista
+     * @param \DateTime $fhCreacion
+     * @return clTipoEntrevista
      */
-    public function setTxDescripcion($txDescripcion)
+    public function setFhCreacion($fhCreacion)
     {
-        $this->txDescripcion = $txDescripcion;
+        $this->fhCreacion = $fhCreacion;
 
         return $this;
     }
 
     /**
-     * Get txDescripcion
+     * Get fhCreacion
      *
-     * @return string 
+     * @return \DateTime 
      */
-    public function getTxDescripcion()
+    public function getFhCreacion()
     {
-        return $this->txDescripcion;
+        return $this->fhCreacion;
+    }
+
+    /**
+     * Set fhActualizacion
+     *
+     * @param \DateTime $fhActualizacion
+     * @return clTipoEntrevista
+     */
+    public function setFhActualizacion($fhActualizacion)
+    {
+        $this->fhActualizacion = $fhActualizacion;
+
+        return $this;
+    }
+
+    /**
+     * Get fhActualizacion
+     *
+     * @return \DateTime 
+     */
+    public function getFhActualizacion()
+    {
+        return $this->fhActualizacion;
     }
 }

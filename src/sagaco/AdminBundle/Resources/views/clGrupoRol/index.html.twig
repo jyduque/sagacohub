@@ -25,36 +25,38 @@
                 {{ bootstrap_set_style('horizontal') }}
     
                 {#Muestra los campos del formulario#} 
-                    <table class="table table-bordered table-striped table-condensed" id="myTable">
-                        <thead>                            
-                            <tr>
-                                {# sorting of properties based on query components #}
-                                <th>{{ knp_pagination_sortable(objPagina, 'Id', 'a.coGrupoRol') }}</th>
-                                <th{% if objPagina.isSorted('a.nbGrupoRol') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Rol', 'a.nbGrupoRol') }}</th>
-                                <th>F. Creación</th>
-                                <th>F. Actualización</th>
-                                <th>Acción</th>                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {% for objEntidad in objPagina %}
-                            <tr {% if loop.index is odd %}class="color"{% endif %}>
-                                <td class="text-right"><a href="{{ path('pgRol_mostrar', { 'id': objEntidad.coGrupoRol, 'blnBandera': '0'}) }}">{{ objEntidad.coGrupoRol }}</a></td>
-                                <td>{{ objEntidad.nbGrupoRol }}</td>
-                                <td>{% if objEntidad.fhCreacion %}{{ objEntidad.fhCreacion|date('Y-m-d H:i:s') }}{% endif %}</td>
-                                <td>{% if objEntidad.fhActualizacion %}{{ objEntidad.fhActualizacion|date('Y-m-d H:i:s') }}{% endif %}</td>
-                                <td> 
-                                    <a href="{{ path('pgRol_mostrar', { 'id': objEntidad.coGrupoRol, 'blnBandera': '0' }) }}">
-                                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                                    </a>
-                                    <a href="{{ path('pgRol_editar', { 'id': objEntidad.coGrupoRol }) }}">
-                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                    </a>                                 
-                                </td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-condensed">
+                            <thead>                            
+                                <tr>
+                                    {# sorting of properties based on query components #}
+                                    <th>{{ knp_pagination_sortable(objPagina, 'Id', 'a.coGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.nbGrupoRol') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Rol', 'a.nbGrupoRol') }}</th>
+                                    <th>F. Creación</th>
+                                    <th>F. Actualización</th>
+                                    <th>Acción</th>                                
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for objEntidad in objPagina %}
+                                <tr {% if loop.index is odd %}class="color"{% endif %}>
+                                    <td class="text-right"><a href="{{ path('pgRol_mostrar', { 'id': objEntidad.coGrupoRol, 'blnBandera': '0'}) }}">{{ objEntidad.coGrupoRol }}</a></td>
+                                    <td>{{ objEntidad.nbGrupoRol }}</td>
+                                    <td>{% if objEntidad.fhCreacion %}{{ objEntidad.fhCreacion|date('d-m-Y H:i:s') }}{% endif %}</td>
+                                    <td>{% if objEntidad.fhActualizacion %}{{ objEntidad.fhActualizacion|date('d-m-Y H:i:s') }}{% endif %}</td>
+                                    <td> 
+                                        <a href="{{ path('pgRol_mostrar', { 'id': objEntidad.coGrupoRol, 'blnBandera': '0' }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Mostrar detalle">
+                                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                        </a>                                    
+                                        <a href="{{ path('pgRol_editar', { 'id': objEntidad.coGrupoRol }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar">
+                                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                        </a>                                 
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                     
                     <div class="row">                        
                         <div class="col-sm-9 col-md-6 col-lg-8">

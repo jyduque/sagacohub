@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * Descripción de la clGrupoRolType
+ * La clase crea el formulario para los requerimientos:
+ * - RF-27 Asignar Rol
+ * - RF-35 Registrar Rol
+ * - RF-36 Activar Rol
+ * - RF-37 Consultar Rol
+ * - RF-38 Modificar datos del rol
+ * - RF-39 Desactivar Rol
+ * @author Jorge Duque
+ */
 namespace sagaco\AdminBundle\Form\Backend;
 
 use Symfony\Component\Form\AbstractType;
@@ -15,9 +26,7 @@ class clGrupoRolType extends AbstractType
     public function buildForm(FormBuilderInterface $objConstructor, array $arrOpcion)
     {
         $objConstructor
-            ->add('nbGrupoRol')
-            
-        ;
+            ->add('nbGrupoRol');
     }
     
     /**
@@ -35,6 +44,6 @@ class clGrupoRolType extends AbstractType
      */
     public function getName()
     {
-        return 'sagaco_adminbundle_clgruporoltype';
+        return 'sagaco_adminbundle_clGrupoRoltype';
     }
 }

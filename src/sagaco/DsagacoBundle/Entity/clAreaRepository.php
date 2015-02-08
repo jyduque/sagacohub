@@ -1,8 +1,9 @@
 <?php
 
-namespace sagaco\DsagacoBundlesagacoBundle\Entity;
+namespace sagaco\DsagacoBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+
 
 /**
  * clAreaRepository
@@ -12,4 +13,26 @@ use Doctrine\ORM\EntityRepository;
  */
 class clAreaRepository extends EntityRepository
 {
+    public function listar(){
+        
+        /* Columan indexada*/
+        $alias = "a";
+        
+        /* DB tabla a usar */
+        $tableObjectName = 'DsagacoBundle:clArea';
+        
+        /* Campo para ordenar */        
+        $txtOrden = 'nbArea';
+        
+        $objConsulta = $this->getEntityManager()
+                ->createQuery('SELECT '
+                        . $alias .
+                        ' FROM '. $tableObjectName .' '. $alias 
+                        .' ORDER BY '. $alias .'.'. $txtOrden . ' ASC');
+        try {
+            return $objConsulta->getArrayResult();  
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }         
+    }
 }

@@ -8,7 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
  * ESagaco.tbGrupoRol
  *
  * @ORM\Table(name="e_sagaco.tb_grupo_rol", uniqueConstraints={@ORM\UniqueConstraint(name="uk_tb_grupo_rol_nb_grupo_rol", columns={"nb_grupo_rol"})})
- * @ORM\Entity
  * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clGrupoRolRepository")
  */
 class clGrupoRol

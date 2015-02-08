@@ -3,7 +3,7 @@
 namespace sagaco\DsagacoBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Query\Expr;
+
 
 /**
  * clGrupoRolRepository
@@ -12,120 +12,7 @@ use Doctrine\ORM\Query\Expr;
  * repository methods below.
  */
 class clGrupoRolRepository extends EntityRepository
-{
-    
-    /**
-    * @param array $get
-    * @param bool $flag
-    * @return array|\Doctrine\ORM\Query
-    */
-    public function ajaxTable($get, $flag = false){
-    
-        /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-        * Easy set variables
-        */
-        
-        /* Indexed column (used for fast and accurate table cardinality) */
-        $alias = "a";
-        
-        /* DB table to use */
-        $tableObjectName = 'DsagacoBundle:clGrupoRol';
-        
-        /* Array of database columns which should be read and sent back to DataTables. Use a space where
-        * you want to insert a non-database field (for example a counter or static image)
-        */
-        $columns = array( 'coGrupoRol', 'nbGrupoRol' );
-        $aColumns = array();
-        
-        foreach ($columns as $value) {
-            $aColumns[] = $alias . '.' . $value;
-        }
-        
-        $cb = $this->getEntityManager()
-        ->getRepository($tableObjectName)
-        ->createQueryBuilder($alias)
-        ->select(str_replace(" , ", " ", implode(", ", $aColumns)));
-        
-        if ( isset( $get['iDisplayStart'] ) && $get['iDisplayLength'] != '-1' ){
-        $cb->setFirstResult( (int)$get['iDisplayStart'] )
-        ->setMaxResults( (int)$get['iDisplayLength'] );
-        }
-        
-        /*
-        * Ordering
-        */
-        if ( isset( $get['iSortCol_0'] ) ){
-        for ( $i=0 ; $i<intval( $get['iSortingCols'] ) ; $i++ ){
-        if ( $get[ 'bSortable_'.intval($get['iSortCol_'.$i]) ] == "true" ){
-        $cb->orderBy($aColumns[ (int)$get['iSortCol_'.$i] ], $get['sSortDir_'.$i]);
-                }
-            }
-        }
-        
-        /*
-        * Filtering
-        * NOTE this does not match the built-in DataTables filtering which does it
-        * word by word on any field. It's possible to do here, but concerned about efficiency
-        * on very large tables, and MySQL's regex functionality is very limited
-        */
-        if ( isset($get['sSearch']) && $get['sSearch'] != '' ){
-            $aLike = array();
-            for ( $i=0 ; $i<count($aColumns) ; $i++ ){
-                if ( isset($get['bSearchable_'.$i]) && $get['bSearchable_'.$i] == "true" ){
-                    $aLike[] = $cb->expr()->like($aColumns[$i], '\'%'. $get['sSearch'] .'%\'');
-                }
-            }
-            if (count($aLike) > 0) {
-                $cb->andWhere(new Expr\Orx($aLike));
-            } else {
-                unset($aLike);
-            }
-        }
-        
-        /*
-        * SQL queries
-        * Get data to display
-        */
-        
-        $query = $cb->getQuery();
-        $rResult = $query->getArrayResult();
-        
-        /* Data set length after filtering */
-        $iFilteredTotal = count($rResult);
-        
-        /* Total data set length */
-        $aResultTotal = $this->getEntityManager()
-        ->createQuery('SELECT COUNT('. $alias .') FROM '. $tableObjectName .' '.$alias)
-        ->setMaxResults(1)
-        ->getResult();
-        $iTotal = $aResultTotal[0][1];
-        
-        /*
-        * Output
-        */
-        $output = array(
-        "sEcho" => "0",
-        "iTotalRecords" => $iTotal,
-        "iTotalDisplayRecords" => $iFilteredTotal,
-        "aaData" => array()
-        );
-        
-        foreach($rResult as $aRow){
-            $row = array();
-            for ( $i=0 ; $i<count($columns) ; $i++ ){
-                if ( $columns[$i] == "version" ){
-                    /* Special output formatting for 'version' column */
-                    $row[] = ($aRow[ $columns[$i] ]=="0") ? '-' : $aRow[ $columns[$i] ];
-                }elseif ( $columns[$i] != ' ' ){
-                    /* General output */
-                    $row[] = $aRow[ $columns[$i] ];
-                }
-            }
-            $output['aaData'][] = $row;
-        }
-        return $output;
-    }
-    
+{ 
     public function listar(){
         
         /* Indexed column (used for fast and accurate table cardinality) */
@@ -134,19 +21,18 @@ class clGrupoRolRepository extends EntityRepository
         /* DB table to use */
         $tableObjectName = 'DsagacoBundle:clGrupoRol';
         
+        /* Campo para ordenar */        
+        $txtOrden = 'nbGrupoRol';
+        
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '
                         . $alias .
                         ' FROM '. $tableObjectName .' '. $alias 
-                        .' ORDER BY a.nbGrupoRol ASC');
-
+                        .' ORDER BY '. $alias .'.'. $txtOrden . ' ASC');
         try {
             return $objConsulta->getArrayResult();  
         } catch (\Doctrine\ORM\NoResultException $e) {
             return null;
         }         
-    }
-    
-    
-
+    }        
 }

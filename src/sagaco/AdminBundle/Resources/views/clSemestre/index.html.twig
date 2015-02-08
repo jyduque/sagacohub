@@ -1,0 +1,76 @@
+{% extends '::plantilla.html.twig' %}
+
+{% block id 'semestre' %}
+    {# Barra de ruta #}
+    {% block ruta %}
+    <div class="container navbar-blanca">                
+        <ul class="breadcrumb-modi">
+            <li><a href="#"><small>Inicio</small></a></li>
+            <li class="active"><small>Semestre</small></li>
+        </ul>                              
+    </div> 
+    {% endblock %}{#-- Fin Barra de ruta --#}
+   
+    {# Campos de la Forma #}
+    {% block twigformulario %}
+        <fieldset>
+                {# Titulo del requisito #}
+                <legend>Listar semestre
+                    <div class="pull-right">
+                        <a href="{{ path('pgSemestre_registrar') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Crear">
+                            <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+                        </a>                          
+                    </div>
+                </legend>
+                {{ bootstrap_set_style('horizontal') }}
+    
+                {#Muestra los campos del formulario#} 
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-condensed">
+                            <thead>                            
+                                <tr>
+                                    {# sorting of properties based on query components #}
+                                    <th>{{ knp_pagination_sortable(objPagina, 'Id', 'a.coSemestre') }}</th>
+                                    <th{% if objPagina.isSorted('a.inActivo') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Activo', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.txSemestre') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Semestre', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.feInicio') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Semestre ini', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.feFin') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Semestre fin', 'a.nbGrupoRol') }}</th>
+                                    <th>F. Creación</th>
+                                    <th>F. Actualización</th>
+                                    <th>Acción</th>                                
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for objEntidad in objPagina %}
+                                <tr {% if loop.index is odd %}class="color"{% endif %}>
+                                    <td class="text-right"><a href="{{ path('pgSemestre_mostrar', { 'id': objEntidad.coSemestre, 'blnBandera': '0'}) }}">{{ objEntidad.coSemestre }}</a></td>
+                                    <td>{{ objEntidad.inActivo }}</td>
+                                    <td>{{ objEntidad.txSemestre }}</td>
+                                    <td>{% if objEntidad.feInicio %}{{ objEntidad.feInicio|date('d-m-Y') }}{% endif %}</td>
+                                    <td>{% if objEntidad.feFin %}{{ objEntidad.feFin|date('d-m-Y') }}{% endif %}</td>
+                                    <td>{% if objEntidad.fhCreacion %}{{ objEntidad.fhCreacion|date('d-m-Y H:i:s') }}{% endif %}</td>
+                                    <td>{% if objEntidad.fhActualizacion %}{{ objEntidad.fhActualizacion|date('d-m-Y H:i:s') }}{% endif %}</td>
+                                    <td> 
+                                        <a href="{{ path('pgSemestre_mostrar', { 'id': objEntidad.coSemestre, 'blnBandera': '0' }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Mostrar detalle">
+                                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                        </a>                                    
+                                        <a href="{{ path('pgSemestre_editar', { 'id': objEntidad.coSemestre }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar">
+                                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                        </a>                                 
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="row">                        
+                        <div class="col-sm-9 col-md-6 col-lg-8">
+                            <p> <strong>Resultado: </strong>{{ objPagina.getTotalItemCount }} filas</p>
+                        </div>
+                        <div class="col-sm-3 col-md-6 col-lg-4 pull-right">
+                            {{ knp_pagination_render(objPagina) }}
+                        </div>
+                    </div>                    
+                </fieldset>   
+    {% endblock %}{#-- Fin Campos de la Forma #}

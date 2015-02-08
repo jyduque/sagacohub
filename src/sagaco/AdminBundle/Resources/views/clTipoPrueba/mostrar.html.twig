@@ -1,0 +1,81 @@
+{% extends '::plantilla.html.twig' %}
+
+{% block id 'tipoprueba' %}
+    
+    {% block ruta %}
+    <div class="container navbar-blanca">                
+        <ul class="breadcrumb-modi">
+            <li><a href="#"><small>Inicio</small></a></li>
+            <li><a href="{{ path('pgTipoPrueba') }}"><small>Tipo prueba</small></a></li>
+            <li class="active"><small>Detalle</small></li>
+        </ul>                              
+    </div> 
+    {% endblock %}{#-- Fin Barra de ruta --#}
+   
+    {# Campos de la Forma #}
+    {% block twigformulario %}
+        
+            <fieldset>
+                {# Titulo del requisito #}
+                <legend>Detalle tipo prueba
+                    <div class="pull-right">
+                        {{ form(delete_form) }}
+                    </div> 
+                    <div class="pull-right">
+                        <a href="{{ path('pgTipoPrueba') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar al listado">
+                            <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
+                        </a> 
+                        <a href="{{ path('pgTipoPrueba_editar', { 'id': objEntidad.coTipoPrueba }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        </a> 
+                    </div> 
+                     
+                </legend>
+                {#Muestra los campos del formulario#}      
+                   
+                <div class='form-horizontal'>
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Id</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coTipoPrueba }}</div>                    
+                    </div>    
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Tipo Prueba</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.nbTipoPrueba }}</div>                    
+                    </div>
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Estado</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.inEstado }}</div>                    
+                    </div>
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Vigencia ini</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{% if objEntidad.feInicioVigencia %}{{ objEntidad.feInicioVigencia|date('d-m-Y') }}{% endif %}</div>                    
+                    </div>
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Vigencia fin</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{% if objEntidad.feFinVigencia %}{{ objEntidad.feFinVigencia|date('d-m-Y') }}{% endif %}</div>                    
+                    </div>
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Fecha de creación</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.fhCreacion|date('d-m-Y H:i:s') }}</div>                    
+                    </div>
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Fecha de actualización</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.fhActualizacion|date('d-m-Y H:i:s') }}</div>                    
+                    </div>
+                </div>         
+            </fieldset>
+            {% if blnBandera != 0 %}
+                {% if blnBandera == 1 %}
+                    <div class="alert alert-dismissable alert-success">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>Bien hecho!</strong> Registro exitoso.
+                    </div>
+                {% else%}                
+                    <div class="alert alert-dismissable alert-success">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>Bien hecho!</strong> Actualización exitosa.
+                    </div>
+                {% endif %}
+            {% endif %}
+
+    {% endblock %}{#-- Fin Campos de la Forma #}

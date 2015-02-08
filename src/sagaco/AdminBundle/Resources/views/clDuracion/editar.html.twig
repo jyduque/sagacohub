@@ -1,0 +1,40 @@
+{% extends '::plantilla.html.twig' %}
+
+{% block id 'duracion' %}
+    
+    {% block ruta %}
+    <div class="container navbar-blanca">                
+        <ul class="breadcrumb-modi">
+            <li><a href="#"><small>Inicio</small></a></li>
+            <li><a href="{{ path('pgDuracion') }}"><small>Duración</small></a></li>
+            <li class="active"><small>Actualizar</small></li>
+        </ul>                              
+    </div> 
+    {% endblock %}{#-- Fin Barra de ruta --#}
+   
+    {# Campos de la Forma #}
+    {% block twigformulario %}
+        
+            <fieldset>
+                {# Titulo del requisito #}
+                <legend>Actualizar duración
+                    <div class="pull-right">
+                        {{ form(delete_form) }}
+                    </div> 
+                    <div class="pull-right">
+                        <a href="{{ path('pgDuracion') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar al listado">
+                            <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>                            
+                        </a> 
+                            <i class="fa fa-pencil-square-o"></i>
+                    </div>                
+                </legend>
+                
+                {#Muestra los campos del formulario#}  
+                {{ form_start(edit_form, { 'style': 'horizontal' }) }}
+                    {{ form_errors(edit_form, { 'global_errors': true }) }}
+                    {{ form_row(edit_form._token) }}
+                    {{ form_row(edit_form.nuDuracion, {'label': 'Duración'}) }}                    
+                {{ form_end(edit_form) }}                    
+            </fieldset>   
+
+    {% endblock %}{#-- Fin Campos de la Forma #}

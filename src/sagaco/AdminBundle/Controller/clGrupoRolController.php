@@ -11,7 +11,7 @@ use sagaco\DsagacoBundle\Entity\clGrupoRol;
 use sagaco\AdminBundle\Form\Backend\clGrupoRolType;
 
 /**
- * clGrupoRol controller.
+ * Controlador de clGrupoRol.
  *
  * @Route("/pgRol")
  */
@@ -20,32 +20,28 @@ class clGrupoRolController extends Controller
     var $blnBandera;
     
     /**
-     * Lists all clGrupoRol entities.
+     * Lists todas las entidades de clGrupoRol.
      *
      * @Route("/", name="pgRol")
      * @Method("GET")
      * @Template()
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $objPeticion)
     {
         $em = $this->getDoctrine()->getManager();
 
-        #$objGrupoRol = $em->getRepository('DsagacoBundle:clGrupoRol')->findAll();
-        
-        $objGrupoRol = $em->getRepository('DsagacoBundle:clGrupoRol')->listar();    
-        
+        $objEntidad = $em->getRepository('DsagacoBundle:clGrupoRol')->listar();        
                 
         $objPaginador  = $this->get('knp_paginator');
         $objPagina = $objPaginador->
-                paginate($objGrupoRol, 
-                        $request->query->get('page', 1)/*page number*/, 5/*limit per page*/);
+                paginate($objEntidad, 
+                        $objPeticion->query->get('page', 1)/*page number*/, 5/*limit per page*/);
         
         // set an array of custom parameters
         //La clase pull-right envía el paginador a mano derecha
         $objPagina->setCustomParameters(array('class' => 'pull-right'));        
 
-        return ['objGrupoRol' => $objGrupoRol,
-            'objPagina' => $objPagina,
+        return ['objPagina' => $objPagina
             ];
     }
     
@@ -58,23 +54,23 @@ class clGrupoRolController extends Controller
      */
     public function crearAction(Request $objPeticion)
     {
-        $objGrupoRol = new clGrupoRol();
-        $form = $this->generarForma($objGrupoRol);
+        $objEntidad = new clGrupoRol();
+        $form = $this->generarForma($objEntidad);
         $form->handleRequest($objPeticion);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $objGrupoRol->setFhCreacion(new \DateTime());
-            $objGrupoRol->setFhActualizacion(new \DateTime());
-            $em->persist($objGrupoRol);
+            $objEntidad->setFhCreacion(new \DateTime());
+            $objEntidad->setFhActualizacion(new \DateTime());
+            $em->persist($objEntidad);
             $em->flush();
             $blnBandera = 1;
 
-            return $this->redirect($this->generateUrl('pgRol_mostrar', array('id' => $objGrupoRol->getCoGrupoRol(), 'blnBandera' => $blnBandera)));
+            return $this->redirect($this->generateUrl('pgRol_mostrar', array('id' => $objEntidad->getCoGrupoRol(), 'blnBandera' => $blnBandera)));
         }
 
         return array(
-            'objGrupoRol' => $objGrupoRol,
+            'objEntidad' => $objEntidad,
             'form'   => $form->createView(),
         );
         
@@ -83,18 +79,18 @@ class clGrupoRolController extends Controller
     /**
      * Genera una forma para crear una entidad de tipo clGrupoRol.
      *
-     * @param clGrupoRol $objGrupoRol La entidad
+     * @param clGrupoRol $objEntidad La entidad
      *
      * @return \Symfony\Component\Form\Form La forma
      */
-    private function generarForma(clGrupoRol $objGrupoRol)
+    private function generarForma(clGrupoRol $objEntidad)
     {
-        $form = $this->createForm(new clGrupoRolType(), $objGrupoRol, array(
+        $form = $this->createForm(new clGrupoRolType(), $objEntidad, array(
             'action' => $this->generateUrl('pgRol_crear'),
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Crear'));
 
         return $form;        
     }
@@ -108,11 +104,11 @@ class clGrupoRolController extends Controller
      */
     public function registrarAction()
     {
-        $objGrupoRol = new clGrupoRol();
-        $form   = $this->generarForma($objGrupoRol);
+        $objEntidad = new clGrupoRol();
+        $form   = $this->generarForma($objEntidad);
 
         return array(
-            'objGrupoRol' => $objGrupoRol,
+            'objEntidad' => $objEntidad,
             'form'   => $form->createView(),
         );              
     }
@@ -128,15 +124,15 @@ class clGrupoRolController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $objGrupoRol = $em->getRepository('DsagacoBundle:clGrupoRol')->find($id);
+        $objEntidad = $em->getRepository('DsagacoBundle:clGrupoRol')->find($id);
 
-        if (!$objGrupoRol) {
-            throw $this->createNotFoundException('Imposible encontrar el Rol.');
+        if (!$objEntidad) {
+            throw $this->createNotFoundException('Imposible encontrar el Área.');
         }
 
         $objEliminForma = $this->eliminarForma($id);
 
-        return ['objGrupoRol' => $objGrupoRol,
+        return ['objEntidad' => $objEntidad,
             'blnBandera' => $blnBandera,
             'delete_form' => $objEliminForma->createView(),
             ];        
@@ -153,17 +149,17 @@ class clGrupoRolController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $objGrupoRol = $em->getRepository('DsagacoBundle:clGrupoRol')->find($id);
+        $objEntidad = $em->getRepository('DsagacoBundle:clGrupoRol')->find($id);
 
-        if (!$objGrupoRol) {
-            throw $this->createNotFoundException('Imposible encontrar el Rol.');
+        if (!$objEntidad) {
+            throw $this->createNotFoundException('Imposible encontrar el área.');
         }
 
-        $objEditarForma = $this->editarForma($objGrupoRol);
+        $objEditarForma = $this->editarForma($objEntidad);
         $objEliminForma = $this->eliminarForma($id);
 
         return array(
-            'objGrupoRol'      => $objGrupoRol,
+            'objEntidad'      => $objEntidad,
             'edit_form'   => $objEditarForma->createView(),
             'delete_form' => $objEliminForma->createView(),
         );        
@@ -172,22 +168,22 @@ class clGrupoRolController extends Controller
     /**
     * Crea una forma para actualizar una entidad de clGrupoRol.
     *
-    * @param clGrupoRol $objGrupoRol La entidad
+    * @param clGrupoRol $objEntidad La entidad
     *
     * @return \Symfony\Component\Form\Form La forma
     */
-    private function editarForma(clGrupoRol $objGrupoRol)
+    private function editarForma(clGrupoRol $objEntidad)
     {
-        $form = $this->createForm(new clGrupoRolType(), $objGrupoRol, array(
-            'action' => $this->generateUrl('pgRol_actualizar', array('id' => $objGrupoRol->getCoGrupoRol())),
+        $form = $this->createForm(new clGrupoRolType(), $objEntidad, array(
+            'action' => $this->generateUrl('pgRol_actualizar', array('id' => $objEntidad->getCoGrupoRol())),
             'method' => 'PUT',
         ));
 
-        //$form->add('submit', 'submit', array('label' => 'Actualizar'));
-        $form->add('submit', 'submit', ['label' => 'Actualizar', 'attr' => ['data-toggle' => 'tooltip',
+        $form->add('submit', 'submit', array('label' => 'Actualizar'));
+        /*$form->add('submit', 'submit', ['label' => 'Actualizar', 'attr' => ['data-toggle' => 'tooltip',
                 'data-placement' => 'bottom',
                 'title' => '',
-                'data-original-title' => 'Actualizar']]);
+                'data-original-title' => 'Actualizar']]);*/
         
 
         return $form;        
@@ -205,18 +201,18 @@ class clGrupoRolController extends Controller
         $em = $this->getDoctrine()->getManager();
         
 
-        $objGrupoRol = $em->getRepository('DsagacoBundle:clGrupoRol')->find($id);
+        $objEntidad = $em->getRepository('DsagacoBundle:clGrupoRol')->find($id);
 
-        if (!$objGrupoRol) {
-            throw $this->createNotFoundException('Imposible encontrar el Rol.');
+        if (!$objEntidad) {
+            throw $this->createNotFoundException('Imposible encontrar el área.');
         }
 
         $objEliminForma = $this->eliminarForma($id);
-        $objEditarForma = $this->editarForma($objGrupoRol);
+        $objEditarForma = $this->editarForma($objEntidad);
         $objEditarForma->handleRequest($objPeticion);
 
         if ($objEditarForma->isValid()) {
-            $objGrupoRol->setFhActualizacion(new \DateTime());
+            $objEntidad->setFhActualizacion(new \DateTime());
             $em->flush();
             
             $blnBandera = 2;
@@ -226,7 +222,7 @@ class clGrupoRolController extends Controller
         }
 
         return array(
-            'objGrupoRol'      => $objGrupoRol,
+            'objEntidad'      => $objEntidad,
             'edit_form'   => $objEditarForma->createView(),
             'delete_form' => $objEliminForma->createView(),
         );        
@@ -248,7 +244,7 @@ class clGrupoRolController extends Controller
             $objPeticion = $em->getRepository('DsagacoBundle:clGrupoRol')->find($id);
 
             if (!$objPeticion) {
-                throw $this->createNotFoundException('Imposible encontrar el Rol.');
+                throw $this->createNotFoundException('Imposible encontrar el área.');
             }
 
             $em->remove($objPeticion);
