@@ -22,7 +22,7 @@ class clDviConfiguracionRepository extends EntityRepository
         $tableObjectName = 'DsagacoBundle:clDviConfiguracion';
 
         /* Campo para ordenar */        
-        $txtOrden = 'txPregunta';
+        $txtOrden = 'coDviConfiguracion';
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '

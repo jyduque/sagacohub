@@ -22,7 +22,7 @@ class clCarreraRepository extends EntityRepository
         $tableObjectName = 'DsagacoBundle:clCarrera';
 
         /* Campo para ordenar */        
-        $txtOrden = 'nbCarrera';
+        $txtOrden = 'coCarrera';
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '

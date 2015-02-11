@@ -5,9 +5,9 @@ namespace sagaco\DsagacoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * tp_entrevista
+ * ESagaco.tpEntrevista
  *
- * @ORM\Table(name="tp_entrevista")
+ * @ORM\Table(name="e_sagaco.tp_entrevista", indexes={@ORM\Index(name="IDX_76159AFF830BBB13", columns={"co_tipo_entrevista"}), @ORM\Index(name="IDX_76159AFFDD4AC395", columns={"co_caso"}), @ORM\Index(name="IDX_76159AFF7BA029ED", columns={"co_cita"})})
  * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clEntrevistaRepository")
  */
 class clEntrevista
@@ -15,95 +15,100 @@ class clEntrevista
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="co_entrevista", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="co_entrevista", type="integer")
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="e_sagaco.seq_tp_entrevista_co_entrevista", allocationSize=1, initialValue=1)
      */
     private $coEntrevista;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="tx_historia", type="text", nullable=true)
+     * @ORM\Column(name="fh_entrevista", type="datetime", nullable=false)
      */
-    private $txHistoria;
+    private $fhEntrevista;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="ho_inicio", type="time", nullable=false)
+     */
+    private $hoInicio;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="ho_culminacion", type="time", nullable=false)
+     */
+    private $hoCulminacion;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_datos_general", type="text", nullable=true)
+     * @ORM\Column(name="tx_motivo_individual", type="string", length=255, nullable=true)
      */
-    private $txDatosGeneral;
+    private $txMotivoIndividual;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="in_solici_espontanea", type="boolean", nullable=true)
+     */
+    private $inSoliciEspontanea;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_motivo", type="text", nullable=true)
+     * @ORM\Column(name="tx_motivo_entrevista", type="string", length=255, nullable=true)
      */
-    private $txMotivo;
+    private $txMotivoEntrevista;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_tratamiento", type="text", nullable=true)
+     * @ORM\Column(name="tx_tratamiento", type="string", length=255, nullable=true)
      */
     private $txTratamiento;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_observacion", type="text", nullable=true)
+     * @ORM\Column(name="tx_observacion", type="string", length=255, nullable=true)
      */
     private $txObservacion;
 
     /**
-     * @var string
+     * @var \ESagaco.tbTipoEntrevista
      *
-     * @ORM\Column(name="tx_descripcion", type="text", nullable=true)
+     * @ORM\ManyToOne(targetEntity="ESagaco.tbTipoEntrevista")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="co_tipo_entrevista", referencedColumnName="co_tipo_entrevista")
+     * })
      */
-    private $txDescripcion;
-    
-    /** @ORM\OneToOne(targetEntity="sagaco\DsagacoBundle\Entity\clTipoEntrevista") */
-    protected $tb_tipo_entrevista;
-    
-    /** @ORM\ManyToOne(targetEntity="sagaco\DsagacoBundle\Entity\clOrientador") */
-    protected $tb_orientador;
-    
-    /** @ORM\ManyToOne(targetEntity="sagaco\DsagacoBundle\Entity\clCita") */
-    protected $tp_cita;
-    
-    /** @ORM\ManyToOne(targetEntity="sagaco\DsagacoBundle\Entity\clCaso") */
-    protected $tp_caso;
+    private $coTipoEntrevista;
 
     /**
-     * Get id
+     * @var \ESagaco.tpCaso
      *
-     * @return integer 
+     * @ORM\ManyToOne(targetEntity="ESagaco.tpCaso")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="co_caso", referencedColumnName="co_caso")
+     * })
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $coCaso;
 
     /**
-     * Set coEntrevista
+     * @var \ESagaco.tpCita
      *
-     * @param integer $coEntrevista
-     * @return tp_entrevista
+     * @ORM\ManyToOne(targetEntity="ESagaco.tpCita")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="co_cita", referencedColumnName="co_cita")
+     * })
      */
-    public function setCoEntrevista($coEntrevista)
-    {
-        $this->coEntrevista = $coEntrevista;
+    private $coCita;
 
-        return $this;
-    }
+
 
     /**
      * Get coEntrevista
@@ -116,79 +121,148 @@ class clEntrevista
     }
 
     /**
-     * Set txHistoria
+     * Set fhEntrevista
      *
-     * @param string $txHistoria
-     * @return tp_entrevista
+     * @param \DateTime $fhEntrevista
+     * @return clEntrevista
      */
-    public function setTxHistoria($txHistoria)
+    public function setFhEntrevista($fhEntrevista)
     {
-        $this->txHistoria = $txHistoria;
+        $this->fhEntrevista = $fhEntrevista;
 
         return $this;
     }
 
     /**
-     * Get txHistoria
+     * Get fhEntrevista
      *
-     * @return string 
+     * @return \DateTime 
      */
-    public function getTxHistoria()
+    public function getFhEntrevista()
     {
-        return $this->txHistoria;
+        return $this->fhEntrevista;
     }
 
     /**
-     * Set txDatosGeneral
+     * Set hoInicio
      *
-     * @param string $txDatosGeneral
-     * @return tp_entrevista
+     * @param \DateTime $hoInicio
+     * @return clEntrevista
      */
-    public function setTxDatosGeneral($txDatosGeneral)
+    public function setHoInicio($hoInicio)
     {
-        $this->txDatosGeneral = $txDatosGeneral;
+        $this->hoInicio = $hoInicio;
 
         return $this;
     }
 
     /**
-     * Get txDatosGeneral
+     * Get hoInicio
      *
-     * @return string 
+     * @return \DateTime 
      */
-    public function getTxDatosGeneral()
+    public function getHoInicio()
     {
-        return $this->txDatosGeneral;
+        return $this->hoInicio;
     }
 
     /**
-     * Set txMotivo
+     * Set hoCulminacion
      *
-     * @param string $txMotivo
-     * @return tp_entrevista
+     * @param \DateTime $hoCulminacion
+     * @return clEntrevista
      */
-    public function setTxMotivo($txMotivo)
+    public function setHoCulminacion($hoCulminacion)
     {
-        $this->txMotivo = $txMotivo;
+        $this->hoCulminacion = $hoCulminacion;
 
         return $this;
     }
 
     /**
-     * Get txMotivo
+     * Get hoCulminacion
+     *
+     * @return \DateTime 
+     */
+    public function getHoCulminacion()
+    {
+        return $this->hoCulminacion;
+    }
+
+    /**
+     * Set txMotivoIndividual
+     *
+     * @param string $txMotivoIndividual
+     * @return clEntrevista
+     */
+    public function setTxMotivoIndividual($txMotivoIndividual)
+    {
+        $this->txMotivoIndividual = $txMotivoIndividual;
+
+        return $this;
+    }
+
+    /**
+     * Get txMotivoIndividual
      *
      * @return string 
      */
-    public function getTxMotivo()
+    public function getTxMotivoIndividual()
     {
-        return $this->txMotivo;
+        return $this->txMotivoIndividual;
+    }
+
+    /**
+     * Set inSoliciEspontanea
+     *
+     * @param boolean $inSoliciEspontanea
+     * @return clEntrevista
+     */
+    public function setInSoliciEspontanea($inSoliciEspontanea)
+    {
+        $this->inSoliciEspontanea = $inSoliciEspontanea;
+
+        return $this;
+    }
+
+    /**
+     * Get inSoliciEspontanea
+     *
+     * @return boolean 
+     */
+    public function getInSoliciEspontanea()
+    {
+        return $this->inSoliciEspontanea;
+    }
+
+    /**
+     * Set txMotivoEntrevista
+     *
+     * @param string $txMotivoEntrevista
+     * @return clEntrevista
+     */
+    public function setTxMotivoEntrevista($txMotivoEntrevista)
+    {
+        $this->txMotivoEntrevista = $txMotivoEntrevista;
+
+        return $this;
+    }
+
+    /**
+     * Get txMotivoEntrevista
+     *
+     * @return string 
+     */
+    public function getTxMotivoEntrevista()
+    {
+        return $this->txMotivoEntrevista;
     }
 
     /**
      * Set txTratamiento
      *
      * @param string $txTratamiento
-     * @return tp_entrevista
+     * @return clEntrevista
      */
     public function setTxTratamiento($txTratamiento)
     {
@@ -211,7 +285,7 @@ class clEntrevista
      * Set txObservacion
      *
      * @param string $txObservacion
-     * @return tp_entrevista
+     * @return clEntrevista
      */
     public function setTxObservacion($txObservacion)
     {
@@ -231,209 +305,71 @@ class clEntrevista
     }
 
     /**
-     * Set txDescripcion
+     * Set coTipoEntrevista
      *
-     * @param string $txDescripcion
-     * @return tp_entrevista
-     */
-    public function setTxDescripcion($txDescripcion)
-    {
-        $this->txDescripcion = $txDescripcion;
-
-        return $this;
-    }
-
-    /**
-     * Get txDescripcion
-     *
-     * @return string 
-     */
-    public function getTxDescripcion()
-    {
-        return $this->txDescripcion;
-    }
-    
-    /**
-     * Set tb_tipo_entrevista
-     *
-     * @param string $tb_tipo_entrevista
-     * @return tp_entrevista
-     */
-    public function settb_tipo_entrevista($tb_tipo_entrevista)
-    {
-        $this->tb_tipo_entrevista = $tb_tipo_entrevista;
-
-        return $this;
-    }
-    
-    /**
-     * Get tb_tipo_entrevista
-     *
-     * @return string 
-     */
-    public function gettb_tipo_entrevista()
-    {
-        return $this->tb_tipo_entrevista;
-    }
-    
-    /**
-     * Set tb_orientador
-     *
-     * @param string $tb_orientador
-     * @return tp_entrevista
-     */
-    public function settb_orientador($tb_orientador)
-    {
-        $this->tb_orientador = $tb_orientador;
-
-        return $this;
-    }
-    
-    /**
-     * Get tb_orientador
-     *
-     * @return string 
-     */
-    public function gettb_orientador()
-    {
-        return $this->tb_orientador;
-    }
-    
-    /**
-     * Set tp_cita
-     *
-     * @param string $tp_cita
-     * @return tp_entrevista
-     */
-    public function settp_cita($tp_cita)
-    {
-        $this->tp_cita = $tp_cita;
-
-        return $this;
-    }
-    
-    /**
-     * Get tp_cita
-     *
-     * @return string 
-     */
-    public function gettp_cita()
-    {
-        return $this->tp_cita;
-    }
-               
-    /**
-     * Set tp_caso
-     *
-     * @param string $tp_caso
-     * @return tp_entrevista
-     */
-    public function settp_caso($tp_caso)
-    {
-        $this->tp_caso = $tp_caso;
-
-        return $this;
-    }
-    
-    /**
-     * Get tp_caso
-     *
-     * @return string 
-     */
-    public function gettp_caso()
-    {
-        return $this->tp_caso;
-    }
-
-    /**
-     * Set tb_tipo_entrevista
-     *
-     * @param \sagaco\DsagacoBundle\Entity\clTipoEntrevista $tbTipoEntrevista
+     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbTipoEntrevista $coTipoEntrevista
      * @return clEntrevista
      */
-    public function setTbTipoEntrevista(\sagaco\DsagacoBundle\Entity\clTipoEntrevista $tbTipoEntrevista = null)
+    public function setCoTipoEntrevista(\sagaco\DsagacoBundle\Entity\clTipoEntrevista $coTipoEntrevista = null)
     {
-        $this->tb_tipo_entrevista = $tbTipoEntrevista;
+        $this->coTipoEntrevista = $coTipoEntrevista;
 
         return $this;
     }
 
     /**
-     * Get tb_tipo_entrevista
+     * Get coTipoEntrevista
      *
-     * @return \sagaco\DsagacoBundle\Entity\clTipoEntrevista 
+     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbTipoEntrevista 
      */
-    public function getTbTipoEntrevista()
+    public function getCoTipoEntrevista()
     {
-        return $this->tb_tipo_entrevista;
+        return $this->coTipoEntrevista;
     }
 
     /**
-     * Set tb_orientador
+     * Set coCaso
      *
-     * @param \sagaco\DsagacoBundle\Entity\clOrientador $tbOrientador
+     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpCaso $coCaso
      * @return clEntrevista
      */
-    public function setTbOrientador(\sagaco\DsagacoBundle\Entity\clOrientador $tbOrientador = null)
+    public function setCoCaso(\sagaco\DsagacoBundle\Entity\clCaso $coCaso = null)
     {
-        $this->tb_orientador = $tbOrientador;
+        $this->coCaso = $coCaso;
 
         return $this;
     }
 
     /**
-     * Get tb_orientador
+     * Get coCaso
      *
-     * @return \sagaco\DsagacoBundle\Entity\clOrientador 
+     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpCaso 
      */
-    public function getTbOrientador()
+    public function getCoCaso()
     {
-        return $this->tb_orientador;
+        return $this->coCaso;
     }
 
     /**
-     * Set tp_cita
+     * Set coCita
      *
-     * @param \sagaco\DsagacoBundle\Entity\clCita $tpCita
+     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpCita $coCita
      * @return clEntrevista
      */
-    public function setTpCita(\sagaco\DsagacoBundle\Entity\clCita $tpCita = null)
+    public function setCoCita(\sagaco\DsagacoBundle\Entity\clCita $coCita = null)
     {
-        $this->tp_cita = $tpCita;
+        $this->coCita = $coCita;
 
         return $this;
     }
 
     /**
-     * Get tp_cita
+     * Get coCita
      *
-     * @return \sagaco\DsagacoBundle\Entity\clCita 
+     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpCita 
      */
-    public function getTpCita()
+    public function getCoCita()
     {
-        return $this->tp_cita;
-    }
-
-    /**
-     * Set tp_caso
-     *
-     * @param \sagaco\DsagacoBundle\Entity\clCaso $tpCaso
-     * @return clEntrevista
-     */
-    public function setTpCaso(\sagaco\DsagacoBundle\Entity\clCaso $tpCaso = null)
-    {
-        $this->tp_caso = $tpCaso;
-
-        return $this;
-    }
-
-    /**
-     * Get tp_caso
-     *
-     * @return \sagaco\DsagacoBundle\Entity\clCaso 
-     */
-    public function getTpCaso()
-    {
-        return $this->tp_caso;
+        return $this->coCita;
     }
 }

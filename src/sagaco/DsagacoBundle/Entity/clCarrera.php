@@ -18,7 +18,7 @@ class clCarrera
      * @ORM\Column(name="co_carrera", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="e_sagaco.tb_carrera_co_carrera_seq", allocationSize=1, initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="e_sagaco.seq_tb_carrera_co_carrera", allocationSize=1, initialValue=1)
      */
     private $coCarrera;
 

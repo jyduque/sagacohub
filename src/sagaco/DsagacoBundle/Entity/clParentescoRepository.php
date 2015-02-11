@@ -22,7 +22,7 @@ class clParentescoRepository extends EntityRepository
         $tableObjectName = 'DsagacoBundle:clParentesco';
 
         /* Campo para ordenar */        
-        $txtOrden = 'nbParentesco';
+        $txtOrden = 'coParentesco';
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '

@@ -22,7 +22,7 @@ class clGeneroRepository extends EntityRepository
         $tableObjectName = 'DsagacoBundle:clGenero';
 
         /* Campo para ordenar */        
-        $txtOrden = 'nbGenero';
+        $txtOrden = 'coGenero';
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '

@@ -22,7 +22,7 @@ class clTipoInstitucionRepository extends EntityRepository
         $tableObjectName = 'DsagacoBundle:clTipoInstitucion';
         
         /* Campo para ordenar */        
-        $txtOrden = 'nbTipoInstitucion';
+        $txtOrden = 'coTipoInstitucion';
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '

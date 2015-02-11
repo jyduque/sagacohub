@@ -22,7 +22,7 @@ class clAreaRepository extends EntityRepository
         $tableObjectName = 'DsagacoBundle:clArea';
         
         /* Campo para ordenar */        
-        $txtOrden = 'nbArea';
+        $txtOrden = 'coArea';
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '

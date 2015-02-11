@@ -22,7 +22,7 @@ class clHollanLetraRepository extends EntityRepository
         $tableObjectName = 'DsagacoBundle:clHollanLetra';
 
         /* Campo para ordenar */        
-        $txtOrden = 'nbHollanLetra';
+        $txtOrden = 'coHollanLetra';
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '

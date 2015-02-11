@@ -22,7 +22,7 @@ class clDuracionRepository extends EntityRepository
         $tableObjectName = 'DsagacoBundle:clDuracion';
 
         /* Campo para ordenar */        
-        $txtOrden = 'nuDuracion';
+        $txtOrden = 'coDuracion';
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '

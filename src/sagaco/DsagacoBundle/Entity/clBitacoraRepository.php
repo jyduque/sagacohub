@@ -4,6 +4,7 @@ namespace sagaco\DsagacoBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
+
 /**
  * clBitacoraRepository
  *
@@ -11,5 +12,27 @@ use Doctrine\ORM\EntityRepository;
  * repository methods below.
  */
 class clBitacoraRepository extends EntityRepository
-{
+{ 
+    public function listar(){
+        
+        /* Columna indexada */
+        $alias = "a";
+        
+        /* DB table a usar */
+        $tableObjectName = 'DsagacoBundle:clBitacora';
+
+        /* Campo para ordenar */        
+        $txtOrden = 'coBitacora';
+        
+        $objConsulta = $this->getEntityManager()
+                ->createQuery('SELECT '
+                        . $alias .
+                        ' FROM '. $tableObjectName .' '. $alias 
+                        .' ORDER BY '. $alias .'.'. $txtOrden . ' ASC');
+        try {
+            return $objConsulta->getArrayResult();  
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }         
+    }  
 }

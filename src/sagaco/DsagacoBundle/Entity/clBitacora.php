@@ -5,9 +5,9 @@ namespace sagaco\DsagacoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * th_bitacora
+ * ESagaco.thBitacora
  *
- * @ORM\Table(name="th_bitacora")
+ * @ORM\Table(name="e_sagaco.th_bitacora", indexes={@ORM\Index(name="IDX_2E4A3401A0F11FF", columns={"co_persona"})})
  * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clBitacoraRepository")
  */
 class clBitacora
@@ -15,72 +15,59 @@ class clBitacora
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="co_bitacora", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="co_bitacora", type="integer")
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="e_sagaco.seq_th_bitacora_co_bitacora", allocationSize=1, initialValue=1)
      */
     private $coBitacora;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_direcc_url", type="text")
+     * @ORM\Column(name="tx_direcc_url", type="string", length=255, nullable=false)
      */
     private $txDireccUrl;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_direcc_ip", type="text")
+     * @ORM\Column(name="tx_direcc_ip", type="string", length=255, nullable=false)
      */
     private $txDireccIp;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fh_fecha_hora", type="datetime")
+     * @ORM\Column(name="fh_fecha_hora", type="datetime", nullable=false)
      */
     private $fhFechaHora;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="tx_descripcion", type="text", nullable=true)
+     * @ORM\Column(name="fh_creacion", type="datetime", nullable=false)
      */
-    private $txDescripcion;
-    
-    /** @ORM\ManyToOne(targetEntity="sagaco\DsagacoBundle\Entity\clPaginaWeb") */
-    protected $tb_pagina_web;
+    private $fhCreacion;
 
     /**
-     * Get id
+     * @var \DateTime
      *
-     * @return integer 
+     * @ORM\Column(name="fh_actualizacion", type="datetime", nullable=false)
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $fhActualizacion;
 
     /**
-     * Set coBitacora
+     * @var \ESagaco.tbPersona
      *
-     * @param integer $coBitacora
-     * @return th_bitacora
+     * @ORM\ManyToOne(targetEntity="ESagaco.tbPersona")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="co_persona", referencedColumnName="co_persona")
+     * })
      */
-    public function setCoBitacora($coBitacora)
-    {
-        $this->coBitacora = $coBitacora;
+    private $coPersona;
 
-        return $this;
-    }
+
 
     /**
      * Get coBitacora
@@ -96,7 +83,7 @@ class clBitacora
      * Set txDireccUrl
      *
      * @param string $txDireccUrl
-     * @return th_bitacora
+     * @return clBitacora
      */
     public function setTxDireccUrl($txDireccUrl)
     {
@@ -119,7 +106,7 @@ class clBitacora
      * Set txDireccIp
      *
      * @param string $txDireccIp
-     * @return th_bitacora
+     * @return clBitacora
      */
     public function setTxDireccIp($txDireccIp)
     {
@@ -142,7 +129,7 @@ class clBitacora
      * Set fhFechaHora
      *
      * @param \DateTime $fhFechaHora
-     * @return th_bitacora
+     * @return clBitacora
      */
     public function setFhFechaHora($fhFechaHora)
     {
@@ -162,71 +149,71 @@ class clBitacora
     }
 
     /**
-     * Set txDescripcion
+     * Set fhCreacion
      *
-     * @param string $txDescripcion
-     * @return th_bitacora
-     */
-    public function setTxDescripcion($txDescripcion)
-    {
-        $this->txDescripcion = $txDescripcion;
-
-        return $this;
-    }
-
-    /**
-     * Get txDescripcion
-     *
-     * @return string 
-     */
-    public function getTxDescripcion()
-    {
-        return $this->txDescripcion;
-    }
-    
-    /**
-     * Set tb_pagina_web
-     *
-     * @param string $tb_pagina_web
-     * @return th_bitacora
-     */
-    public function settb_pagina_web($tb_pagina_web)
-    {
-        $this->tb_pagina_web = $tb_pagina_web;
-
-        return $this;
-    }
-    
-    /**
-     * Get tb_pagina_web
-     *
-     * @return string 
-     */
-    public function gettb_pagina_web()
-    {
-        return $this->tb_pagina_web;
-    }
-
-    /**
-     * Set tb_pagina_web
-     *
-     * @param \sagaco\DsagacoBundle\Entity\clPaginaWeb $tbPaginaWeb
+     * @param \DateTime $fhCreacion
      * @return clBitacora
      */
-    public function setTbPaginaWeb(\sagaco\DsagacoBundle\Entity\clPaginaWeb $tbPaginaWeb = null)
+    public function setFhCreacion($fhCreacion)
     {
-        $this->tb_pagina_web = $tbPaginaWeb;
+        $this->fhCreacion = $fhCreacion;
 
         return $this;
     }
 
     /**
-     * Get tb_pagina_web
+     * Get fhCreacion
      *
-     * @return \sagaco\DsagacoBundle\Entity\clPaginaWeb 
+     * @return \DateTime 
      */
-    public function getTbPaginaWeb()
+    public function getFhCreacion()
     {
-        return $this->tb_pagina_web;
+        return $this->fhCreacion;
+    }
+
+    /**
+     * Set fhActualizacion
+     *
+     * @param \DateTime $fhActualizacion
+     * @return clBitacora
+     */
+    public function setFhActualizacion($fhActualizacion)
+    {
+        $this->fhActualizacion = $fhActualizacion;
+
+        return $this;
+    }
+
+    /**
+     * Get fhActualizacion
+     *
+     * @return \DateTime 
+     */
+    public function getFhActualizacion()
+    {
+        return $this->fhActualizacion;
+    }
+
+    /**
+     * Set coPersona
+     *
+     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbPersona $coPersona
+     * @return clBitacora
+     */
+    public function setCoPersona(\sagaco\DsagacoBundle\Entity\clPersona $coPersona = null)
+    {
+        $this->coPersona = $coPersona;
+
+        return $this;
+    }
+
+    /**
+     * Get coPersona
+     *
+     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbPersona 
+     */
+    public function getCoPersona()
+    {
+        return $this->coPersona;
     }
 }

@@ -5,69 +5,55 @@ namespace sagaco\DsagacoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * tb_motivo_consulta
+ * ESagaco.tbMotivoConsulta
  *
- * @ORM\Table(name="tb_motivo_consulta")
- * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clMotivoConsultaRepository")
+ * @ORM\Table(name="e_sagaco.tb_motivo_consulta", indexes={@ORM\Index(name="IDX_DA5A0CB092038EE7", columns={"co_area"})})
+ * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clMorivoConsultaRepository")
  */
 class clMotivoConsulta
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="co_motivo_consulta", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="co_motivo_consulta", type="integer")
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="e_sagaco.seq_tb_motivo_consulta_co_motivo_consulta", allocationSize=1, initialValue=1)
      */
     private $coMotivoConsulta;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_motivo_consulta", type="text")
+     * @ORM\Column(name="nb_motivo_consulta", type="string", length=50, nullable=false)
      */
-    private $txMotivoConsulta;
+    private $nbMotivoConsulta;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="tx_descripcion", type="text", nullable=true)
+     * @ORM\Column(name="fh_creacion", type="datetime", nullable=false)
      */
-    private $txDescripcion;
-
+    private $fhCreacion;
 
     /**
-     * Get id
+     * @var \DateTime
      *
-     * @return integer 
+     * @ORM\Column(name="fh_actualizacion", type="datetime", nullable=false)
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $fhActualizacion;
 
-    /** @ORM\ManyToOne(targetEntity="sagaco\DsagacoBundle\Entity\clArea") */
-    protected $tb_area;
-    
     /**
-     * Set coMotivoConsulta
+     * @var \ESagaco.tbArea
      *
-     * @param integer $coMotivoConsulta
-     * @return tb_motivo_consulta
+     * @ORM\ManyToOne(targetEntity="ESagaco.tbArea")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="co_area", referencedColumnName="co_area")
+     * })
      */
-    public function setCoMotivoConsulta($coMotivoConsulta)
-    {
-        $this->coMotivoConsulta = $coMotivoConsulta;
+    private $coArea;
 
-        return $this;
-    }
+
 
     /**
      * Get coMotivoConsulta
@@ -80,94 +66,94 @@ class clMotivoConsulta
     }
 
     /**
-     * Set txMotivoConsulta
+     * Set nbMotivoConsulta
      *
-     * @param string $txMotivoConsulta
-     * @return tb_motivo_consulta
-     */
-    public function setTxMotivoConsulta($txMotivoConsulta)
-    {
-        $this->txMotivoConsulta = $txMotivoConsulta;
-
-        return $this;
-    }
-
-    /**
-     * Get txMotivoConsulta
-     *
-     * @return string 
-     */
-    public function getTxMotivoConsulta()
-    {
-        return $this->txMotivoConsulta;
-    }
-
-    /**
-     * Set txDescripcion
-     *
-     * @param string $txDescripcion
-     * @return tb_motivo_consulta
-     */
-    public function setTxDescripcion($txDescripcion)
-    {
-        $this->txDescripcion = $txDescripcion;
-
-        return $this;
-    }
-
-    /**
-     * Get txDescripcion
-     *
-     * @return string 
-     */
-    public function getTxDescripcion()
-    {
-        return $this->txDescripcion;
-    }
-    
-    /**
-     * Set tb_area
-     *
-     * @param string $tb_area
-     * @return tp_motivo_consulta
-     */
-    public function settb_area($tb_area)
-    {
-        $this->tb_area = $tb_area;
-
-        return $this;
-    }
-    
-    /**
-     * Get tb_area
-     *
-     * @return string 
-     */
-    public function gettb_area()
-    {
-        return $this->tb_area;
-    }
-
-    /**
-     * Set tb_area
-     *
-     * @param \sagaco\DsagacoBundle\Entity\clArea $tbArea
+     * @param string $nbMotivoConsulta
      * @return clMotivoConsulta
      */
-    public function setTbArea(\sagaco\DsagacoBundle\Entity\clArea $tbArea = null)
+    public function setNbMotivoConsulta($nbMotivoConsulta)
     {
-        $this->tb_area = $tbArea;
+        $this->nbMotivoConsulta = $nbMotivoConsulta;
 
         return $this;
     }
 
     /**
-     * Get tb_area
+     * Get nbMotivoConsulta
      *
-     * @return \sagaco\DsagacoBundle\Entity\clArea 
+     * @return string 
      */
-    public function getTbArea()
+    public function getNbMotivoConsulta()
     {
-        return $this->tb_area;
+        return $this->nbMotivoConsulta;
+    }
+
+    /**
+     * Set fhCreacion
+     *
+     * @param \DateTime $fhCreacion
+     * @return clMotivoConsulta
+     */
+    public function setFhCreacion($fhCreacion)
+    {
+        $this->fhCreacion = $fhCreacion;
+
+        return $this;
+    }
+
+    /**
+     * Get fhCreacion
+     *
+     * @return \DateTime 
+     */
+    public function getFhCreacion()
+    {
+        return $this->fhCreacion;
+    }
+
+    /**
+     * Set fhActualizacion
+     *
+     * @param \DateTime $fhActualizacion
+     * @return clMotivoConsulta
+     */
+    public function setFhActualizacion($fhActualizacion)
+    {
+        $this->fhActualizacion = $fhActualizacion;
+
+        return $this;
+    }
+
+    /**
+     * Get fhActualizacion
+     *
+     * @return \DateTime 
+     */
+    public function getFhActualizacion()
+    {
+        return $this->fhActualizacion;
+    }
+
+    /**
+     * Set coArea
+     *
+     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbArea $coArea
+     * @return clMotivoConsulta
+     */
+    public function setCoArea(\sagaco\DsagacoBundle\Entity\clArea $coArea = null)
+    {
+        $this->coArea = $coArea;
+
+        return $this;
+    }
+
+    /**
+     * Get coArea
+     *
+     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbArea 
+     */
+    public function getCoArea()
+    {
+        return $this->coArea;
     }
 }

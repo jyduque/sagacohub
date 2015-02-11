@@ -22,7 +22,7 @@ class clDviAreaRepository extends EntityRepository
         $tableObjectName = 'DsagacoBundle:clDviArea';
 
         /* Campo para ordenar */        
-        $txtOrden = 'nbDviArea';
+        $txtOrden = 'coDviArea';
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '

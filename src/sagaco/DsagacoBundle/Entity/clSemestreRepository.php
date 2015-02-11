@@ -22,7 +22,7 @@ class clSemestreRepository extends EntityRepository
         $tableObjectName = 'DsagacoBundle:clSemestre';
 
         /* Campo para ordenar */        
-        $txtOrden = 'txSemestre';
+        $txtOrden = 'coSemestre';
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '
