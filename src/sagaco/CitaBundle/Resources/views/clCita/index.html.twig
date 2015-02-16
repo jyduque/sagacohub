@@ -6,7 +6,7 @@
     <div class="container navbar-blanca">                
         <ul class="breadcrumb-modi">
             <li><a href="#"><small>Inicio</small></a></li>
-            <li class="active"><small>Citas</small></li>
+            <li class="active"><small>Cita</small></li>
         </ul>                              
     </div> 
     {% endblock %}{#-- Fin Barra de ruta --#}
@@ -17,7 +17,7 @@
                 {# Titulo Listar citas #}
                 <legend>Listar citas
                     <div class="pull-right">
-                        <a href="{{ path('pgCarrera_registrar') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Crear">
+                        <a href="{{ path('pgCita_registrar') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Crear">
                             <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
                         </a>                          
                     </div>
@@ -30,8 +30,14 @@
                             <thead>                            
                                 <tr>
                                     {# sorting of properties based on query components #}
-                                    <th>{{ knp_pagination_sortable(objPagina, 'Id', 'a.coCarrera') }}</th>
-                                    <th{% if objPagina.isSorted('a.nbCarrera') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Carrera', 'a.nbGrupoRol') }}</th>
+                                    <th>{{ knp_pagination_sortable(objPagina, 'Id', 'a.coCita') }}</th>
+                                    <th{% if objPagina.isSorted('a.coPersona') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Nombre', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.coPersona') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Apellido', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.coHorariCita') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Fecha', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.coHorariCita') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'H. Inicio', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.coHorariCita') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'H. Fin', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.coHorariCita') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'N. Orientador', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.coHorariCita') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'A. Orientador', 'a.nbGrupoRol') }}</th>
                                     <th>F. Creación</th>
                                     <th>F. Actualización</th>
                                     <th>Acción</th>                                
@@ -40,15 +46,21 @@
                             <tbody>
                             {% for objEntidad in objPagina %}
                                 <tr {% if loop.index is odd %}class="color"{% endif %}>
-                                    <td class="text-right"><a href="{{ path('pgCarrera_mostrar', { 'id': objEntidad.coCarrera, 'blnBandera': '0'}) }}">{{ objEntidad.coCarrera }}</a></td>
-                                    <td>{{ objEntidad.nbCarrera }}</td>
+                                    <td class="text-right"><a href="{{ path('pgCita_mostrar', { 'id': objEntidad.coCita, 'blnBandera': '0'}) }}">{{ objEntidad.coCita }}</a></td>
+                                    <td>{{ objEntidad.coPersona }}</td> {# Primer nombre del obrero #}
+                                    <td>{{ objEntidad.coPersona }}</td> {# Primer apellido del obrero #}
+                                    <td>{% if objEntidad.coHorariCita %}{{ objEntidad.coHorariCita|date('d-m-Y') }}{% endif %}</td> {# Fecha de la cita #}
+                                    <td>{% if objEntidad.coHorariCita %}{{ objEntidad.coHorariCita|date('H:i:s') }}{% endif %}</td> {# Hora inicio de la cita #}
+                                    <td>{% if objEntidad.coHorariCita %}{{ objEntidad.coHorariCita|date('H:i:s') }}{% endif %}</td> {# Hora fin de la cita #}
+                                    <td>{{ objEntidad.coHorariCita }}</td> {# Primer nombre de la orientadora #}
+                                    <td>{{ objEntidad.coHorariCita }}</td> {# Primer apellido de la orientadora #}
                                     <td>{% if objEntidad.fhCreacion %}{{ objEntidad.fhCreacion|date('Y-m-d H:i:s') }}{% endif %}</td>
                                     <td>{% if objEntidad.fhActualizacion %}{{ objEntidad.fhActualizacion|date('Y-m-d H:i:s') }}{% endif %}</td>
                                     <td> 
-                                        <a href="{{ path('pgCarrera_mostrar', { 'id': objEntidad.coCarrera, 'blnBandera': '0' }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Mostrar detalle">
+                                        <a href="{{ path('pgCita_mostrar', { 'id': objEntidad.coCita, 'blnBandera': '0' }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Mostrar detalle">
                                             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                                         </a>                                    
-                                        <a href="{{ path('pgCarrera_editar', { 'id': objEntidad.coCarrera }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar">
+                                        <a href="{{ path('pgCita_editar', { 'id': objEntidad.coCita }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar">
                                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                         </a>                                 
                                     </td>

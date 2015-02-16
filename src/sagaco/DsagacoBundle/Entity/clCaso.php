@@ -53,7 +53,7 @@ class clCaso
     /**
      * @var \ESagaco.tbEstadoCaso
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbEstadoCaso")
+     * @ORM\ManyToOne(targetEntity="clEstadoCaso")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_estado_caso", referencedColumnName="co_estado_caso")
      * })
@@ -63,7 +63,7 @@ class clCaso
     /**
      * @var \ESagaco.tbMotivoConsulta
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbMotivoConsulta")
+     * @ORM\ManyToOne(targetEntity="clMotivoConsulta")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_motivo_consulta", referencedColumnName="co_motivo_consulta")
      * })
@@ -73,7 +73,7 @@ class clCaso
     /**
      * @var \ESagaco.tbOrientador
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbOrientador")
+     * @ORM\ManyToOne(targetEntity="clOrientador")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_orientador", referencedColumnName="co_orientador")
      * })
@@ -83,7 +83,7 @@ class clCaso
     /**
      * @var \ESagaco.tbSemestre
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbSemestre")
+     * @ORM\ManyToOne(targetEntity="clSemestre")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_semestre", referencedColumnName="co_semestre")
      * })
@@ -93,7 +93,7 @@ class clCaso
     /**
      * @var \ESagaco.tpCambioEspecialidad
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpCambioEspecialidad")
+     * @ORM\ManyToOne(targetEntity="clCambioEspecialidad")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_cambio_especialidad", referencedColumnName="co_cambio_especialidad")
      * })
@@ -103,7 +103,7 @@ class clCaso
     /**
      * @var \ESagaco.tpHistorPersona
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpHistorPersona")
+     * @ORM\ManyToOne(targetEntity="clHistorPersona")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_histor_persona", referencedColumnName="co_histor_persona")
      * })
@@ -217,7 +217,7 @@ class clCaso
     /**
      * Set coEstadoCaso
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbEstadoCaso $coEstadoCaso
+     * @param \sagaco\DsagacoBundle\Entity\clEstadoCaso $coEstadoCaso
      * @return clCaso
      */
     public function setCoEstadoCaso(\sagaco\DsagacoBundle\Entity\clEstadoCaso $coEstadoCaso = null)
@@ -230,7 +230,7 @@ class clCaso
     /**
      * Get coEstadoCaso
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbEstadoCaso 
+     * @return \sagaco\DsagacoBundle\Entity\clEstadoCaso 
      */
     public function getCoEstadoCaso()
     {
@@ -240,7 +240,7 @@ class clCaso
     /**
      * Set coMotivoConsulta
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbMotivoConsulta $coMotivoConsulta
+     * @param \sagaco\DsagacoBundle\Entity\clMotivoConsulta $coMotivoConsulta
      * @return clCaso
      */
     public function setCoMotivoConsulta(\sagaco\DsagacoBundle\Entity\clMotivoConsulta $coMotivoConsulta = null)
@@ -253,7 +253,7 @@ class clCaso
     /**
      * Get coMotivoConsulta
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbMotivoConsulta 
+     * @return \sagaco\DsagacoBundle\Entity\clMotivoConsulta 
      */
     public function getCoMotivoConsulta()
     {
@@ -263,7 +263,7 @@ class clCaso
     /**
      * Set coOrientador
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbOrientador $coOrientador
+     * @param \sagaco\DsagacoBundle\Entity\clOrientador $coOrientador
      * @return clCaso
      */
     public function setCoOrientador(\sagaco\DsagacoBundle\Entity\clOrientador $coOrientador = null)
@@ -276,7 +276,7 @@ class clCaso
     /**
      * Get coOrientador
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbOrientador 
+     * @return \sagaco\DsagacoBundle\Entity\clOrientador 
      */
     public function getCoOrientador()
     {
@@ -286,7 +286,7 @@ class clCaso
     /**
      * Set coSemestre
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbSemestre $coSemestre
+     * @param \sagaco\DsagacoBundle\Entity\clSemestre $coSemestre
      * @return clCaso
      */
     public function setCoSemestre(\sagaco\DsagacoBundle\Entity\clSemestre $coSemestre = null)
@@ -299,7 +299,7 @@ class clCaso
     /**
      * Get coSemestre
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbSemestre 
+     * @return \sagaco\DsagacoBundle\Entity\clSemestre 
      */
     public function getCoSemestre()
     {
@@ -309,7 +309,7 @@ class clCaso
     /**
      * Set coCambioEspecialidad
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpCambioEspecialidad $coCambioEspecialidad
+     * @param \sagaco\DsagacoBundle\Entity\clCambioEspecialidad $coCambioEspecialidad
      * @return clCaso
      */
     public function setCoCambioEspecialidad(\sagaco\DsagacoBundle\Entity\clCambioEspecialidad $coCambioEspecialidad = null)
@@ -322,7 +322,7 @@ class clCaso
     /**
      * Get coCambioEspecialidad
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpCambioEspecialidad 
+     * @return \sagaco\DsagacoBundle\Entity\clCambioEspecialidad 
      */
     public function getCoCambioEspecialidad()
     {
@@ -332,7 +332,7 @@ class clCaso
     /**
      * Set coHistorPersona
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpHistorPersona $coHistorPersona
+     * @param \sagaco\DsagacoBundle\Entity\clHistorPersona $coHistorPersona
      * @return clCaso
      */
     public function setCoHistorPersona(\sagaco\DsagacoBundle\Entity\clHistorPersona $coHistorPersona = null)
@@ -345,7 +345,7 @@ class clCaso
     /**
      * Get coHistorPersona
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpHistorPersona 
+     * @return \sagaco\DsagacoBundle\Entity\clHistorPersona 
      */
     public function getCoHistorPersona()
     {

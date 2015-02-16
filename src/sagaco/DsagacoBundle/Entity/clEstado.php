@@ -53,7 +53,7 @@ class clEstado
     /**
      * @var \ESagaco.tbPais
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbPais")
+     * @ORM\ManyToOne(targetEntity="clPais")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_pais", referencedColumnName="co_pais")
      * })
@@ -167,7 +167,7 @@ class clEstado
     /**
      * Set coPais
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbPais $coPais
+     * @param \sagaco\DsagacoBundle\Entity\clPais $coPais
      * @return clEstado
      */
     public function setCoPais(\sagaco\DsagacoBundle\Entity\clPais $coPais = null)
@@ -180,7 +180,7 @@ class clEstado
     /**
      * Get coPais
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbPais 
+     * @return \sagaco\DsagacoBundle\Entity\clPais 
      */
     public function getCoPais()
     {

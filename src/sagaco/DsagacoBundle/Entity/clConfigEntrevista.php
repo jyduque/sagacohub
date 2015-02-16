@@ -53,7 +53,7 @@ class clConfigEntrevista
     /**
      * @var \ESagaco.tbTipoEntrevista
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbTipoEntrevista")
+     * @ORM\ManyToOne(targetEntity="clTipoEntrevista")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_tipo_entrevista", referencedColumnName="co_tipo_entrevista")
      * })
@@ -63,7 +63,7 @@ class clConfigEntrevista
     /**
      * @var \ESagaco.tbTipoPregunta
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbTipoPregunta")
+     * @ORM\ManyToOne(targetEntity="clTipoPregunta")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_tipo_pregunta", referencedColumnName="co_tipo_pregunta")
      * })
@@ -177,7 +177,7 @@ class clConfigEntrevista
     /**
      * Set coTipoEntrevista
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbTipoEntrevista $coTipoEntrevista
+     * @param \sagaco\DsagacoBundle\Entity\clTipoEntrevista $coTipoEntrevista
      * @return clConfigEntrevista
      */
     public function setCoTipoEntrevista(\sagaco\DsagacoBundle\Entity\clTipoEntrevista $coTipoEntrevista = null)
@@ -190,7 +190,7 @@ class clConfigEntrevista
     /**
      * Get coTipoEntrevista
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbTipoEntrevista 
+     * @return \sagaco\DsagacoBundle\Entity\clTipoEntrevista 
      */
     public function getCoTipoEntrevista()
     {
@@ -200,7 +200,7 @@ class clConfigEntrevista
     /**
      * Set coTipoPregunta
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbTipoPregunta $coTipoPregunta
+     * @param \sagaco\DsagacoBundle\Entity\clTipoPregunta $coTipoPregunta
      * @return clConfigEntrevista
      */
     public function setCoTipoPregunta(\sagaco\DsagacoBundle\Entity\clTipoPregunta $coTipoPregunta = null)
@@ -213,7 +213,7 @@ class clConfigEntrevista
     /**
      * Get coTipoPregunta
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbTipoPregunta 
+     * @return \sagaco\DsagacoBundle\Entity\clTipoPregunta 
      */
     public function getCoTipoPregunta()
     {

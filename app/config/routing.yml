@@ -6,6 +6,11 @@ admin:
     resource: "@AdminBundle/Controller/"
     type:     annotation
     prefix:   /
+    
+cita:
+    resource: "@CitaBundle/Controller/"
+    type:     annotation
+    prefix:   /
 
 prueba:
     resource: "@PruebaBundle/Resources/config/routing.yml"
@@ -15,9 +20,7 @@ entrevista:
     resource: "@EntrevistaBundle/Resources/config/routing.yml"
     prefix:   /
 
-cita:
-    resource: "@CitaBundle/Resources/config/routing.yml"
-    prefix:   /
+
 
 dsagaco:
     resource: "@DsagacoBundle/Resources/config/routing.yml"

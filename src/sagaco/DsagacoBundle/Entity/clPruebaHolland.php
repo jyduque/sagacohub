@@ -88,7 +88,7 @@ class clPruebaHolland
     /**
      * @var \ESagaco.tbHollanSeccion
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbHollanSeccion")
+     * @ORM\ManyToOne(targetEntity="clHollanSeccion")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_hollan_seccion", referencedColumnName="co_hollan_seccion")
      * })
@@ -98,7 +98,7 @@ class clPruebaHolland
     /**
      * @var \ESagaco.tpPrueba
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpPrueba")
+     * @ORM\ManyToOne(targetEntity="clPrueba")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_prueba", referencedColumnName="co_prueba")
      * })
@@ -327,7 +327,7 @@ class clPruebaHolland
     /**
      * Set coHollanSeccion
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbHollanSeccion $coHollanSeccion
+     * @param \sagaco\DsagacoBundle\Entity\clHollanSeccion $coHollanSeccion
      * @return clPruebaHolland
      */
     public function setCoHollanSeccion(\sagaco\DsagacoBundle\Entity\clHollanSeccion $coHollanSeccion = null)
@@ -340,7 +340,7 @@ class clPruebaHolland
     /**
      * Get coHollanSeccion
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbHollanSeccion 
+     * @return \sagaco\DsagacoBundle\Entity\clHollanSeccion 
      */
     public function getCoHollanSeccion()
     {
@@ -350,7 +350,7 @@ class clPruebaHolland
     /**
      * Set coPrueba
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpPrueba $coPrueba
+     * @param \sagaco\DsagacoBundle\Entity\clPrueba $coPrueba
      * @return clPruebaHolland
      */
     public function setCoPrueba(\sagaco\DsagacoBundle\Entity\clPrueba $coPrueba = null)
@@ -363,7 +363,7 @@ class clPruebaHolland
     /**
      * Get coPrueba
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpPrueba 
+     * @return \sagaco\DsagacoBundle\Entity\clPrueba 
      */
     public function getCoPrueba()
     {

@@ -32,7 +32,7 @@ class clDetallDvirespuesta
     /**
      * @var \ESagaco.tbDviConfiguracion
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbDviConfiguracion")
+     * @ORM\ManyToOne(targetEntity="clDviConfiguracion")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_dvi_configuracion", referencedColumnName="co_dvi_configuracion")
      * })
@@ -42,7 +42,7 @@ class clDetallDvirespuesta
     /**
      * @var \ESagaco.tpDviRespuesta
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpDviRespuesta")
+     * @ORM\ManyToOne(targetEntity="clDviRespuesta")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_dvi_respuesta", referencedColumnName="co_dvi_respuesta")
      * })
@@ -87,7 +87,7 @@ class clDetallDvirespuesta
     /**
      * Set coDviConfiguracion
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbDviConfiguracion $coDviConfiguracion
+     * @param \sagaco\DsagacoBundle\Entity\clDviConfiguracion $coDviConfiguracion
      * @return clDetallDvirespuesta
      */
     public function setCoDviConfiguracion(\sagaco\DsagacoBundle\Entity\clDviConfiguracion $coDviConfiguracion = null)
@@ -100,7 +100,7 @@ class clDetallDvirespuesta
     /**
      * Get coDviConfiguracion
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbDviConfiguracion 
+     * @return \sagaco\DsagacoBundle\Entity\clDviConfiguracion 
      */
     public function getCoDviConfiguracion()
     {
@@ -110,7 +110,7 @@ class clDetallDvirespuesta
     /**
      * Set coDviRespuesta
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpDviRespuesta $coDviRespuesta
+     * @param \sagaco\DsagacoBundle\Entity\clDviRespuesta $coDviRespuesta
      * @return clDetallDvirespuesta
      */
     public function setCoDviRespuesta(\sagaco\DsagacoBundle\Entity\clDviRespuesta $coDviRespuesta = null)
@@ -123,7 +123,7 @@ class clDetallDvirespuesta
     /**
      * Get coDviRespuesta
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpDviRespuesta 
+     * @return \sagaco\DsagacoBundle\Entity\clDviRespuesta 
      */
     public function getCoDviRespuesta()
     {

@@ -32,7 +32,7 @@ class clPersona
     /**
      * @var \ESagaco.viControEstudio
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.viControEstudio")
+     * @ORM\ManyToOne(targetEntity="clControEstudio")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_contro_estudio", referencedColumnName="co_contro_estudio")
      * })
@@ -42,7 +42,7 @@ class clPersona
     /**
      * @var \ESagaco.viRecursHumano
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.viRecursHumano")
+     * @ORM\ManyToOne(targetEntity="clRecursHumano")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_recurs_humano", referencedColumnName="co_recurs_humano")
      * })
@@ -87,7 +87,7 @@ class clPersona
     /**
      * Set coControEstudio
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.viControEstudio $coControEstudio
+     * @param \sagaco\DsagacoBundle\Entity\clControEstudio $coControEstudio
      * @return clPersona
      */
     public function setCoControEstudio(\sagaco\DsagacoBundle\Entity\clControEstudio $coControEstudio = null)
@@ -100,7 +100,7 @@ class clPersona
     /**
      * Get coControEstudio
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.viControEstudio 
+     * @return \sagaco\DsagacoBundle\Entity\clControEstudio 
      */
     public function getCoControEstudio()
     {
@@ -110,7 +110,7 @@ class clPersona
     /**
      * Set coRecursHumano
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.viRecursHumano $coRecursHumano
+     * @param \sagaco\DsagacoBundle\Entity\clRecursHumano $coRecursHumano
      * @return clPersona
      */
     public function setCoRecursHumano(\sagaco\DsagacoBundle\Entity\clRecursHumano $coRecursHumano = null)
@@ -123,7 +123,7 @@ class clPersona
     /**
      * Get coRecursHumano
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.viRecursHumano 
+     * @return \sagaco\DsagacoBundle\Entity\clRecursHumano 
      */
     public function getCoRecursHumano()
     {

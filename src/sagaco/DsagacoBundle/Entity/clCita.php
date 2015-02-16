@@ -53,7 +53,7 @@ class clCita
     /**
      * @var \ESagaco.tbArea
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbArea")
+     * @ORM\ManyToOne(targetEntity="clArea")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_area", referencedColumnName="co_area")
      * })
@@ -63,7 +63,7 @@ class clCita
     /**
      * @var \ESagaco.tbEstadoCita
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbEstadoCita")
+     * @ORM\ManyToOne(targetEntity="clEstadoCita")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_estado_cita", referencedColumnName="co_estado_cita")
      * })
@@ -73,7 +73,7 @@ class clCita
     /**
      * @var \ESagaco.tbPersona
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbPersona")
+     * @ORM\ManyToOne(targetEntity="clPersona")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_persona", referencedColumnName="co_persona")
      * })
@@ -83,7 +83,7 @@ class clCita
     /**
      * @var \ESagaco.tpHorariCita
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpHorariCita")
+     * @ORM\ManyToOne(targetEntity="clHorariCita")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_horari_cita", referencedColumnName="co_horari_cita")
      * })
@@ -197,7 +197,7 @@ class clCita
     /**
      * Set coArea
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbArea $coArea
+     * @param \sagaco\DsagacoBundle\Entity\clArea $coArea
      * @return clCita
      */
     public function setCoArea(\sagaco\DsagacoBundle\Entity\clArea $coArea = null)
@@ -210,7 +210,7 @@ class clCita
     /**
      * Get coArea
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbArea 
+     * @return \sagaco\DsagacoBundle\Entity\clArea 
      */
     public function getCoArea()
     {
@@ -220,7 +220,7 @@ class clCita
     /**
      * Set coEstadoCita
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbEstadoCita $coEstadoCita
+     * @param \sagaco\DsagacoBundle\Entity\clEstadoCita $coEstadoCita
      * @return clCita
      */
     public function setCoEstadoCita(\sagaco\DsagacoBundle\Entity\clEstadoCita $coEstadoCita = null)
@@ -233,7 +233,7 @@ class clCita
     /**
      * Get coEstadoCita
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbEstadoCita 
+     * @return \sagaco\DsagacoBundle\Entity\clEstadoCita 
      */
     public function getCoEstadoCita()
     {
@@ -243,7 +243,7 @@ class clCita
     /**
      * Set coPersona
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbPersona $coPersona
+     * @param \sagaco\DsagacoBundle\Entity\clPersona $coPersona
      * @return clCita
      */
     public function setCoPersona(\sagaco\DsagacoBundle\Entity\clPersona $coPersona = null)
@@ -256,7 +256,7 @@ class clCita
     /**
      * Get coPersona
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbPersona 
+     * @return \sagaco\DsagacoBundle\Entity\clPersona 
      */
     public function getCoPersona()
     {
@@ -266,7 +266,7 @@ class clCita
     /**
      * Set coHorariCita
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpHorariCita $coHorariCita
+     * @param \sagaco\DsagacoBundle\Entity\clHorariCita $coHorariCita
      * @return clCita
      */
     public function setCoHorariCita(\sagaco\DsagacoBundle\Entity\clHorariCita $coHorariCita = null)
@@ -279,7 +279,7 @@ class clCita
     /**
      * Get coHorariCita
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpHorariCita 
+     * @return \sagaco\DsagacoBundle\Entity\clHorariCita 
      */
     public function getCoHorariCita()
     {

@@ -60,7 +60,7 @@ class clBitacora
     /**
      * @var \ESagaco.tbPersona
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbPersona")
+     * @ORM\ManyToOne(targetEntity="clPersona")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_persona", referencedColumnName="co_persona")
      * })
@@ -197,7 +197,7 @@ class clBitacora
     /**
      * Set coPersona
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbPersona $coPersona
+     * @param \sagaco\DsagacoBundle\Entity\clPersona $coPersona
      * @return clBitacora
      */
     public function setCoPersona(\sagaco\DsagacoBundle\Entity\clPersona $coPersona = null)
@@ -210,7 +210,7 @@ class clBitacora
     /**
      * Get coPersona
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbPersona 
+     * @return \sagaco\DsagacoBundle\Entity\clPersona 
      */
     public function getCoPersona()
     {

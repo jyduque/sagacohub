@@ -32,7 +32,7 @@ class clHistorCaso
     /**
      * @var \ESagaco.tbEstadoCaso
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbEstadoCaso")
+     * @ORM\ManyToOne(targetEntity="clEstadoCaso")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_estado_caso", referencedColumnName="co_estado_caso")
      * })
@@ -44,7 +44,7 @@ class clHistorCaso
      *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="ESagaco.tpCaso")
+     * @ORM\OneToOne(targetEntity="clCaso")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_caso", referencedColumnName="co_caso")
      * })
@@ -102,7 +102,7 @@ class clHistorCaso
     /**
      * Set coEstadoCaso
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbEstadoCaso $coEstadoCaso
+     * @param \sagaco\DsagacoBundle\Entity\clEstadoCaso $coEstadoCaso
      * @return clHistorCaso
      */
     public function setCoEstadoCaso(\sagaco\DsagacoBundle\Entity\clEstadoCaso $coEstadoCaso = null)
@@ -115,7 +115,7 @@ class clHistorCaso
     /**
      * Get coEstadoCaso
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbEstadoCaso 
+     * @return \sagaco\DsagacoBundle\Entity\clEstadoCaso 
      */
     public function getCoEstadoCaso()
     {
@@ -125,7 +125,7 @@ class clHistorCaso
     /**
      * Set coCaso
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpCaso $coCaso
+     * @param \sagaco\DsagacoBundle\Entity\clCaso $coCaso
      * @return clHistorCaso
      */
     public function setCoCaso(\sagaco\DsagacoBundle\Entity\clCaso $coCaso)
@@ -138,7 +138,7 @@ class clHistorCaso
     /**
      * Get coCaso
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpCaso 
+     * @return \sagaco\DsagacoBundle\Entity\clCaso 
      */
     public function getCoCaso()
     {

@@ -39,7 +39,7 @@ class clDetallEntrevista
     /**
      * @var \ESagaco.tbConfigEntrevista
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbConfigEntrevista")
+     * @ORM\ManyToOne(targetEntity="clConfigEntrevista")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_pregunta", referencedColumnName="co_pregunta")
      * })
@@ -49,7 +49,7 @@ class clDetallEntrevista
     /**
      * @var \ESagaco.tpEntrevista
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpEntrevista")
+     * @ORM\ManyToOne(targetEntity="clEntrevista")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_entrevista", referencedColumnName="co_entrevista")
      * })
@@ -117,7 +117,7 @@ class clDetallEntrevista
     /**
      * Set coPregunta
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbConfigEntrevista $coPregunta
+     * @param \sagaco\DsagacoBundle\Entity\clConfigEntrevista $coPregunta
      * @return clDetallEntrevista
      */
     public function setCoPregunta(\sagaco\DsagacoBundle\Entity\clConfigEntrevista $coPregunta = null)
@@ -130,7 +130,7 @@ class clDetallEntrevista
     /**
      * Get coPregunta
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbConfigEntrevista 
+     * @return \sagaco\DsagacoBundle\Entity\clConfigEntrevista 
      */
     public function getCoPregunta()
     {
@@ -140,7 +140,7 @@ class clDetallEntrevista
     /**
      * Set coEntrevista
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpEntrevista $coEntrevista
+     * @param \sagaco\DsagacoBundle\Entity\clEntrevista $coEntrevista
      * @return clDetallEntrevista
      */
     public function setCoEntrevista(\sagaco\DsagacoBundle\Entity\clEntrevista $coEntrevista = null)
@@ -153,7 +153,7 @@ class clDetallEntrevista
     /**
      * Get coEntrevista
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpEntrevista 
+     * @return \sagaco\DsagacoBundle\Entity\clEntrevista 
      */
     public function getCoEntrevista()
     {

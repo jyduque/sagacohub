@@ -53,7 +53,7 @@ class clHollanConfiguracion
     /**
      * @var \ESagaco.tbHollanLetra
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbHollanLetra")
+     * @ORM\ManyToOne(targetEntity="clHollanLetra")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_hollan_letra", referencedColumnName="co_hollan_letra")
      * })
@@ -63,7 +63,7 @@ class clHollanConfiguracion
     /**
      * @var \ESagaco.tbHollanSeccion
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbHollanSeccion")
+     * @ORM\ManyToOne(targetEntity="clHollanSeccion")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_hollan_seccion", referencedColumnName="co_hollan_seccion")
      * })
@@ -177,7 +177,7 @@ class clHollanConfiguracion
     /**
      * Set coHollanLetra
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbHollanLetra $coHollanLetra
+     * @param \sagaco\DsagacoBundle\Entity\clHollanLetra $coHollanLetra
      * @return clHollanConfiguracion
      */
     public function setCoHollanLetra(\sagaco\DsagacoBundle\Entity\clHollanLetra $coHollanLetra = null)
@@ -190,7 +190,7 @@ class clHollanConfiguracion
     /**
      * Get coHollanLetra
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbHollanLetra 
+     * @return \sagaco\DsagacoBundle\Entity\clHollanLetra 
      */
     public function getCoHollanLetra()
     {
@@ -200,7 +200,7 @@ class clHollanConfiguracion
     /**
      * Set coHollanSeccion
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbHollanSeccion $coHollanSeccion
+     * @param \sagaco\DsagacoBundle\Entity\clHollanSeccion $coHollanSeccion
      * @return clHollanConfiguracion
      */
     public function setCoHollanSeccion(\sagaco\DsagacoBundle\Entity\clHollanSeccion $coHollanSeccion = null)
@@ -213,7 +213,7 @@ class clHollanConfiguracion
     /**
      * Get coHollanSeccion
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbHollanSeccion 
+     * @return \sagaco\DsagacoBundle\Entity\clHollanSeccion 
      */
     public function getCoHollanSeccion()
     {

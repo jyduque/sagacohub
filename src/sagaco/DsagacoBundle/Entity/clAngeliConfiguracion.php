@@ -67,7 +67,7 @@ class clAngeliConfiguracion
     /**
      * @var \ESagaco.tbAngeliInteres
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbAngeliInteres")
+     * @ORM\ManyToOne(targetEntity="clAngeliInteres")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_angeli_interes", referencedColumnName="co_angeli_interes")
      * })
@@ -227,7 +227,7 @@ class clAngeliConfiguracion
     /**
      * Set coAngeliInteres
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbAngeliInteres $coAngeliInteres
+     * @param \sagaco\DsagacoBundle\Entity\clAngeliInteres $coAngeliInteres
      * @return clAngeliConfiguracion
      */
     public function setCoAngeliInteres(\sagaco\DsagacoBundle\Entity\clAngeliInteres $coAngeliInteres = null)
@@ -240,7 +240,7 @@ class clAngeliConfiguracion
     /**
      * Get coAngeliInteres
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbAngeliInteres 
+     * @return \sagaco\DsagacoBundle\Entity\clAngeliInteres 
      */
     public function getCoAngeliInteres()
     {

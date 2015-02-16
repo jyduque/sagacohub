@@ -46,7 +46,7 @@ class clDetallHollandrespuesta
     /**
      * @var \ESagaco.tbHollanConfiguracion
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbHollanConfiguracion")
+     * @ORM\ManyToOne(targetEntity="clHollanConfiguracion")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_hollan_configuracion", referencedColumnName="co_hollan_configuracion")
      * })
@@ -56,7 +56,7 @@ class clDetallHollandrespuesta
     /**
      * @var \ESagaco.tpPruebaHolland
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpPruebaHolland")
+     * @ORM\ManyToOne(targetEntity="clPruebaHolland")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_prueba_holland", referencedColumnName="co_prueba_holland")
      * })
@@ -147,7 +147,7 @@ class clDetallHollandrespuesta
     /**
      * Set coHollanConfiguracion
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbHollanConfiguracion $coHollanConfiguracion
+     * @param \sagaco\DsagacoBundle\Entity\clHollanConfiguracion $coHollanConfiguracion
      * @return clDetallHollandrespuesta
      */
     public function setCoHollanConfiguracion(\sagaco\DsagacoBundle\Entity\clHollanConfiguracion $coHollanConfiguracion = null)
@@ -160,7 +160,7 @@ class clDetallHollandrespuesta
     /**
      * Get coHollanConfiguracion
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbHollanConfiguracion 
+     * @return \sagaco\DsagacoBundle\Entity\clHollanConfiguracion 
      */
     public function getCoHollanConfiguracion()
     {
@@ -170,7 +170,7 @@ class clDetallHollandrespuesta
     /**
      * Set coPruebaHolland
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpPruebaHolland $coPruebaHolland
+     * @param \sagaco\DsagacoBundle\Entity\clPruebaHolland $coPruebaHolland
      * @return clDetallHollandrespuesta
      */
     public function setCoPruebaHolland(\sagaco\DsagacoBundle\Entity\clPruebaHolland $coPruebaHolland = null)
@@ -183,7 +183,7 @@ class clDetallHollandrespuesta
     /**
      * Get coPruebaHolland
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpPruebaHolland 
+     * @return \sagaco\DsagacoBundle\Entity\clPruebaHolland 
      */
     public function getCoPruebaHolland()
     {

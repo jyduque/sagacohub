@@ -1,6 +1,6 @@
 <?php
 
-namespace sagaco\AdminBundle\Controller;
+namespace sagaco\CitaBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use sagaco\DsagacoBundle\Entity\clCita;
-use sagaco\AdminBundle\Form\Backend\clCitaType;
+use sagaco\CitaBundle\Form\Frontend\clCitaType;
 
 /**
  * Controlador de clCita.

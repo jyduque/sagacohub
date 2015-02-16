@@ -46,7 +46,7 @@ class clDviInteres
     /**
      * @var \ESagaco.tbDviArea
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbDviArea")
+     * @ORM\ManyToOne(targetEntity="clDviArea")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_dvi_area", referencedColumnName="co_dvi_area")
      * })
@@ -137,7 +137,7 @@ class clDviInteres
     /**
      * Set coDviArea
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbDviArea $coDviArea
+     * @param \sagaco\DsagacoBundle\Entity\clDviArea $coDviArea
      * @return clDviInteres
      */
     public function setCoDviArea(\sagaco\DsagacoBundle\Entity\clDviArea $coDviArea = null)
@@ -150,7 +150,7 @@ class clDviInteres
     /**
      * Get coDviArea
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbDviArea 
+     * @return \sagaco\DsagacoBundle\Entity\clDviArea 
      */
     public function getCoDviArea()
     {

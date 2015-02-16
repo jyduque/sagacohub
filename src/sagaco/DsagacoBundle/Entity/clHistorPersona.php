@@ -109,7 +109,7 @@ class clHistorPersona
     /**
      * @var \ESagaco.tbCiudad
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbCiudad")
+     * @ORM\ManyToOne(targetEntity="clCiudad")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_ciudad", referencedColumnName="co_ciudad")
      * })
@@ -119,7 +119,7 @@ class clHistorPersona
     /**
      * @var \ESagaco.tbPersona
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbPersona")
+     * @ORM\ManyToOne(targetEntity="clPersona")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_persona", referencedColumnName="co_persona")
      * })
@@ -417,7 +417,7 @@ class clHistorPersona
     /**
      * Set coCiudad
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbCiudad $coCiudad
+     * @param \sagaco\DsagacoBundle\Entity\clCiudad $coCiudad
      * @return clHistorPersona
      */
     public function setCoCiudad(\sagaco\DsagacoBundle\Entity\clCiudad $coCiudad = null)
@@ -430,7 +430,7 @@ class clHistorPersona
     /**
      * Get coCiudad
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbCiudad 
+     * @return \sagaco\DsagacoBundle\Entity\clCiudad 
      */
     public function getCoCiudad()
     {
@@ -440,7 +440,7 @@ class clHistorPersona
     /**
      * Set coPersona
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbPersona $coPersona
+     * @param \sagaco\DsagacoBundle\Entity\clPersona $coPersona
      * @return clHistorPersona
      */
     public function setCoPersona(\sagaco\DsagacoBundle\Entity\clPersona $coPersona = null)
@@ -453,7 +453,7 @@ class clHistorPersona
     /**
      * Get coPersona
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbPersona 
+     * @return \sagaco\DsagacoBundle\Entity\clPersona 
      */
     public function getCoPersona()
     {

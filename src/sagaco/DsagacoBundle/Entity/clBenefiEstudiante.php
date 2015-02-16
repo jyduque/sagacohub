@@ -116,7 +116,7 @@ class clBenefiEstudiante
     /**
      * @var \ESagaco.tbCiudad
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbCiudad")
+     * @ORM\ManyToOne(targetEntity="clCiudad")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_ciudad", referencedColumnName="co_ciudad")
      * })
@@ -126,7 +126,7 @@ class clBenefiEstudiante
     /**
      * @var \ESagaco.tbEstadoCivil
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbEstadoCivil")
+     * @ORM\ManyToOne(targetEntity="clEstadoCivil")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_estado_civil", referencedColumnName="co_estado_civil")
      * })
@@ -136,7 +136,7 @@ class clBenefiEstudiante
     /**
      * @var \ESagaco.tbGenero
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbGenero")
+     * @ORM\ManyToOne(targetEntity="clGenero")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_genero", referencedColumnName="co_genero")
      * })
@@ -146,7 +146,7 @@ class clBenefiEstudiante
     /**
      * @var \ESagaco.tbParentesco
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbParentesco")
+     * @ORM\ManyToOne(targetEntity="clParentesco")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_parentesco", referencedColumnName="co_parentesco")
      * })
@@ -156,7 +156,7 @@ class clBenefiEstudiante
     /**
      * @var \ESagaco.viControEstudio
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.viControEstudio")
+     * @ORM\ManyToOne(targetEntity="clControEstudio")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_contro_estudio", referencedColumnName="co_contro_estudio")
      * })
@@ -477,7 +477,7 @@ class clBenefiEstudiante
     /**
      * Set coCiudad
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbCiudad $coCiudad
+     * @param \sagaco\DsagacoBundle\Entity\clCiudad $coCiudad
      * @return clBenefiEstudiante
      */
     public function setCoCiudad(\sagaco\DsagacoBundle\Entity\clCiudad $coCiudad = null)
@@ -490,7 +490,7 @@ class clBenefiEstudiante
     /**
      * Get coCiudad
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbCiudad 
+     * @return \sagaco\DsagacoBundle\Entity\clCiudad 
      */
     public function getCoCiudad()
     {
@@ -500,7 +500,7 @@ class clBenefiEstudiante
     /**
      * Set coEstadoCivil
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbEstadoCivil $coEstadoCivil
+     * @param \sagaco\DsagacoBundle\Entity\clEstadoCivil $coEstadoCivil
      * @return clBenefiEstudiante
      */
     public function setCoEstadoCivil(\sagaco\DsagacoBundle\Entity\clEstadoCivil $coEstadoCivil = null)
@@ -513,7 +513,7 @@ class clBenefiEstudiante
     /**
      * Get coEstadoCivil
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbEstadoCivil 
+     * @return \sagaco\DsagacoBundle\Entity\clEstadoCivil 
      */
     public function getCoEstadoCivil()
     {
@@ -523,7 +523,7 @@ class clBenefiEstudiante
     /**
      * Set coGenero
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbGenero $coGenero
+     * @param \sagaco\DsagacoBundle\Entity\clGenero $coGenero
      * @return clBenefiEstudiante
      */
     public function setCoGenero(\sagaco\DsagacoBundle\Entity\clGenero $coGenero = null)
@@ -536,7 +536,7 @@ class clBenefiEstudiante
     /**
      * Get coGenero
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbGenero 
+     * @return \sagaco\DsagacoBundle\Entity\clGenero 
      */
     public function getCoGenero()
     {
@@ -546,7 +546,7 @@ class clBenefiEstudiante
     /**
      * Set coParentesco
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbParentesco $coParentesco
+     * @param \sagaco\DsagacoBundle\Entity\clParentesco $coParentesco
      * @return clBenefiEstudiante
      */
     public function setCoParentesco(\sagaco\DsagacoBundle\Entity\clParentesco $coParentesco = null)
@@ -559,7 +559,7 @@ class clBenefiEstudiante
     /**
      * Get coParentesco
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbParentesco 
+     * @return \sagaco\DsagacoBundle\Entity\clParentesco 
      */
     public function getCoParentesco()
     {
@@ -569,7 +569,7 @@ class clBenefiEstudiante
     /**
      * Set coControEstudio
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.viControEstudio $coControEstudio
+     * @param \sagaco\DsagacoBundle\Entity\clControEstudio $coControEstudio
      * @return clBenefiEstudiante
      */
     public function setCoControEstudio(\sagaco\DsagacoBundle\Entity\clControEstudio $coControEstudio = null)
@@ -582,7 +582,7 @@ class clBenefiEstudiante
     /**
      * Get coControEstudio
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.viControEstudio 
+     * @return \sagaco\DsagacoBundle\Entity\clControEstudio 
      */
     public function getCoControEstudio()
     {

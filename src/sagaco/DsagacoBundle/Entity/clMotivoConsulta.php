@@ -46,7 +46,7 @@ class clMotivoConsulta
     /**
      * @var \ESagaco.tbArea
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbArea")
+     * @ORM\ManyToOne(targetEntity="clArea")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_area", referencedColumnName="co_area")
      * })
@@ -137,7 +137,7 @@ class clMotivoConsulta
     /**
      * Set coArea
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbArea $coArea
+     * @param \sagaco\DsagacoBundle\Entity\clArea $coArea
      * @return clMotivoConsulta
      */
     public function setCoArea(\sagaco\DsagacoBundle\Entity\clArea $coArea = null)
@@ -150,7 +150,7 @@ class clMotivoConsulta
     /**
      * Get coArea
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbArea 
+     * @return \sagaco\DsagacoBundle\Entity\clArea 
      */
     public function getCoArea()
     {

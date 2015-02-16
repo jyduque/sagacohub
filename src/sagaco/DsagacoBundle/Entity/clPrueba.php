@@ -60,7 +60,7 @@ class clPrueba
     /**
      * @var \ESagaco.tbEstadoPrueba
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbEstadoPrueba")
+     * @ORM\ManyToOne(targetEntity="clEstadoPrueba")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_estado_prueba", referencedColumnName="co_estado_prueba")
      * })
@@ -70,7 +70,7 @@ class clPrueba
     /**
      * @var \ESagaco.tbTipoPrueba
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbTipoPrueba")
+     * @ORM\ManyToOne(targetEntity="clTipoPrueba")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_tipo_prueba", referencedColumnName="co_tipo_prueba")
      * })
@@ -80,7 +80,7 @@ class clPrueba
     /**
      * @var \ESagaco.tpCaso
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpCaso")
+     * @ORM\ManyToOne(targetEntity="clCaso")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_caso", referencedColumnName="co_caso")
      * })
@@ -217,7 +217,7 @@ class clPrueba
     /**
      * Set coEstadoPrueba
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbEstadoPrueba $coEstadoPrueba
+     * @param \sagaco\DsagacoBundle\Entity\clEstadoPrueba $coEstadoPrueba
      * @return clPrueba
      */
     public function setCoEstadoPrueba(\sagaco\DsagacoBundle\Entity\clEstadoPrueba $coEstadoPrueba = null)
@@ -230,7 +230,7 @@ class clPrueba
     /**
      * Get coEstadoPrueba
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbEstadoPrueba 
+     * @return \sagaco\DsagacoBundle\Entity\clEstadoPrueba 
      */
     public function getCoEstadoPrueba()
     {
@@ -240,7 +240,7 @@ class clPrueba
     /**
      * Set coTipoPrueba
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbTipoPrueba $coTipoPrueba
+     * @param \sagaco\DsagacoBundle\Entity\clTipoPrueba $coTipoPrueba
      * @return clPrueba
      */
     public function setCoTipoPrueba(\sagaco\DsagacoBundle\Entity\clTipoPrueba $coTipoPrueba = null)
@@ -253,7 +253,7 @@ class clPrueba
     /**
      * Get coTipoPrueba
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbTipoPrueba 
+     * @return \sagaco\DsagacoBundle\Entity\clTipoPrueba 
      */
     public function getCoTipoPrueba()
     {
@@ -263,7 +263,7 @@ class clPrueba
     /**
      * Set coCaso
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpCaso $coCaso
+     * @param \sagaco\DsagacoBundle\Entity\clCaso $coCaso
      * @return clPrueba
      */
     public function setCoCaso(\sagaco\DsagacoBundle\Entity\clCaso $coCaso = null)
@@ -276,7 +276,7 @@ class clPrueba
     /**
      * Get coCaso
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpCaso 
+     * @return \sagaco\DsagacoBundle\Entity\clCaso 
      */
     public function getCoCaso()
     {

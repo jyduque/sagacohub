@@ -53,7 +53,7 @@ class clCiudad
     /**
      * @var \ESagaco.tbMunicipio
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbMunicipio")
+     * @ORM\ManyToOne(targetEntity="clMunicipio")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_municipio", referencedColumnName="co_municipio")
      * })
@@ -167,7 +167,7 @@ class clCiudad
     /**
      * Set coMunicipio
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbMunicipio $coMunicipio
+     * @param \sagaco\DsagacoBundle\Entity\clMunicipio $coMunicipio
      * @return clCiudad
      */
     public function setCoMunicipio(\sagaco\DsagacoBundle\Entity\clMunicipio $coMunicipio = null)
@@ -180,7 +180,7 @@ class clCiudad
     /**
      * Get coMunicipio
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbMunicipio 
+     * @return \sagaco\DsagacoBundle\Entity\clMunicipio 
      */
     public function getCoMunicipio()
     {

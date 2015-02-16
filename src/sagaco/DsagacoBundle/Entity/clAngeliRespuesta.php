@@ -60,7 +60,7 @@ class clAngeliRespuesta
     /**
      * @var \ESagaco.tbAngeliInteres
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbAngeliInteres")
+     * @ORM\ManyToOne(targetEntity="clAngeliInteres")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_angeli_interes", referencedColumnName="co_angeli_interes")
      * })
@@ -70,7 +70,7 @@ class clAngeliRespuesta
     /**
      * @var \ESagaco.tpPrueba
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpPrueba")
+     * @ORM\ManyToOne(targetEntity="clPrueba")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_prueba", referencedColumnName="co_prueba")
      * })
@@ -207,7 +207,7 @@ class clAngeliRespuesta
     /**
      * Set coAngeliInteres
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbAngeliInteres $coAngeliInteres
+     * @param \sagaco\DsagacoBundle\Entity\clAngeliInteres $coAngeliInteres
      * @return clAngeliRespuesta
      */
     public function setCoAngeliInteres(\sagaco\DsagacoBundle\Entity\clAngeliInteres $coAngeliInteres = null)
@@ -220,7 +220,7 @@ class clAngeliRespuesta
     /**
      * Get coAngeliInteres
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbAngeliInteres 
+     * @return \sagaco\DsagacoBundle\Entity\clAngeliInteres 
      */
     public function getCoAngeliInteres()
     {
@@ -230,7 +230,7 @@ class clAngeliRespuesta
     /**
      * Set coPrueba
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpPrueba $coPrueba
+     * @param \sagaco\DsagacoBundle\Entity\clPrueba $coPrueba
      * @return clAngeliRespuesta
      */
     public function setCoPrueba(\sagaco\DsagacoBundle\Entity\clPrueba $coPrueba = null)
@@ -243,7 +243,7 @@ class clAngeliRespuesta
     /**
      * Get coPrueba
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpPrueba 
+     * @return \sagaco\DsagacoBundle\Entity\clPrueba 
      */
     public function getCoPrueba()
     {

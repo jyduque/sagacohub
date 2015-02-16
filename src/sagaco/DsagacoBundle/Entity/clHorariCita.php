@@ -60,7 +60,7 @@ class clHorariCita
     /**
      * @var \ESagaco.tbOrientador
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbOrientador")
+     * @ORM\ManyToOne(targetEntity="clOrientador")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_orientador", referencedColumnName="co_orientador")
      * })
@@ -197,7 +197,7 @@ class clHorariCita
     /**
      * Set coOrientador
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbOrientador $coOrientador
+     * @param \sagaco\DsagacoBundle\Entity\clOrientador $coOrientador
      * @return clHorariCita
      */
     public function setCoOrientador(\sagaco\DsagacoBundle\Entity\clOrientador $coOrientador = null)
@@ -210,7 +210,7 @@ class clHorariCita
     /**
      * Get coOrientador
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbOrientador 
+     * @return \sagaco\DsagacoBundle\Entity\clOrientador 
      */
     public function getCoOrientador()
     {

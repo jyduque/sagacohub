@@ -46,7 +46,7 @@ class clAgendaOrientador
     /**
      * @var \ESagaco.tbDiaSemana
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbDiaSemana")
+     * @ORM\ManyToOne(targetEntity="clDiaSemana")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_dia_semana", referencedColumnName="co_dia_semana")
      * })
@@ -56,7 +56,7 @@ class clAgendaOrientador
     /**
      * @var \ESagaco.tbDuracion
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbDuracion")
+     * @ORM\ManyToOne(targetEntity="clDuracion")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_duracion", referencedColumnName="co_duracion")
      * })
@@ -66,7 +66,7 @@ class clAgendaOrientador
     /**
      * @var \ESagaco.tbOrientador
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbOrientador")
+     * @ORM\ManyToOne(targetEntity="clOrientador")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_orientador", referencedColumnName="co_orientador")
      * })
@@ -76,7 +76,7 @@ class clAgendaOrientador
     /**
      * @var \ESagaco.tbSemestre
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbSemestre")
+     * @ORM\ManyToOne(targetEntity="clSemestre")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_semestre", referencedColumnName="co_semestre")
      * })
@@ -167,7 +167,7 @@ class clAgendaOrientador
     /**
      * Set coDiaSemana
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbDiaSemana $coDiaSemana
+     * @param \sagaco\DsagacoBundle\Entity\clDiaSemana $coDiaSemana
      * @return clAgendaOrientador
      */
     public function setCoDiaSemana(\sagaco\DsagacoBundle\Entity\clDiaSemana $coDiaSemana = null)
@@ -180,7 +180,7 @@ class clAgendaOrientador
     /**
      * Get coDiaSemana
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbDiaSemana 
+     * @return \sagaco\DsagacoBundle\Entity\clDiaSemana 
      */
     public function getCoDiaSemana()
     {
@@ -190,7 +190,7 @@ class clAgendaOrientador
     /**
      * Set coDuracion
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbDuracion $coDuracion
+     * @param \sagaco\DsagacoBundle\Entity\clDuracion $coDuracion
      * @return clAgendaOrientador
      */
     public function setCoDuracion(\sagaco\DsagacoBundle\Entity\clDuracion $coDuracion = null)
@@ -203,7 +203,7 @@ class clAgendaOrientador
     /**
      * Get coDuracion
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbDuracion 
+     * @return \sagaco\DsagacoBundle\Entity\clDuracion 
      */
     public function getCoDuracion()
     {
@@ -213,7 +213,7 @@ class clAgendaOrientador
     /**
      * Set coOrientador
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbOrientador $coOrientador
+     * @param \sagaco\DsagacoBundle\Entity\clOrientador $coOrientador
      * @return clAgendaOrientador
      */
     public function setCoOrientador(\sagaco\DsagacoBundle\Entity\clOrientador $coOrientador = null)
@@ -226,7 +226,7 @@ class clAgendaOrientador
     /**
      * Get coOrientador
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbOrientador 
+     * @return \sagaco\DsagacoBundle\Entity\clOrientador 
      */
     public function getCoOrientador()
     {
@@ -236,7 +236,7 @@ class clAgendaOrientador
     /**
      * Set coSemestre
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbSemestre $coSemestre
+     * @param \sagaco\DsagacoBundle\Entity\clSemestre $coSemestre
      * @return clAgendaOrientador
      */
     public function setCoSemestre(\sagaco\DsagacoBundle\Entity\clSemestre $coSemestre = null)
@@ -249,7 +249,7 @@ class clAgendaOrientador
     /**
      * Get coSemestre
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbSemestre 
+     * @return \sagaco\DsagacoBundle\Entity\clSemestre 
      */
     public function getCoSemestre()
     {

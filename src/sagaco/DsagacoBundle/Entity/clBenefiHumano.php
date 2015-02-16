@@ -130,7 +130,7 @@ class clBenefiHumano
     /**
      * @var \ESagaco.viRecursHumano
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.viRecursHumano")
+     * @ORM\ManyToOne(targetEntity="clRecursHumano")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_recurs_humano", referencedColumnName="co_recurs_humano")
      * })
@@ -497,7 +497,7 @@ class clBenefiHumano
     /**
      * Set coRecursHumano
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.viRecursHumano $coRecursHumano
+     * @param \sagaco\DsagacoBundle\Entity\clRecursHumano $coRecursHumano
      * @return clBenefiHumano
      */
     public function setCoRecursHumano(\sagaco\DsagacoBundle\Entity\clRecursHumano $coRecursHumano = null)
@@ -510,7 +510,7 @@ class clBenefiHumano
     /**
      * Get coRecursHumano
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.viRecursHumano 
+     * @return \sagaco\DsagacoBundle\Entity\clRecursHumano 
      */
     public function getCoRecursHumano()
     {

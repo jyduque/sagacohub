@@ -25,7 +25,7 @@ class clRolPersona
     /**
      * @var \ESagaco.tbGrupoRol
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbGrupoRol")
+     * @ORM\ManyToOne(targetEntity="clGrupoRol")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_grupo_rol", referencedColumnName="co_grupo_rol")
      * })
@@ -35,7 +35,7 @@ class clRolPersona
     /**
      * @var \ESagaco.tbPersona
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbPersona")
+     * @ORM\ManyToOne(targetEntity="clPersona")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_persona", referencedColumnName="co_persona")
      * })
@@ -57,7 +57,7 @@ class clRolPersona
     /**
      * Set coGrupoRol
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbGrupoRol $coGrupoRol
+     * @param \sagaco\DsagacoBundle\Entity\clGrupoRol $coGrupoRol
      * @return clRolPersona
      */
     public function setCoGrupoRol(\sagaco\DsagacoBundle\Entity\clGrupoRol $coGrupoRol = null)
@@ -70,7 +70,7 @@ class clRolPersona
     /**
      * Get coGrupoRol
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbGrupoRol 
+     * @return \sagaco\DsagacoBundle\Entity\clGrupoRol 
      */
     public function getCoGrupoRol()
     {
@@ -80,7 +80,7 @@ class clRolPersona
     /**
      * Set coPersona
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbPersona $coPersona
+     * @param \sagaco\DsagacoBundle\Entity\clPersona $coPersona
      * @return clRolPersona
      */
     public function setCoPersona(\sagaco\DsagacoBundle\Entity\clPersona $coPersona = null)
@@ -93,7 +93,7 @@ class clRolPersona
     /**
      * Get coPersona
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbPersona 
+     * @return \sagaco\DsagacoBundle\Entity\clPersona 
      */
     public function getCoPersona()
     {

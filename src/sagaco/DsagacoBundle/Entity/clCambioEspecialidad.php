@@ -193,7 +193,7 @@ class clCambioEspecialidad
     /**
      * @var \ESagaco.tbCarrera
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbCarrera")
+     * @ORM\ManyToOne(targetEntity="clCarrera")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_carrera", referencedColumnName="co_carrera")
      * })
@@ -203,7 +203,7 @@ class clCambioEspecialidad
     /**
      * @var \ESagaco.tbTipoInstitucion
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbTipoInstitucion")
+     * @ORM\ManyToOne(targetEntity="clTipoInstitucion")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_tipo_institucion", referencedColumnName="co_tipo_institucion")
      * })
@@ -213,7 +213,7 @@ class clCambioEspecialidad
     /**
      * @var \ESagaco.tpAsignaCursa
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpAsignaCursa")
+     * @ORM\ManyToOne(targetEntity="clAsignaCursa")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_asigna_cursa", referencedColumnName="co_asigna_cursa")
      * })
@@ -223,7 +223,7 @@ class clCambioEspecialidad
     /**
      * @var \ESagaco.tpAsignaMasdificil
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpAsignaMasdificil")
+     * @ORM\ManyToOne(targetEntity="clAsignaMasdificil")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_asigna_masdificil", referencedColumnName="co_asigna_masdificil")
      * })
@@ -233,7 +233,7 @@ class clCambioEspecialidad
     /**
      * @var \ESagaco.tpAsignaMasfacil
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpAsignaMasfacil")
+     * @ORM\ManyToOne(targetEntity="clAsignaMasfacil")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_asigna_masfacil", referencedColumnName="co_asigna_masfacil")
      * })
@@ -243,7 +243,7 @@ class clCambioEspecialidad
     /**
      * @var \ESagaco.tpAsignaMasgusto
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpAsignaMasgusto")
+     * @ORM\ManyToOne(targetEntity="clAsignaMasgusto")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_asigna_masgusto", referencedColumnName="co_asigna_masgusto")
      * })
@@ -253,7 +253,7 @@ class clCambioEspecialidad
     /**
      * @var \ESagaco.tpAsignaMenosgusto
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpAsignaMenosgusto")
+     * @ORM\ManyToOne(targetEntity="clAsignaMenosgusto")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_asigna_menosgusto", referencedColumnName="co_asigna_menosgusto")
      * })
@@ -263,7 +263,7 @@ class clCambioEspecialidad
     /**
      * @var \ESagaco.tpCita
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpCita")
+     * @ORM\ManyToOne(targetEntity="clCita")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_cita", referencedColumnName="co_cita")
      * })
@@ -273,7 +273,7 @@ class clCambioEspecialidad
     /**
      * @var \ESagaco.tpJerarqCarrerasopsu
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpJerarqCarrerasopsu")
+     * @ORM\ManyToOne(targetEntity="clJerarqCarrerasopsu")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_jerarq_carrerasopsu", referencedColumnName="co_jerarq_carrerasopsu")
      * })
@@ -283,7 +283,7 @@ class clCambioEspecialidad
     /**
      * @var \ESagaco.tpMateriAltorendimiento
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpMateriAltorendimiento")
+     * @ORM\ManyToOne(targetEntity="clMateriAltorendimiento")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_materi_altorendimiento", referencedColumnName="co_materi_altorendimiento")
      * })
@@ -293,7 +293,7 @@ class clCambioEspecialidad
     /**
      * @var \ESagaco.tpMateriBajorendimiento
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpMateriBajorendimiento")
+     * @ORM\ManyToOne(targetEntity="clMateriBajorendimiento")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_materi_bajorendimiento", referencedColumnName="co_materi_bajorendimiento")
      * })
@@ -303,7 +303,7 @@ class clCambioEspecialidad
     /**
      * @var \ESagaco.tpMateriMasdificil
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpMateriMasdificil")
+     * @ORM\ManyToOne(targetEntity="clMateriMasdificil")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_materi_masdificil", referencedColumnName="co_materi_masdificil")
      * })
@@ -313,7 +313,7 @@ class clCambioEspecialidad
     /**
      * @var \ESagaco.tpMateriMasfacil
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpMateriMasfacil")
+     * @ORM\ManyToOne(targetEntity="clMateriMasfacil")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_materi_masfacil", referencedColumnName="co_materi_masfacil")
      * })
@@ -323,7 +323,7 @@ class clCambioEspecialidad
     /**
      * @var \ESagaco.tpMateriMasgusto
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpMateriMasgusto")
+     * @ORM\ManyToOne(targetEntity="clMateriMasgusto")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_materi_masgusto", referencedColumnName="co_materi_masgusto")
      * })
@@ -333,7 +333,7 @@ class clCambioEspecialidad
     /**
      * @var \ESagaco.tpMateriMenosgusto
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpMateriMenosgusto")
+     * @ORM\ManyToOne(targetEntity="clMateriMenosgusto")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_materi_menosgusto", referencedColumnName="co_materi_menosgusto")
      * })
@@ -343,7 +343,7 @@ class clCambioEspecialidad
     /**
      * @var \ESagaco.tpPeriodPrueba
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpPeriodPrueba")
+     * @ORM\ManyToOne(targetEntity="clPeriodPrueba")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_period_prueba", referencedColumnName="co_period_prueba")
      * })
@@ -353,7 +353,7 @@ class clCambioEspecialidad
     /**
      * @var \ESagaco.tpRetiroUniversidad
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpRetiroUniversidad")
+     * @ORM\ManyToOne(targetEntity="clRetiroUniversidad")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_retiro_universidad", referencedColumnName="co_retiro_universidad")
      * })
@@ -927,7 +927,7 @@ class clCambioEspecialidad
     /**
      * Set coCarrera
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbCarrera $coCarrera
+     * @param \sagaco\DsagacoBundle\Entity\clCarrera $coCarrera
      * @return clCambioEspecialidad
      */
     public function setCoCarrera(\sagaco\DsagacoBundle\Entity\clCarrera $coCarrera = null)
@@ -940,7 +940,7 @@ class clCambioEspecialidad
     /**
      * Get coCarrera
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbCarrera 
+     * @return \sagaco\DsagacoBundle\Entity\clCarrera 
      */
     public function getCoCarrera()
     {
@@ -950,7 +950,7 @@ class clCambioEspecialidad
     /**
      * Set coTipoInstitucion
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbTipoInstitucion $coTipoInstitucion
+     * @param \sagaco\DsagacoBundle\Entity\clTipoInstitucion $coTipoInstitucion
      * @return clCambioEspecialidad
      */
     public function setCoTipoInstitucion(\sagaco\DsagacoBundle\Entity\clTipoInstitucion $coTipoInstitucion = null)
@@ -963,7 +963,7 @@ class clCambioEspecialidad
     /**
      * Get coTipoInstitucion
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbTipoInstitucion 
+     * @return \sagaco\DsagacoBundle\Entity\clTipoInstitucion 
      */
     public function getCoTipoInstitucion()
     {
@@ -973,7 +973,7 @@ class clCambioEspecialidad
     /**
      * Set coAsignaCursa
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpAsignaCursa $coAsignaCursa
+     * @param \sagaco\DsagacoBundle\Entity\clAsignaCursa $coAsignaCursa
      * @return clCambioEspecialidad
      */
     public function setCoAsignaCursa(\sagaco\DsagacoBundle\Entity\clAsignaCursa $coAsignaCursa = null)
@@ -986,7 +986,7 @@ class clCambioEspecialidad
     /**
      * Get coAsignaCursa
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpAsignaCursa 
+     * @return \sagaco\DsagacoBundle\Entity\clAsignaCursa 
      */
     public function getCoAsignaCursa()
     {
@@ -996,7 +996,7 @@ class clCambioEspecialidad
     /**
      * Set coAsignaMasdificil
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpAsignaMasdificil $coAsignaMasdificil
+     * @param \sagaco\DsagacoBundle\Entity\clAsignaMasdificil $coAsignaMasdificil
      * @return clCambioEspecialidad
      */
     public function setCoAsignaMasdificil(\sagaco\DsagacoBundle\Entity\clAsignaMasdificil $coAsignaMasdificil = null)
@@ -1009,7 +1009,7 @@ class clCambioEspecialidad
     /**
      * Get coAsignaMasdificil
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpAsignaMasdificil 
+     * @return \sagaco\DsagacoBundle\Entity\clAsignaMasdificil 
      */
     public function getCoAsignaMasdificil()
     {
@@ -1019,7 +1019,7 @@ class clCambioEspecialidad
     /**
      * Set coAsignaMasfacil
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpAsignaMasfacil $coAsignaMasfacil
+     * @param \sagaco\DsagacoBundle\Entity\clAsignaMasfacil $coAsignaMasfacil
      * @return clCambioEspecialidad
      */
     public function setCoAsignaMasfacil(\sagaco\DsagacoBundle\Entity\clAsignaMasfacil $coAsignaMasfacil = null)
@@ -1032,7 +1032,7 @@ class clCambioEspecialidad
     /**
      * Get coAsignaMasfacil
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpAsignaMasfacil 
+     * @return \sagaco\DsagacoBundle\Entity\clAsignaMasfacil 
      */
     public function getCoAsignaMasfacil()
     {
@@ -1042,7 +1042,7 @@ class clCambioEspecialidad
     /**
      * Set coAsignaMasgusto
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpAsignaMasgusto $coAsignaMasgusto
+     * @param \sagaco\DsagacoBundle\Entity\clAsignaMasgusto $coAsignaMasgusto
      * @return clCambioEspecialidad
      */
     public function setCoAsignaMasgusto(\sagaco\DsagacoBundle\Entity\clAsignaMasgusto $coAsignaMasgusto = null)
@@ -1055,7 +1055,7 @@ class clCambioEspecialidad
     /**
      * Get coAsignaMasgusto
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpAsignaMasgusto 
+     * @return \sagaco\DsagacoBundle\Entity\clAsignaMasgusto 
      */
     public function getCoAsignaMasgusto()
     {
@@ -1065,7 +1065,7 @@ class clCambioEspecialidad
     /**
      * Set coAsignaMenosgusto
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpAsignaMenosgusto $coAsignaMenosgusto
+     * @param \sagaco\DsagacoBundle\Entity\clAsignaMenosgusto $coAsignaMenosgusto
      * @return clCambioEspecialidad
      */
     public function setCoAsignaMenosgusto(\sagaco\DsagacoBundle\Entity\clAsignaMenosgusto $coAsignaMenosgusto = null)
@@ -1078,7 +1078,7 @@ class clCambioEspecialidad
     /**
      * Get coAsignaMenosgusto
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpAsignaMenosgusto 
+     * @return \sagaco\DsagacoBundle\Entity\clAsignaMenosgusto 
      */
     public function getCoAsignaMenosgusto()
     {
@@ -1088,7 +1088,7 @@ class clCambioEspecialidad
     /**
      * Set coCita
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpCita $coCita
+     * @param \sagaco\DsagacoBundle\Entity\clCita $coCita
      * @return clCambioEspecialidad
      */
     public function setCoCita(\sagaco\DsagacoBundle\Entity\clCita $coCita = null)
@@ -1101,7 +1101,7 @@ class clCambioEspecialidad
     /**
      * Get coCita
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpCita 
+     * @return \sagaco\DsagacoBundle\Entity\clCita 
      */
     public function getCoCita()
     {
@@ -1111,7 +1111,7 @@ class clCambioEspecialidad
     /**
      * Set coJerarqCarrerasopsu
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpJerarqCarrerasopsu $coJerarqCarrerasopsu
+     * @param \sagaco\DsagacoBundle\Entity\clJerarqCarrerasopsu $coJerarqCarrerasopsu
      * @return clCambioEspecialidad
      */
     public function setCoJerarqCarrerasopsu(\sagaco\DsagacoBundle\Entity\clJerarqCarrerasopsu $coJerarqCarrerasopsu = null)
@@ -1124,7 +1124,7 @@ class clCambioEspecialidad
     /**
      * Get coJerarqCarrerasopsu
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpJerarqCarrerasopsu 
+     * @return \sagaco\DsagacoBundle\Entity\clJerarqCarrerasopsu 
      */
     public function getCoJerarqCarrerasopsu()
     {
@@ -1134,7 +1134,7 @@ class clCambioEspecialidad
     /**
      * Set coMateriAltorendimiento
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpMateriAltorendimiento $coMateriAltorendimiento
+     * @param \sagaco\DsagacoBundle\Entity\clMateriAltorendimiento $coMateriAltorendimiento
      * @return clCambioEspecialidad
      */
     public function setCoMateriAltorendimiento(\sagaco\DsagacoBundle\Entity\clMateriAltorendimiento $coMateriAltorendimiento = null)
@@ -1147,7 +1147,7 @@ class clCambioEspecialidad
     /**
      * Get coMateriAltorendimiento
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpMateriAltorendimiento 
+     * @return \sagaco\DsagacoBundle\Entity\clMateriAltorendimiento 
      */
     public function getCoMateriAltorendimiento()
     {
@@ -1157,7 +1157,7 @@ class clCambioEspecialidad
     /**
      * Set coMateriBajorendimiento
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpMateriBajorendimiento $coMateriBajorendimiento
+     * @param \sagaco\DsagacoBundle\Entity\clMateriBajorendimiento $coMateriBajorendimiento
      * @return clCambioEspecialidad
      */
     public function setCoMateriBajorendimiento(\sagaco\DsagacoBundle\Entity\clMateriBajorendimiento $coMateriBajorendimiento = null)
@@ -1170,7 +1170,7 @@ class clCambioEspecialidad
     /**
      * Get coMateriBajorendimiento
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpMateriBajorendimiento 
+     * @return \sagaco\DsagacoBundle\Entity\clMateriBajorendimiento 
      */
     public function getCoMateriBajorendimiento()
     {
@@ -1180,7 +1180,7 @@ class clCambioEspecialidad
     /**
      * Set coMateriMasdificil
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpMateriMasdificil $coMateriMasdificil
+     * @param \sagaco\DsagacoBundle\Entity\clMateriMasdificil $coMateriMasdificil
      * @return clCambioEspecialidad
      */
     public function setCoMateriMasdificil(\sagaco\DsagacoBundle\Entity\clMateriMasdificil $coMateriMasdificil = null)
@@ -1193,7 +1193,7 @@ class clCambioEspecialidad
     /**
      * Get coMateriMasdificil
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpMateriMasdificil 
+     * @return \sagaco\DsagacoBundle\Entity\clMateriMasdificil 
      */
     public function getCoMateriMasdificil()
     {
@@ -1203,7 +1203,7 @@ class clCambioEspecialidad
     /**
      * Set coMateriMasfacil
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpMateriMasfacil $coMateriMasfacil
+     * @param \sagaco\DsagacoBundle\Entity\clMateriMasfacil $coMateriMasfacil
      * @return clCambioEspecialidad
      */
     public function setCoMateriMasfacil(\sagaco\DsagacoBundle\Entity\clMateriMasfacil $coMateriMasfacil = null)
@@ -1216,7 +1216,7 @@ class clCambioEspecialidad
     /**
      * Get coMateriMasfacil
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpMateriMasfacil 
+     * @return \sagaco\DsagacoBundle\Entity\clMateriMasfacil 
      */
     public function getCoMateriMasfacil()
     {
@@ -1226,7 +1226,7 @@ class clCambioEspecialidad
     /**
      * Set coMateriMasgusto
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpMateriMasgusto $coMateriMasgusto
+     * @param \sagaco\DsagacoBundle\Entity\clMateriMasgusto $coMateriMasgusto
      * @return clCambioEspecialidad
      */
     public function setCoMateriMasgusto(\sagaco\DsagacoBundle\Entity\clMateriMasgusto $coMateriMasgusto = null)
@@ -1239,7 +1239,7 @@ class clCambioEspecialidad
     /**
      * Get coMateriMasgusto
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpMateriMasgusto 
+     * @return \sagaco\DsagacoBundle\Entity\clMateriMasgusto 
      */
     public function getCoMateriMasgusto()
     {
@@ -1249,7 +1249,7 @@ class clCambioEspecialidad
     /**
      * Set coMateriMenosgusto
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpMateriMenosgusto $coMateriMenosgusto
+     * @param \sagaco\DsagacoBundle\Entity\clMateriMenosgusto $coMateriMenosgusto
      * @return clCambioEspecialidad
      */
     public function setCoMateriMenosgusto(\sagaco\DsagacoBundle\Entity\clMateriMenosgusto $coMateriMenosgusto = null)
@@ -1262,7 +1262,7 @@ class clCambioEspecialidad
     /**
      * Get coMateriMenosgusto
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpMateriMenosgusto 
+     * @return \sagaco\DsagacoBundle\Entity\clMateriMenosgusto 
      */
     public function getCoMateriMenosgusto()
     {
@@ -1272,7 +1272,7 @@ class clCambioEspecialidad
     /**
      * Set coPeriodPrueba
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpPeriodPrueba $coPeriodPrueba
+     * @param \sagaco\DsagacoBundle\Entity\clPeriodPrueba $coPeriodPrueba
      * @return clCambioEspecialidad
      */
     public function setCoPeriodPrueba(\sagaco\DsagacoBundle\Entity\clPeriodPrueba $coPeriodPrueba = null)
@@ -1285,7 +1285,7 @@ class clCambioEspecialidad
     /**
      * Get coPeriodPrueba
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpPeriodPrueba 
+     * @return \sagaco\DsagacoBundle\Entity\clPeriodPrueba 
      */
     public function getCoPeriodPrueba()
     {
@@ -1295,7 +1295,7 @@ class clCambioEspecialidad
     /**
      * Set coRetiroUniversidad
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpRetiroUniversidad $coRetiroUniversidad
+     * @param \sagaco\DsagacoBundle\Entity\clRetiroUniversidad $coRetiroUniversidad
      * @return clCambioEspecialidad
      */
     public function setCoRetiroUniversidad(\sagaco\DsagacoBundle\Entity\clRetiroUniversidad $coRetiroUniversidad = null)
@@ -1308,7 +1308,7 @@ class clCambioEspecialidad
     /**
      * Get coRetiroUniversidad
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpRetiroUniversidad 
+     * @return \sagaco\DsagacoBundle\Entity\clRetiroUniversidad 
      */
     public function getCoRetiroUniversidad()
     {

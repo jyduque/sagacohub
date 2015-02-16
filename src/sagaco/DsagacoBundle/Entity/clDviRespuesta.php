@@ -46,7 +46,7 @@ class clDviRespuesta
     /**
      * @var \ESagaco.tpPrueba
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpPrueba")
+     * @ORM\ManyToOne(targetEntity="clPrueba")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_prueba", referencedColumnName="co_prueba")
      * })
@@ -137,7 +137,7 @@ class clDviRespuesta
     /**
      * Set coPrueba
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpPrueba $coPrueba
+     * @param \sagaco\DsagacoBundle\Entity\clPrueba $coPrueba
      * @return clDviRespuesta
      */
     public function setCoPrueba(\sagaco\DsagacoBundle\Entity\clPrueba $coPrueba = null)
@@ -150,7 +150,7 @@ class clDviRespuesta
     /**
      * Get coPrueba
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpPrueba 
+     * @return \sagaco\DsagacoBundle\Entity\clPrueba 
      */
     public function getCoPrueba()
     {

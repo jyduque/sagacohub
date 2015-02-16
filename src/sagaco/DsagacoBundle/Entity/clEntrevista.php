@@ -81,7 +81,7 @@ class clEntrevista
     /**
      * @var \ESagaco.tbTipoEntrevista
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tbTipoEntrevista")
+     * @ORM\ManyToOne(targetEntity="clTipoEntrevista")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_tipo_entrevista", referencedColumnName="co_tipo_entrevista")
      * })
@@ -91,7 +91,7 @@ class clEntrevista
     /**
      * @var \ESagaco.tpCaso
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpCaso")
+     * @ORM\ManyToOne(targetEntity="clCaso")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_caso", referencedColumnName="co_caso")
      * })
@@ -101,7 +101,7 @@ class clEntrevista
     /**
      * @var \ESagaco.tpCita
      *
-     * @ORM\ManyToOne(targetEntity="ESagaco.tpCita")
+     * @ORM\ManyToOne(targetEntity="clCita")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_cita", referencedColumnName="co_cita")
      * })
@@ -307,7 +307,7 @@ class clEntrevista
     /**
      * Set coTipoEntrevista
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbTipoEntrevista $coTipoEntrevista
+     * @param \sagaco\DsagacoBundle\Entity\clTipoEntrevista $coTipoEntrevista
      * @return clEntrevista
      */
     public function setCoTipoEntrevista(\sagaco\DsagacoBundle\Entity\clTipoEntrevista $coTipoEntrevista = null)
@@ -320,7 +320,7 @@ class clEntrevista
     /**
      * Get coTipoEntrevista
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbTipoEntrevista 
+     * @return \sagaco\DsagacoBundle\Entity\clTipoEntrevista 
      */
     public function getCoTipoEntrevista()
     {
@@ -330,7 +330,7 @@ class clEntrevista
     /**
      * Set coCaso
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpCaso $coCaso
+     * @param \sagaco\DsagacoBundle\Entity\clCaso $coCaso
      * @return clEntrevista
      */
     public function setCoCaso(\sagaco\DsagacoBundle\Entity\clCaso $coCaso = null)
@@ -343,7 +343,7 @@ class clEntrevista
     /**
      * Get coCaso
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpCaso 
+     * @return \sagaco\DsagacoBundle\Entity\clCaso 
      */
     public function getCoCaso()
     {
@@ -353,7 +353,7 @@ class clEntrevista
     /**
      * Set coCita
      *
-     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpCita $coCita
+     * @param \sagaco\DsagacoBundle\Entity\clCita $coCita
      * @return clEntrevista
      */
     public function setCoCita(\sagaco\DsagacoBundle\Entity\clCita $coCita = null)
@@ -366,7 +366,7 @@ class clEntrevista
     /**
      * Get coCita
      *
-     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpCita 
+     * @return \sagaco\DsagacoBundle\Entity\clCita 
      */
     public function getCoCita()
     {
