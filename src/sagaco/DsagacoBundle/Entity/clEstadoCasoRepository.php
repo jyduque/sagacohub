@@ -22,7 +22,7 @@ class clEstadoCasoRepository extends EntityRepository
         $tableObjectName = 'DsagacoBundle:clEstadoCaso';
 
         /* Campo para ordenar */        
-        $txtOrden = 'nbEstadoCaso';
+        $txtOrden = 'coEstadoCaso';
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '

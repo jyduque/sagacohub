@@ -5,9 +5,9 @@ namespace sagaco\DsagacoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * clPersona
+ * ESagaco.tbPersona
  *
- * @ORM\Table(name="tb_persona")
+ * @ORM\Table(name="e_sagaco.tb_persona", uniqueConstraints={@ORM\UniqueConstraint(name="uk_tb_persona_co_contro_estudio", columns={"co_contro_estudio"}), @ORM\UniqueConstraint(name="uk_tb_persona_co_recurs_humano", columns={"co_recurs_humano"})})
  * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clPersonaRepository")
  */
 class clPersona
@@ -15,77 +15,118 @@ class clPersona
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="co_persona", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="e_sagaco.seq_tb_persona_co_persona", allocationSize=1, initialValue=1)
      */
-    private $id;
+    private $coPersona;
 
     /**
-     * @var string
+     * @var boolean
      *
-     * @ORM\Column(name="tx_descripcion", type="text")
+     * @ORM\Column(name="in_estudiante", type="boolean", nullable=false)
      */
-    private $tx_descripcion;
+    private $inEstudiante;
 
     /**
-     * @ORM\ManyToOne(targetEntity="clGrupoRol", inversedBy="prPersona")
-     * @ORM\JoinColumn(name="co_gruporol_id", referencedColumnName="co_tipo_rol")
+     * @var \ESagaco.viControEstudio
+     *
+     * @ORM\ManyToOne(targetEntity="ESagaco.viControEstudio")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="co_contro_estudio", referencedColumnName="co_contro_estudio")
+     * })
      */
-    protected $prGrupoRol;
+    private $coControEstudio;
+
     /**
-     * Get id
+     * @var \ESagaco.viRecursHumano
+     *
+     * @ORM\ManyToOne(targetEntity="ESagaco.viRecursHumano")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="co_recurs_humano", referencedColumnName="co_recurs_humano")
+     * })
+     */
+    private $coRecursHumano;
+
+
+
+    /**
+     * Get coPersona
      *
      * @return integer 
      */
-    public function getId()
+    public function getCoPersona()
     {
-        return $this->id;
+        return $this->coPersona;
     }
 
     /**
-     * Set tx_descripcion
+     * Set inEstudiante
      *
-     * @param string $txDescripcion
+     * @param boolean $inEstudiante
      * @return clPersona
      */
-    public function setTxDescripcion($txDescripcion)
+    public function setInEstudiante($inEstudiante)
     {
-        $this->tx_descripcion = $txDescripcion;
+        $this->inEstudiante = $inEstudiante;
 
         return $this;
     }
 
     /**
-     * Get tx_descripcion
+     * Get inEstudiante
      *
-     * @return string 
+     * @return boolean 
      */
-    public function getTxDescripcion()
+    public function getInEstudiante()
     {
-        return $this->tx_descripcion;
+        return $this->inEstudiante;
     }
 
     /**
-     * Set prGrupoRol
+     * Set coControEstudio
      *
-     * @param \sagaco\DsagacoBundle\Entity\clGrupoRol $prGrupoRol
+     * @param \sagaco\DsagacoBundle\Entity\ESagaco.viControEstudio $coControEstudio
      * @return clPersona
      */
-    public function setPrGrupoRol(\sagaco\DsagacoBundle\Entity\clGrupoRol $prGrupoRol = null)
+    public function setCoControEstudio(\sagaco\DsagacoBundle\Entity\clControEstudio $coControEstudio = null)
     {
-        $this->prGrupoRol = $prGrupoRol;
+        $this->coControEstudio = $coControEstudio;
 
         return $this;
     }
 
     /**
-     * Get prGrupoRol
+     * Get coControEstudio
      *
-     * @return \sagaco\DsagacoBundle\Entity\clGrupoRol 
+     * @return \sagaco\DsagacoBundle\Entity\ESagaco.viControEstudio 
      */
-    public function getPrGrupoRol()
+    public function getCoControEstudio()
     {
-        return $this->prGrupoRol;
+        return $this->coControEstudio;
+    }
+
+    /**
+     * Set coRecursHumano
+     *
+     * @param \sagaco\DsagacoBundle\Entity\ESagaco.viRecursHumano $coRecursHumano
+     * @return clPersona
+     */
+    public function setCoRecursHumano(\sagaco\DsagacoBundle\Entity\clRecursHumano $coRecursHumano = null)
+    {
+        $this->coRecursHumano = $coRecursHumano;
+
+        return $this;
+    }
+
+    /**
+     * Get coRecursHumano
+     *
+     * @return \sagaco\DsagacoBundle\Entity\ESagaco.viRecursHumano 
+     */
+    public function getCoRecursHumano()
+    {
+        return $this->coRecursHumano;
     }
 }

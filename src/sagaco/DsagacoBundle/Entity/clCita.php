@@ -5,9 +5,9 @@ namespace sagaco\DsagacoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * tp_cita
+ * ESagaco.tpCita
  *
- * @ORM\Table(name="tp_cita")
+ * @ORM\Table(name="e_sagaco.tp_cita", indexes={@ORM\Index(name="IDX_1E8A00AE92038EE7", columns={"co_area"}), @ORM\Index(name="IDX_1E8A00AEE8F3E723", columns={"co_estado_cita"}), @ORM\Index(name="IDX_1E8A00AE1A0F11FF", columns={"co_persona"}), @ORM\Index(name="IDX_1E8A00AEBFB8F821", columns={"co_horari_cita"})})
  * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clCitaRepository")
  */
 class clCita
@@ -15,75 +15,82 @@ class clCita
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="co_cita", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="co_cita", type="integer")
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="e_sagaco.seq_tp_cita_co_cita", allocationSize=1, initialValue=1)
      */
     private $coCita;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="tx_dia", type="string", length=9)
+     * @ORM\Column(name="co_cita_reprogramada", type="integer", nullable=true)
      */
-    private $txDia;
+    private $coCitaReprogramada;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="in_cambio_especialidad", type="boolean", nullable=false)
+     */
+    private $inCambioEspecialidad;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="ho_inicio", type="time")
+     * @ORM\Column(name="fh_regist_cita", type="datetime", nullable=false)
      */
-    private $hoInicio;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="ho_fin", type="time")
-     */
-    private $hoFin;
+    private $fhRegistCita;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_descripcion", type="text", nullable=true)
+     * @ORM\Column(name="tx_observacion", type="string", length=255, nullable=true)
      */
-    private $txDescripcion;
-    
-    /** @ORM\ManyToOne(targetEntity="sagaco\DsagacoBundle\Entity\clHorario") */
-    protected $tb_horario;
-    
-    /** @ORM\ManyToOne(targetEntity="sagaco\DsagacoBundle\Entity\clMotivoConsulta") */
-    protected $tb_motivo_consulta;
-    
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $txObservacion;
 
     /**
-     * Set coCita
+     * @var \ESagaco.tbArea
      *
-     * @param integer $coCita
-     * @return tp_cita
+     * @ORM\ManyToOne(targetEntity="ESagaco.tbArea")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="co_area", referencedColumnName="co_area")
+     * })
      */
-    public function setCoCita($coCita)
-    {
-        $this->coCita = $coCita;
+    private $coArea;
 
-        return $this;
-    }
+    /**
+     * @var \ESagaco.tbEstadoCita
+     *
+     * @ORM\ManyToOne(targetEntity="ESagaco.tbEstadoCita")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="co_estado_cita", referencedColumnName="co_estado_cita")
+     * })
+     */
+    private $coEstadoCita;
+
+    /**
+     * @var \ESagaco.tbPersona
+     *
+     * @ORM\ManyToOne(targetEntity="ESagaco.tbPersona")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="co_persona", referencedColumnName="co_persona")
+     * })
+     */
+    private $coPersona;
+
+    /**
+     * @var \ESagaco.tpHorariCita
+     *
+     * @ORM\ManyToOne(targetEntity="ESagaco.tpHorariCita")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="co_horari_cita", referencedColumnName="co_horari_cita")
+     * })
+     */
+    private $coHorariCita;
+
+
 
     /**
      * Get coCita
@@ -96,186 +103,186 @@ class clCita
     }
 
     /**
-     * Set txDia
+     * Set coCitaReprogramada
      *
-     * @param string $txDia
-     * @return tp_cita
+     * @param integer $coCitaReprogramada
+     * @return clCita
      */
-    public function setTxDia($txDia)
+    public function setCoCitaReprogramada($coCitaReprogramada)
     {
-        $this->txDia = $txDia;
+        $this->coCitaReprogramada = $coCitaReprogramada;
 
         return $this;
     }
 
     /**
-     * Get txDia
+     * Get coCitaReprogramada
      *
-     * @return string 
+     * @return integer 
      */
-    public function getTxDia()
+    public function getCoCitaReprogramada()
     {
-        return $this->txDia;
+        return $this->coCitaReprogramada;
     }
 
     /**
-     * Set hoInicio
+     * Set inCambioEspecialidad
      *
-     * @param \DateTime $hoInicio
-     * @return tp_cita
+     * @param boolean $inCambioEspecialidad
+     * @return clCita
      */
-    public function setHoInicio($hoInicio)
+    public function setInCambioEspecialidad($inCambioEspecialidad)
     {
-        $this->hoInicio = $hoInicio;
+        $this->inCambioEspecialidad = $inCambioEspecialidad;
 
         return $this;
     }
 
     /**
-     * Get hoInicio
+     * Get inCambioEspecialidad
+     *
+     * @return boolean 
+     */
+    public function getInCambioEspecialidad()
+    {
+        return $this->inCambioEspecialidad;
+    }
+
+    /**
+     * Set fhRegistCita
+     *
+     * @param \DateTime $fhRegistCita
+     * @return clCita
+     */
+    public function setFhRegistCita($fhRegistCita)
+    {
+        $this->fhRegistCita = $fhRegistCita;
+
+        return $this;
+    }
+
+    /**
+     * Get fhRegistCita
      *
      * @return \DateTime 
      */
-    public function getHoInicio()
+    public function getFhRegistCita()
     {
-        return $this->hoInicio;
+        return $this->fhRegistCita;
     }
 
     /**
-     * Set hoFin
+     * Set txObservacion
      *
-     * @param \DateTime $hoFin
-     * @return tp_cita
-     */
-    public function setHoFin($hoFin)
-    {
-        $this->hoFin = $hoFin;
-
-        return $this;
-    }
-
-    /**
-     * Get hoFin
-     *
-     * @return \DateTime 
-     */
-    public function getHoFin()
-    {
-        return $this->hoFin;
-    }
-
-    /**
-     * Set txDescripcion
-     *
-     * @param string $txDescripcion
-     * @return tp_cita
-     */
-    public function setTxDescripcion($txDescripcion)
-    {
-        $this->txDescripcion = $txDescripcion;
-
-        return $this;
-    }
-
-    /**
-     * Get txDescripcion
-     *
-     * @return string 
-     */
-    public function getTxDescripcion()
-    {
-        return $this->txDescripcion;
-    }
-    
-    /**
-     * Set tb_horario
-     *
-     * @param string $tb_horario
-     * @return tp_cita
-     */
-    public function settb_horario($tb_horario)
-    {
-        $this->tb_horario = $tb_horario;
-
-        return $this;
-    }
-    
-    /**
-     * Get tb_horario
-     *
-     * @return string 
-     */
-    public function gettb_horario()
-    {
-        return $this->tb_horario;
-    }
-            
-    /**
-     * Set tb_motivo_consulta
-     *
-     * @param string $tb_motivo_consulta
-     * @return tp_cita
-     */
-    public function settb_motivo_consulta($tb_motivo_consulta)
-    {
-        $this->tb_motivo_consulta = $tb_motivo_consulta;
-
-        return $this;
-    }
-    
-    /**
-     * Get tb_motivo_consulta
-     *
-     * @return string 
-     */
-    public function gettb_motivo_consulta()
-    {
-        return $this->tb_motivo_consulta;
-    }
-
-    /**
-     * Set tb_horario
-     *
-     * @param \sagaco\DsagacoBundle\Entity\clHorario $tbHorario
+     * @param string $txObservacion
      * @return clCita
      */
-    public function setTbHorario(\sagaco\DsagacoBundle\Entity\clHorario $tbHorario = null)
+    public function setTxObservacion($txObservacion)
     {
-        $this->tb_horario = $tbHorario;
+        $this->txObservacion = $txObservacion;
 
         return $this;
     }
 
     /**
-     * Get tb_horario
+     * Get txObservacion
      *
-     * @return \sagaco\DsagacoBundle\Entity\clHorario 
+     * @return string 
      */
-    public function getTbHorario()
+    public function getTxObservacion()
     {
-        return $this->tb_horario;
+        return $this->txObservacion;
     }
 
     /**
-     * Set tb_motivo_consulta
+     * Set coArea
      *
-     * @param \sagaco\DsagacoBundle\Entity\clMotivoConsulta $tbMotivoConsulta
+     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbArea $coArea
      * @return clCita
      */
-    public function setTbMotivoConsulta(\sagaco\DsagacoBundle\Entity\clMotivoConsulta $tbMotivoConsulta = null)
+    public function setCoArea(\sagaco\DsagacoBundle\Entity\clArea $coArea = null)
     {
-        $this->tb_motivo_consulta = $tbMotivoConsulta;
+        $this->coArea = $coArea;
 
         return $this;
     }
 
     /**
-     * Get tb_motivo_consulta
+     * Get coArea
      *
-     * @return \sagaco\DsagacoBundle\Entity\clMotivoConsulta 
+     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbArea 
      */
-    public function getTbMotivoConsulta()
+    public function getCoArea()
     {
-        return $this->tb_motivo_consulta;
+        return $this->coArea;
+    }
+
+    /**
+     * Set coEstadoCita
+     *
+     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbEstadoCita $coEstadoCita
+     * @return clCita
+     */
+    public function setCoEstadoCita(\sagaco\DsagacoBundle\Entity\clEstadoCita $coEstadoCita = null)
+    {
+        $this->coEstadoCita = $coEstadoCita;
+
+        return $this;
+    }
+
+    /**
+     * Get coEstadoCita
+     *
+     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbEstadoCita 
+     */
+    public function getCoEstadoCita()
+    {
+        return $this->coEstadoCita;
+    }
+
+    /**
+     * Set coPersona
+     *
+     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbPersona $coPersona
+     * @return clCita
+     */
+    public function setCoPersona(\sagaco\DsagacoBundle\Entity\clPersona $coPersona = null)
+    {
+        $this->coPersona = $coPersona;
+
+        return $this;
+    }
+
+    /**
+     * Get coPersona
+     *
+     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbPersona 
+     */
+    public function getCoPersona()
+    {
+        return $this->coPersona;
+    }
+
+    /**
+     * Set coHorariCita
+     *
+     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpHorariCita $coHorariCita
+     * @return clCita
+     */
+    public function setCoHorariCita(\sagaco\DsagacoBundle\Entity\clHorariCita $coHorariCita = null)
+    {
+        $this->coHorariCita = $coHorariCita;
+
+        return $this;
+    }
+
+    /**
+     * Get coHorariCita
+     *
+     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpHorariCita 
+     */
+    public function getCoHorariCita()
+    {
+        return $this->coHorariCita;
     }
 }

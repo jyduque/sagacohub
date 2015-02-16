@@ -22,7 +22,7 @@ class clGrupoRolRepository extends EntityRepository
         $tableObjectName = 'DsagacoBundle:clGrupoRol';
         
         /* Campo para ordenar */        
-        $txtOrden = 'nbGrupoRol';
+        $txtOrden = 'coGrupoRol';
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '

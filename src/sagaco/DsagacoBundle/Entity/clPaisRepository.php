@@ -22,7 +22,7 @@ class clPaisRepository extends EntityRepository
         $tableObjectName = 'DsagacoBundle:clPais';
 
         /* Campo para ordenar */        
-        $txtOrden = 'nbPais';
+        $txtOrden = 'coPais';
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '

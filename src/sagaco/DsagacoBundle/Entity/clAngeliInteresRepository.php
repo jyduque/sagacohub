@@ -22,7 +22,7 @@ class clAngeliInteresRepository extends EntityRepository
         $tableObjectName = 'DsagacoBundle:clAngeliInteres';
 
         /* Campo para ordenar */        
-        $txtOrden = 'nbInteres';
+        $txtOrden = 'coAngeliInteres';
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '

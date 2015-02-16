@@ -22,7 +22,7 @@ class clDviBaremoRepository extends EntityRepository
         $tableObjectName = 'DsagacoBundle:clDviBaremo';
 
         /* Campo para ordenar */        
-        $txtOrden = 'nuDviRespuesta';
+        $txtOrden = 'coDviRespuesta';
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '

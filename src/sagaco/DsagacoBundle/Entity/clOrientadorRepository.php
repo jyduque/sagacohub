@@ -22,7 +22,7 @@ class clOrientadorRepository extends EntityRepository
         $tableObjectName = 'DsagacoBundle:clOrientador';
         
         /* Campo para ordenar */        
-        $txtOrden = 'txComentario';
+        $txtOrden = 'coOrientador';
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '

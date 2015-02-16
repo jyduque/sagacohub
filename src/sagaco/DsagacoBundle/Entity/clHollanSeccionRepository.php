@@ -22,7 +22,7 @@ class clHollanSeccionRepository extends EntityRepository
         $tableObjectName = 'DsagacoBundle:clHollanSeccion';
 
         /* Campo para ordenar */        
-        $txtOrden = 'nbHollanSeccion';
+        $txtOrden = 'coHollanSeccion';
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '

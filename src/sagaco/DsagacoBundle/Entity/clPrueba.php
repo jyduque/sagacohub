@@ -5,9 +5,9 @@ namespace sagaco\DsagacoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * tp_prueba
+ * ESagaco.tpPrueba
  *
- * @ORM\Table(name="tp_prueba")
+ * @ORM\Table(name="e_sagaco.tp_prueba", uniqueConstraints={@ORM\UniqueConstraint(name="uk_tp_prueba_co_caso_co_tipo_prueba", columns={"co_tipo_prueba", "co_caso"})}, indexes={@ORM\Index(name="IDX_31E4DCE681A7BB42", columns={"co_estado_prueba"}), @ORM\Index(name="IDX_31E4DCE6FE244094", columns={"co_tipo_prueba"}), @ORM\Index(name="IDX_31E4DCE6DD4AC395", columns={"co_caso"})})
  * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clPruebaRepository")
  */
 class clPrueba
@@ -15,55 +15,79 @@ class clPrueba
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="co_prueba", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="co_prueba", type="integer")
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="e_sagaco.seq_tp_prueba_co_prueba_3", allocationSize=1, initialValue=1)
      */
     private $coPrueba;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_tipo_prueba", type="string", length=8)
+     * @ORM\Column(name="nu_ultima_pregunta", type="decimal", precision=10, scale=0, nullable=false)
      */
-    private $txTipoPrueba;
+    private $nuUltimaPregunta;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="tx_descripcion", type="text", nullable=true)
+     * @ORM\Column(name="fe_presentar", type="date", nullable=true)
      */
-    private $txDescripcion;
-    
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $fePresentar;
 
     /**
-     * Set coPrueba
+     * @var \DateTime
      *
-     * @param integer $coPrueba
-     * @return tp_prueba
+     * @ORM\Column(name="ho_presentar", type="time", nullable=true)
      */
-    public function setCoPrueba($coPrueba)
-    {
-        $this->coPrueba = $coPrueba;
+    private $hoPresentar;
 
-        return $this;
-    }
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fh_inicio", type="datetime", nullable=true)
+     */
+    private $fhInicio;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fh_culminacion", type="datetime", nullable=true)
+     */
+    private $fhCulminacion;
+
+    /**
+     * @var \ESagaco.tbEstadoPrueba
+     *
+     * @ORM\ManyToOne(targetEntity="ESagaco.tbEstadoPrueba")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="co_estado_prueba", referencedColumnName="co_estado_prueba")
+     * })
+     */
+    private $coEstadoPrueba;
+
+    /**
+     * @var \ESagaco.tbTipoPrueba
+     *
+     * @ORM\ManyToOne(targetEntity="ESagaco.tbTipoPrueba")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="co_tipo_prueba", referencedColumnName="co_tipo_prueba")
+     * })
+     */
+    private $coTipoPrueba;
+
+    /**
+     * @var \ESagaco.tpCaso
+     *
+     * @ORM\ManyToOne(targetEntity="ESagaco.tpCaso")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="co_caso", referencedColumnName="co_caso")
+     * })
+     */
+    private $coCaso;
+
+
 
     /**
      * Get coPrueba
@@ -76,48 +100,186 @@ class clPrueba
     }
 
     /**
-     * Set txTipoPrueba
+     * Set nuUltimaPregunta
      *
-     * @param string $txTipoPrueba
-     * @return tp_prueba
+     * @param string $nuUltimaPregunta
+     * @return clPrueba
      */
-    public function setTxTipoPrueba($txTipoPrueba)
+    public function setNuUltimaPregunta($nuUltimaPregunta)
     {
-        $this->txTipoPrueba = $txTipoPrueba;
+        $this->nuUltimaPregunta = $nuUltimaPregunta;
 
         return $this;
     }
 
     /**
-     * Get txTipoPrueba
+     * Get nuUltimaPregunta
      *
      * @return string 
      */
-    public function getTxTipoPrueba()
+    public function getNuUltimaPregunta()
     {
-        return $this->txTipoPrueba;
+        return $this->nuUltimaPregunta;
     }
 
     /**
-     * Set txDescripcion
+     * Set fePresentar
      *
-     * @param string $txDescripcion
-     * @return tp_prueba
+     * @param \DateTime $fePresentar
+     * @return clPrueba
      */
-    public function setTxDescripcion($txDescripcion)
+    public function setFePresentar($fePresentar)
     {
-        $this->txDescripcion = $txDescripcion;
+        $this->fePresentar = $fePresentar;
 
         return $this;
     }
 
     /**
-     * Get txDescripcion
+     * Get fePresentar
      *
-     * @return string 
+     * @return \DateTime 
      */
-    public function getTxDescripcion()
+    public function getFePresentar()
     {
-        return $this->txDescripcion;
+        return $this->fePresentar;
+    }
+
+    /**
+     * Set hoPresentar
+     *
+     * @param \DateTime $hoPresentar
+     * @return clPrueba
+     */
+    public function setHoPresentar($hoPresentar)
+    {
+        $this->hoPresentar = $hoPresentar;
+
+        return $this;
+    }
+
+    /**
+     * Get hoPresentar
+     *
+     * @return \DateTime 
+     */
+    public function getHoPresentar()
+    {
+        return $this->hoPresentar;
+    }
+
+    /**
+     * Set fhInicio
+     *
+     * @param \DateTime $fhInicio
+     * @return clPrueba
+     */
+    public function setFhInicio($fhInicio)
+    {
+        $this->fhInicio = $fhInicio;
+
+        return $this;
+    }
+
+    /**
+     * Get fhInicio
+     *
+     * @return \DateTime 
+     */
+    public function getFhInicio()
+    {
+        return $this->fhInicio;
+    }
+
+    /**
+     * Set fhCulminacion
+     *
+     * @param \DateTime $fhCulminacion
+     * @return clPrueba
+     */
+    public function setFhCulminacion($fhCulminacion)
+    {
+        $this->fhCulminacion = $fhCulminacion;
+
+        return $this;
+    }
+
+    /**
+     * Get fhCulminacion
+     *
+     * @return \DateTime 
+     */
+    public function getFhCulminacion()
+    {
+        return $this->fhCulminacion;
+    }
+
+    /**
+     * Set coEstadoPrueba
+     *
+     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbEstadoPrueba $coEstadoPrueba
+     * @return clPrueba
+     */
+    public function setCoEstadoPrueba(\sagaco\DsagacoBundle\Entity\clEstadoPrueba $coEstadoPrueba = null)
+    {
+        $this->coEstadoPrueba = $coEstadoPrueba;
+
+        return $this;
+    }
+
+    /**
+     * Get coEstadoPrueba
+     *
+     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbEstadoPrueba 
+     */
+    public function getCoEstadoPrueba()
+    {
+        return $this->coEstadoPrueba;
+    }
+
+    /**
+     * Set coTipoPrueba
+     *
+     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tbTipoPrueba $coTipoPrueba
+     * @return clPrueba
+     */
+    public function setCoTipoPrueba(\sagaco\DsagacoBundle\Entity\clTipoPrueba $coTipoPrueba = null)
+    {
+        $this->coTipoPrueba = $coTipoPrueba;
+
+        return $this;
+    }
+
+    /**
+     * Get coTipoPrueba
+     *
+     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tbTipoPrueba 
+     */
+    public function getCoTipoPrueba()
+    {
+        return $this->coTipoPrueba;
+    }
+
+    /**
+     * Set coCaso
+     *
+     * @param \sagaco\DsagacoBundle\Entity\ESagaco.tpCaso $coCaso
+     * @return clPrueba
+     */
+    public function setCoCaso(\sagaco\DsagacoBundle\Entity\clCaso $coCaso = null)
+    {
+        $this->coCaso = $coCaso;
+
+        return $this;
+    }
+
+    /**
+     * Get coCaso
+     *
+     * @return \sagaco\DsagacoBundle\Entity\ESagaco.tpCaso 
+     */
+    public function getCoCaso()
+    {
+        return $this->coCaso;
     }
 }

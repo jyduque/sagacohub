@@ -22,7 +22,7 @@ class clDiaSemanaRepository extends EntityRepository
         $tableObjectName = 'DsagacoBundle:clDiaSemana';
 
         /* Campo para ordenar */        
-        $txtOrden = 'nbDiaSemana';
+        $txtOrden = 'coDiaSemana';
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '
