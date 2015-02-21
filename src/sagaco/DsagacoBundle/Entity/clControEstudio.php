@@ -993,4 +993,9 @@ class clControEstudio
     {
         return $this->fhActualizacion;
     }
+    
+    public function __toString()
+    {
+        return $this->getTxPrimerNombre();
+    }
 }

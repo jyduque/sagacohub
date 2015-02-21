@@ -17,7 +17,7 @@
  * - RF-56 Visualizar Horario Cita
  * @author Jorge Duque
  */
-namespace sagaco\AdminBundle\Form\Backend;
+namespace sagaco\CitaBundle\Form\Frontend;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -33,13 +33,13 @@ class clCitaType extends AbstractType
     {
         $objConstructor
             // Suponiendo que el esta siendo usuario es un obrero de la UNET 
-            ->add('txPrimerNombre') //clRecursHumano para poner el primer nombre del asesorado (para este caso obrero)
-            ->add('txPrimerApellido') //clRecursHumano para poner el primer apellido del asesorado (para este caso obrero)
-            ->add('feHorario') //clHorariCita para poner la fecha de la cita
-            ->add('hoInicio') // clHorariCita para poner la hora inicio de la cita
-            ->add('hoFin') // clHorariCita para poner la hora fin de la cita
-            ->add('txPrimerNombre') //clRecursHumano para poner el primer nombre del(de la) orentador(a)
-            ->add('txPrimerApellido'); //clRecursHumano para poner el primer apellido del(de la) orentador(a)
+            ->add('coPersona') //clRecursHumano para poner el primer nombre del asesorado (para este caso obrero)
+            ->add('coPersona') //clRecursHumano para poner el primer apellido del asesorado (para este caso obrero)
+            ->add('coHorariCita') //clHorariCita para poner la fecha de la cita
+            ->add('coHorariCita') // clHorariCita para poner la hora inicio de la cita
+            ->add('coHorariCita') // clHorariCita para poner la hora fin de la cita
+            ->add('coHorariCita') //clRecursHumano para poner el primer nombre del(de la) orentador(a)
+            ->add('coHorariCita'); //clRecursHumano para poner el primer apellido del(de la) orentador(a)
     }
     
     /**
@@ -57,6 +57,6 @@ class clCitaType extends AbstractType
      */
     public function getName()
     {
-        return 'sagaco_adminbundle_clCitatype';
+        return 'sagaco_citabundle_clCitatype';
     }
 }

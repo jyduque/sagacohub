@@ -16,7 +16,8 @@ class clMotivoConsultaRepository extends EntityRepository
     public function listar(){
         
         /* Columna indexada */
-        $alias = "a";
+        $aliasTabla1 = "a";
+        $aliasTabla2 = "b";
         
         /* DB table a usar */
         $tableObjectName = 'DsagacoBundle:clMotivoConsulta';
@@ -26,9 +27,10 @@ class clMotivoConsultaRepository extends EntityRepository
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '
-                        . $alias .
-                        ' FROM '. $tableObjectName .' '. $alias 
-                        .' ORDER BY '. $alias .'.'. $txtOrden . ' ASC');
+                        . $aliasTabla1 .', '.$aliasTabla2
+                        .' FROM '. $tableObjectName .' '. $aliasTabla1 
+                        .' JOIN '. $aliasTabla1 .'.coArea '. $aliasTabla2                        
+                        .' ORDER BY '. $aliasTabla1 .'.'. $txtOrden . ' ASC');
         try {
             return $objConsulta->getArrayResult();  
         } catch (\Doctrine\ORM\NoResultException $e) {

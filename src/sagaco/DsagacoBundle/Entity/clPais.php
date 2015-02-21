@@ -153,4 +153,8 @@ class clPais
     {
         return $this->fhActualizacion;
     }
+    public function __toString()
+    {
+        return $this->getNbPais();
+    }
 }

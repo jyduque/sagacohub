@@ -31,7 +31,7 @@
                                 <tr>
                                     {# sorting of properties based on query components #}
                                     <th>{{ knp_pagination_sortable(objPagina, 'Id', 'a.coDuracion') }}</th>
-                                    <th{% if objPagina.isSorted('a.nuDuracion') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Duración', 'a.nuGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.nuDuracion') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Duración (min)', 'a.nuGrupoRol') }}</th>
                                     <th>F. Creación</th>
                                     <th>F. Actualización</th>
                                     <th>Acción</th>                                

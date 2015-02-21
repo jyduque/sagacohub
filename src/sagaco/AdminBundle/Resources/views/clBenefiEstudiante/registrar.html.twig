@@ -1,0 +1,52 @@
+{% extends '::plantilla.html.twig' %}
+
+{% block id 'benefiestudiante' %}
+   
+    {% block ruta %}
+    <div class="container navbar-blanca">                
+        <ul class="breadcrumb-modi">
+            <li><a href="#"><small>Inicio</small></a></li>
+            <li><a href="{{ path('pgBenefiEstudiante') }}"><small>Motivo consulta</small></a></li>
+            <li class="active"><small>Crear</small></li>
+        </ul>                              
+    </div> 
+    {% endblock %}{#-- Fin Barra de ruta --#}
+    
+    {# Campos de la Forma #}
+    {% block twigformulario %}
+        
+            <fieldset>
+                {# Titulo del requisito #}
+                <legend>Crear motivo consulta
+                    <div class="pull-right">
+                        <a href="{{ path('pgBenefiEstudiante') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar al listado">
+                            <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
+                        </a>                       
+                    </div>
+                </legend>
+                {#Muestra los campos del formulario#}      
+                   
+                {{ form_start(form, { 'style': 'horizontal' }) }}
+                    {{ form_errors(form, { 'global_errors': true }) }}
+                    {{ form_row(form._token) }}
+                    {{ form_row(form.coControEstudio, {'label': 'Nombre del estudiante'}) }}                    
+                    {{ form_row(form.nuCedula, {'label': 'Número de cédula'}) }}
+                    {{ form_row(form.inNacionalidad, {'label': 'Nacionalidad'}) }}                    
+                    {{ form_row(form.txPrimerNombre, {'label': 'Primer nombre'}) }}
+                    {{ form_row(form.txSegungNombre, {'label': 'Segundo nombre'}) }}                    
+                    {{ form_row(form.txPrimerApellido, {'label': 'Primer apellido'}) }}
+                    {{ form_row(form.txSegundApellido, {'label': 'Segundo apellido'}) }}                    
+                    {{ form_row(form.coCiudad, {'label': 'Ciudad donde vive'}) }}
+                    {{ form_row(form.coEstadoCivil, {'label': 'Estado civil'}) }}                    
+                    {{ form_row(form.coGenero, {'label': 'Género'}) }}
+                    {{ form_row(form.coParentesco, {'label': 'Parentesco'}) }}                    
+                    {{ form_row(form.txDireccion1, {'label': 'Dirección principal'}) }}
+                    {{ form_row(form.txDireccion2, {'label': 'Dirección opcional'}) }}                    
+                    {{ form_row(form.txTelefoCasa, {'label': 'Teléfono casa'}) }}
+                    {{ form_row(form.txTelefoCelular, {'label': 'Teléfono celular'}) }}                    
+                    {{ form_row(form.txCorreoElectronico, {'label': 'Correo electrónico'}) }}
+                {{ form_end(form) }}                
+            </fieldset>         
+            
+        
+    {% endblock %}{#-- Fin Campos de la Forma #}

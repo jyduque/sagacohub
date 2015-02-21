@@ -123,4 +123,9 @@ class clDiaSemana
     {
         return $this->fhActualizacion;
     }
+    
+    public function __toString()
+    {
+        return $this->getNbDiaSemana();
+    }
 }

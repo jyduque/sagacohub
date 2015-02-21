@@ -186,4 +186,9 @@ class clEstado
     {
         return $this->coPais;
     }
+    
+    public function __toString()
+    {
+        return $this->getNbEstado();
+    }
 }

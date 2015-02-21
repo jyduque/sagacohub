@@ -123,4 +123,9 @@ class clTipoEntrevista
     {
         return $this->fhActualizacion;
     }
+    
+    public function __toString()
+    {
+        return $this->getNbTipoEntrevista();
+    }
 }

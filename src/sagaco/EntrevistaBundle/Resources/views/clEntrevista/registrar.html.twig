@@ -1,0 +1,47 @@
+{% extends '::plantilla.html.twig' %}
+
+{% block id 'entrevista' %}
+   
+    {% block ruta %}
+    <div class="container navbar-blanca">                
+        <ul class="breadcrumb-modi">
+            <li><a href="#"><small>Inicio</small></a></li>
+            <li><a href="{{ path('pgEntrevista') }}"><small>Entrevista</small></a></li>
+            <li class="active"><small>Crear</small></li>
+        </ul>                              
+    </div> 
+    {% endblock %}{#-- Fin Barra de ruta --#}
+    
+    {# Campos de la Forma #}
+    {% block twigformulario %}
+        
+            <fieldset>
+                {# Titulo del requisito #}
+                <legend>Crear entrevista
+                    <div class="pull-right">
+                        <a href="{{ path('pgEntrevista') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar al listado">
+                            <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
+                        </a>                       
+                    </div>
+                </legend>
+                {#Muestra los campos del formulario#}      
+                   
+                {{ form_start(form) }}
+                    {{ form_errors(form, { 'global_errors': true }) }}
+                    {{ form_row(form._token) }}
+                    {{ form_row(form.coCaso, {'label': 'Caso'}) }}                    
+                    {{ form_row(form.coCita, {'label': 'Cita'}) }}
+                    {{ form_row(form.coTipoEntrevista, {'label': 'Tipo entrevista'}) }}                    
+                    {{ form_row(form.fhEntrevista, {'label': 'Fecha y Hora'}) }}
+                    {{ form_row(form.hoInicio, {'label': 'H. Inicio'}) }}                    
+                    {{ form_row(form.hoCulminacion, {'label': 'H. Culminación'}) }}
+                    {{ form_row(form.txMotivoIndividual, {'label': '¿Qué lo motivó a solicitar la Atención Individual?'}) }}                    
+                    {{ form_row(form.txMotivoEntrevista, {'label': '¿Qué espera con la atención que solicita?'}) }}
+                    {{ form_row(form.inSoliciEspontanea, {'label': '¿Espontánea? (1=si y 0=no)'}) }}                    
+                    {{ form_row(form.txTratamiento, {'label': 'Tratamiento o Recomendaciones'}) }}
+                    {{ form_row(form.txObservacion, {'label': 'Observaciones'}) }} 
+                {{ form_end(form) }}                
+            </fieldset>         
+            
+        
+    {% endblock %}{#-- Fin Campos de la Forma #}

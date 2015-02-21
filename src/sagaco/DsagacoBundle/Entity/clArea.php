@@ -123,4 +123,9 @@ class clArea
     {
         return $this->fhActualizacion;
     }
+    
+    public function __toString()
+    {
+        return $this->getNbArea();
+    }
 }

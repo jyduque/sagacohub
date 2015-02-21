@@ -16,7 +16,8 @@ class clEstadoRepository extends EntityRepository
     public function listar(){
         
         /* Columna indexada */
-        $alias = "a";
+        $aliasTabla1 = "a";
+        $aliasTabla2 = "b";
         
         /* DB table a usar */
         $tableObjectName = 'DsagacoBundle:clEstado';
@@ -26,9 +27,10 @@ class clEstadoRepository extends EntityRepository
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '
-                        . $alias .
-                        ' FROM '. $tableObjectName .' '. $alias 
-                        .' ORDER BY '. $alias .'.'. $txtOrden . ' ASC');
+                        . $aliasTabla1 .', '.$aliasTabla2
+                        .' FROM '. $tableObjectName .' '. $aliasTabla1 
+                        .' JOIN '. $aliasTabla1 .'.coPais '. $aliasTabla2                        
+                        .' ORDER BY '. $aliasTabla1 .'.'. $txtOrden . ' ASC');
         try {
             return $objConsulta->getArrayResult();  
         } catch (\Doctrine\ORM\NoResultException $e) {

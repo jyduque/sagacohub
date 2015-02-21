@@ -186,4 +186,9 @@ class clCiudad
     {
         return $this->coMunicipio;
     }
+    
+    public function __toString()
+    {
+        return $this->getNbCiudad();
+    }
 }

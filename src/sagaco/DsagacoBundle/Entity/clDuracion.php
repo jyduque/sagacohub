@@ -123,4 +123,9 @@ class clDuracion
     {
         return $this->fhActualizacion;
     }
+    
+    public function __toString()
+    {
+        return $this->getNuDuracion();
+    }
 }

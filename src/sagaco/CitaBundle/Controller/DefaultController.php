@@ -9,7 +9,6 @@ class DefaultController extends Controller
 {
     public function citaAction()
     {
-        // return new Response('Jhan');
         return $this->render('CitaBundle:Default:cita.html.twig');
     }
 }

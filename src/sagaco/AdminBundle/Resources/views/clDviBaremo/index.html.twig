@@ -31,27 +31,25 @@
                                 <tr>
                                     {# sorting of properties based on query components #}
                                     <th>{{ knp_pagination_sortable(objPagina, 'Id', 'a.coDviBaremo') }}</th>
-                                    <th{% if objPagina.isSorted('a.nuDviRespuesta') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Respuesta', 'a.nbGrupoRol') }}</th>
-                                    <th{% if objPagina.isSorted('a.inIntere1') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'I 1', 'a.nbGrupoRol') }}</th>
-                                    <th{% if objPagina.isSorted('a.inIntere2') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'I 2', 'a.nbGrupoRol') }}</th>
-                                    <th{% if objPagina.isSorted('a.inIntere21') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'I 3', 'a.nbGrupoRol') }}</th>
-                                    <th{% if objPagina.isSorted('a.inIntere4') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'I 4', 'a.nbGrupoRol') }}</th>
-                                    <th{% if objPagina.isSorted('a.inIntere5') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'I 5', 'a.nbGrupoRol') }}</th>
-                                    <th{% if objPagina.isSorted('a.inIntere6') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'I 6', 'a.nbGrupoRol') }}</th>
-                                    <th{% if objPagina.isSorted('a.inIntere7') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'I 7', 'a.nbGrupoRol') }}</th>
-                                    <th{% if objPagina.isSorted('a.inIntere8') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'I 8', 'a.nbGrupoRol') }}</th>
-                                    <th{% if objPagina.isSorted('a.inIntere9') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'I 9', 'a.nbGrupoRol') }}</th>
-                                    <th{% if objPagina.isSorted('a.inIntere10') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'I 10', 'a.nbGrupoRol') }}</th>
-                                    <th{% if objPagina.isSorted('a.inIntere11') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'I 11', 'a.nbGrupoRol') }}</th>
-                                    <th{% if objPagina.isSorted('a.inIntere12') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'I 12', 'a.nbGrupoRol') }}</th>
-                                    <th{% if objPagina.isSorted('a.inIntere13') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'I 13', 'a.nbGrupoRol') }}</th>
-                                    <th{% if objPagina.isSorted('a.inIntere14') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'I 14', 'a.nbGrupoRol') }}</th>
-                                    <th{% if objPagina.isSorted('a.inIntere15') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'I 15', 'a.nbGrupoRol') }}</th>
-                                    <th{% if objPagina.isSorted('a.inIntere16') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'I 16', 'a.nbGrupoRol') }}</th>
-                                    <th{% if objPagina.isSorted('a.inIntere17') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'I 17', 'a.nbGrupoRol') }}</th>
-                                    <th{% if objPagina.isSorted('a.inIntere18') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'I 18', 'a.nbGrupoRol') }}</th>
-                                    <th>F. Creación</th>
-                                    <th>F. Actualización</th>
+                                    <th{% if objPagina.isSorted('a.nuDviRespuesta') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Respuestas', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.inIntere1') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, '1', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.inIntere2') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, '2', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.inIntere21') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, '3', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.inIntere4') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, '4', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.inIntere5') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, '5', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.inIntere6') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, '6', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.inIntere7') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, '7', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.inIntere8') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, '8', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.inIntere9') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, '9', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.inIntere10') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, '10', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.inIntere11') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, '11', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.inIntere12') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, '12', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.inIntere13') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, '13', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.inIntere14') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, '14', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.inIntere15') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, '15', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.inIntere16') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, '16', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.inIntere17') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, '17', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.inIntere18') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, '18', 'a.nbGrupoRol') }}</th>
                                     <th>Acción</th>                                
                                 </tr>
                             </thead>
@@ -78,8 +76,6 @@
                                     <td>{{ objEntidad.inIntere16 }}</td>
                                     <td>{{ objEntidad.inIntere17 }}</td>
                                     <td>{{ objEntidad.inIntere18 }}</td>
-                                    <td>{% if objEntidad.fhCreacion %}{{ objEntidad.fhCreacion|date('d-m-Y H:i:s') }}{% endif %}</td>
-                                    <td>{% if objEntidad.fhActualizacion %}{{ objEntidad.fhActualizacion|date('d-m-Y H:i:s') }}{% endif %}</td>
                                     <td> 
                                         <a href="{{ path('pgDviBaremo_mostrar', { 'id': objEntidad.coDviBaremo, 'blnBandera': '0' }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Mostrar detalle">
                                             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * ESagaco.tbMotivoConsulta
  *
  * @ORM\Table(name="e_sagaco.tb_motivo_consulta", indexes={@ORM\Index(name="IDX_DA5A0CB092038EE7", columns={"co_area"})})
- * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clMorivoConsultaRepository")
+ * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clMotivoConsultaRepository")
  */
 class clMotivoConsulta
 {

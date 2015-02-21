@@ -123,4 +123,9 @@ class clParentesco
     {
         return $this->fhActualizacion;
     }
+    
+    public function __toString()
+    {
+        return $this->getNbParentesco();
+    }
 }

@@ -32,7 +32,7 @@ class clConfigEntrevista
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_activa", type="boolean", nullable=false)
+     * @ORM\Column(name="in_activa", type="boolean", nullable=true)
      */
     private $inActiva;
 

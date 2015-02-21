@@ -32,7 +32,7 @@ class clTipoPrueba
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_estado", type="boolean", nullable=false)
+     * @ORM\Column(name="in_estado", type="boolean", nullable=true)
      */
     private $inEstado;
 

@@ -25,7 +25,7 @@ class clPersona
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_estudiante", type="boolean", nullable=false)
+     * @ORM\Column(name="in_estudiante", type="boolean", nullable=true)
      */
     private $inEstudiante;
 

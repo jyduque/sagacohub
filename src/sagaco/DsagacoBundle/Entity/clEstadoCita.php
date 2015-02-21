@@ -32,7 +32,7 @@ class clEstadoCita
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_activo", type="boolean", nullable=false)
+     * @ORM\Column(name="in_activo", type="boolean", nullable=true)
      */
     private $inActivo;
 

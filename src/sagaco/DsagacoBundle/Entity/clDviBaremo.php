@@ -32,133 +32,133 @@ class clDviBaremo
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_intere_1", type="boolean", nullable=false)
+     * @ORM\Column(name="in_intere_1", type="boolean", nullable=true)
      */
     private $inIntere1;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_intere_2", type="boolean", nullable=false)
+     * @ORM\Column(name="in_intere_2", type="boolean", nullable=true)
      */
     private $inIntere2;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_intere_2_1", type="boolean", nullable=false)
+     * @ORM\Column(name="in_intere_2_1", type="boolean", nullable=true)
      */
     private $inIntere21;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_intere_4", type="boolean", nullable=false)
+     * @ORM\Column(name="in_intere_4", type="boolean", nullable=true)
      */
     private $inIntere4;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_intere_5", type="boolean", nullable=false)
+     * @ORM\Column(name="in_intere_5", type="boolean", nullable=true)
      */
     private $inIntere5;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_intere_6", type="boolean", nullable=false)
+     * @ORM\Column(name="in_intere_6", type="boolean", nullable=true)
      */
     private $inIntere6;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_intere_7", type="boolean", nullable=false)
+     * @ORM\Column(name="in_intere_7", type="boolean", nullable=true)
      */
     private $inIntere7;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_intere_8", type="boolean", nullable=false)
+     * @ORM\Column(name="in_intere_8", type="boolean", nullable=true)
      */
     private $inIntere8;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_intere_9", type="boolean", nullable=false)
+     * @ORM\Column(name="in_intere_9", type="boolean", nullable=true)
      */
     private $inIntere9;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_intere_10", type="boolean", nullable=false)
+     * @ORM\Column(name="in_intere_10", type="boolean", nullable=true)
      */
     private $inIntere10;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_intere_11", type="boolean", nullable=false)
+     * @ORM\Column(name="in_intere_11", type="boolean", nullable=true)
      */
     private $inIntere11;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_intere_12", type="boolean", nullable=false)
+     * @ORM\Column(name="in_intere_12", type="boolean", nullable=true)
      */
     private $inIntere12;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_intere_13", type="boolean", nullable=false)
+     * @ORM\Column(name="in_intere_13", type="boolean", nullable=true)
      */
     private $inIntere13;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_intere_14", type="boolean", nullable=false)
+     * @ORM\Column(name="in_intere_14", type="boolean", nullable=true)
      */
     private $inIntere14;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_intere_15", type="boolean", nullable=false)
+     * @ORM\Column(name="in_intere_15", type="boolean", nullable=true)
      */
     private $inIntere15;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_intere_16", type="boolean", nullable=false)
+     * @ORM\Column(name="in_intere_16", type="boolean", nullable=true)
      */
     private $inIntere16;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_intere_17", type="boolean", nullable=false)
+     * @ORM\Column(name="in_intere_17", type="boolean", nullable=true)
      */
     private $inIntere17;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_intere_18", type="boolean", nullable=false)
+     * @ORM\Column(name="in_intere_18", type="boolean", nullable=true)
      */
     private $inIntere18;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fh_creacion", type="datetime", nullable=false)
+     * @ORM\Column(name="fh_creacion", type="datetime", nullable=true)
      */
     private $fhCreacion;
 

@@ -25,7 +25,7 @@ class clSemestre
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_activo", type="boolean", nullable=false)
+     * @ORM\Column(name="in_activo", type="boolean", nullable=true)
      */
     private $inActivo;
 
@@ -212,5 +212,10 @@ class clSemestre
     public function getFhActualizacion()
     {
         return $this->fhActualizacion;
+    }
+    
+    public function __toString()
+    {
+        return $this->getTxSemestre();
     }
 }

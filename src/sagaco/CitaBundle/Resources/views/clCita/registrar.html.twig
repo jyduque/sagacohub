@@ -29,14 +29,13 @@
                 {{ form_start(form, { 'style': 'horizontal' }) }}
                     {{ form_errors(form, { 'global_errors': true }) }}
                     {{ form_row(form._token) }}
-                    {{ form_row(form.inActivo, { 'align_with_widget': true, 'label': 'Activo' }) }}
                     {{ form_row(form.coPersona, {'label': 'Nombre'}) }}
                     {{ form_row(form.coPersona, {'label': 'Apellido'}) }}                    
                     {{ form_row(form.coHorariCita, {'label': 'Fecha'}) }}                    
                     {{ form_row(form.coHorariCita, {'label': 'H. Inicio'}) }}                    
                     {{ form_row(form.coHorariCita, {'label': 'H. Fin'}) }}                    
-                    {{ form_row(form.feFin, {'label': 'N. Orientador'}) }}                    
-                    {{ form_row(form.feFin, {'label': 'A. Orientador'}) }}                    
+                    {{ form_row(form.coHorariCita, {'label': 'N. Orientador'}) }}                    
+                    {{ form_row(form.coHorariCita, {'label': 'A. Orientador'}) }}                    
                 {{ form_end(form) }}                
             </fieldset>         
             

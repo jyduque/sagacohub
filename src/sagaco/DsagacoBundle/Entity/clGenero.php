@@ -153,4 +153,9 @@ class clGenero
     {
         return $this->fhActualizacion;
     }
+    
+    public function __toString()
+    {
+        return $this->getNbGenero();
+    }
 }

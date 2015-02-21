@@ -246,4 +246,9 @@ class clOrientador
     {
         return $this->coRecursHumano;
     }
+    
+    public function __toString()
+    {
+        return $this->getCoRecursHumano();
+    }
 }
