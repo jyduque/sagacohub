@@ -21,8 +21,7 @@
                             <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
                         </a>                          
                     </div>
-                </legend>
-                {{ bootstrap_set_style('horizontal') }}
+                </legend>      
     
                 {#Muestra los campos del formulario#} 
                     <div class="table-responsive">
@@ -31,10 +30,10 @@
                                 <tr>
                                     {# sorting of properties based on query components #}
                                     <th>{{ knp_pagination_sortable(objPagina, 'Id', 'a.coSemestre') }}</th>
-                                    <th{% if objPagina.isSorted('a.inActivo') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Activo', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.inActivo') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Estado', 'a.nbGrupoRol') }}</th>
                                     <th{% if objPagina.isSorted('a.txSemestre') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Semestre', 'a.nbGrupoRol') }}</th>
-                                    <th{% if objPagina.isSorted('a.feInicio') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Semestre ini', 'a.nbGrupoRol') }}</th>
-                                    <th{% if objPagina.isSorted('a.feFin') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Semestre fin', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.feInicio') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Inicio vigencia', 'a.nbGrupoRol') }}</th>
+                                    <th{% if objPagina.isSorted('a.feFin') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Fin vigencia', 'a.nbGrupoRol') }}</th>
                                     <th>F. Creación</th>
                                     <th>F. Actualización</th>
                                     <th>Acción</th>                                
@@ -44,8 +43,8 @@
                             {% for objEntidad in objPagina %}
                                 <tr {% if loop.index is odd %}class="color"{% endif %}>
                                     <td class="text-right"><a href="{{ path('pgSemestre_mostrar', { 'id': objEntidad.coSemestre, 'blnBandera': '0'}) }}">{{ objEntidad.coSemestre }}</a></td>
-                                    <td>{{ objEntidad.inActivo }}</td>
-                                    <td>{{ objEntidad.txSemestre }}</td>
+                                    <td>{% if objEntidad.inActivo == 1 %}Activo{% else%}Desactivo{% endif %}</td>
+                                    <td>{{ objEntidad.nuSemestAnio }}-{{ objEntidad.nuSemestLapso }}</td>
                                     <td>{% if objEntidad.feInicio %}{{ objEntidad.feInicio|date('d-m-Y') }}{% endif %}</td>
                                     <td>{% if objEntidad.feFin %}{{ objEntidad.feFin|date('d-m-Y') }}{% endif %}</td>
                                     <td>{% if objEntidad.fhCreacion %}{{ objEntidad.fhCreacion|date('d-m-Y H:i:s') }}{% endif %}</td>

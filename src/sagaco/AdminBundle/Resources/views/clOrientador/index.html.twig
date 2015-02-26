@@ -42,6 +42,11 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            {% if objPagina.getTotalItemCount == 0 %}
+                                <tr class="danger">
+                                    <td colspan="9" class="text-center error"><strong>No hay resultados</strong></td>
+                                </tr>                                  
+                            {% endif %}    
                             {% for objEntidad in objPagina %}
                                 <tr {% if loop.index is odd %}class="color"{% endif %}>
                                     <td class="text-right"><a href="{{ path('pgEstado_mostrar', { 'id': objEntidad.coEstado, 'blnBandera': '0'}) }}">{{ objEntidad.coEstado }}</a></td>

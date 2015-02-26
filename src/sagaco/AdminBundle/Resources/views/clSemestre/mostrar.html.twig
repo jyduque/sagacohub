@@ -39,19 +39,19 @@
                         <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coSemestre }}</div>                    
                     </div>    
                     <div class='form-group'>
-                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Activo</strong></div>
-                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.inActivo }}</div>                    
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Estado</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{% if objEntidad.inActivo == 1 %}Activo{% else%}Desactivo{% endif %}</div>                    
                     </div>
                     <div class='form-group'>
                         <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Semestre</strong></div>
-                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.txSemestre }}</div>                    
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.nuSemestAnio }}-{{ objEntidad.nuSemestLapso }}</div>                    
                     </div>
                     <div class='form-group'>
-                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Semestre ini</strong></div>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Inicio vigencia</strong></div>
                         <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{% if objEntidad.feInicio %}{{ objEntidad.feInicio|date('d-m-Y') }}{% endif %}</div>                    
                     </div>
                     <div class='form-group'>
-                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Semestre fin</strong></div>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Fin vigencia</strong></div>
                         <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{% if objEntidad.feFin %}{{ objEntidad.feFin|date('d-m-Y') }}{% endif %}</div>                    
                     </div>
                     <div class='form-group'>

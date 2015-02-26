@@ -1,14 +1,17 @@
 <?php
-
 namespace sagaco\DsagacoBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * ESagaco.tbGrupoRol
  *
  * @ORM\Table(name="e_sagaco.tb_grupo_rol", uniqueConstraints={@ORM\UniqueConstraint(name="uk_tb_grupo_rol_nb_grupo_rol", columns={"nb_grupo_rol"})})
  * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clGrupoRolRepository")
+ * @UniqueEntity(fields="nbGrupoRol", errorPath="nbGrupoRol", message="Ya existe un Rol con esa descripción")
  */
 class clGrupoRol
 {

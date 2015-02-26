@@ -35,7 +35,7 @@ class clSemestreController extends Controller
         $objPaginador  = $this->get('knp_paginator');
         $objPagina = $objPaginador->
                 paginate($objEntidad, 
-                        $objPeticion->query->get('page', 1)/*page number*/, 10/*limit per page*/);
+                        $objPeticion->query->get('page', 1)/*page number*/, 5/*limit per page*/);
         
         // set an array of custom parameters
         //La clase pull-right envía el paginador a mano derecha
@@ -50,7 +50,7 @@ class clSemestreController extends Controller
      *
      * @Route("/", name="pgSemestre_crear")
      * @Method("POST")
-     * @Template("AdminBundle:clSemestre:registrar.html.twig")
+     * @Template("DsagacoBundle:clSemestre:registrar.html.twig")
      */
     public function crearAction(Request $objPeticion)
     {
@@ -59,7 +59,7 @@ class clSemestreController extends Controller
         $form->handleRequest($objPeticion);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();            
+            $em = $this->getDoctrine()->getManager();
             $objEntidad->setFhCreacion(new \DateTime());
             $objEntidad->setFhActualizacion(new \DateTime());
             $em->persist($objEntidad);
@@ -68,17 +68,12 @@ class clSemestreController extends Controller
 
             return $this->redirect($this->generateUrl('pgSemestre_mostrar', array('id' => $objEntidad->getCoSemestre(), 'blnBandera' => $blnBandera)));
         }
-        else {
-            return array(
-            'objEntidad' => $objEntidad,
-            'form'   => $form->createView(),
-            );
-        }
 
         return array(
             'objEntidad' => $objEntidad,
             'form'   => $form->createView(),
-        );        
+        );
+        
     }
 
     /**
@@ -199,7 +194,7 @@ class clSemestreController extends Controller
      *
      * @Route("/{id}", name="pgSemestre_actualizar")
      * @Method("PUT")
-     * @Template("AdminBundle:clSemestre:editar.html.twig")
+     * @Template("DsagacoBundle:clSemestre:editar.html.twig")
      */
     public function actualizarAction(Request $objPeticion, $id)
     {
