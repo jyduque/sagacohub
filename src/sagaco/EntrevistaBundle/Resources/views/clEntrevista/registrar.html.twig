@@ -25,16 +25,10 @@
                     </div>
                 </legend>
                 {#Muestra los campos del formulario#}      
-                   
+                
                 {{ form_start(form) }}
                     {{ form_errors(form, { 'global_errors': true }) }}
                     {{ form_row(form._token) }}
-                    {{ form_row(form.coCaso, {'label': 'Caso'}) }}                    
-                    {{ form_row(form.coCita, {'label': 'Cita'}) }}
-                    {{ form_row(form.coTipoEntrevista, {'label': 'Tipo entrevista'}) }}                    
-                    {{ form_row(form.fhEntrevista, {'label': 'Fecha y Hora'}) }}
-                    {{ form_row(form.hoInicio, {'label': 'H. Inicio'}) }}                    
-                    {{ form_row(form.hoCulminacion, {'label': 'H. Culminación'}) }}
                     {{ form_row(form.txMotivoIndividual, {'label': '¿Qué lo motivó a solicitar la Atención Individual?'}) }}                    
                     {{ form_row(form.txMotivoEntrevista, {'label': '¿Qué espera con la atención que solicita?'}) }}
                     {{ form_row(form.inSoliciEspontanea, {'label': '¿Espontánea? (1=si y 0=no)'}) }}                    

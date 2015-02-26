@@ -30,6 +30,37 @@
                 </legend>
                 
                 {#Muestra los campos del formulario#}  
+                {{ form(inlineForm, { 'style': 'inline' }) }}
+                    {{ form_errors(edit_form, { 'global_errors': true }) }}
+                    {{ form_row(edit_form._token) }}
+                    {{ form_row(edit_form.coCaso, {'label': 'Nombre'}) }}   
+                    {{ form_row(edit_form.coCaso, {'label': 'Apellido'}) }}
+                {{ form_end(form) }}
+                {{ form(inlineForm, { 'style': 'inline' }) }}
+                    {{ form_errors(edit_form, { 'global_errors': true }) }}
+                    {{ form_row(edit_form._token) }}
+                    {{ form_row(edit_form.coCaso, {'label': 'Sexo'}) }}                    
+                    {{ form_row(edit_form.coCaso, {'label': 'Edo. Civil'}) }}
+                    {{ form_row(edit_form.coCaso, {'label': 'Nacionalidad'}) }}   
+                    {{ form_row(edit_form.coCaso, {'label': 'C.I.'}) }}
+                {{ form_end(form) }}
+                {{ form(inlineForm, { 'style': 'inline' }) }}
+                    {{ form_errors(edit_form, { 'global_errors': true }) }}
+                    {{ form_row(edit_form._token) }}
+                    {{ form_row(edit_form.coCaso, {'label': 'Dirección'}) }} 
+                {{ form_end(form) }}
+                {{ form(inlineForm, { 'style': 'inline' }) }}
+                    {{ form_errors(edit_form, { 'global_errors': true }) }}
+                    {{ form_row(edit_form._token) }}
+                    {{ form_row(edit_form.coCaso, {'label': 'Teléfonos'}) }}
+                {{ form_end(form) }}
+                {{ form(inlineForm, { 'style': 'inline' }) }}
+                    {{ form_errors(edit_form, { 'global_errors': true }) }}
+                    {{ form_row(edit_form._token) }}
+                    {{ form_row(edit_form.coCaso, {'label': 'Especialidad/Personal'}) }}
+                {{ form_end(form) }}
+                            
+                {#Muestra los campos del formulario#}  
                 {{ form_start(edit_form, { 'style': 'horizontal' }) }}
                     {{ form_errors(edit_form, { 'global_errors': true }) }}
                     {{ form_row(edit_form._token) }}

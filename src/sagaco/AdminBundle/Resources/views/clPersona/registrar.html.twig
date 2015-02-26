@@ -30,7 +30,8 @@
                     {{ form_errors(form, { 'global_errors': true }) }}
                     {{ form_row(form._token) }}
                     {{ form_row(form.inEstudiante, {'label': '¿Estudiante?'}) }}       
-                    {{ form_row(form.coControEstudio, {'label': 'Nombre asesorado'}) }}                    
+                    {{ form_row(form.coControEstudio, {'label': 'Nombre'}) }}                    
+                    {{ form_row(form.coRecursHumano, {'label': 'Nombre'}) }}
                     {{ form_end(form) }}                
             </fieldset>         
             

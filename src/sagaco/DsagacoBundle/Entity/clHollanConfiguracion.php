@@ -18,7 +18,7 @@ class clHollanConfiguracion
      * @ORM\Column(name="co_hollan_configuracion", type="string", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="e_sagaco.seq_tb_hollan_configuracion_co_hollan_configuracion", allocationSize=1, initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="e_sagaco.seqtb_hollan_configuracion_co_hollan_configuracion", allocationSize=1, initialValue=1)
      */
     private $coHollanConfiguracion;
 

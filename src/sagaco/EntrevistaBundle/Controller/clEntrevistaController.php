@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use sagaco\DsagacoBundle\Entity\clEntrevista;
-use sagaco\EntrevistaBundle\Form\Extranet\clEntrevistaType;
+use sagaco\DsagacoBundle\Entity\clRecursHumano;
 use sagaco\EntrevistaBundle\Form\Extranet\clEntrevistaType;
 
 /**
@@ -56,7 +56,7 @@ class clEntrevistaController extends Controller
      *
      * @Route("/", name="pgEntrevista_crear")
      * @Method("POST")
-     * @Template("DsagacoBundle:clEntrevista:registrar.html.twig")
+     * @Template("EntrevistaBundle:clEntrevista:registrar.html.twig")
      */
     public function crearAction(Request $objPeticion)
     {
