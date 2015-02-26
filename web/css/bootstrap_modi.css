@@ -53,3 +53,16 @@ body {
     }
 }
 
+.bootstrap-opcion {
+  width: 100%;
+}
+.bootstrap-opcion select {
+  display: inline-block;
+  width: auto;
+  margin-right: 5px;
+}
+
+label.required:before {
+    content: "* ";
+    color: #a94442;
+}

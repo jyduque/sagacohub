@@ -2,13 +2,17 @@
 
 namespace sagaco\DsagacoBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;  
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * ESagaco.tbSemestre
  *
- * @ORM\Table(name="e_sagaco.tb_semestre")
+ * @ORM\Table(name="e_sagaco.tb_semestre",uniqueConstraints={@ORM\UniqueConstraint(name="uk_tb_semestre_nu_semest_anio_nu_semest_lapso", columns={"nu_semest_anio", "nu_semest_lapso"})})          
  * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clSemestreRepository")
+ * @UniqueEntity(fields={"nuSemestAnio", "nuSemestLapso"}, errorPath="nuSemestLapso", message="Ya existe un Semestre con esas condiciones")
+ * 
  */
 class clSemestre
 {
@@ -25,21 +29,33 @@ class clSemestre
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_activo", type="boolean", nullable=true)
+     * @ORM\Column(name="in_activo", type="boolean", nullable=false)
+     * @Assert\NotNull(message="Debe seleccionar el estado")
      */
     private $inActivo;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_semestre", type="string", length=7, nullable=false)
+     * @ORM\Column(name="nu_semest_anio", type="decimal", precision=10, scale=0, nullable=false)
+     * @Assert\NotNull(message="Debe seleccionar el Semestre")
      */
-    private $txSemestre;
+    private $nuSemestAnio;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nu_semest_lapso", type="decimal", precision=10, scale=0, nullable=false)
+     * @Assert\NotNull(message="Debe seleccionar el Semestre")
+     */
+    private $nuSemestLapso;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="fe_inicio", type="date", nullable=false)
+     * @Assert\NotNull(message="Debe seleccionar fecha de vigencia válida")
+     * @Assert\Date()
      */
     private $feInicio;
 
@@ -47,6 +63,8 @@ class clSemestre
      * @var \DateTime
      *
      * @ORM\Column(name="fe_fin", type="date", nullable=false)
+     * @Assert\NotNull(message="Debe seleccionar fecha de vigencia válida")
+     * @Assert\Date()
      */
     private $feFin;
 
@@ -100,26 +118,49 @@ class clSemestre
     }
 
     /**
-     * Set txSemestre
+     * Set nuSemestAnio
      *
-     * @param string $txSemestre
+     * @param string $nuSemestAnio
      * @return clSemestre
      */
-    public function setTxSemestre($txSemestre)
+    public function setNuSemestAnio($nuSemestAnio)
     {
-        $this->txSemestre = $txSemestre;
+        $this->nuSemestAnio = $nuSemestAnio;
 
         return $this;
     }
-
+    
     /**
-     * Get txSemestre
+     * Set nuSemestLapso
+     *
+     * @param string nuSemestLapso
+     * @return clSemestre
+     */
+    public function setNuSemestLapso($nuSemestLapso)
+    {
+        $this->nuSemestLapso = $nuSemestLapso;
+
+        return $this;
+    }
+    
+    /**
+     * Get nuSemestAnio
      *
      * @return string 
      */
-    public function getTxSemestre()
+    public function getNuSemestAnio()
     {
-        return $this->txSemestre;
+        return $this->nuSemestAnio;
+    }
+    
+    /**
+     * Get nuSemestLapso
+     *
+     * @return string 
+     */
+    public function getNuSemestLapso()
+    {
+        return $this->nuSemestLapso;
     }
 
     /**
@@ -212,10 +253,5 @@ class clSemestre
     public function getFhActualizacion()
     {
         return $this->fhActualizacion;
-    }
-    
-    public function __toString()
-    {
-        return $this->getTxSemestre();
     }
 }

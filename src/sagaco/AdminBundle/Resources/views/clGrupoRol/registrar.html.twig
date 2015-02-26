@@ -15,23 +15,26 @@
     {# Campos de la Forma #}
     {% block twigformulario %}
         
-            <fieldset>
-                {# Titulo del requisito #}
-                <legend>Crear rol
-                    <div class="pull-right">
-                        <a href="{{ path('pgRol') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar al listado">
-                            <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
-                        </a>                       
-                    </div>
-                </legend>
-                {#Muestra los campos del formulario#}      
-                   
-                {{ form_start(form, { 'style': 'horizontal' }) }}
-                    {{ form_errors(form, { 'global_errors': true }) }}
-                    {{ form_row(form._token) }}
-                    {{ form_row(form.nbGrupoRol, {'label': 'Rol'}) }}                    
-                {{ form_end(form) }}                
-            </fieldset>         
-            
-        
+        <fieldset>
+            {# Titulo del requisito #}
+            <legend>Crear rol
+                <div class="pull-right">
+                    <a href="{{ path('pgRol') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar al listado">
+                        <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
+                    </a>                       
+                </div>
+            </legend>
+            {#Muestra los campos del formulario#}      
+
+            {{ form_start(form, { 'style': 'horizontal' }) }}
+                {{ form_errors(form, { 'global_errors': true }) }}
+                {{ form_row(form._token) }}
+                {{ form_row(form.nbGrupoRol, {'label': 'Rol'}) }}
+                <div>
+                    <p class="text-left">
+                        <small class="text-muted">(</small><small class="text-muted text-danger">*</small><small class="text-muted">) Campos obligatorios</small></p>
+                </div>  
+            {{ form_end(form) }}                
+        </fieldset>         
+         
     {% endblock %}{#-- Fin Campos de la Forma #}

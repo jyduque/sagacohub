@@ -50,7 +50,7 @@ class clGrupoRolController extends Controller
      *
      * @Route("/", name="pgRol_crear")
      * @Method("POST")
-     * @Template("DsagacoBundle:clGrupoRol:registrar.html.twig")
+     * @Template("AdminBundle:clGrupoRol:registrar.html.twig")
      */
     public function crearAction(Request $objPeticion)
     {
@@ -194,7 +194,7 @@ class clGrupoRolController extends Controller
      *
      * @Route("/{id}", name="pgRol_actualizar")
      * @Method("PUT")
-     * @Template("DsagacoBundle:clGrupoRol:editar.html.twig")
+     * @Template("AdminBundle:clGrupoRol:editar.html.twig")
      */
     public function actualizarAction(Request $objPeticion, $id)
     {
@@ -217,7 +217,6 @@ class clGrupoRolController extends Controller
             
             $blnBandera = 2;
 
-            //return $this->redirect($this->generateUrl('pgRol_editar', array('id' => $id)));
             return $this->redirect($this->generateUrl('pgRol_mostrar', array('id' => $id, 'blnBandera' => $blnBandera)));
         }
 

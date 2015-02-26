@@ -15,29 +15,44 @@
     {# Campos de la Forma #}
     {% block twigformulario %}
         
-            <fieldset>
-                {# Titulo del requisito #}
-                <legend>Actualizar semestre
-                    <div class="pull-right">
-                        {{ form(delete_form) }}
-                    </div> 
-                    <div class="pull-right">
-                        <a href="{{ path('pgSemestre') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar al listado">
-                            <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>                            
-                        </a> 
-                            <i class="fa fa-pencil-square-o"></i>
-                    </div>                
-                </legend>
-                
-                {#Muestra los campos del formulario#}  
-                {{ form_start(edit_form, { 'style': 'horizontal' }) }}
-                    {{ form_errors(edit_form, { 'global_errors': true }) }}
-                    {{ form_row(edit_form._token) }}
-                    {{ form_row(edit_form.inActivo, {'label': 'Activo'}) }}
-                    {{ form_row(edit_form.txSemestre, {'label': 'Semestre'}) }}
-                    {{ form_row(edit_form.feInicio, {'label': 'Semestre ini'}) }}                    
-                    {{ form_row(edit_form.feFin, {'label': 'Semestre fin'}) }}                    
-                {{ form_end(edit_form) }}                    
-            </fieldset>   
+        <fieldset>
+            {# Titulo del requisito #}
+            <legend>Actualizar semestre
+                <div class="pull-right">
+                    {{ form(delete_form) }}
+                </div> 
+                <div class="pull-right">
+                    <a href="{{ path('pgSemestre') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar al listado">
+                        <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>                            
+                    </a> 
+                        <i class="fa fa-pencil-square-o"></i>
+                </div>                
+            </legend>
+
+            {#Muestra los campos del formulario#}  
+
+            {{ form_start(edit_form, { 'style': 'horizontal' }) }}
+                {{ form_errors(edit_form, { 'global_errors': true }) }}
+                {{ form_row(edit_form._token) }}
+                <div class="form-group">                            
+                    <label class="col-lg-2 control-label required">Semestre</label>  
+                    <div class="col-lg-10">
+                        <div class="bootstrap-opcion">
+                        {{ form_widget(edit_form.nuSemestAnio, { 'simple_col': 2 }) }}                               
+                        {{ form_widget(edit_form.nuSemestLapso, { 'simple_col': 2 }) }}
+                        {{ form_errors(edit_form.nuSemestAnio) }}
+                        {{ form_errors(edit_form.nuSemestLapso) }}
+                        </div>                            
+                    </div>
+                </div>
+                {{ form_row(edit_form.feInicio, {'label': 'Inicio vigencia'}) }}
+                {{ form_row(edit_form.feFin, {'label': 'Fin vigencia'}) }} 
+                {{ form_row(edit_form.inActivo, {'label': 'Estado'}) }}
+                <div>
+                    <p class="text-left">
+                        <small class="text-muted">(</small><small class="text-muted text-danger">*</small><small class="text-muted">) Campos obligatorios</small></p>
+                </div>                    
+            {{ form_end(edit_form) }}                    
+        </fieldset>   
 
     {% endblock %}{#-- Fin Campos de la Forma #}
