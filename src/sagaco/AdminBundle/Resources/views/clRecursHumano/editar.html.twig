@@ -1,12 +1,12 @@
 {% extends '::plantilla.html.twig' %}
 
-{% block id 'benefiestudiante' %}
+{% block id 'recurshumano' %}
     
     {% block ruta %}
     <div class="container navbar-blanca">                
         <ul class="breadcrumb-modi">
             <li><a href="#"><small>Inicio</small></a></li>
-            <li><a href="{{ path('pgBenefiEstudiante') }}"><small>Beneficiario del Estudiante</small></a></li>
+            <li><a href="{{ path('pgRecursHumano') }}"><small>Personal UNET</small></a></li>
             <li class="active"><small>Actualizar</small></li>
         </ul>                              
     </div> 
@@ -17,12 +17,12 @@
         
             <fieldset>
                 {# Titulo del requisito #}
-                <legend>Actualizar beneficiario del estudiante
+                <legend>Actualizar personal UNET
                     <div class="pull-right">
                         {{ form(delete_form) }}
                     </div> 
                     <div class="pull-right">
-                        <a href="{{ path('pgBenefiEstudiante') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar al listado">
+                        <a href="{{ path('pgRecursHumano') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar al listado">
                             <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>                            
                         </a> 
                             <i class="fa fa-pencil-square-o"></i>
@@ -33,22 +33,21 @@
                 {{ form_start(edit_form, { 'style': 'horizontal' }) }}
                     {{ form_errors(edit_form, { 'global_errors': true }) }}
                     {{ form_row(edit_form._token) }}
-                    {{ form_row(edit_form.coControEstudio, {'label': 'Nombre del estudiante'}) }}   
                     {{ form_row(edit_form.nuCedula, {'label': 'Número de cédula'}) }}
                     {{ form_row(edit_form.inNacionalidad, {'label': 'Nacionalidad'}) }}                    
                     {{ form_row(edit_form.txPrimerNombre, {'label': 'Primer nombre'}) }}
                     {{ form_row(edit_form.txSegundNombre, {'label': 'Segundo nombre'}) }}
                     {{ form_row(edit_form.txPrimerApellido, {'label': 'Primer apellido'}) }}
                     {{ form_row(edit_form.txSegundApellido, {'label': 'Segundo apellido'}) }}
-                    {{ form_row(edit_form.coCiudad, {'label': 'Ciudad donde vive'}) }}
-                    {{ form_row(edit_form.coEstadoCivil, {'label': 'Estado civil'}) }}
-                    {{ form_row(edit_form.coGenero, {'label': 'Género'}) }}                    
-                    {{ form_row(edit_form.coParentesco, {'label': 'Parentesco'}) }}                    
-                    {{ form_row(edit_form.txDireccion1, {'label': 'Dirección principal'}) }}
-                    {{ form_row(edit_form.txDireccion2, {'label': 'Dirección opcional'}) }}
-                    {{ form_row(edit_form.txTelefoCasa, {'label': 'Teléfono casa'}) }}
-                    {{ form_row(edit_form.txTelefoCelular, {'label': 'Teléfono celular'}) }}
+                    {{ form_row(edit_form.inSexo, {'label': 'Sexo'}) }}                    
+                    {{ form_row(edit_form.inEstadoCivil, {'label': 'Estado civil'}) }}
+                    {{ form_row(edit_form.txCargo, {'label': 'Personal'}) }}                    
                     {{ form_row(edit_form.txCorreoElectronico, {'label': 'Correo electrónico'}) }}
+                    {{ form_row(edit_form.txTelefoHabitacion, {'label': 'Teléfono habitación'}) }}
+                    {{ form_row(edit_form.txTelefoCelular, {'label': 'Teléfono celular'}) }}
+                    {{ form_row(edit_form.txTelefoOficina, {'label': 'Teléfono oficina'}) }}
+                    {{ form_row(edit_form.txLugarResidencia, {'label': 'Dirección residencia'}) }}
+                    {{ form_row(edit_form.feNacimiento, {'label': 'Fecha nacimiento'}) }}
                 {{ form_end(edit_form) }}                    
             </fieldset>   
 

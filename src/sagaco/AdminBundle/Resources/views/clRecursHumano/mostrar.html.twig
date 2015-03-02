@@ -1,12 +1,12 @@
 {% extends '::plantilla.html.twig' %}
 
-{% block id 'benefiestudiante' %}
+{% block id 'recurshumano' %}
     
     {% block ruta %}
     <div class="container navbar-blanca">                
         <ul class="breadcrumb-modi">
             <li><a href="#"><small>Inicio</small></a></li>
-            <li><a href="{{ path('pgBenefiEstudiante') }}"><small>Beneficiario del Estudiante</small></a></li>
+            <li><a href="{{ path('pgRecursHumano') }}"><small>Personal UNET</small></a></li>
             <li class="active"><small>Detalle</small></li>
         </ul>                              
     </div> 
@@ -17,15 +17,15 @@
         
             <fieldset>
                 {# Titulo del requisito #}
-                <legend>Detalle beneficiario del estudiante
+                <legend>Detalle personal UNET
                     <div class="pull-right">
                         {{ form(delete_form) }}
                     </div> 
                     <div class="pull-right">
-                        <a href="{{ path('pgBenefiEstudiante') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar al listado">
+                        <a href="{{ path('pgRecursHumano') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar al listado">
                             <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
                         </a> 
-                        <a href="{{ path('pgBenefiEstudiante_editar', { 'id': objEntidad.coBenefiEstudiante }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar">
+                        <a href="{{ path('pgRecursHumano_editar', { 'id': objEntidad.coRecursHumano }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar">
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                         </a> 
                     </div> 
@@ -36,12 +36,8 @@
                 <div class='form-horizontal'>
                     <div class='form-group'>
                         <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Id</strong></div>
-                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coBenefiEstudiante }}</div>                    
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coRecursHumano }}</div>                    
                     </div>    
-                    <div class='form-group'>
-                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Nombre del estudante</strong></div>
-                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coControEstudio }}</div>                    
-                    </div>  
                     <div class='form-group'>
                         <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Número de cédula</strong></div>
                         <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.nuCedula }}</div>                    
@@ -67,41 +63,42 @@
                         <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.txSegundApellido }}</div>                    
                     </div>  
                     <div class='form-group'>
-                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Ciudad donde vive</strong></div>
-                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coCiudad }}</div>                    
-                    </div>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Sexo</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.inSexo }}</div>                    
+                    </div>  
                     <div class='form-group'>
                         <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Estado civil</strong></div>
-                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coEstadoCivil }}</div>                    
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.inEstadoCivil }}</div>                    
                     </div>    
                     <div class='form-group'>
-                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Género</strong></div>
-                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coGenero }}</div>                    
-                    </div>  
-                    <div class='form-group'>
-                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Parentesco</strong></div>
-                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coParentesco }}</div>                    
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Personal</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.txCargo }}</div>                    
                     </div>
                     <div class='form-group'>
-                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Dirección principal</strong></div>
-                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.txDireccion1 }}</div>                    
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Correo Electrónico</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.txCorreoElectronico }}</div>                    
                     </div>
-                     <div class='form-group'>
-                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Dirección opcional</strong></div>
-                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.txDireccion2 }}</div>                    
-                    </div>  
                     <div class='form-group'>
-                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Teléfono casa</strong></div>
-                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.txTelefoCasa }}</div>                    
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Teléfono habitación</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.txTelefoHabitacion }}</div>                    
                     </div>
                     <div class='form-group'>
                         <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Teléfono celular</strong></div>
                         <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.txTelefoCelular }}</div>                    
                     </div>
                     <div class='form-group'>
-                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Correo Electrónico</strong></div>
-                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.txCorreoElectronico }}</div>                    
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Teléfono oficina</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.txTelefoOficina }}</div>                    
                     </div>
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Dirección residencia</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.txLugarResidencia }}</div>                    
+                    </div>  
+                     <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Fecha nacimiento</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.feNacimiento|date('d-m-Y H:i:s') }}</div>                    
+                    </div>
+                    
                     <div class='form-group'>
                         <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Fecha de creación</strong></div>
                         <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.fhCreacion|date('d-m-Y H:i:s') }}</div>                    

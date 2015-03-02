@@ -44,13 +44,6 @@ class clAngeliConfiguracion
     private $txDescripcion;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="tx_observacion", type="string", length=255, nullable=false)
-     */
-    private $txObservacion;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="fh_creacion", type="datetime", nullable=false)
@@ -153,29 +146,6 @@ class clAngeliConfiguracion
     public function getTxDescripcion()
     {
         return $this->txDescripcion;
-    }
-
-    /**
-     * Set txObservacion
-     *
-     * @param string $txObservacion
-     * @return clAngeliConfiguracion
-     */
-    public function setTxObservacion($txObservacion)
-    {
-        $this->txObservacion = $txObservacion;
-
-        return $this;
-    }
-
-    /**
-     * Get txObservacion
-     *
-     * @return string 
-     */
-    public function getTxObservacion()
-    {
-        return $this->txObservacion;
     }
 
     /**

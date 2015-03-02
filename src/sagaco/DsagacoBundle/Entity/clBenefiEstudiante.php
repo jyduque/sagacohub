@@ -46,9 +46,9 @@ class clBenefiEstudiante
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_segung_nombre", type="string", length=20, nullable=true)
+     * @ORM\Column(name="tx_segund_nombre", type="string", length=20, nullable=true)
      */
-    private $txSegungNombre;
+    private $txSegundNombre;
 
     /**
      * @var string
@@ -245,26 +245,26 @@ class clBenefiEstudiante
     }
 
     /**
-     * Set txSegungNombre
+     * Set txSegundNombre
      *
-     * @param string $txSegungNombre
+     * @param string $txSegundNombre
      * @return clBenefiEstudiante
      */
-    public function setTxSegungNombre($txSegungNombre)
+    public function setTxSegundNombre($txSegundNombre)
     {
-        $this->txSegungNombre = $txSegungNombre;
+        $this->txSegundNombre = $txSegundNombre;
 
         return $this;
     }
 
     /**
-     * Get txSegungNombre
+     * Get txSegundNombre
      *
      * @return string 
      */
-    public function getTxSegungNombre()
+    public function getTxSegundNombre()
     {
-        return $this->txSegungNombre;
+        return $this->txSegundNombre;
     }
 
     /**

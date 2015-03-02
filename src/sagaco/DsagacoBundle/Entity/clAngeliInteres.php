@@ -156,6 +156,6 @@ class clAngeliInteres
     
     public function __toString()
     {
-        return $this->getNbInteres();
+        return $this->getNbInicial();
     }
 }

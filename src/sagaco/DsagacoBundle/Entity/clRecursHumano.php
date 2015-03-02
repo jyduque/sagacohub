@@ -546,6 +546,6 @@ class clRecursHumano
     
     public function __toString()
     {
-        return $this->getTxPrimerNombre().' '.$this->getTxPrimerApellido();
+        return $this->getTxPrimerNombre();//.' '.$this->getTxPrimerApellido();
     }
 }

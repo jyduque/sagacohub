@@ -1,13 +1,7 @@
 <?php
 
 /**
- * Descripción de la clBenefiEstudianteType
- * La clase crea el formulario para los requerimientos:
- * - RF-45 Registrar Beneficiario del Estudiante
- * - RF-46 Activar Beneficiario del Estudiante
- * - RF-47 Desactivar Beneficiario del Estudiante
- * - RF-48 Modificar Datos de Beneficiario del Estudiante 
- * - RF-49 Consultar Beneficiario del Estudiante 
+ * Descripción de la clRecursHumanoType
  * @author Jorge Duque
  */
 namespace sagaco\AdminBundle\Form\Backend;
@@ -16,7 +10,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class clBenefiEstudianteType extends AbstractType
+class clRecursHumanoType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $objConstructor
@@ -25,22 +19,21 @@ class clBenefiEstudianteType extends AbstractType
     public function buildForm(FormBuilderInterface $objConstructor, array $arrOpcion)
     {
         $objConstructor
-            ->add('coControEstudio')
             ->add('nuCedula')
             ->add('inNacionalidad')
             ->add('txPrimerNombre')
             ->add('txSegundNombre')
             ->add('txPrimerApellido')
             ->add('txSegundApellido')
-            ->add('coCiudad')
-            ->add('coEstadoCivil')
-            ->add('coGenero')
-            ->add('coParentesco')
-            ->add('txDireccion1')
-            ->add('txDireccion2')
-            ->add('txTelefoCasa')
+            ->add('inSexo')
+            ->add('inEstadoCivil')
+            ->add('txCargo')
+            ->add('txCorreoElectronico')
+            ->add('txTelefoHabitacion')
             ->add('txTelefoCelular')
-            ->add('txCorreoElectronico');
+            ->add('txTelefoOficina')
+            ->add('txLugarResidencia')
+            ->add('feNacimiento');
     }
     
     /**
@@ -49,7 +42,7 @@ class clBenefiEstudianteType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'sagaco\DsagacoBundle\Entity\clBenefiEstudiante'
+            'data_class' => 'sagaco\DsagacoBundle\Entity\clRecursHumano'
         ));
     }
 
@@ -58,6 +51,6 @@ class clBenefiEstudianteType extends AbstractType
      */
     public function getName()
     {
-        return 'sagaco_adminbundle_clBenefiEstudiantetype';
+        return 'sagaco_adminbundle_clRecursHumanotype';
     }
 }

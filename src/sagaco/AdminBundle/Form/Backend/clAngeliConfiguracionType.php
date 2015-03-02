@@ -24,8 +24,7 @@ class clAngeliConfiguracionType extends AbstractType
             ->add('coAngeliInteres')
             ->add('nuCuadro')
             ->add('txLetra')
-            ->add('txDescripcion')
-            ->add('txObservacion');
+            ->add('txDescripcion');
     }
     
     /**

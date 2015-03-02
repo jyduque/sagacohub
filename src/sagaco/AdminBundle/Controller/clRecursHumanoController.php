@@ -7,22 +7,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use sagaco\DsagacoBundle\Entity\clAngeliInteres;
-use sagaco\AdminBundle\Form\Backend\clAngeliInteresType;
+use sagaco\DsagacoBundle\Entity\clRecursHumano;
+use sagaco\AdminBundle\Form\Backend\clRecursHumanoType;
 
 /**
- * Controlador de clAngeliInteres.
+ * Controlador de clRecursHumano.
  *
- * @Route("/pgAngeliInteres")
+ * @Route("/pgRecursHumano")
  */
-class clAngeliInteresController extends Controller
+class clRecursHumanoController extends Controller
 {
     var $blnBandera;
     
     /**
-     * Lists todas las entidades de clAngeliInteres.
+     * Lists todas las entidades de clRecursHumano.
      *
-     * @Route("/", name="pgAngeliInteres")
+     * @Route("/", name="pgRecursHumano")
      * @Method("GET")
      * @Template()
      */
@@ -30,12 +30,17 @@ class clAngeliInteresController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $objEntidad = $em->getRepository('DsagacoBundle:clAngeliInteres')->listar();        
+        //$objEntidad = $em->getRepository('DsagacoBundle:clRecursHumano')->listar();    
+        
+        
+        $objEntidad = $em->getRepository('DsagacoBundle:clRecursHumano')->findAll();        
+        
+        
                 
         $objPaginador  = $this->get('knp_paginator');
         $objPagina = $objPaginador->
                 paginate($objEntidad, 
-                        $objPeticion->query->get('page', 1)/*page number*/, 10/*limit per page*/);
+                        $objPeticion->query->get('page', 1)/*page number*/, 5/*limit per page*/);
         
         // set an array of custom parameters
         //La clase pull-right envía el paginador a mano derecha
@@ -46,15 +51,15 @@ class clAngeliInteresController extends Controller
     }
     
     /**
-     * Crea una entidad tipo clAngeliInteres nueva.
+     * Crea una entidad tipo clRecursHumano nueva.
      *
-     * @Route("/", name="pgAngeliInteres_crear")
+     * @Route("/", name="pgRecursHumano_crear")
      * @Method("POST")
-     * @Template("DsagacoBundle:clAngeliInteres:registrar.html.twig")
+     * @Template("DsagacoBundle:clRecursHumano:registrar.html.twig")
      */
     public function crearAction(Request $objPeticion)
     {
-        $objEntidad = new clAngeliInteres();
+        $objEntidad = new clRecursHumano();
         $form = $this->generarForma($objEntidad);
         $form->handleRequest($objPeticion);
 
@@ -66,7 +71,7 @@ class clAngeliInteresController extends Controller
             $em->flush();
             $blnBandera = 1;
 
-            return $this->redirect($this->generateUrl('pgAngeliInteres_mostrar', array('id' => $objEntidad->getCoAngeliInteres(), 'blnBandera' => $blnBandera)));
+            return $this->redirect($this->generateUrl('pgRecursHumano_mostrar', array('id' => $objEntidad->getCoRecursHumano(), 'blnBandera' => $blnBandera)));
         }
 
         return array(
@@ -77,16 +82,16 @@ class clAngeliInteresController extends Controller
     }
 
     /**
-     * Genera una forma para crear una entidad de tipo clAngeliInteres.
+     * Genera una forma para crear una entidad de tipo clGrupoRol.
      *
-     * @param clAngeliInteres $objEntidad La entidad
+     * @param clRecursHumano $objEntidad La entidad
      *
      * @return \Symfony\Component\Form\Form La forma
      */
-    private function generarForma(clAngeliInteres $objEntidad)
+    private function generarForma(clRecursHumano $objEntidad)
     {
-        $form = $this->createForm(new clAngeliInteresType(), $objEntidad, array(
-            'action' => $this->generateUrl('pgAngeliInteres_crear'),
+        $form = $this->createForm(new clRecursHumanoType(), $objEntidad, array(
+            'action' => $this->generateUrl('pgRecursHumano_crear'),
             'method' => 'POST',
         ));
 
@@ -98,13 +103,13 @@ class clAngeliInteresController extends Controller
     /**
      * Desplega un forma para crear una nueva entidad tipo clGrupoRol.
      *
-     * @Route("/registrar", name="pgAngeliInteres_registrar")
+     * @Route("/registrar", name="pgRecursHumano_registrar")
      * @Method("GET")
      * @Template()
      */
     public function registrarAction()
     {
-        $objEntidad = new clAngeliInteres();
+        $objEntidad = new clRecursHumano();
         $form   = $this->generarForma($objEntidad);
 
         return array(
@@ -114,9 +119,9 @@ class clAngeliInteresController extends Controller
     }
 
     /**
-     * Muestra una entidad específica de tipo clAngeliInteres.
+     * Muestra una entidad específica de tipo clRecursHumano.
      *
-     * @Route("/{id},{blnBandera}", name="pgAngeliInteres_mostrar")
+     * @Route("/{id},{blnBandera}", name="pgRecursHumano_mostrar")
      * @Method("GET")
      * @Template()
      */
@@ -124,7 +129,7 @@ class clAngeliInteresController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $objEntidad = $em->getRepository('DsagacoBundle:clAngeliInteres')->find($id);
+        $objEntidad = $em->getRepository('DsagacoBundle:clRecursHumano')->find($id);
 
         if (!$objEntidad) {
             throw $this->createNotFoundException('Imposible encontrar el Área.');
@@ -139,9 +144,9 @@ class clAngeliInteresController extends Controller
     }
 
     /**
-     * Desplega la forma para actualizar una entidad de clAngeliInteres existente.
+     * Desplega la forma para actualizar una entidad de clRecursHumano existente.
      *
-     * @Route("/{id}/editar", name="pgAngeliInteres_editar")
+     * @Route("/{id}/editar", name="pgRecursHumano_editar")
      * @Method("GET")
      * @Template()
      */
@@ -149,7 +154,7 @@ class clAngeliInteresController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $objEntidad = $em->getRepository('DsagacoBundle:clAngeliInteres')->find($id);
+        $objEntidad = $em->getRepository('DsagacoBundle:clRecursHumano')->find($id);
 
         if (!$objEntidad) {
             throw $this->createNotFoundException('Imposible encontrar el área.');
@@ -166,16 +171,16 @@ class clAngeliInteresController extends Controller
     }
 
     /**
-    * Crea una forma para actualizar una entidad de clAngeliInteres.
+    * Crea una forma para actualizar una entidad de clRecursHumano.
     *
-    * @param clAngeliInteres $objEntidad La entidad
+    * @param clRecursHumano $objEntidad La entidad
     *
     * @return \Symfony\Component\Form\Form La forma
     */
-    private function editarForma(clAngeliInteres $objEntidad)
+    private function editarForma(clRecursHumano $objEntidad)
     {
-        $form = $this->createForm(new clAngeliInteresType(), $objEntidad, array(
-            'action' => $this->generateUrl('pgAngeliInteres_actualizar', array('id' => $objEntidad->getCoAngeliInteres())),
+        $form = $this->createForm(new clRecursHumanoType(), $objEntidad, array(
+            'action' => $this->generateUrl('pgRecursHumano_actualizar', array('id' => $objEntidad->getCoRecursHumano())),
             'method' => 'PUT',
         ));
 
@@ -190,18 +195,18 @@ class clAngeliInteresController extends Controller
     }
     
     /**
-     * Edita una entidad de clAngeliInteres existente.
+     * Edita una entidad de clRecursHumano existente.
      *
-     * @Route("/{id}", name="pgAngeliInteres_actualizar")
+     * @Route("/{id}", name="pgRecursHumano_actualizar")
      * @Method("PUT")
-     * @Template("DsagacoBundle:clAngeliInteres:editar.html.twig")
+     * @Template("DsagacoBundle:clRecursHumano:editar.html.twig")
      */
     public function actualizarAction(Request $objPeticion, $id)
     {
         $em = $this->getDoctrine()->getManager();
         
 
-        $objEntidad = $em->getRepository('DsagacoBundle:clAngeliInteres')->find($id);
+        $objEntidad = $em->getRepository('DsagacoBundle:clRecursHumano')->find($id);
 
         if (!$objEntidad) {
             throw $this->createNotFoundException('Imposible encontrar el área.');
@@ -218,7 +223,7 @@ class clAngeliInteresController extends Controller
             $blnBandera = 2;
 
             //return $this->redirect($this->generateUrl('pgRol_editar', array('id' => $id)));
-            return $this->redirect($this->generateUrl('pgAngeliInteres_mostrar', array('id' => $id, 'blnBandera' => $blnBandera)));
+            return $this->redirect($this->generateUrl('pgRecursHumano_mostrar', array('id' => $id, 'blnBandera' => $blnBandera)));
         }
 
         return array(
@@ -229,9 +234,9 @@ class clAngeliInteresController extends Controller
     }
     
     /**
-     * Elimina una entidadde clAngeliInteres.
+     * Elimina una entidadde clRecursHumano.
      *
-     * @Route("/{id}", name="pgAngeliInteres_eliminar")
+     * @Route("/{id}", name="pgRecursHumano_eliminar")
      * @Method("DELETE")
      */
     public function eliminarAction(Request $objPeticion, $id)
@@ -241,7 +246,7 @@ class clAngeliInteresController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $objPeticion = $em->getRepository('DsagacoBundle:clAngeliInteres')->find($id);
+            $objPeticion = $em->getRepository('DsagacoBundle:clRecursHumano')->find($id);
 
             if (!$objPeticion) {
                 throw $this->createNotFoundException('Imposible encontrar el área.');
@@ -251,11 +256,11 @@ class clAngeliInteresController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('pgAngeliInteres'));        
+        return $this->redirect($this->generateUrl('pgRecursHumano'));        
     }
 
     /**
-     * Crea una forma para eliminar una entidad por el id de clAngeliInteres.
+     * Crea una forma para eliminar una entidad por el id de clRecursHumano.
      *
      * @param mixed $id id de la Entidad
      *
@@ -264,7 +269,7 @@ class clAngeliInteresController extends Controller
     private function eliminarForma($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('pgAngeliInteres_eliminar', array('id' => $id)))
+            ->setAction($this->generateUrl('pgRecursHumano_eliminar', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('boton', 'submit', ['label' => ' ', 'button_class' => 'btn btn-xs glyphicon glyphicon-trash', 'attr' => ['data-toggle' => 'tooltip',
                 'data-placement' => 'bottom',
