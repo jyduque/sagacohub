@@ -1,0 +1,81 @@
+{% extends '::plantilla.html.twig' %}
+
+{% block id 'entrevcontacto' %}
+    
+    {% block ruta %}
+    <div class="container navbar-blanca">                
+        <ul class="breadcrumb-modi">
+            <li><a href="#"><small>Inicio</small></a></li>
+            <li><a href="{{ path('pgEntrevContacto') }}"><small>Entrevista de Contacto</small></a></li>
+            <li class="active"><small>Actualizar</small></li>
+        </ul>                              
+    </div> 
+    {% endblock %}{#-- Fin Barra de ruta --#}
+   
+    {# Campos de la Forma #}
+    {% block twigformulario %}
+        
+            <fieldset>
+                {# Titulo del requisito #}
+                <legend>Actualizar entrevista de contacto
+                    <div class="pull-right">
+                        {{ form(delete_form) }}
+                    </div> 
+                    <div class="pull-right">
+                        <a href="{{ path('pgEntrevContacto') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar al listado">
+                            <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>                            
+                        </a> 
+                            <i class="fa fa-pencil-square-o"></i>
+                    </div>                
+                </legend>
+                
+                {#Muestra los campos del formulario#}  
+                {{ form(inlineForm, { 'style': 'inline' }) }}
+                    {{ form_errors(edit_form, { 'global_errors': true }) }}
+                    {{ form_row(edit_form._token) }}
+                    {{ form_row(edit_form.coCaso, {'label': 'Nombre'}) }}   
+                    {{ form_row(edit_form.coCaso, {'label': 'Apellido'}) }}
+                {{ form_end(form) }}
+                {{ form(inlineForm, { 'style': 'inline' }) }}
+                    {{ form_errors(edit_form, { 'global_errors': true }) }}
+                    {{ form_row(edit_form._token) }}
+                    {{ form_row(edit_form.coCaso, {'label': 'Sexo'}) }}                    
+                    {{ form_row(edit_form.coCaso, {'label': 'Edo. Civil'}) }}
+                    {{ form_row(edit_form.coCaso, {'label': 'Nacionalidad'}) }}   
+                    {{ form_row(edit_form.coCaso, {'label': 'C.I.'}) }}
+                {{ form_end(form) }}
+                {{ form(inlineForm, { 'style': 'inline' }) }}
+                    {{ form_errors(edit_form, { 'global_errors': true }) }}
+                    {{ form_row(edit_form._token) }}
+                    {{ form_row(edit_form.coCaso, {'label': 'Dirección'}) }} 
+                {{ form_end(form) }}
+                {{ form(inlineForm, { 'style': 'inline' }) }}
+                    {{ form_errors(edit_form, { 'global_errors': true }) }}
+                    {{ form_row(edit_form._token) }}
+                    {{ form_row(edit_form.coCaso, {'label': 'Teléfonos'}) }}
+                {{ form_end(form) }}
+                {{ form(inlineForm, { 'style': 'inline' }) }}
+                    {{ form_errors(edit_form, { 'global_errors': true }) }}
+                    {{ form_row(edit_form._token) }}
+                    {{ form_row(edit_form.coCaso, {'label': 'Especialidad/Personal'}) }}
+                {{ form_end(form) }}
+                            
+                {#Muestra los campos del formulario#}  
+                {{ form_start(edit_form, { 'style': 'horizontal' }) }}
+                    {{ form_errors(edit_form, { 'global_errors': true }) }}
+                    {{ form_row(edit_form._token) }}
+                    {{ form_row(edit_form.coCaso, {'label': 'Caso'}) }}   
+                    {{ form_row(edit_form.coCita, {'label': 'Cita'}) }}
+                    {{ form_row(edit_form.coTipoEntrevista, {'label': 'Tipo Entrevista'}) }}                    
+                    {{ form_row(edit_form.fhEntrevista, {'label': 'Fecha y Hora'}) }}
+                    {{ form_row(edit_form.hoInicio, {'label': 'H. Inicio'}) }}   
+                    {{ form_row(edit_form.hoCulminacion, {'label': 'H. Culminación'}) }}
+                    {{ form_row(edit_form.txMotivoIndividual, {'label': '¿Qué lo motivó a solicitar la Atención Individual?'}) }}                    
+                    {{ form_row(edit_form.txMotivoEntrevista, {'label': '¿Qué espera con la atención que solicita?'}) }}
+                    {{ form_row(edit_form.inSoliciEspontanea, {'label': '¿Espontánea? (1=si y 0=no)'}) }}
+                    {{ form_row(edit_form.txTratamiento, {'label': 'Tratamiento o Recomendaciones'}) }}                    
+                    {{ form_row(edit_form.txObservacion, {'label': 'Observaciones'}) }}
+                {{ form_end(edit_form) }}                    
+            </fieldset>   
+
+    {% endblock %}{#-- Fin Campos de la Forma #}

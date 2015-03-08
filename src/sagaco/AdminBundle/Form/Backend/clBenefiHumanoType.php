@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Descripción de la clRecursHumanoType
+ * Descripción de la clBenefiHumanoType
  * @author Jorge Duque
  */
 namespace sagaco\AdminBundle\Form\Backend;
@@ -10,7 +10,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class clRecursHumanoType extends AbstractType
+class clBenefiHumanoType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $objConstructor
@@ -19,25 +19,20 @@ class clRecursHumanoType extends AbstractType
     public function buildForm(FormBuilderInterface $objConstructor, array $arrOpcion)
     {
         $objConstructor
+            ->add('coRecursHumano')
             ->add('nuCedula')
             ->add('inNacionalidad')
             ->add('txPrimerNombre')
             ->add('txSegundNombre')
             ->add('txPrimerApellido')
             ->add('txSegundApellido')
+            ->add('txParentesco')
             ->add('inSexo')
             ->add('inEstadoCivil')
-            ->add('txCargo')
             ->add('txCorreoElectronico')
             ->add('txTelefoHabitacion')
             ->add('txTelefoCelular')
-            ->add('txTelefoOficina')
-            ->add('txLugarResidencia')
-            ->add('feNacimiento', 'date', array(
-                'widget' => 'choice',
-                'format' => 'dd-MM-yyyy',
-                'years' => range(1930, (date("Y") + 150)),
-                'empty_value' => array('year' => 'Año', 'month' => 'Mes', 'day' => 'Día'),));
+            ->add('txLugarResidencia');
     }
     
     /**
@@ -46,7 +41,7 @@ class clRecursHumanoType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'sagaco\DsagacoBundle\Entity\clRecursHumano'
+            'data_class' => 'sagaco\DsagacoBundle\Entity\clBenefiHumano'
         ));
     }
 
@@ -55,6 +50,6 @@ class clRecursHumanoType extends AbstractType
      */
     public function getName()
     {
-        return 'sagaco_adminbundle_clRecursHumanotype';
+        return 'sagaco_adminbundle_clBenefiHumanotype';
     }
 }

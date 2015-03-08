@@ -1,12 +1,12 @@
 {% extends '::plantilla.html.twig' %}
 
-{% block id 'entrevista' %}
+{% block id 'entrevcontacto' %}
     {# Barra de ruta #}
     {% block ruta %}
     <div class="container navbar-blanca">                
         <ul class="breadcrumb-modi">
             <li><a href="#"><small>Inicio</small></a></li>
-            <li class="active"><small>Entrevista</small></li>
+            <li class="active"><small>Entrevista de contacto</small></li>
         </ul>                              
     </div> 
     {% endblock %}{#-- Fin Barra de ruta --#}
@@ -14,11 +14,11 @@
     {# Campos de la Forma #}
     {% block twigformulario %}
         <fieldset>
-            <form role='form' action='/sagaco/web/app_dev/pgEntrevista/' name='wtf'>
+            <form role='form' action='/sagaco/web/app_dev/pgEntrevContacto/' name='wtf'>
                 {# Titulo del requisito #}
                 <legend>Entrevista de contacto
                     <div class="pull-right">
-                        <a href="{{ path('pgEntrevista_registrar') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Crear">
+                        <a href="{{ path('pgEntrevContacto_registrar') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Crear">
                             <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
                         </a>                          
                     </div>
@@ -76,23 +76,25 @@
                         <input id='form_text' class='form-control' type='text' required='required' name='form[text]'></input>                    
                     </div>
                     <div class='form-group'>
-                        <div class='col-xs-8 col-sm-8 col-md-8 col-lg-8'><strong>2.3 Su solicitud es ¿Espontánea? </strong></div>
+                        <div class='col-xs-8 col-sm-8 col-md-8 col-lg-8'><strong>2.3 Su solicitud es: ¿Espontánea? </strong></div>
                     </div>
                     <div class='form-horizontal'>
-                        <input type='checkbox'> Si selecciona significa que sí
+                        <input type='checkbox'> Si lo selecciona significa que sí
                     </div>
+                    <br>
                     <div class='form-group'>
-                        <div class='col-xs-8 col-sm-8 col-md-8 col-lg-8'><strong>3. Tratamiento o Recomendaciones</strong></div>
+                        <div class='col-xs-8 col-sm-8 col-md-8 col-lg-8'><strong>3. Tratamiento o Recomendaciones:</strong></div>
                     </div>
                     <div class='form-horizontal'>
                         <input id='form_text' class='form-control' type='text' required='required' name='form[text]'></input>                    
                     </div>
                     <div class='form-group'>
-                        <div class='col-xs-8 col-sm-8 col-md-8 col-lg-8'><strong>4. Observaciones</strong></div>
+                        <div class='col-xs-8 col-sm-8 col-md-8 col-lg-8'><strong>4. Observaciones:</strong></div>
                     </div>
                     <div class='form-horizontal'>
                         <input id='form_text' class='form-control' type='text' required='required' name='form[text]' style="width:1100px;height:34px"</input>                    
                     </div>
+                    <br>
                     {#<div class="form-signin">
                         {#<table class="table table-bordered table-striped table-condensed">#}
                             {#<thead>                            
@@ -109,17 +111,17 @@
                             <tbody>
                             {% for objEntidad in objPagina %}
                                 <tr {% if loop.index is odd %}class="color"{% endif %}>
-                                    <td class="text-right"><a href="{{ path('pgEntrevista_mostrar', { 'id': objEntidad.coEntrevista, 'blnBandera': '0'}) }}">{{ objEntidad.coEntrevista }}</a></td>
+                                    <td class="text-right"><a href="{{ path('pgEntrevContacto_mostrar', { 'id': objEntidad.coEntrevista, 'blnBandera': '0'}) }}">{{ objEntidad.coEntrevista }}</a></td>
                                     <td>{{ objEntidad.txMotivoIndividual }}</td>
                                     <td>{{ objEntidad.txMotivoEntrevista }}</td>
                                     <td>{{ objEntidad.inSoliciEspontanea }}</td>
                                     <td>{{ objEntidad.txTratamiento }}</td>
                                     <td>{{ objEntidad.txObservacion }}</td>
                                     <td> 
-                                        <a href="{{ path('pgEntrevista_mostrar', { 'id': objEntidad.coEntrevista, 'blnBandera': '0' }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Mostrar detalle">
+                                        <a href="{{ path('pgEntrevContacto_mostrar', { 'id': objEntidad.coEntrevista, 'blnBandera': '0' }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Mostrar detalle">
                                             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                                         </a>                                    
-                                        <a href="{{ path('pgEntrevista_editar', { 'id': objEntidad.coEntrevista }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar">
+                                        <a href="{{ path('pgEntrevContacto_editar', { 'id': objEntidad.coEntrevista }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar">
                                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                         </a>                                 
                                     </td>
@@ -128,6 +130,130 @@
                             </tbody>
                         </table>#}
                 </div>
+                <table width="1280" border="0">
+                    <tr>
+                        <td>
+                            <label>
+                                <select name="select">
+                                    <option>Remitir</option>
+                                    <option>Ari&aacute;dne</option>
+                                    <option>Blanca Figueras</option>
+                                    <option>Fulanita de Tales</option>
+                                    <option>Lisett Santos</option>
+                                    <option>Lucy DePablos</option>
+                                </select>
+                            </label>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td><a href="http://localhost/sagaco/web/app_dev.php/pgEntrevConsecuentes/"><input type="button" value="Guardar" /></a></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td><label>
+                                <select name="select">
+                                    <option>Aplicar prueba</option>
+                                    <option>Prueba D.V.I.</option>
+                                    <option>Prueba Holland</option>
+                                    <option>Prueba Angelini</option>
+                                </select>
+                            </label>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+                <br>
                     {#{{ form_start(form() }}
                         {{ form_row(edit_form.txMotivoIndividual, {'label': '¿Qué lo motivó a solicitar la Atención Individual?'}) }}
                         {{ form_row(edit_form.txMotivoEntrevista, {'label': '¿Qué espera con la atención que solicita?'}) }}

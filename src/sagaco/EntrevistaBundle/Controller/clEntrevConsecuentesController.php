@@ -9,21 +9,21 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use sagaco\DsagacoBundle\Entity\clEntrevista;
 use sagaco\DsagacoBundle\Entity\clRecursHumano;
-use sagaco\EntrevistaBundle\Form\Extranet\clEntrevistaType;
+use sagaco\EntrevistaBundle\Form\Extranet\clEntrevConsecuentesType;
 
 /**
  * Controlador de clEntrevista.
  *
- * @Route("/pgEntrevista")
+ * @Route("/pgEntrevConsecuentes")
  */
-class clEntrevistaController extends Controller
+class clEntrevConsecuentesController extends Controller
 {
     var $blnBandera;
     
     /**
      * Lists todas las entidades de clEntrevista.
      *
-     * @Route("/", name="pgEntrevista")
+     * @Route("/", name="pgEntrevConsecuentes")
      * @Method("GET")
      * @Template()
      */
@@ -54,9 +54,9 @@ class clEntrevistaController extends Controller
     /**
      * Crea una entidad tipo clEntrevista nueva.
      *
-     * @Route("/", name="pgEntrevista_crear")
+     * @Route("/", name="pgEntrevConsecuentes_crear")
      * @Method("POST")
-     * @Template("EntrevistaBundle:clEntrevista:registrar.html.twig")
+     * @Template("EntrevistaBundle:clEntrevConsecuentes:registrar.html.twig")
      */
     public function crearAction(Request $objPeticion)
     {
@@ -70,7 +70,7 @@ class clEntrevistaController extends Controller
             $em->flush();
             $blnBandera = 1;
 
-            return $this->redirect($this->generateUrl('pgEntrevista_mostrar', array('id' => $objEntidad->getCoEntrevista(), 'blnBandera' => $blnBandera)));
+            return $this->redirect($this->generateUrl('pgEntrevConsecuentes_mostrar', array('id' => $objEntidad->getCoEntrevista(), 'blnBandera' => $blnBandera)));
         }
 
         return array(
@@ -89,8 +89,8 @@ class clEntrevistaController extends Controller
      */
     private function generarForma(clEntrevista $objEntidad)
     {
-        $form = $this->createForm(new clEntrevistaType(), $objEntidad, array(
-            'action' => $this->generateUrl('pgEntrevista_crear'),
+        $form = $this->createForm(new clEntrevConsecuentesType(), $objEntidad, array(
+            'action' => $this->generateUrl('pgEntrevConsecuentes_crear'),
             'method' => 'POST',
         ));
 
@@ -102,7 +102,7 @@ class clEntrevistaController extends Controller
     /**
      * Desplega un forma para crear una nueva entidad tipo clGrupoRol.
      *
-     * @Route("/registrar", name="pgEntrevista_registrar")
+     * @Route("/registrar", name="pgEntrevConsecuentes_registrar")
      * @Method("GET")
      * @Template()
      */
@@ -120,7 +120,7 @@ class clEntrevistaController extends Controller
     /**
      * Muestra una entidad específica de tipo clEntrevista.
      *
-     * @Route("/{id},{blnBandera}", name="pgEntrevista_mostrar")
+     * @Route("/{id},{blnBandera}", name="pgEntrevConsecuentes_mostrar")
      * @Method("GET")
      * @Template()
      */
@@ -145,7 +145,7 @@ class clEntrevistaController extends Controller
     /**
      * Desplega la forma para actualizar una entidad de clEntrevista existente.
      *
-     * @Route("/{id}/editar", name="pgEntrevista_editar")
+     * @Route("/{id}/editar", name="pgEntrevConsecuentes_editar")
      * @Method("GET")
      * @Template()
      */
@@ -178,8 +178,8 @@ class clEntrevistaController extends Controller
     */
     private function editarForma(clEntrevista $objEntidad)
     {
-        $form = $this->createForm(new clEntrevistaType(), $objEntidad, array(
-            'action' => $this->generateUrl('pgEntrevista_actualizar', array('id' => $objEntidad->getCoEntrevista())),
+        $form = $this->createForm(new clEntrevConsecuentesType(), $objEntidad, array(
+            'action' => $this->generateUrl('pgEntrevConsecuentes_actualizar', array('id' => $objEntidad->getCoEntrevista())),
             'method' => 'PUT',
         ));
 
@@ -196,9 +196,9 @@ class clEntrevistaController extends Controller
     /**
      * Edita una entidad de clEntrevista existente.
      *
-     * @Route("/{id}", name="pgEntrevista_actualizar")
+     * @Route("/{id}", name="pgEntrevConsecuentes_actualizar")
      * @Method("PUT")
-     * @Template("DsagacoBundle:clEntrevista:editar.html.twig")
+     * @Template("DsagacoBundle:clEntrevConsecuentes:editar.html.twig")
      */
     public function actualizarAction(Request $objPeticion, $id)
     {
@@ -220,7 +220,7 @@ class clEntrevistaController extends Controller
             $blnBandera = 2;
 
             //return $this->redirect($this->generateUrl('pgRol_editar', array('id' => $id)));
-            return $this->redirect($this->generateUrl('pgEntrevista_mostrar', array('id' => $id, 'blnBandera' => $blnBandera)));
+            return $this->redirect($this->generateUrl('pgEntrevConsecuentes_mostrar', array('id' => $id, 'blnBandera' => $blnBandera)));
         }
 
         return array(
@@ -233,7 +233,7 @@ class clEntrevistaController extends Controller
     /**
      * Elimina una entidadde clEntrevista.
      *
-     * @Route("/{id}", name="pgEntrevista_eliminar")
+     * @Route("/{id}", name="pgEntrevConsecuentes_eliminar")
      * @Method("DELETE")
      */
     public function eliminarAction(Request $objPeticion, $id)
@@ -253,7 +253,7 @@ class clEntrevistaController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('pgEntrevista'));        
+        return $this->redirect($this->generateUrl('pgEntrevConsecuentes'));        
     }
 
     /**
@@ -266,7 +266,7 @@ class clEntrevistaController extends Controller
     private function eliminarForma($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('pgEntrevista_eliminar', array('id' => $id)))
+            ->setAction($this->generateUrl('pgEntrevConsecuentes_eliminar', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('boton', 'submit', ['label' => ' ', 'button_class' => 'btn btn-xs glyphicon glyphicon-trash', 'attr' => ['data-toggle' => 'tooltip',
                 'data-placement' => 'bottom',

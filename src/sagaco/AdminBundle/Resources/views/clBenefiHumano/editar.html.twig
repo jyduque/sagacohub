@@ -1,0 +1,53 @@
+{% extends '::plantilla.html.twig' %}
+
+{% block id 'cenefihumano' %}
+    
+    {% block ruta %}
+    <div class="container navbar-blanca">                
+        <ul class="breadcrumb-modi">
+            <li><a href="#"><small>Inicio</small></a></li>
+            <li><a href="{{ path('pgBenefiHumano') }}"><small>Beneficiario</small></a></li>
+            <li class="active"><small>Actualizar</small></li>
+        </ul>                              
+    </div> 
+    {% endblock %}{#-- Fin Barra de ruta --#}
+   
+    {# Campos de la Forma #}
+    {% block twigformulario %}
+        
+            <fieldset>
+                {# Titulo del requisito #}
+                <legend>Actualizar beneficiario
+                    <div class="pull-right">
+                        {{ form(delete_form) }}
+                    </div> 
+                    <div class="pull-right">
+                        <a href="{{ path('pgBenefiHumano') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar al listado">
+                            <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>                            
+                        </a> 
+                            <i class="fa fa-pencil-square-o"></i>
+                    </div>                
+                </legend>
+                
+                {#Muestra los campos del formulario#}  
+                {{ form_start(edit_form, { 'style': 'horizontal' }) }}
+                    {{ form_errors(edit_form, { 'global_errors': true }) }}
+                    {{ form_row(edit_form._token) }}
+                    {{ form_row(edit_form.coRecursHumano, {'label': 'Nombre del ...'}) }}   
+                    {{ form_row(edit_form.nuCedula, {'label': 'Número de cédula'}) }}
+                    {{ form_row(edit_form.inNacionalidad, {'label': 'Nacionalidad'}) }}                    
+                    {{ form_row(edit_form.txPrimerNombre, {'label': 'Primer nombre'}) }}
+                    {{ form_row(edit_form.txSegundNombre, {'label': 'Segundo nombre'}) }}
+                    {{ form_row(edit_form.txPrimerApellido, {'label': 'Primer apellido'}) }}
+                    {{ form_row(edit_form.txSegundApellido, {'label': 'Segundo apellido'}) }}
+                    {{ form_row(edit_form.txParentesco, {'label': 'Parentesco'}) }}
+                    {{ form_row(edit_form.inSexo, {'label': 'Sexo'}) }}                    
+                    {{ form_row(edit_form.inEstadoCivil, {'label': 'Estado civil'}) }}                    
+                    {{ form_row(edit_form.txCorreoElectronico, {'label': 'Correo electrónico'}) }}
+                    {{ form_row(edit_form.txTelefoHabitacion, {'label': 'Teléfono habitación'}) }}
+                    {{ form_row(edit_form.txTelefoCelular, {'label': 'Teléfono celular'}) }}
+                    {{ form_row(edit_form.txLugarResidencia, {'label': 'Lugar de residencia'}) }}
+                {{ form_end(edit_form) }}                    
+            </fieldset>   
+
+    {% endblock %}{#-- Fin Campos de la Forma #}
