@@ -28,11 +28,6 @@
             <div class="table-responsive">
                 <table class="table table-bordered table-striped table-condensed">
                     <thead> 
-                        {% if objPagina.getTotalItemCount == 0 %}
-                            <tr class="danger">
-                                <td colspan="9" class="text-center error"><strong>No hay resultados</strong></td>
-                            </tr>                                  
-                        {% endif %} 
                         <tr>
                             {# sorting of properties based on query components #}
                             <th>{{ knp_pagination_sortable(objPagina, 'Id', 'a.coGrupoRol') }}</th>
