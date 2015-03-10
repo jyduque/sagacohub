@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ESagaco.tpAgendaOrientador
  *
- * @ORM\Table(name="e_sagaco.tp_agenda_orientador", indexes={@ORM\Index(name="IDX_A2043AA04BD8FA32", columns={"co_orientador"}), @ORM\Index(name="IDX_A2043AA03BFCC05A", columns={"co_semestre"})})
+ * @ORM\Table(name="e_sagaco.tp_agenda_orientador", indexes={@ORM\Index(name="IDX_A2043AA04BD8FA32", columns={"co_orientador"}), @ORM\Index(name="IDX_A2043AA03BFCC05A", columns={"co_semestre"}),@ORM\Index(name="IDX_A2043AA0105A000", columns={"co_duracion"})})
  * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clAgendaOrientadorRepository")
  */
 class clAgendaOrientador
@@ -56,6 +56,15 @@ class clAgendaOrientador
      */
     private $coSemestre;
 
+    /**
+     * @var \ESagaco.tbDuracion
+     *
+     * @ORM\ManyToOne(targetEntity="clDuracion")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="co_duracion", referencedColumnName="co_duracion")
+     * })
+     */
+    private $coDuracion;
 
 
     /**
@@ -158,5 +167,28 @@ class clAgendaOrientador
     public function getCoSemestre()
     {
         return $this->coSemestre;
+    }
+    
+    /**
+     * Set coDuracion
+     *
+     * @param \sagaco\DsagacoBundle\Entity\clDuracion $coDuracion
+     * @return clDetallAgendaorientador
+     */
+    public function setCoDuracion(\sagaco\DsagacoBundle\Entity\clDuracion $coDuracion = null)
+    {
+        $this->coDuracion = $coDuracion;
+
+        return $this;
+    }
+
+    /**
+     * Get coDuracion
+     *
+     * @return \sagaco\DsagacoBundle\Entity\clDuracion 
+     */
+    public function getCoDuracion()
+    {
+        return $this->coDuracion;
     }
 }
