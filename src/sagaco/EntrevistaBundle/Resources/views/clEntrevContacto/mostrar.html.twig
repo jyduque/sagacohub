@@ -1,0 +1,113 @@
+{% extends '::plantilla.html.twig' %}
+
+{% block id 'entrevcontacto' %}
+    
+    {% block ruta %}
+    <div class="container navbar-blanca">                
+        <ul class="breadcrumb-modi">
+            <li><a href="#"><small>Inicio</small></a></li>
+            <li><a href="{{ path('pgEntrevContacto') }}"><small>Entrevista de contacto</small></a></li>
+            <li class="active"><small>Detalle</small></li>
+        </ul>                              
+    </div> 
+    {% endblock %}{#-- Fin Barra de ruta --#}
+   
+    {# Campos de la Forma #}
+    {% block twigformulario %}
+        
+            <fieldset>
+                {# Titulo del requisito #}
+                <legend>Detalle entrevista de contacto
+                    <div class="pull-right">
+                        {{ form(delete_form) }}
+                    </div> 
+                    <div class="pull-right">
+                        <a href="{{ path('pgEntrevContacto') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar al listado">
+                            <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
+                        </a> 
+                        <a href="{{ path('pgEntrevContacto_editar', { 'id': objEntidad.coEntrevista }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        </a> 
+                    </div> 
+                     
+                </legend>
+                {#Muestra los campos del formulario#}      
+                   
+                <div class='form-horizontal'>
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Id</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coEntrevista }}</div>                    
+                    </div>    
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Nombre</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coCaso }}</div>                    
+                    </div>  
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Apellido</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coCaso }}</div>                    
+                    </div>
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Sexo</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coCaso }}</div>                    
+                    </div>    
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Edo. Civil</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coCaso }}</div>                    
+                    </div>  
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Nacionalidad</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coCaso }}</div>                    
+                    </div>
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>C.I.</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coCaso }}</div>                    
+                    </div>
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Dirección</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coCaso }}</div>                    
+                    </div>  
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Telefonos</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coCaso }}</div>                    
+                    </div>
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Especialidad/Personal</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coCaso }}</div>                    
+                    </div>
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>¿Qué lo motivó a solicitar la Atención Individual?</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.txMotivoIndividual }}</div>                    
+                    </div>    
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>¿Qué espera con la atención que solicita?</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.txMotivoEntrevista }}</div>                    
+                    </div>  
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>¿Espontánea? (1=si y 0=no)</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.inSoliciEspontanea }}</div>                    
+                    </div>
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Tratamiento o Recomendaciones</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.txTratamiento }}</div>                    
+                    </div>
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Observaciones</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.txObservacion }}</div>                    
+                    </div>
+                </div>         
+            </fieldset>
+            {% if blnBandera != 0 %}
+                {% if blnBandera == 1 %}
+                    <div class="alert alert-dismissable alert-success">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>Bien hecho!</strong> Registro exitoso.
+                    </div>
+                {% else%}                
+                    <div class="alert alert-dismissable alert-success">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>Bien hecho!</strong> Actualización exitosa.
+                    </div>
+                {% endif %}
+            {% endif %}
+
+    {% endblock %}{#-- Fin Campos de la Forma #}

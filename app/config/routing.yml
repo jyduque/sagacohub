@@ -2,7 +2,6 @@ info:
     resource: "@InfoBundle/Resources/config/routing.yml"
     prefix:   /
     
-
 admin:
     resource: "@AdminBundle/Controller/"
     type:     annotation
@@ -17,12 +16,12 @@ entrevista:
     resource: "@EntrevistaBundle/Controller/"
     type:     annotation
     prefix:   /
-
-
-prueba:
-    resource: "@PruebaBundle/Resources/config/routing.yml"
+    
+instrudvi:
+    resource: "@PruebaBundle/Controller/"
+    type:     annotation
     prefix:   /
-
+   
 dsagaco:
     resource: "@DsagacoBundle/Resources/config/routing.yml"
     prefix:   /
@@ -30,6 +29,14 @@ dsagaco:
 pg_cita:
     path:     /cita/
     defaults: { _controller: CitaBundle:Default:cita}
+    
+pg_instru_dvi1:
+    path:     /pgInstruDVI1/
+    defaults: { _controller: PruebaBundle:Default:prueba}    
+    
+pg_instru_dvi2:
+    path:     /pgInstruDVI2/
+    defaults: { _controller: PruebaBundle:Default:instruDVI}
     
 pg_entrevista:
     path:     /entrevista/

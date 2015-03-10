@@ -1,0 +1,70 @@
+{% extends '::plantilla.html.twig' %}
+
+{% block id 'controestudio' %}
+   
+    {% block ruta %}
+    <div class="container navbar-blanca">                
+        <ul class="breadcrumb-modi">
+            <li><a href="#"><small>Inicio</small></a></li>
+            <li><a href="{{ path('pgControEstudio') }}"><small>Estudiante</small></a></li>
+            <li class="active"><small>Crear</small></li>
+        </ul>                              
+    </div> 
+    {% endblock %}{#-- Fin Barra de ruta --#}
+    
+    {# Campos de la Forma #}
+    {% block twigformulario %}
+        
+            <fieldset>
+                {# Titulo del requisito #}
+                <legend>Crear estudiante
+                    <div class="pull-right">
+                        <a href="{{ path('pgControEstudio') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar al listado">
+                            <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
+                        </a>                       
+                    </div>
+                </legend>
+                {#Muestra los campos del formulario#}      
+                   
+                {{ form_start(form, { 'style': 'horizontal' }) }}
+                    {{ form_errors(form, { 'global_errors': true }) }}
+                    {{ form_row(form._token) }}
+                    {{ form_row(form.nuCedula, {'label': 'Número de cédula'}) }}
+                    {{ form_row(form.inNacionalidad, {'label': 'Nacionalidad'}) }}                    
+                    {{ form_row(form.txPrimerNombre, {'label': 'Primer nombre'}) }}
+                    {{ form_row(form.txSegundNombre, {'label': 'Segundo nombre'}) }}
+                    {{ form_row(form.txPrimerApellido, {'label': 'Primer apellido'}) }}
+                    {{ form_row(form.txSegundApellido, {'label': 'Segundo apellido'}) }}
+                    {{ form_row(form.inSexo, {'label': 'Sexo'}) }}
+                    {{ form_row(form.inEstadoCivil, {'label': 'Estado civil'}) }}
+                    {{ form_row(form.txTipoIngreso, {'label': 'Tipo ingreso'}) }}                    
+                    {{ form_row(form.txCarrera, {'label': 'Carrera'}) }}
+                    {{ form_row(form.nuSemestCursados, {'label': 'Semestres cursados'}) }}
+                    {{ form_row(form.txSemestActual, {'label': 'Semestre actual'}) }}
+                    {{ form_row(form.txTurno, {'label': 'Turno'}) }}
+                    {{ form_row(form.txCorreoElectronico, {'label': 'Correo electrónico'}) }}
+                    {{ form_row(form.txTelefoCasa, {'label': 'Teléfono de la casa'}) }}
+                    {{ form_row(form.txTelefoCelular, {'label': 'Teléfono celular'}) }}   
+                    {{ form_row(form.txPais, {'label': 'País donde vive'}) }}
+                    {{ form_row(form.txEstado, {'label': 'Estado donde vive'}) }}                    
+                    {{ form_row(form.txMunicipio, {'label': 'Municipio donde vive'}) }}
+                    {{ form_row(form.txCiudad, {'label': 'Ciudad donde vive'}) }} 
+                    {{ form_row(form.txDireccion1, {'label': 'Lugar donde vive'}) }}
+                    {{ form_row(form.txDireccion2, {'label': 'Lugar donde vive'}) }}
+                    {{ form_row(form.feNacimiento, {'label': 'Fecha de nacimiento'}) }}
+                    {{ form_row(form.txLugarNacimiento, {'label': 'Lugar de nacimiento'}) }}
+                    {{ form_row(form.txLapsoIngreso, {'label': 'Lapso ingreso'}) }}                    
+                    {{ form_row(form.txCondicion, {'label': 'Condicion'}) }}                    
+                    {{ form_row(form.nuIndiceAcumulado, {'label': 'Indice académico'}) }}
+                    {{ form_row(form.nuUcCursadas, {'label': 'Unidades de crédito cursadas'}) }}
+                    {{ form_row(form.nuUcActual, {'label': 'Unidades de crédito actual'}) }}
+                    {{ form_row(form.nuUcAprobadas, {'label': 'Unidades de crédito aprobadas'}) }}                    
+                {{ form_end(form) }}                
+            </fieldset>         
+            
+        
+    {% endblock %}{#-- Fin Campos de la Forma #}
+    
+                                        
+
+

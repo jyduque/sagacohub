@@ -1,0 +1,69 @@
+{% extends '::plantilla.html.twig' %}
+
+{% block id 'controestudio' %}
+    
+    {% block ruta %}
+    <div class="container navbar-blanca">                
+        <ul class="breadcrumb-modi">
+            <li><a href="#"><small>Inicio</small></a></li>
+            <li><a href="{{ path('pgControEstudio') }}"><small>Estudiante</small></a></li>
+            <li class="active"><small>Actualizar</small></li>
+        </ul>                              
+    </div> 
+    {% endblock %}{#-- Fin Barra de ruta --#}
+   
+    {# Campos de la Forma #}
+    {% block twigformulario %}
+        
+            <fieldset>
+                {# Titulo del requisito #}
+                <legend>Actualizar estudiante
+                    <div class="pull-right">
+                        {{ form(delete_form) }}
+                    </div> 
+                    <div class="pull-right">
+                        <a href="{{ path('pgControEstudio') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar al listado">
+                            <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>                            
+                        </a> 
+                            <i class="fa fa-pencil-square-o"></i>
+                    </div>                
+                </legend>
+                
+                {#Muestra los campos del formulario#}  
+                {{ form_start(edit_form, { 'style': 'horizontal' }) }}
+                    {{ form_errors(edit_form, { 'global_errors': true }) }}
+                    {{ form_row(edit_form._token) }}
+                    {{ form_row(edit_form.nuCedula, {'label': 'Número de cédula'}) }}
+                    {{ form_row(edit_form.inNacionalidad, {'label': 'Nacionalidad'}) }}                    
+                    {{ form_row(edit_form.txPrimerNombre, {'label': 'Primer nombre'}) }}
+                    {{ form_row(edit_form.txSegundNombre, {'label': 'Segundo nombre'}) }}
+                    {{ form_row(edit_form.txPrimerApellido, {'label': 'Primer apellido'}) }}
+                    {{ form_row(edit_form.txSegundApellido, {'label': 'Segundo apellido'}) }}
+                    {{ form_row(edit_form.inSexo, {'label': 'Sexo'}) }}
+                    {{ form_row(edit_form.inEstadoCivil, {'label': 'Estado civil'}) }}
+                    {{ form_row(edit_form.txTipoIngreso, {'label': 'Tipo ingreso'}) }}                    
+                    {{ form_row(edit_form.txCarrera, {'label': 'Carrera'}) }}                    
+                    {{ form_row(edit_form.nuSemestCursados, {'label': 'Semestres cursados'}) }}
+                    {{ form_row(edit_form.txSemestActual, {'label': 'Semestre actual'}) }}
+                    {{ form_row(edit_form.txTurno, {'label': 'Turno'}) }}
+                    {{ form_row(edit_form.txCorreoElectronico, {'label': 'Correo electrónico'}) }}
+                    {{ form_row(edit_form.txTelefoCasa, {'label': 'Teléfono de la casa'}) }}
+                    {{ form_row(edit_form.txTelefoCelular, {'label': 'Teléfono celular'}) }}   
+                    {{ form_row(edit_form.txPais, {'label': 'País donde vive'}) }}
+                    {{ form_row(edit_form.txEstado, {'label': 'Estado donde vive'}) }}                    
+                    {{ form_row(edit_form.txMunicipio, {'label': 'Municipio donde vive'}) }}
+                    {{ form_row(edit_form.txCiudad, {'label': 'Ciudad donde vive'}) }}
+                    {{ form_row(edit_form.txDireccion1, {'label': 'Lugar donde vive'}) }}
+                    {{ form_row(edit_form.txDireccion2, {'label': 'Lugar donde vive'}) }}
+                    {{ form_row(edit_form.feNacimiento, {'label': 'Fecha de nacimiento'}) }}
+                    {{ form_row(edit_form.txLugarNacimiento, {'label': 'Lugar de nacimiento'}) }}
+                    {{ form_row(edit_form.txLapsoIngreso, {'label': 'Lapso ingreso'}) }}                    
+                    {{ form_row(edit_form.txCondicion, {'label': 'Condicion'}) }}                    
+                    {{ form_row(edit_form.nuIndiceAcumulado, {'label': 'Indice académico'}) }}
+                    {{ form_row(edit_form.nuUcCursadas, {'label': 'Unidades de crédito cursadas'}) }}
+                    {{ form_row(edit_form.nuUcActual, {'label': 'Unidades de crédito actual'}) }}
+                    {{ form_row(edit_form.nuUcAprobadas, {'label': 'Unidades de crédito aprobadas'}) }}
+                {{ form_end(edit_form) }}                    
+            </fieldset>   
+
+    {% endblock %}{#-- Fin Campos de la Forma #}
