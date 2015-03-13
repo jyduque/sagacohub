@@ -14,7 +14,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class clAgendaOrientadorType extends AbstractType
+class clDetallAgendaorientadorType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $objConstructor
@@ -22,11 +22,9 @@ class clAgendaOrientadorType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $objConstructor, array $arrOpcion)
     {
-        $objConstructor
-            ->add('coOrientador')
-            ->add('coSemestre')
-            ->add('coDuracion');
-        $objConstructor->add('objDetalle', 'collection', array('type' => new clDetallAgendaorientadorType()));
+        $objConstructor            
+            ->add('coDiaSemana')            
+            ->add('hoInicio');
     }
     
     /**
@@ -35,7 +33,7 @@ class clAgendaOrientadorType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'sagaco\DsagacoBundle\Entity\clAgendaOrientador'
+            'data_class' => 'sagaco\DsagacoBundle\Entity\clDetallAgendaorientador'
         ));
     }
 
@@ -44,6 +42,6 @@ class clAgendaOrientadorType extends AbstractType
      */
     public function getName()
     {
-        return 'sagaco_citabundle_clAgendaOrientadortype';
+        return 'sagaco_citabundle_clDetallAgendaorientadortype';
     }
 }

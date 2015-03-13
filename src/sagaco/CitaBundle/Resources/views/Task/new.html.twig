@@ -1,0 +1,39 @@
+{% extends '::plantilla.html.twig' %}
+
+{% block id 'agenda' %}
+    {# Barra de ruta #}
+    {% block ruta %}
+    <div class="container navbar-blanca">                
+        <ul class="breadcrumb-modi">
+            <li><a href="#"><small>Inicio</small></a></li>
+            <li class="active"><small>Agenda personalizada</small></li>
+        </ul>                              
+    </div> 
+    {% endblock %}{#-- Fin Barra de ruta --#}
+   
+    {# Campos de la Forma #}
+    {% block twigformulario %}
+        <fieldset>
+            {# Titulo del requisito #}
+            <legend>Visualizar agenda personalizada</legend>               
+
+            {#Muestra los campos del formulario#}
+            <form action="..." method="POST" {{ form_enctype(form) }}>
+    {# reproduce únicamente los campos task: descripción #}
+    {{ bootstrap_set_style('horizontal') }}
+    {{ form_row(form.description) }}
+
+    <h3>Tags</h3>
+    
+        {# itera sobre cada etiqueta existente y reproduce su único campo: name #}
+        {% for tag in form.tags %}
+            {{ form_row(tag.name) }}
+        {% endfor %}
+    
+
+    {{ form_rest(form) }}
+    {# ... #}
+</form>
+                                                   
+        </fieldset>            
+    {% endblock %}{#-- Fin Campos de la Forma #}

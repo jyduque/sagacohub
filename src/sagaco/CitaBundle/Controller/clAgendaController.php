@@ -6,7 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-//use sagaco\DsagacoBundle\Entity\clAgendaOrientador;
+use sagaco\DsagacoBundle\Entity\clAgendaOrientador;
+use sagaco\DsagacoBundle\Entity\clDetallAgendaorientador;
+use sagaco\CitaBundle\Form\Extranet\clAgendaOrientadorType;
+use Symfony\Component\HttpFoundation\Request;
 //use sagaco\DsagacoBundle\Entity\clAgendaOrientadorRepository;
 //use sagaco\CitaBundle\Form\Extranet\clAgendaOrientadorType;
 
@@ -39,7 +42,7 @@ class clAgendaController extends Controller
         
         //$objEntidad = $em->getRepository('DsagacoBundle:clAgendaOrientador')->calendario($intOrientador, $intSemestre);        
         $id=1;
-        $objEntidad = $em->getRepository('DsagacoBundle:clAgendaOrientador')->find($id);        
+        $objEntidad = $em->getRepository('DsagacoBundle:clAgendaOrientador')->find($id);  
         
         
         

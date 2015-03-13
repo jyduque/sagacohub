@@ -20,10 +20,69 @@
             {#Muestra los campos del formulario#}
             <div class='form-horizontal'>
                 <div class='form-group'>
+                    <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Orientador</strong></div>
+                    <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coOrientador }}</div>                      
+                </div>
+                <div class='form-group'>
                     <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Semestre</strong></div>
                     <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coSemestre }}</div>                      
+                </div>
+                <div class='form-group'>
+                    <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Duración</strong></div>
+                    <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coDuracion }}</div>                      
                 </div>
             </div>
                                                    
         </fieldset>   
+        <fieldset>
+            {# Titulo del requisito #}
+            <legend>Horario</legend>               
+
+            {#Muestra los campos del formulario#}
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-condensed">
+                    <thead> 
+                        <tr>
+                            {# sorting of properties based on query components #}
+                            <th></th>
+                            <th>Lunes</th>
+                            <th>Martes</th>
+                            <th>Miércoles</th>
+                            <th>Jueves</th>
+                            <th>Viernes</th>   
+                        </tr>
+                    </thead>
+                    <tbody> 
+                        {% set hora = "08:00:00" %}
+                        {% set hora1 = "08:00:00" %}
+                        {% set tiempo =  objEntidad.coDuracion.nuDuracion %}
+
+                        {% set cIni = 1 %}
+                        {% set cFin = 36000/(tiempo*60) %}                        
+                        {% for i in cIni..cFin %}                            
+                            <tr class="yellow">
+                                <td>{{ hora|date('h:i a') }}</td>
+                                <td>
+                                        
+                                    
+                                </td>
+                                <td colspan="4" class="text-center error"><strong>No hay resultados</strong></td>
+                            </tr> 
+                            {% set hora = (hora1+(3600*(12+i))) %}
+                            
+                        {% endfor %}
+                        {% for tag in objEntidad.objDetalle %}
+                            
+                            <td>{{ tag.coDiaSemana }}</td>
+                                <td>
+                                        
+                                    
+                                </td>
+                                <td colspan="4" class="text-center error"><strong>No hay rs</strong></td>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+                                                   
+        </fieldset> 
     {% endblock %}{#-- Fin Campos de la Forma #}

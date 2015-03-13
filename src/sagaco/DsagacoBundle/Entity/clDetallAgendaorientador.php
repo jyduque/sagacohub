@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ESagaco.tpDetallAgendaorientador
  *
- * @ORM\Table(name="e_sagaco.tp_detall_agendaorientador", indexes={@ORM\Index(name="IDX_A2043AA0712B9E7B", columns={"co_dia_semana"}), @ORM\Index(name="IDX_A2043AA0105A000", columns={"co_duracion"})})
+ * @ORM\Table(name="e_sagaco.tp_detall_agendaorientador", indexes={@ORM\Index(name="IDX_A2043AA0712B9E7B", columns={"co_dia_semana"})})
  * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clDetallAgendaorientadorRepository")
  */
 class clDetallAgendaorientador
@@ -53,15 +53,15 @@ class clDetallAgendaorientador
      */
     private $coDiaSemana;
 
-    /**
-     * @var \ESagaco.tbDuracion
+     /**
+     * @var \ESagaco.tpAgendaOrientador
      *
-     * @ORM\ManyToOne(targetEntity="clDuracion")
+     * @ORM\ManyToOne(targetEntity="clAgendaOrientador")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="co_duracion", referencedColumnName="co_duracion")
+     *   @ORM\JoinColumn(name="co_agenda_orientador", referencedColumnName="co_agenda_orientador")
      * })
      */
-    private $coDuracion;
+    private $coAgendaOrientador;
 
     
     /**
@@ -167,25 +167,25 @@ class clDetallAgendaorientador
     }
 
     /**
-     * Set coDuracion
+     * Set coAgendaOrientador
      *
-     * @param \sagaco\DsagacoBundle\Entity\clDuracion $coDuracion
+     * @param \sagaco\DsagacoBundle\Entity\clAgendaOrientador $coAgendaOrientador
      * @return clDetallAgendaorientador
      */
-    public function setCoDuracion(\sagaco\DsagacoBundle\Entity\clDuracion $coDuracion = null)
+    public function setCoAgendaOrientador(\sagaco\DsagacoBundle\Entity\clAgendaOrientador $coAgendaOrientador = null)
     {
-        $this->coDuracion = $coDuracion;
+        $this->coAgendaOrientador = $coAgendaOrientador;
 
         return $this;
     }
 
     /**
-     * Get coDuracion
+     * Get coAgendaOrientador
      *
-     * @return \sagaco\DsagacoBundle\Entity\clDuracion 
+     * @return \sagaco\DsagacoBundle\Entity\clAgendaOrientador 
      */
-    public function getCoDuracion()
+    public function getCoAgendaOrientador()
     {
-        return $this->coDuracion;
+        return $this->coAgendaOrientador;
     }
 }
