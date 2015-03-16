@@ -32,17 +32,17 @@ class clAgendaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        //$objEntidad = $em->getRepository('DsagacoBundle:clAgendaOrientador')->listar();  
+        $em = $this->getDoctrine()->getManager();       
         
         $intOrientador = '1';
-        $intSemestre = '1';
-        
-        
-        //$objEntidad = $em->getRepository('DsagacoBundle:clAgendaOrientador')->calendario($intOrientador, $intSemestre);        
+        $intSemestre = '1';        
         $id=1;
-        $objEntidad = $em->getRepository('DsagacoBundle:clAgendaOrientador')->find($id);  
+        
+        $objEntidad = $em->getRepository('DsagacoBundle:clAgendaOrientador')->findOneBy(
+                array(
+		'coOrientador' => $intOrientador,
+		'coSemestre' => $intSemestre
+                ));  
         
         
         

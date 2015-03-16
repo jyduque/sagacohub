@@ -22,9 +22,13 @@ class clDetallAgendaorientadorType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $objConstructor, array $arrOpcion)
     {
-        $objConstructor            
-            ->add('coDiaSemana')            
-            ->add('hoInicio');
+        $objConstructor
+            ->add('hoInicio')
+            ->add('inLunes')
+            ->add('inMartes')
+            ->add('inMiercoles')
+            ->add('inJueves')
+            ->add('inViernes');
     }
     
     /**

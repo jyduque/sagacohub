@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ESagaco.tpDetallAgendaorientador
  *
- * @ORM\Table(name="e_sagaco.tp_detall_agendaorientador", indexes={@ORM\Index(name="IDX_A2043AA0712B9E7B", columns={"co_dia_semana"})})
+ * @ORM\Table(name="e_sagaco.tp_detall_agendaorientador")
  * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clDetallAgendaorientadorRepository")
  */
 class clDetallAgendaorientador
@@ -28,6 +28,41 @@ class clDetallAgendaorientador
      * @ORM\Column(name="ho_inicio", type="time", nullable=false)
      */
     private $hoInicio;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="in_lunes", type="boolean", nullable=true)
+     */
+    private $inLunes;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="in_martes", type="boolean", nullable=true)
+     */
+    private $inMartes;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="in_miercoles", type="boolean", nullable=true)
+     */
+    private $inMiercoles;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="in_jueves", type="boolean", nullable=true)
+     */
+    private $inJueves;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="in_viernes", type="boolean", nullable=true)
+     */
+    private $inViernes;
 
     /**
      * @var \DateTime
@@ -43,20 +78,12 @@ class clDetallAgendaorientador
      */
     private $fhActualizacion;
 
-    /**
-     * @var \ESagaco.tbDiaSemana
-     *
-     * @ORM\ManyToOne(targetEntity="clDiaSemana")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="co_dia_semana", referencedColumnName="co_dia_semana")
-     * })
-     */
-    private $coDiaSemana;
+
 
      /**
-     * @var \ESagaco.tpAgendaOrientador
+     * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="clAgendaOrientador")
+     * @ORM\ManyToOne(targetEntity="clAgendaOrientador", inversedBy="coDetallAgendaorientador")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_agenda_orientador", referencedColumnName="co_agenda_orientador")
      * })
@@ -95,6 +122,121 @@ class clDetallAgendaorientador
     public function getHoInicio()
     {
         return $this->hoInicio;
+    }
+    
+    /**
+     * Set inLunes
+     *
+     * @param boolean $inLunes
+     * @return clDetallAgendaorientador
+     */
+    public function setInLunes($inLunes)
+    {
+        $this->inLunes = $inLunes;
+
+        return $this;
+    }
+
+    /**
+     * Get inLunes
+     *
+     * @return boolean 
+     */
+    public function getInLunes()
+    {
+        return $this->inLunes;
+    }
+    
+    /**
+     * Set inMartes
+     *
+     * @param boolean $inMartes
+     * @return clDetallAgendaorientador
+     */
+    public function setInMartes($inMartes)
+    {
+        $this->inMartes = $inMartes;
+
+        return $this;
+    }
+
+    /**
+     * Get inMartes
+     *
+     * @return boolean 
+     */
+    public function getInMartes()
+    {
+        return $this->inMartes;
+    }
+    
+    /**
+     * Set inMiercoles
+     *
+     * @param boolean $inMiercoles
+     * @return clDetallAgendaorientador
+     */
+    public function setInMiercoles($inMiercoles)
+    {
+        $this->inMiercoles = $inMiercoles;
+
+        return $this;
+    }
+
+    /**
+     * Get inMiercoles
+     *
+     * @return boolean 
+     */
+    public function getInMiercoles()
+    {
+        return $this->inMiercoles;
+    }
+    
+    /**
+     * Set inJueves
+     *
+     * @param boolean $inJueves
+     * @return clDetallAgendaorientador
+     */
+    public function setInJueves($inJueves)
+    {
+        $this->inJueves = $inJueves;
+
+        return $this;
+    }
+
+    /**
+     * Get inJueves
+     *
+     * @return boolean 
+     */
+    public function getInJueves()
+    {
+        return $this->inJueves;
+    }
+    
+    /**
+     * Set inViernes
+     *
+     * @param boolean $inViernes
+     * @return clDetallAgendaorientador
+     */
+    public function setInViernes($inViernes)
+    {
+        $this->inViernes = $inViernes;
+
+        return $this;
+    }
+
+    /**
+     * Get inViernes
+     *
+     * @return boolean 
+     */
+    public function getInViernes()
+    {
+        return $this->inViernes;
     }
 
     /**
@@ -142,30 +284,7 @@ class clDetallAgendaorientador
     {
         return $this->fhActualizacion;
     }
-
-    /**
-     * Set coDiaSemana
-     *
-     * @param \sagaco\DsagacoBundle\Entity\clDiaSemana $coDiaSemana
-     * @return clDetallAgendaorientador
-     */
-    public function setCoDiaSemana(\sagaco\DsagacoBundle\Entity\clDiaSemana $coDiaSemana = null)
-    {
-        $this->coDiaSemana = $coDiaSemana;
-
-        return $this;
-    }
-
-    /**
-     * Get coDiaSemana
-     *
-     * @return \sagaco\DsagacoBundle\Entity\clDiaSemana 
-     */
-    public function getCoDiaSemana()
-    {
-        return $this->coDiaSemana;
-    }
-
+    
     /**
      * Set coAgendaOrientador
      *

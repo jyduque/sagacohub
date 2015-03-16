@@ -41,10 +41,11 @@
             {#Muestra los campos del formulario#}
             <div class="table-responsive">
                 <table class="table table-bordered table-striped table-condensed">
+                    <caption>Horario de atención del orientador</caption>
                     <thead> 
                         <tr>
                             {# sorting of properties based on query components #}
-                            <th></th>
+                            <th>Hora</th>
                             <th>Lunes</th>
                             <th>Martes</th>
                             <th>Miércoles</th>
@@ -56,30 +57,108 @@
                         {% set hora = "08:00:00" %}
                         {% set hora1 = "08:00:00" %}
                         {% set tiempo =  objEntidad.coDuracion.nuDuracion %}
-
+                        {% set sesion =  tiempo*60 %}
+                        {% if tiempo == 60 %}
+                            {% set iteracion = 12 %}
+                        {% else %}
+                            {% set iteracion = 24 %}
+                        {% endif %}
+                        
                         {% set cIni = 1 %}
-                        {% set cFin = 36000/(tiempo*60) %}                        
-                        {% for i in cIni..cFin %}                            
-                            <tr class="yellow">
-                                <td>{{ hora|date('h:i a') }}</td>
-                                <td>
-                                        
-                                    
-                                </td>
-                                <td colspan="4" class="text-center error"><strong>No hay resultados</strong></td>
+                        {% set i = 1 %} 
+                        {% set j = 1 %}                       
+                        
+                        {% set cFin = 36000/(tiempo*60) %}                          
+                        {% for detalle in objEntidad.coDetallAgendaorientador %}
+                            {% set cIni = 1 %}
+                            {% if hora|date('h:i a') != detalle.hoInicio|date('h:i a') %} 
+                                {% if detalle.hoInicio|date('h:i a') > hora|date('h:i a')%}
+                                    {% set horaDif = detalle.hoInicio|date('h:i a') - hora|date('h:i a') %}                                    
+                                {% else %}
+                                    {% set horaDif = (hora|date('h:i a') - detalle.hoInicio|date('h:i a'))- 2 %}                                    
+                                {% endif %}    
+                                {% set j = 1 %}
+                                {% for j in cIni..horaDif %} 
+                                <tr>
+                                    <td>{{ hora|date('h:i a') }}</td>
+                                    <td>{{ j }}</td>
+                                    <td>{{ cIni }}</td>
+                                    <td>{{ horaDif }}</td>
+                                    <td>{{ i }}</td>
+                                    <td>{{ detalle.hoInicio|date('h:i a') }}</td>
+                                </tr>   
+                                {% set hora = (hora1+(sesion*(iteracion+i))) %}
+                                {% set i = i+1 %}
+                                {% endfor %}
+                                {% set cIni = 1 %} 
+                            {% endif %}
+                            <tr>
+                                <td>{{ detalle.hoInicio|date('h:i a') }}</td>
+                                {% if detalle.inLunes == 1 %}
+                                    <td class="success text-center">
+                                        <a title="Hora de atención">
+                                            <img src="../../../web/images/1426458376_calendar-today.png" alt="Hora de atención"/>
+                                        </a>
+                                    </td>  
+                                {% else %}
+                                    <td>{{ j }}</td>                                           
+                                {% endif %}
+                                {% if detalle.inMartes == 1 %}
+                                    <td class="success text-center">
+                                        <a title="Hora de atención">
+                                            <img src="../../../web/images/1426458376_calendar-today.png" alt="Hora de atención"/>
+                                        </a>
+                                    </td>  
+                                {% else %}
+                                    <td></td>                                           
+                                {% endif %}
+                                {% if detalle.inMiercoles == 1 %}
+                                    <td class="success text-center">
+                                        <a title="Hora de atención">
+                                            <img src="../../../web/images/1426458376_calendar-today.png" alt="Hora de atención"/>
+                                        </a>
+                                    </td>  
+                                {% else %}
+                                    <td></td>                                           
+                                {% endif %}
+                                {% if detalle.inJueves == 1 %}
+                                    <td class="success text-center">
+                                        <a title="Hora de atención">
+                                            <img src="../../../web/images/1426458376_calendar-today.png" alt="Hora de atención"/>
+                                        </a>
+                                    </td>  
+                                {% else %}
+                                    <td></td>                                           
+                                {% endif %}
+                                {% if detalle.inViernes == 1 %}
+                                    <td class="success text-center">
+                                        <a title="Hora de atención">
+                                            <img src="../../../web/images/1426458376_calendar-today.png" alt="Hora de atención"/>
+                                        </a>
+                                    </td>  
+                                {% else %}
+                                    <td>{{ i }}</td>                                           
+                                {% endif %}
                             </tr> 
-                            {% set hora = (hora1+(3600*(12+i))) %}
-                            
-                        {% endfor %}
-                        {% for tag in objEntidad.objDetalle %}
-                            
-                            <td>{{ tag.coDiaSemana }}</td>
-                                <td>
-                                        
-                                    
-                                </td>
-                                <td colspan="4" class="text-center error"><strong>No hay rs</strong></td>
-                        {% endfor %}
+                            {% set hora = (hora1+(sesion*(iteracion+i))) %}
+                            {% set i = i+1 %}
+                        {% endfor %}  
+                        {% set j = 1 %}
+                        {% set cIni = i %}
+                        {% if cIni <= cFin %}
+                            {% for j in cIni..cFin %} 
+                            <tr>
+                                <td>{{ hora|date('h:i a') }}</td>
+                                <td>{{ cIni }}</td>
+                                <td>{{ j }}</td>
+                                <td>{{ cFin }}</td>
+                                <td></td>
+                                <td></td>
+                            </tr>   
+                            {% set hora = (hora1+(sesion*(iteracion+i))) %}
+                            {% set i = i+1 %}
+                            {% endfor %}
+                        {% endif %}
                     </tbody>
                 </table>
             </div>

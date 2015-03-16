@@ -67,12 +67,14 @@ class clAgendaOrientador
      */
     private $fhActualizacion;
     
-    
-    protected $objDetalle;
+    /**
+     * @ORM\OneToMany(targetEntity="clDetallAgendaorientador", mappedBy="coAgendaOrientador")
+     */
+    private $coDetallAgendaorientador;
     
     public function __construct()
     {
-        $this->objDetalle = new ArrayCollection();
+        $this->coDetallAgendaorientador = new ArrayCollection();        
     }
 
 
@@ -201,13 +203,12 @@ class clAgendaOrientador
         return $this->coDuracion;
     }
     
-    public function getObjDetalle()
+    public function addCoDetallAgendaorientador(\sagaco\DsagacoBundle\Entity\clDetallAgendaorientador $coDetallAgendaorientador)
     {
-        return $this->objDetalle;
+        $this->coDetallAgendaorientador[] = $coDetallAgendaorientador;
     }
-
-    public function setObjDetalle(ArrayCollection $objDetalle)
+    public function getCoDetallAgendaorientador()
     {
-        $this->objDetalle = $objDetalle;
+        return $this->coDetallAgendaorientador;
     }
 }

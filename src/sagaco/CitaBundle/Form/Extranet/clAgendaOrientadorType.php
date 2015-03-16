@@ -26,7 +26,7 @@ class clAgendaOrientadorType extends AbstractType
             ->add('coOrientador')
             ->add('coSemestre')
             ->add('coDuracion');
-        $objConstructor->add('objDetalle', 'collection', array('type' => new clDetallAgendaorientadorType()));
+        $objConstructor->add('coDetallAgendaorientador', 'collection', array('type' => new clDetallAgendaorientadorType()));
     }
     
     /**
