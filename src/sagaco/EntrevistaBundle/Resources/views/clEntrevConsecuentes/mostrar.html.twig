@@ -1,12 +1,12 @@
 {% extends '::plantilla.html.twig' %}
 
-{% block id 'entrevista' %}
+{% block id 'entrevcontacto' %}
     
     {% block ruta %}
     <div class="container navbar-blanca">                
         <ul class="breadcrumb-modi">
             <li><a href="#"><small>Inicio</small></a></li>
-            <li><a href="{{ path('pgEntrevista') }}"><small>Entrevista</small></a></li>
+            <li><a href="{{ path('pgEntrevContacto') }}"><small>Entrevista de contacto</small></a></li>
             <li class="active"><small>Detalle</small></li>
         </ul>                              
     </div> 
@@ -17,15 +17,15 @@
         
             <fieldset>
                 {# Titulo del requisito #}
-                <legend>Detalle entrevista
+                <legend>Detalle entrevista de contacto
                     <div class="pull-right">
                         {{ form(delete_form) }}
                     </div> 
                     <div class="pull-right">
-                        <a href="{{ path('pgEntrevista') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar al listado">
+                        <a href="{{ path('pgEntrevContacto') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar al listado">
                             <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
                         </a> 
-                        <a href="{{ path('pgEntrevista_editar', { 'id': objEntidad.coEntrevista }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar">
+                        <a href="{{ path('pgEntrevContacto_editar', { 'id': objEntidad.coEntrevista }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar">
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                         </a> 
                     </div> 

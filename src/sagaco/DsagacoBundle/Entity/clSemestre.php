@@ -254,4 +254,9 @@ class clSemestre
     {
         return $this->fhActualizacion;
     }
+    
+    public function __toString()
+    {
+        return $this->getNuSemestAnio().'-'.$this->getNuSemestLapso();        
+    }
 }

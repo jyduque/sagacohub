@@ -3,11 +3,13 @@
 namespace sagaco\DsagacoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert; 
 
 /**
- * ESagaco.tbAgendaOrientador
+ * ESagaco.tpAgendaOrientador
  *
- * @ORM\Table(name="e_sagaco.tb_agenda_orientador", indexes={@ORM\Index(name="IDX_A2043AA0712B9E7B", columns={"co_dia_semana"}), @ORM\Index(name="IDX_A2043AA0105A000", columns={"co_duracion"}), @ORM\Index(name="IDX_A2043AA04BD8FA32", columns={"co_orientador"}), @ORM\Index(name="IDX_A2043AA03BFCC05A", columns={"co_semestre"})})
+ * @ORM\Table(name="e_sagaco.tp_agenda_orientador", indexes={@ORM\Index(name="IDX_A2043AA04BD8FA32", columns={"co_orientador"}), @ORM\Index(name="IDX_A2043AA03BFCC05A", columns={"co_semestre"})})
  * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clAgendaOrientadorRepository")
  */
 class clAgendaOrientador
@@ -23,48 +25,7 @@ class clAgendaOrientador
     private $coAgendaOrientador;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="ho_inicio", type="time", nullable=false)
-     */
-    private $hoInicio;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="fh_creacion", type="datetime", nullable=false)
-     */
-    private $fhCreacion;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="fh_actualizacion", type="datetime", nullable=false)
-     */
-    private $fhActualizacion;
-
-    /**
-     * @var \ESagaco.tbDiaSemana
-     *
-     * @ORM\ManyToOne(targetEntity="clDiaSemana")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="co_dia_semana", referencedColumnName="co_dia_semana")
-     * })
-     */
-    private $coDiaSemana;
-
-    /**
-     * @var \ESagaco.tbDuracion
-     *
-     * @ORM\ManyToOne(targetEntity="clDuracion")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="co_duracion", referencedColumnName="co_duracion")
-     * })
-     */
-    private $coDuracion;
-
-    /**
-     * @var \ESagaco.tbOrientador
+     * @var integer
      *
      * @ORM\ManyToOne(targetEntity="clOrientador")
      * @ORM\JoinColumns({
@@ -82,7 +43,44 @@ class clAgendaOrientador
      * })
      */
     private $coSemestre;
+    
+    /**
+     * @var \ESagaco.tbDuracion
+     *
+     * @ORM\ManyToOne(targetEntity="clDuracion")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="co_duracion", referencedColumnName="co_duracion")
+     * })
+     */
+    private $coDuracion;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fh_creacion", type="datetime", nullable=false)
+     */
+    private $fhCreacion;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fh_actualizacion", type="datetime", nullable=false)
+     */
+    private $fhActualizacion;
+    
+    /**
+     * Bidirectional - One-To-Many (INVERSE SIDE)
+     * 
+     * @ORM\OneToMany(targetEntity="clDetallAgendaorientador", mappedBy="coAgendaOrientador", cascade={"persist", "remove"})
+     * @ORM\OrderBy({"hoInicio" = "ASC"})
+     * @Assert\Valid()
+     */
+    private $detallAgenda;
+    
+    public function __construct()
+    {
+        $this->detallAgenda = new ArrayCollection();        
+    }
 
 
     /**
@@ -93,29 +91,6 @@ class clAgendaOrientador
     public function getCoAgendaOrientador()
     {
         return $this->coAgendaOrientador;
-    }
-
-    /**
-     * Set hoInicio
-     *
-     * @param \DateTime $hoInicio
-     * @return clAgendaOrientador
-     */
-    public function setHoInicio($hoInicio)
-    {
-        $this->hoInicio = $hoInicio;
-
-        return $this;
-    }
-
-    /**
-     * Get hoInicio
-     *
-     * @return \DateTime 
-     */
-    public function getHoInicio()
-    {
-        return $this->hoInicio;
     }
 
     /**
@@ -165,52 +140,6 @@ class clAgendaOrientador
     }
 
     /**
-     * Set coDiaSemana
-     *
-     * @param \sagaco\DsagacoBundle\Entity\clDiaSemana $coDiaSemana
-     * @return clAgendaOrientador
-     */
-    public function setCoDiaSemana(\sagaco\DsagacoBundle\Entity\clDiaSemana $coDiaSemana = null)
-    {
-        $this->coDiaSemana = $coDiaSemana;
-
-        return $this;
-    }
-
-    /**
-     * Get coDiaSemana
-     *
-     * @return \sagaco\DsagacoBundle\Entity\clDiaSemana 
-     */
-    public function getCoDiaSemana()
-    {
-        return $this->coDiaSemana;
-    }
-
-    /**
-     * Set coDuracion
-     *
-     * @param \sagaco\DsagacoBundle\Entity\clDuracion $coDuracion
-     * @return clAgendaOrientador
-     */
-    public function setCoDuracion(\sagaco\DsagacoBundle\Entity\clDuracion $coDuracion = null)
-    {
-        $this->coDuracion = $coDuracion;
-
-        return $this;
-    }
-
-    /**
-     * Get coDuracion
-     *
-     * @return \sagaco\DsagacoBundle\Entity\clDuracion 
-     */
-    public function getCoDuracion()
-    {
-        return $this->coDuracion;
-    }
-
-    /**
      * Set coOrientador
      *
      * @param \sagaco\DsagacoBundle\Entity\clOrientador $coOrientador
@@ -254,5 +183,48 @@ class clAgendaOrientador
     public function getCoSemestre()
     {
         return $this->coSemestre;
+    }
+    
+     /**
+     * Set coDuracion
+     *
+     * @param \sagaco\DsagacoBundle\Entity\clDuracion $coDuracion
+     * @return clAgendaOrientador
+     */
+    public function setCoDuracion(\sagaco\DsagacoBundle\Entity\clDuracion $coDuracion = null)
+    {
+        $this->coDuracion = $coDuracion;
+
+        return $this;
+    }
+
+    /**
+     * Get coDuracion
+     *
+     * @return \sagaco\DsagacoBundle\Entity\clDuracion 
+     */
+    public function getCoDuracion()
+    {
+        return $this->coDuracion;
+    }
+    
+    public function addDetallAgenda(\sagaco\DsagacoBundle\Entity\clDetallAgendaorientador $arrDetalle)
+    {
+        $this->detallAgenda[] = $arrDetalle;
+        $arrDetalle->setCoAgendaOrientador($this);
+    }
+    
+     
+    public function setDetallAgenda(ArrayCollection $arrDetalle)
+    {
+        $this->detallAgenda = $arrDetalle;
+        foreach ($arrDetalle as $detalle) {
+            $detalle->setCoAgendaOrientador($this);
+        }
+    }
+    
+    public function getDetallAgenda()
+    {
+        return $this->detallAgenda;
     }
 }

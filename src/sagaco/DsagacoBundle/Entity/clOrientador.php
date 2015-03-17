@@ -249,6 +249,6 @@ class clOrientador
     
     public function __toString()
     {
-        return $this->getCoRecursHumano();
+        return $this->coRecursHumano->getTxPrimerNombre().' '.$this->coRecursHumano->getTxPrimerApellido();
     }
 }

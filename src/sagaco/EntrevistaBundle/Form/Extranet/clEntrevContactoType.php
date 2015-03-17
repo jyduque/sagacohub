@@ -54,6 +54,6 @@ class clEntrevistaType extends AbstractType
      */
     public function getName()
     {
-        return 'sagaco_entrevistabundle_clEntrevistatype';
+        return 'sagaco_entrevistabundle_clEntrevContactotype';
     }
 }

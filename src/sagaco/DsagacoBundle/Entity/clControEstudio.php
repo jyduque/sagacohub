@@ -996,6 +996,6 @@ class clControEstudio
     
     public function __toString()
     {
-        return $this->getTxPrimerNombre();
+        return $this->getTxPrimerNombre().' '.$this->getTxPrimerApellido();
     }
 }

@@ -25,7 +25,7 @@ class clCarrera
     /**
      * @var string
      *
-     * @ORM\Column(name="nb_carrera", type="string", length=30, nullable=false)
+     * @ORM\Column(name="nb_carrera", type="string", length=100, nullable=false)
      */
     private $nbCarrera;
 
