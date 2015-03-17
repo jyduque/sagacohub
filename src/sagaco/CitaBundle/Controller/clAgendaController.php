@@ -30,20 +30,27 @@ class clAgendaController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();       
+    public function indexAction(Request $objPeticion)
+    {          
+        $intOrientador = 1;
+        $em = $this->getDoctrine()->getManager();
+
+        $objEntidad = $em->getRepository('DsagacoBundle:clAgendaOrientador')
+                ->findBy(
+                        array('coOrientador' => $intOrientador),
+                        array('coSemestre' => 'ASC'));        
+                
+        $objPaginador  = $this->get('knp_paginator');
+        $objPagina = $objPaginador->
+                paginate($objEntidad, 
+                        $objPeticion->query->get('page', 1)/*page number*/, 10/*limit per page*/);
         
-        $intOrientador = '1';
-        $intSemestre = '1';        
-        $id=1;
-        
-        $objEntidad = $em->getRepository('DsagacoBundle:clAgendaOrientador')->findOneBy(
-                array(
-		'coOrientador' => $intOrientador,
-		'coSemestre' => $intSemestre
-                ));  
-        return ['objEntidad' => $objEntidad];
+        // set an array of custom parameters
+        //La clase pull-right envía el paginador a mano derecha
+        $objPagina->setCustomParameters(array('class' => 'pull-right'));        
+
+        return ['objPagina' => $objPagina
+            ];
     } 
     
     /**
@@ -121,5 +128,31 @@ class clAgendaController extends Controller
             'objEntidad' => $objEntidad,
             'form'   => $form->createView(),
         );              
+    }
+    
+    /**
+     * Muestra una entidad específica de tipo clAgendaOrientador y clDetallAgendaorientador.
+     *
+     * @Route("/{id},{blnBandera}", name="pgAgenda_mostrar")
+     * @Method("GET")
+     * @Template()
+     */
+    public function mostrarAction($id, $blnBandera)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $objEntidad = $em->getRepository('DsagacoBundle:clAgendaOrientador')->find($id);   
+        
+
+        if (!$objEntidad) {
+            throw $this->createNotFoundException('Imposible encontrar la Agenda del orientador.');
+        }
+
+        //$objEliminForma = $this->eliminarForma($id);
+
+        return ['objEntidad' => $objEntidad,
+            'blnBandera' => $blnBandera,
+            //'delete_form' => $objEliminForma->createView(),
+            ];        
     }
 }
