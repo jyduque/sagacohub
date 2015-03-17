@@ -43,13 +43,83 @@ class clAgendaController extends Controller
 		'coOrientador' => $intOrientador,
 		'coSemestre' => $intSemestre
                 ));  
-        
-        
-        
-                
-       
-        //return $this->render('CitaBundle:clAgenda:index.html.twig',
-          //      array('objEntidad' => $objEntidad));
         return ['objEntidad' => $objEntidad];
-    }  
+    } 
+    
+    /**
+     * Crea una entidad tipo clAgendaOrientador nueva.
+     *
+     * @Route("/", name="pgAgenda_crear")
+     * @Method("POST")
+     * @Template("CitaBundle:clAgenda:registrar.html.twig")
+     */
+    public function crearAction(Request $objPeticion)
+    {
+        $objEntidad = new clAgendaOrientador();
+        $objDetalle = new clDetallAgendaorientador();
+        $form = $this->generarForma($objEntidad);
+        $form->handleRequest($objPeticion);
+        
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager(); 
+            //$objEntidad->addDetallAgenda($objDetalle);            
+            $objEntidad->setFhCreacion(new \DateTime());
+            $objEntidad->setFhActualizacion(new \DateTime());            
+            $em->persist($objEntidad);
+            //$em->persist($objDetalle);
+            $em->flush();
+            $blnBandera = 1;
+
+            return $this->redirect($this->generateUrl('pgAgenda_mostrar', array('id' => $objEntidad->getCoAgendaOrientador(), 'blnBandera' => $blnBandera)));
+        }
+        else {
+            return array(
+            'objEntidad' => $objEntidad,
+            'form'   => $form->createView(),
+            );
+        }
+
+        return array(
+            'objEntidad' => $objEntidad,
+            'form'   => $form->createView(),
+        );        
+    }
+    
+    /**
+     * Genera una forma para crear una entidad de tipo clAgendaOrientador.
+     *
+     * @param clAgendaOrientador $objEntidad La entidad
+     *
+     * @return \Symfony\Component\Form\Form La forma
+     */
+    private function generarForma(clAgendaOrientador $objEntidad)
+    {
+        $form = $this->createForm(new clAgendaOrientadorType(), $objEntidad, array(
+            'action' => $this->generateUrl('pgAgenda_crear'),
+            'method' => 'POST',
+        ));
+
+        $form->add('submit', 'submit', array('label' => 'Configurar'));
+
+        return $form;        
+    }
+
+    /**
+     * Desplega un forma para crear una nueva entidad tipo clAgendaOrientador.
+     *
+     * @Route("/registrar", name="pgAgenda_registrar")
+     * @Method("GET")
+     * @Template()
+     */
+    public function registrarAction()
+    {
+        $objEntidad = new clAgendaOrientador();
+        $form   = $this->generarForma($objEntidad);
+
+        return array(
+            'objEntidad' => $objEntidad,
+            'form'   => $form->createView(),
+        );              
+    }
 }

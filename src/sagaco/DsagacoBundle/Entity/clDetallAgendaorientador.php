@@ -64,29 +64,15 @@ class clDetallAgendaorientador
      */
     private $inViernes;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="fh_creacion", type="datetime", nullable=false)
-     */
-    private $fhCreacion;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="fh_actualizacion", type="datetime", nullable=false)
-     */
-    private $fhActualizacion;
-
-
-
      /**
+      * Bidirectional - Many DetalleAgenda es generado por una AgendaOrientador (OWNING SIDE)
+      * 
      * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="clAgendaOrientador", inversedBy="coDetallAgendaorientador")
+     * @ORM\ManyToOne(targetEntity="clAgendaOrientador", inversedBy="detallAgenda")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="co_agenda_orientador", referencedColumnName="co_agenda_orientador")
-     * })
+     *   @ORM\JoinColumn(name="co_agenda_orientador", referencedColumnName="co_agenda_orientador")})
+     * @ORM\OrderBy({"hoInicio" = "ASC"})
      */
     private $coAgendaOrientador;
 
@@ -237,53 +223,7 @@ class clDetallAgendaorientador
     public function getInViernes()
     {
         return $this->inViernes;
-    }
-
-    /**
-     * Set fhCreacion
-     *
-     * @param \DateTime $fhCreacion
-     * @return clDetallAgendaorientador
-     */
-    public function setFhCreacion($fhCreacion)
-    {
-        $this->fhCreacion = $fhCreacion;
-
-        return $this;
-    }
-
-    /**
-     * Get fhCreacion
-     *
-     * @return \DateTime 
-     */
-    public function getFhCreacion()
-    {
-        return $this->fhCreacion;
-    }
-
-    /**
-     * Set fhActualizacion
-     *
-     * @param \DateTime $fhActualizacion
-     * @return clDetallAgendaorientador
-     */
-    public function setFhActualizacion($fhActualizacion)
-    {
-        $this->fhActualizacion = $fhActualizacion;
-
-        return $this;
-    }
-
-    /**
-     * Get fhActualizacion
-     *
-     * @return \DateTime 
-     */
-    public function getFhActualizacion()
-    {
-        return $this->fhActualizacion;
-    }
+    }    
     
     /**
      * Set coAgendaOrientador
@@ -291,7 +231,7 @@ class clDetallAgendaorientador
      * @param \sagaco\DsagacoBundle\Entity\clAgendaOrientador $coAgendaOrientador
      * @return clDetallAgendaorientador
      */
-    public function setCoAgendaOrientador(\sagaco\DsagacoBundle\Entity\clAgendaOrientador $coAgendaOrientador = null)
+    public function setCoAgendaOrientador(\sagaco\DsagacoBundle\Entity\clAgendaOrientador $coAgendaOrientador)
     {
         $this->coAgendaOrientador = $coAgendaOrientador;
 

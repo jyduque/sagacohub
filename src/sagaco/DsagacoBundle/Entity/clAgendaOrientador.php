@@ -4,6 +4,7 @@ namespace sagaco\DsagacoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert; 
 
 /**
  * ESagaco.tpAgendaOrientador
@@ -24,7 +25,7 @@ class clAgendaOrientador
     private $coAgendaOrientador;
 
     /**
-     * @var \ESagaco.tbOrientador
+     * @var integer
      *
      * @ORM\ManyToOne(targetEntity="clOrientador")
      * @ORM\JoinColumns({
@@ -68,13 +69,17 @@ class clAgendaOrientador
     private $fhActualizacion;
     
     /**
-     * @ORM\OneToMany(targetEntity="clDetallAgendaorientador", mappedBy="coAgendaOrientador")
+     * Bidirectional - One-To-Many (INVERSE SIDE)
+     * 
+     * @ORM\OneToMany(targetEntity="clDetallAgendaorientador", mappedBy="coAgendaOrientador", cascade={"persist", "remove"})
+     * @ORM\OrderBy({"hoInicio" = "ASC"})
+     * @Assert\Valid()
      */
-    private $coDetallAgendaorientador;
+    private $detallAgenda;
     
     public function __construct()
     {
-        $this->coDetallAgendaorientador = new ArrayCollection();        
+        $this->detallAgenda = new ArrayCollection();        
     }
 
 
@@ -203,12 +208,23 @@ class clAgendaOrientador
         return $this->coDuracion;
     }
     
-    public function addCoDetallAgendaorientador(\sagaco\DsagacoBundle\Entity\clDetallAgendaorientador $coDetallAgendaorientador)
+    public function addDetallAgenda(\sagaco\DsagacoBundle\Entity\clDetallAgendaorientador $arrDetalle)
     {
-        $this->coDetallAgendaorientador[] = $coDetallAgendaorientador;
+        $this->detallAgenda[] = $arrDetalle;
+        $arrDetalle->setCoAgendaOrientador($this);
     }
-    public function getCoDetallAgendaorientador()
+    
+     
+    public function setDetallAgenda(ArrayCollection $arrDetalle)
     {
-        return $this->coDetallAgendaorientador;
+        $this->detallAgenda = $arrDetalle;
+        foreach ($arrDetalle as $detalle) {
+            $detalle->setCoAgendaOrientador($this);
+        }
+    }
+    
+    public function getDetallAgenda()
+    {
+        return $this->detallAgenda;
     }
 }

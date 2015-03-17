@@ -23,12 +23,26 @@ class clDetallAgendaorientadorType extends AbstractType
     public function buildForm(FormBuilderInterface $objConstructor, array $arrOpcion)
     {
         $objConstructor
-            ->add('hoInicio')
-            ->add('inLunes')
-            ->add('inMartes')
-            ->add('inMiercoles')
-            ->add('inJueves')
-            ->add('inViernes');
+            ->add('hoInicio', 'time', array(
+                'widget' => 'choice',
+                'model_timezone' => 'America/Caracas',
+                'empty_value' => array('hour' => 'Hora', 'minute' => 'Minutos'),
+                'required' => true))
+            ->add('inLunes', 'checkbox', array(
+                'label' => 'Lunes',
+                'required' => false))
+            ->add('inMartes', 'checkbox', array(
+                'label' => 'Martes',
+                'required' => false))
+            ->add('inMiercoles', 'checkbox', array(
+                'label' => 'Miércoles',
+                'required' => false))
+            ->add('inJueves', 'checkbox', array(
+                'label' => 'Jueves',
+                'required' => false))
+            ->add('inViernes', 'checkbox', array(
+                'label' => 'Viernes',
+                'required' => false));
     }
     
     /**
