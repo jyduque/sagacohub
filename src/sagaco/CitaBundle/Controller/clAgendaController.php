@@ -155,4 +155,95 @@ class clAgendaController extends Controller
             //'delete_form' => $objEliminForma->createView(),
             ];        
     }
+    
+    /**
+     * Desplega la forma para actualizar una entidad de clAgendaOrientador y clDetallAgendaorientador existente.
+     *
+     * @Route("/{id}/editar", name="pgAgenda_editar")
+     * @Method("GET")
+     * @Template()
+     */
+    public function editarAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $objEntidad = $em->getRepository('DsagacoBundle:clAgendaOrientador')->find($id);
+
+        if (!$objEntidad) {
+            throw $this->createNotFoundException('Imposible encontrar la agenda personalizada.');
+        }
+
+        $objEditarForma = $this->editarForma($objEntidad);
+        //$objEliminForma = $this->eliminarForma($id);
+
+        return array(
+            'objEntidad'      => $objEntidad,
+            'edit_form'   => $objEditarForma->createView(),
+            //'delete_form' => $objEliminForma->createView(),
+        );        
+    }
+    
+    /**
+    * Crea una forma para actualizar una entidad de clAgendaOrientador y clDetallAgendaorientador.
+    *
+    * @param clAgendaOrientador $objEntidad La entidad
+    *
+    * @return \Symfony\Component\Form\Form La forma
+    */
+    private function editarForma(clAgendaOrientador $objEntidad)
+    {
+        $form = $this->createForm(new clAgendaOrientadorType(), $objEntidad, array(
+            'action' => $this->generateUrl('pgAgenda_actualizar', array('id' => $objEntidad->getCoAgendaOrientador())),
+            'method' => 'PUT',
+        ));
+
+        $form->add('submit', 'submit', array('label' => 'Actualizar'));
+        /*$form->add('submit', 'submit', ['label' => 'Actualizar', 'attr' => ['data-toggle' => 'tooltip',
+                'data-placement' => 'bottom',
+                'title' => '',
+                'data-original-title' => 'Actualizar']]);*/
+        
+
+        return $form;        
+    }
+    
+    /**
+     * Edita una entidad de clAgendaOrientador y clDetallAgendaorientador existente.
+     *
+     * @Route("/{id}", name="pgAgenda_actualizar")
+     * @Method("PUT")
+     * @Template("CitaBundle:clAgenda:editar.html.twig")
+     */
+    public function actualizarAction(Request $objPeticion, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+
+        $objEntidad = $em->getRepository('DsagacoBundle:clAgendaOrientador')->find($id);
+
+        if (!$objEntidad) {
+            throw $this->createNotFoundException('Imposible encontrar la agenda personalizada.');
+        }
+
+        //$objEliminForma = $this->eliminarForma($id);
+        $objEditarForma = $this->editarForma($objEntidad);
+        $objEditarForma->handleRequest($objPeticion);
+
+        if ($objEditarForma->isValid()) {
+            $objEntidad->setFhActualizacion(new \DateTime());
+            $em->persist($objEntidad);
+            $em->flush();
+            
+            $blnBandera = 2;
+
+            //return $this->redirect($this->generateUrl('pgRol_editar', array('id' => $id)));
+            return $this->redirect($this->generateUrl('pgAgenda_mostrar', array('id' => $id, 'blnBandera' => $blnBandera)));
+        }
+
+        return array(
+            'objEntidad'      => $objEntidad,
+            'edit_form'   => $objEditarForma->createView(),
+            //'delete_form' => $objEliminForma->createView(),
+        );        
+    }
 }

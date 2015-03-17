@@ -71,7 +71,7 @@ class clAgendaOrientador
     /**
      * Bidirectional - One-To-Many (INVERSE SIDE)
      * 
-     * @ORM\OneToMany(targetEntity="clDetallAgendaorientador", mappedBy="coAgendaOrientador", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="clDetallAgendaorientador", mappedBy="coAgendaOrientador", cascade={"persist", "remove"}, orphanRemoval=true)
      * @ORM\OrderBy({"hoInicio" = "ASC"})
      * @Assert\Valid()
      */
@@ -208,19 +208,19 @@ class clAgendaOrientador
         return $this->coDuracion;
     }
     
-    public function addDetallAgenda(\sagaco\DsagacoBundle\Entity\clDetallAgendaorientador $arrDetalle)
+    public function addDetallAgenda(\sagaco\DsagacoBundle\Entity\clDetallAgendaorientador $detallAgenda)
     {
-        $this->detallAgenda[] = $arrDetalle;
-        $arrDetalle->setCoAgendaOrientador($this);
+        $this->detallAgenda[] = $detallAgenda;
+        $detallAgenda->setCoAgendaOrientador($this);
     }
     
      
-    public function setDetallAgenda(ArrayCollection $arrDetalle)
-    {
-        $this->detallAgenda = $arrDetalle;
-        foreach ($arrDetalle as $detalle) {
+    public function setDetallAgenda(ArrayCollection $detallAgenda)
+    {       
+        foreach ($detallAgenda as $detalle) {
             $detalle->setCoAgendaOrientador($this);
         }
+        $this->detallAgenda = $detallAgenda;
     }
     
     public function getDetallAgenda()
