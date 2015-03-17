@@ -3,17 +3,11 @@
 namespace sagaco\PruebaBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
-    public function pruebaAction()
+    public function indexAction($name)
     {
-        return $this->render('PruebaBundle:Default:prueba.html.twig');
-    }
-    
-    public function instruDVIAction()
-    {
-        return $this->render('PruebaBundle:Default:instruDVI.html.twig');
+        return $this->render('PruebaBundle:Default:index.html.twig', array('name' => $name));
     }
 }
