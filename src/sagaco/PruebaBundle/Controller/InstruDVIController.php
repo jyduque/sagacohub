@@ -1,28 +1,28 @@
 <?php
 
-namespace sagaco\AdminBundle\Controller;
+namespace sagaco\InfoBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use sagaco\DsagacoBundle\Entity\clCarrera;
-use sagaco\AdminBundle\Form\Backend\clCarreraType;
+use sagaco\DsagacoBundle\Entity\clCita;
+use sagaco\CitaBundle\Form\Frontend\clCitaType;
 
 /**
- * Controlador de clCarrera.
+ * Controlador de clCita.
  *
- * @Route("/pgCarrera")
+ * @Route("/pgCita")
  */
-class clCarreraController extends Controller
+class clCitaController extends Controller
 {
     var $blnBandera;
     
     /**
-     * Lists todas las entidades de clCarrera.
+     * Lists todas las entidades de clCita.
      *
-     * @Route("/", name="pgCarrera")
+     * @Route("/", name="pgCita")
      * @Method("GET")
      * @Template()
      */
@@ -30,12 +30,12 @@ class clCarreraController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $objEntidad = $em->getRepository('DsagacoBundle:clCarrera')->listar();        
+        $objEntidad = $em->getRepository('DsagacoBundle:clCita')->listar();        
                 
         $objPaginador  = $this->get('knp_paginator');
         $objPagina = $objPaginador->
                 paginate($objEntidad, 
-                        $objPeticion->query->get('page', 1)/*page number*/, 9/*limit per page*/);
+                        $objPeticion->query->get('page', 1)/*page number*/, 5/*limit per page*/);
         
         // set an array of custom parameters
         //La clase pull-right envía el paginador a mano derecha
@@ -46,15 +46,15 @@ class clCarreraController extends Controller
     }
     
     /**
-     * Crea una entidad tipo clCarrera nueva.
+     * Crea una entidad tipo clCita nueva.
      *
-     * @Route("/", name="pgCarrera_crear")
+     * @Route("/", name="pgCita_crear")
      * @Method("POST")
-     * @Template("DsagacoBundle:clCarrera:registrar.html.twig")
+     * @Template("DsagacoBundle:clCita:registrar.html.twig")
      */
     public function crearAction(Request $objPeticion)
     {
-        $objEntidad = new clCarrera();
+        $objEntidad = new clCita();
         $form = $this->generarForma($objEntidad);
         $form->handleRequest($objPeticion);
 
@@ -66,7 +66,7 @@ class clCarreraController extends Controller
             $em->flush();
             $blnBandera = 1;
 
-            return $this->redirect($this->generateUrl('pgCarrera_mostrar', array('id' => $objEntidad->getCoCarrera(), 'blnBandera' => $blnBandera)));
+            return $this->redirect($this->generateUrl('pgCita_mostrar', array('id' => $objEntidad->getCoCita(), 'blnBandera' => $blnBandera)));
         }
 
         return array(
@@ -79,14 +79,14 @@ class clCarreraController extends Controller
     /**
      * Genera una forma para crear una entidad de tipo clGrupoRol.
      *
-     * @param clCarrera $objEntidad La entidad
+     * @param clCita $objEntidad La entidad
      *
      * @return \Symfony\Component\Form\Form La forma
      */
-    private function generarForma(clCarrera $objEntidad)
+    private function generarForma(clCita $objEntidad)
     {
-        $form = $this->createForm(new clCarreraType(), $objEntidad, array(
-            'action' => $this->generateUrl('pgCarrera_crear'),
+        $form = $this->createForm(new clCitaType(), $objEntidad, array(
+            'action' => $this->generateUrl('pgCita_crear'),
             'method' => 'POST',
         ));
 
@@ -98,13 +98,13 @@ class clCarreraController extends Controller
     /**
      * Desplega un forma para crear una nueva entidad tipo clGrupoRol.
      *
-     * @Route("/registrar", name="pgCarrera_registrar")
+     * @Route("/registrar", name="pgCita_registrar")
      * @Method("GET")
      * @Template()
      */
     public function registrarAction()
     {
-        $objEntidad = new clCarrera();
+        $objEntidad = new clCita();
         $form   = $this->generarForma($objEntidad);
 
         return array(
@@ -114,9 +114,9 @@ class clCarreraController extends Controller
     }
 
     /**
-     * Muestra una entidad específica de tipo clCarrera.
+     * Muestra una entidad específica de tipo clCita.
      *
-     * @Route("/{id},{blnBandera}", name="pgCarrera_mostrar")
+     * @Route("/{id},{blnBandera}", name="pgCita_mostrar")
      * @Method("GET")
      * @Template()
      */
@@ -124,7 +124,7 @@ class clCarreraController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $objEntidad = $em->getRepository('DsagacoBundle:clCarrera')->find($id);
+        $objEntidad = $em->getRepository('DsagacoBundle:clCita')->find($id);
 
         if (!$objEntidad) {
             throw $this->createNotFoundException('Imposible encontrar el Área.');
@@ -139,9 +139,9 @@ class clCarreraController extends Controller
     }
 
     /**
-     * Desplega la forma para actualizar una entidad de clCarrera existente.
+     * Desplega la forma para actualizar una entidad de clCita existente.
      *
-     * @Route("/{id}/editar", name="pgCarrera_editar")
+     * @Route("/{id}/editar", name="pgCita_editar")
      * @Method("GET")
      * @Template()
      */
@@ -149,7 +149,7 @@ class clCarreraController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $objEntidad = $em->getRepository('DsagacoBundle:clCarrera')->find($id);
+        $objEntidad = $em->getRepository('DsagacoBundle:clCita')->find($id);
 
         if (!$objEntidad) {
             throw $this->createNotFoundException('Imposible encontrar el área.');
@@ -166,16 +166,16 @@ class clCarreraController extends Controller
     }
 
     /**
-    * Crea una forma para actualizar una entidad de clCarrera.
+    * Crea una forma para actualizar una entidad de clCita.
     *
-    * @param clCarrera $objEntidad La entidad
+    * @param clCita $objEntidad La entidad
     *
     * @return \Symfony\Component\Form\Form La forma
     */
-    private function editarForma(clCarrera $objEntidad)
+    private function editarForma(clCita $objEntidad)
     {
-        $form = $this->createForm(new clCarreraType(), $objEntidad, array(
-            'action' => $this->generateUrl('pgCarrera_actualizar', array('id' => $objEntidad->getCoCarrera())),
+        $form = $this->createForm(new clCitaType(), $objEntidad, array(
+            'action' => $this->generateUrl('pgCita_actualizar', array('id' => $objEntidad->getCoCita())),
             'method' => 'PUT',
         ));
 
@@ -190,18 +190,18 @@ class clCarreraController extends Controller
     }
     
     /**
-     * Edita una entidad de clCarrera existente.
+     * Edita una entidad de clCita existente.
      *
-     * @Route("/{id}", name="pgCarrera_actualizar")
+     * @Route("/{id}", name="pgCita_actualizar")
      * @Method("PUT")
-     * @Template("DsagacoBundle:clCarrera:editar.html.twig")
+     * @Template("DsagacoBundle:clCita:editar.html.twig")
      */
     public function actualizarAction(Request $objPeticion, $id)
     {
         $em = $this->getDoctrine()->getManager();
         
 
-        $objEntidad = $em->getRepository('DsagacoBundle:clCarrera')->find($id);
+        $objEntidad = $em->getRepository('DsagacoBundle:clCita')->find($id);
 
         if (!$objEntidad) {
             throw $this->createNotFoundException('Imposible encontrar el área.');
@@ -218,7 +218,7 @@ class clCarreraController extends Controller
             $blnBandera = 2;
 
             //return $this->redirect($this->generateUrl('pgRol_editar', array('id' => $id)));
-            return $this->redirect($this->generateUrl('pgCarrera_mostrar', array('id' => $id, 'blnBandera' => $blnBandera)));
+            return $this->redirect($this->generateUrl('pgCita_mostrar', array('id' => $id, 'blnBandera' => $blnBandera)));
         }
 
         return array(
@@ -229,9 +229,9 @@ class clCarreraController extends Controller
     }
     
     /**
-     * Elimina una entidadde clCarrera.
+     * Elimina una entidadde clCita.
      *
-     * @Route("/{id}", name="pgCarrera_eliminar")
+     * @Route("/{id}", name="pgCita_eliminar")
      * @Method("DELETE")
      */
     public function eliminarAction(Request $objPeticion, $id)
@@ -241,7 +241,7 @@ class clCarreraController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $objPeticion = $em->getRepository('DsagacoBundle:clCarrera')->find($id);
+            $objPeticion = $em->getRepository('DsagacoBundle:clCita')->find($id);
 
             if (!$objPeticion) {
                 throw $this->createNotFoundException('Imposible encontrar el área.');
@@ -251,11 +251,11 @@ class clCarreraController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('pgCarrera'));        
+        return $this->redirect($this->generateUrl('pgCita'));        
     }
 
     /**
-     * Crea una forma para eliminar una entidad por el id de clCarrera.
+     * Crea una forma para eliminar una entidad por el id de clCita.
      *
      * @param mixed $id id de la Entidad
      *
@@ -264,7 +264,7 @@ class clCarreraController extends Controller
     private function eliminarForma($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('pgCarrera_eliminar', array('id' => $id)))
+            ->setAction($this->generateUrl('pgCita_eliminar', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('boton', 'submit', ['label' => ' ', 'button_class' => 'btn btn-xs glyphicon glyphicon-trash', 'attr' => ['data-toggle' => 'tooltip',
                 'data-placement' => 'bottom',
