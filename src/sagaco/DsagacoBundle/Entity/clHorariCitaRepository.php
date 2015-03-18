@@ -17,6 +17,7 @@ class clHorariCitaRepository extends EntityRepository
         
         /* Columna indexada */
         $alias = "a";
+        $orientador =4;
         
         /* DB table a usar */
         $tableObjectName = 'DsagacoBundle:clHorariCita';
@@ -28,6 +29,7 @@ class clHorariCitaRepository extends EntityRepository
                 ->createQuery('SELECT '
                         . $alias .
                         ' FROM '. $tableObjectName .' '. $alias 
+                        . ' WHERE '. $alias . '.coOrientador = '. $orientador
                         .' ORDER BY '. $alias .'.'. $txtOrden . ' ASC');
         try {
             return $objConsulta->getArrayResult();  

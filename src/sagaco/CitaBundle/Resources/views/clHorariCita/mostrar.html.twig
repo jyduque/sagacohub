@@ -1,12 +1,12 @@
 {% extends '::plantilla.html.twig' %}
 
-{% block id 'cita' %}
+{% block id 'horaricita' %}
     
     {% block ruta %}
     <div class="container navbar-blanca">                
         <ul class="breadcrumb-modi">
             <li><a href="#"><small>Inicio</small></a></li>
-            <li><a href="{{ path('pgCita') }}"><small>Cita</small></a></li>
+            <li><a href="{{ path('pgHorariCita') }}"><small>Horario-Cita</small></a></li>
             <li class="active"><small>Detalle</small></li>
         </ul>                              
     </div> 
@@ -17,15 +17,15 @@
         
             <fieldset>
                 {# Titulo del requisito #}
-                <legend>Detalle cita
+                <legend>Detalle horario-cita
                     <div class="pull-right">
                         {{ form(delete_form) }}
                     </div> 
                     <div class="pull-right">
-                        <a href="{{ path('pgCita') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar al listado">
+                        <a href="{{ path('pgHorariCita') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar al listado">
                             <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
                         </a> 
-                        <a href="{{ path('pgCita_editar', { 'id': objEntidad.coCita }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar">
+                        <a href="{{ path('pgHorariCita_editar', { 'id': objEntidad.coHorariCita }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar">
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                         </a> 
                     </div> 
@@ -36,37 +36,25 @@
                 <div class='form-horizontal'>
                     <div class='form-group'>
                         <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Id</strong></div>
-                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coCita }}</div>                    
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coHorariCita }}</div>                    
                     </div>    
                     <div class='form-group'>
                         <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Nombre</strong></div>
-                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coPersona }}</div>                    
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coOrientador }}</div>                    
                     </div>
                     <div class='form-group'>
-                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Apellido</strong></div>
-                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coPersona }}</div>                    
-                    </div>
-                    <div class='form-group'>
-                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Fecha</strong></div>
-                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{% if objEntidad.coHorariCita %}{{ objEntidad.coHorariCita|date('d-m-Y') }}{% endif %}</div>                    
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>F. Horario</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{% if objEntidad.feHorario %}{{ objEntidad.feHorario|date('d-m-Y') }}{% endif %}</div>                    
                     </div>
                     <div class='form-group'>
                         <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>H. Inicio</strong></div>
-                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{% if objEntidad.coHorariCita %}{{ objEntidad.coHorariCita|time('H:i:s') }}{% endif %}</div>                    
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{% if objEntidad.hoInicio %}{{ objEntidad.hoInicio|date('H:i:s') }}{% endif %}</div>                    
                     </div>
                     <div class='form-group'>
                         <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>H. Fin</strong></div>
-                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{% if objEntidad.coHorariCita %}{{ objEntidad.coHorariCita|time('H:i:s') }}{% endif %}</div>                    
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{% if objEntidad.hoFin %}{{ objEntidad.hoFin|date('H:i:s') }}{% endif %}</div>                    
                     </div>
                 </div>    
-                    <div class='form-group'>
-                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Nombre</strong></div>
-                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coHorariCita }}</div>                    
-                    </div>
-                    <div class='form-group'>
-                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Apellido</strong></div>
-                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coHorariCita }}</div>                    
-                    </div>
                     <div class='form-group'>
                         <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Fecha de creación</strong></div>
                         <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.fhCreacion|date('d-m-Y H:i:s') }}</div>                    
