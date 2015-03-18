@@ -6,7 +6,8 @@
     <div class="container navbar-blanca">                
         <ul class="breadcrumb-modi">
             <li><a href="#"><small>Inicio</small></a></li>
-            <li class="active"><small>Agenda personalizada</small></li>
+            <li><a href="{{ path('pgAgenda') }}"><small>Agenda</small></a></li>
+            <li class="active"><small>Actualizar</small></li>
         </ul>                              
     </div> 
     {% endblock %}{#-- Fin Barra de ruta --#}
@@ -15,7 +16,7 @@
     {% block twigformulario %}
         <fieldset>
             {# Titulo del requisito #}
-            <legend>Configurar agenda personalizada
+            <legend>Actualizar agenda personalizada
                 <div class="pull-right">
                     <a href="{{ path('pgAgenda') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Regresar al listado">
                         <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
@@ -23,19 +24,19 @@
                 </div>
             </legend> 
             {#Muestra los campos del formulario#}
-            {{ form_start(form, { 'style': 'horizontal' }) }}
-            {{ form_errors(form, { 'global_errors': true }) }}
-            {{ form_row(form._token) }}            
-            {{ form_row(form.coOrientador, {'label': 'Orientador'}) }}
-            {{ form_row(form.coSemestre, {'label': 'Semestre'}) }}
-            {{ form_row(form.coDuracion, {'label': 'Duración de sesión'}) }}  
+            {{ form_start(edit_form, { 'style': 'horizontal' }) }}
+            {{ form_errors(edit_form, { 'global_errors': true }) }}
+            {{ form_row(edit_form._token) }}            
+            {{ form_row(edit_form.coOrientador, {'label': 'Orientador'}) }}
+            {{ form_row(edit_form.coSemestre, {'label': 'Semestre'}) }}
+            {{ form_row(edit_form.coDuracion, {'label': 'Duración de sesión'}) }}  
             {#Muestra los campos del detalle#}
-            {{ form_row(form.detallAgenda, {'label': 'Horario'}) }}            
+            {{ form_row(edit_form.detallAgenda, {'label': 'Horario'}) }}            
             <div>
                 <p class="text-left">
                     <small class="text-muted">(</small><small class="text-muted text-danger">*</small><small class="text-muted">) Campos obligatorios</small></p>
             </div>            
-            {{ form_end(form) }}
+            {{ form_end(edit_form) }}
                                                  
         </fieldset>   
         
