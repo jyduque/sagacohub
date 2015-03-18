@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ESagaco.tpDetallAgendaorientador
  *
- * @ORM\Table(name="e_sagaco.tp_detall_agendaorientador", indexes={@ORM\Index(name="IDX_A2043AA0712B9E7B", columns={"co_dia_semana"}), @ORM\Index(name="IDX_A2043AA0105A000", columns={"co_duracion"})})
+ * @ORM\Table(name="e_sagaco.tp_detall_agendaorientador")
  * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clDetallAgendaorientadorRepository")
  */
 class clDetallAgendaorientador
@@ -28,40 +28,53 @@ class clDetallAgendaorientador
      * @ORM\Column(name="ho_inicio", type="time", nullable=false)
      */
     private $hoInicio;
-
+    
     /**
-     * @var \DateTime
+     * @var boolean
      *
-     * @ORM\Column(name="fh_creacion", type="datetime", nullable=false)
+     * @ORM\Column(name="in_lunes", type="boolean", nullable=true)
      */
-    private $fhCreacion;
-
+    private $inLunes;
+    
     /**
-     * @var \DateTime
+     * @var boolean
      *
-     * @ORM\Column(name="fh_actualizacion", type="datetime", nullable=false)
+     * @ORM\Column(name="in_martes", type="boolean", nullable=true)
      */
-    private $fhActualizacion;
-
+    private $inMartes;
+    
     /**
-     * @var \ESagaco.tbDiaSemana
+     * @var boolean
      *
-     * @ORM\ManyToOne(targetEntity="clDiaSemana")
+     * @ORM\Column(name="in_miercoles", type="boolean", nullable=true)
+     */
+    private $inMiercoles;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="in_jueves", type="boolean", nullable=true)
+     */
+    private $inJueves;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="in_viernes", type="boolean", nullable=true)
+     */
+    private $inViernes;
+
+     /**
+      * Bidirectional - Many DetalleAgenda es generado por una AgendaOrientador (OWNING SIDE)
+      * 
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="clAgendaOrientador", inversedBy="detallAgenda")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="co_dia_semana", referencedColumnName="co_dia_semana")
-     * })
+     *   @ORM\JoinColumn(name="co_agenda_orientador", referencedColumnName="co_agenda_orientador")})
+     * @ORM\OrderBy({"hoInicio" = "ASC"})
      */
-    private $coDiaSemana;
-
-    /**
-     * @var \ESagaco.tbDuracion
-     *
-     * @ORM\ManyToOne(targetEntity="clDuracion")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="co_duracion", referencedColumnName="co_duracion")
-     * })
-     */
-    private $coDuracion;
+    private $coAgendaOrientador;
 
     
     /**
@@ -96,96 +109,142 @@ class clDetallAgendaorientador
     {
         return $this->hoInicio;
     }
-
+    
     /**
-     * Set fhCreacion
+     * Set inLunes
      *
-     * @param \DateTime $fhCreacion
+     * @param boolean $inLunes
      * @return clDetallAgendaorientador
      */
-    public function setFhCreacion($fhCreacion)
+    public function setInLunes($inLunes)
     {
-        $this->fhCreacion = $fhCreacion;
+        $this->inLunes = $inLunes;
 
         return $this;
     }
 
     /**
-     * Get fhCreacion
+     * Get inLunes
      *
-     * @return \DateTime 
+     * @return boolean 
      */
-    public function getFhCreacion()
+    public function getInLunes()
     {
-        return $this->fhCreacion;
+        return $this->inLunes;
     }
-
+    
     /**
-     * Set fhActualizacion
+     * Set inMartes
      *
-     * @param \DateTime $fhActualizacion
+     * @param boolean $inMartes
      * @return clDetallAgendaorientador
      */
-    public function setFhActualizacion($fhActualizacion)
+    public function setInMartes($inMartes)
     {
-        $this->fhActualizacion = $fhActualizacion;
+        $this->inMartes = $inMartes;
 
         return $this;
     }
 
     /**
-     * Get fhActualizacion
+     * Get inMartes
      *
-     * @return \DateTime 
+     * @return boolean 
      */
-    public function getFhActualizacion()
+    public function getInMartes()
     {
-        return $this->fhActualizacion;
+        return $this->inMartes;
     }
-
+    
     /**
-     * Set coDiaSemana
+     * Set inMiercoles
      *
-     * @param \sagaco\DsagacoBundle\Entity\clDiaSemana $coDiaSemana
+     * @param boolean $inMiercoles
      * @return clDetallAgendaorientador
      */
-    public function setCoDiaSemana(\sagaco\DsagacoBundle\Entity\clDiaSemana $coDiaSemana = null)
+    public function setInMiercoles($inMiercoles)
     {
-        $this->coDiaSemana = $coDiaSemana;
+        $this->inMiercoles = $inMiercoles;
 
         return $this;
     }
 
     /**
-     * Get coDiaSemana
+     * Get inMiercoles
      *
-     * @return \sagaco\DsagacoBundle\Entity\clDiaSemana 
+     * @return boolean 
      */
-    public function getCoDiaSemana()
+    public function getInMiercoles()
     {
-        return $this->coDiaSemana;
+        return $this->inMiercoles;
     }
-
+    
     /**
-     * Set coDuracion
+     * Set inJueves
      *
-     * @param \sagaco\DsagacoBundle\Entity\clDuracion $coDuracion
+     * @param boolean $inJueves
      * @return clDetallAgendaorientador
      */
-    public function setCoDuracion(\sagaco\DsagacoBundle\Entity\clDuracion $coDuracion = null)
+    public function setInJueves($inJueves)
     {
-        $this->coDuracion = $coDuracion;
+        $this->inJueves = $inJueves;
 
         return $this;
     }
 
     /**
-     * Get coDuracion
+     * Get inJueves
      *
-     * @return \sagaco\DsagacoBundle\Entity\clDuracion 
+     * @return boolean 
      */
-    public function getCoDuracion()
+    public function getInJueves()
     {
-        return $this->coDuracion;
+        return $this->inJueves;
+    }
+    
+    /**
+     * Set inViernes
+     *
+     * @param boolean $inViernes
+     * @return clDetallAgendaorientador
+     */
+    public function setInViernes($inViernes)
+    {
+        $this->inViernes = $inViernes;
+
+        return $this;
+    }
+
+    /**
+     * Get inViernes
+     *
+     * @return boolean 
+     */
+    public function getInViernes()
+    {
+        return $this->inViernes;
+    }    
+    
+    /**
+     * Set coAgendaOrientador
+     *
+     * @param \sagaco\DsagacoBundle\Entity\clAgendaOrientador $coAgendaOrientador
+     * @return clDetallAgendaorientador
+     */
+    public function setCoAgendaOrientador(\sagaco\DsagacoBundle\Entity\clAgendaOrientador $coAgendaOrientador)
+    {
+        $this->coAgendaOrientador = $coAgendaOrientador;
+
+        return $this;
+    }
+
+    /**
+     * Get coAgendaOrientador
+     *
+     * @return \sagaco\DsagacoBundle\Entity\clAgendaOrientador 
+     */
+    public function getCoAgendaOrientador()
+    {
+        return $this->coAgendaOrientador;
     }
 }

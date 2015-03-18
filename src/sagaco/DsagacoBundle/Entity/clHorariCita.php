@@ -3,6 +3,7 @@
 namespace sagaco\DsagacoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * ESagaco.tpHorariCita
@@ -66,7 +67,14 @@ class clHorariCita
      * })
      */
     private $coOrientador;
-
+    
+    /**
+     * One-To-One (INVERSE SIDE)
+     * 
+     * @ORM\OneToMany(targetEntity="clCita", mappedBy="coHorariCita", cascade={"persist", "remove"}, orphanRemoval=true)     
+     * @Assert\Valid()
+     */
+    private $refCita;   
 
 
     /**
@@ -215,5 +223,17 @@ class clHorariCita
     public function getCoOrientador()
     {
         return $this->coOrientador;
+    }
+    
+    public function setRefCita(\sagaco\DsagacoBundle\Entity\clCita $refCita = null)
+    {
+        $this->refCita = $refCita;
+
+        return $this;        
+    }
+    
+    public function getRefCita()
+    {
+        return $this->refCita;
     }
 }

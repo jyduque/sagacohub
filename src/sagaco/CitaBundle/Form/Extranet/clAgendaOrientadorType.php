@@ -8,7 +8,7 @@
  * - RF-8 Consultar Agenda Personalizada
 * @author Jorge Duque
  */
-namespace sagaco\AdminBundle\Form\Backend;
+namespace sagaco\CitaBundle\Form\Extranet;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,9 +25,16 @@ class clAgendaOrientadorType extends AbstractType
         $objConstructor
             ->add('coOrientador')
             ->add('coSemestre')
-            ->add('coDiaSemana')
-            ->add('hoInicio')
             ->add('coDuracion');
+        $objConstructor->add('detallAgenda', 'bootstrap_collection', array(
+            'type' => new clDetallAgendaorientadorType(),
+            'by_reference' => false,
+            'allow_add' => true,
+            'sub_widget_col' => 9,
+            'button_col' => 3,
+            'prototype_name' => 'inlinep',
+            'options' => array(            
+            'attr' => array('style' => 'inline'))));
     }
     
     /**
@@ -45,6 +52,6 @@ class clAgendaOrientadorType extends AbstractType
      */
     public function getName()
     {
-        return 'sagaco_adminbundle_clAgendaOrientadortype';
+        return 'sagaco_citabundle_clAgendaOrientadortype';
     }
 }

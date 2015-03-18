@@ -3,6 +3,8 @@
 namespace sagaco\DsagacoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert; 
 
 /**
  * ESagaco.tpAgendaOrientador
@@ -23,21 +25,7 @@ class clAgendaOrientador
     private $coAgendaOrientador;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="fh_creacion", type="datetime", nullable=false)
-     */
-    private $fhCreacion;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="fh_actualizacion", type="datetime", nullable=false)
-     */
-    private $fhActualizacion;
-
-    /**
-     * @var \ESagaco.tbOrientador
+     * @var integer
      *
      * @ORM\ManyToOne(targetEntity="clOrientador")
      * @ORM\JoinColumns({
@@ -55,7 +43,44 @@ class clAgendaOrientador
      * })
      */
     private $coSemestre;
+    
+    /**
+     * @var \ESagaco.tbDuracion
+     *
+     * @ORM\ManyToOne(targetEntity="clDuracion")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="co_duracion", referencedColumnName="co_duracion")
+     * })
+     */
+    private $coDuracion;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fh_creacion", type="datetime", nullable=false)
+     */
+    private $fhCreacion;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fh_actualizacion", type="datetime", nullable=false)
+     */
+    private $fhActualizacion;
+    
+    /**
+     * Bidirectional - One-To-Many (INVERSE SIDE)
+     * 
+     * @ORM\OneToMany(targetEntity="clDetallAgendaorientador", mappedBy="coAgendaOrientador", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OrderBy({"hoInicio" = "ASC"})
+     * @Assert\Valid()
+     */
+    private $detallAgenda;
+    
+    public function __construct()
+    {
+        $this->detallAgenda = new ArrayCollection();        
+    }
 
 
     /**
@@ -158,5 +183,53 @@ class clAgendaOrientador
     public function getCoSemestre()
     {
         return $this->coSemestre;
+    }
+    
+     /**
+     * Set coDuracion
+     *
+     * @param \sagaco\DsagacoBundle\Entity\clDuracion $coDuracion
+     * @return clAgendaOrientador
+     */
+    public function setCoDuracion(\sagaco\DsagacoBundle\Entity\clDuracion $coDuracion = null)
+    {
+        $this->coDuracion = $coDuracion;
+
+        return $this;
+    }
+
+    /**
+     * Get coDuracion
+     *
+     * @return \sagaco\DsagacoBundle\Entity\clDuracion 
+     */
+    public function getCoDuracion()
+    {
+        return $this->coDuracion;
+    }
+    
+    public function addDetallAgenda(\sagaco\DsagacoBundle\Entity\clDetallAgendaorientador $detallAgenda)
+    {
+        $this->detallAgenda[] = $detallAgenda;
+        $detallAgenda->setCoAgendaOrientador($this);
+    }
+    
+     
+    public function setDetallAgenda(ArrayCollection $detallAgenda = null)
+    {       
+        foreach ($detallAgenda as $detalle) {
+            $detalle->setCoAgendaOrientador($this);
+        }
+        $this->detallAgenda = $detallAgenda;
+    }
+    
+    /**
+     * Get detallAgenda
+     *
+     * @return \sagaco\DsagacoBundle\Entity\clDetallAgendaorientador 
+     */
+    public function getDetallAgenda()
+    {
+        return $this->detallAgenda;
     }
 }

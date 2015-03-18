@@ -81,9 +81,12 @@ class clCita
     private $coPersona;
 
     /**
-     * @var \ESagaco.tpHorariCita
+     * One-To-One (INVERSE SIDE)
+     * Bidirectional - One-To-One Una clCita es generado por una HorarioCita (OWNING SIDE)
+     * 
+     * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="clHorariCita")
+     * @ORM\OneToOne(targetEntity="clHorariCita", inversedBy="refCita")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_horari_cita", referencedColumnName="co_horari_cita")
      * })

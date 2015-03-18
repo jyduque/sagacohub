@@ -1,46 +1,49 @@
 <?php
 
-namespace sagaco\AdminBundle\Controller;
+namespace sagaco\CitaBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use sagaco\DsagacoBundle\Entity\clAgendaOrientador;
-use sagaco\AdminBundle\Form\Backend\clAgendaOrientadorType;
+use sagaco\DsagacoBundle\Entity\clDetallAgendaorientador;
+use sagaco\CitaBundle\Form\Extranet\clAgendaOrientadorType;
+use Symfony\Component\HttpFoundation\Request;
+//use sagaco\DsagacoBundle\Entity\clAgendaOrientadorRepository;
+//use sagaco\CitaBundle\Form\Extranet\clAgendaOrientadorType;
+
 
 /**
  * Controlador de clAgendaOrientador.
  *
- * @Route("/pgAgendaOrientador")
+ * @Route("/pgAgenda")
  */
-class clAgendaOrientadorController extends Controller
+class clAgendaController extends Controller
 {
     var $blnBandera;
     
     /**
      * Lists todas las entidades de clAgendaOrientador.
      *
-     * @Route("/", name="pgAgendaOrientador")
+     * @Route("/", name="pgAgenda")
      * @Method("GET")
      * @Template()
      */
     public function indexAction(Request $objPeticion)
-    {
+    {          
+        $intOrientador = 1;
         $em = $this->getDoctrine()->getManager();
 
-        //$objEntidad = $em->getRepository('DsagacoBundle:clAgendaOrientador')->listar();    
-        
-        
-        $objEntidad = $em->getRepository('DsagacoBundle:clAgendaOrientador')->findAll();        
-        
-        
+        $objEntidad = $em->getRepository('DsagacoBundle:clAgendaOrientador')
+                ->findBy(
+                        array('coOrientador' => $intOrientador),
+                        array('coSemestre' => 'ASC'));        
                 
         $objPaginador  = $this->get('knp_paginator');
         $objPagina = $objPaginador->
                 paginate($objEntidad, 
-                        $objPeticion->query->get('page', 1)/*page number*/, 5/*limit per page*/);
+                        $objPeticion->query->get('page', 1)/*page number*/, 10/*limit per page*/);
         
         // set an array of custom parameters
         //La clase pull-right envía el paginador a mano derecha
@@ -48,41 +51,50 @@ class clAgendaOrientadorController extends Controller
 
         return ['objPagina' => $objPagina
             ];
-    }
+    } 
     
     /**
      * Crea una entidad tipo clAgendaOrientador nueva.
      *
-     * @Route("/", name="pgAgendaOrientador_crear")
+     * @Route("/", name="pgAgenda_crear")
      * @Method("POST")
-     * @Template("DsagacoBundle:clAgendaOrientador:registrar.html.twig")
+     * @Template("CitaBundle:clAgenda:registrar.html.twig")
      */
     public function crearAction(Request $objPeticion)
     {
         $objEntidad = new clAgendaOrientador();
+        $objDetalle = new clDetallAgendaorientador();
         $form = $this->generarForma($objEntidad);
         $form->handleRequest($objPeticion);
+        
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $em = $this->getDoctrine()->getManager(); 
+            //$objEntidad->addDetallAgenda($objDetalle);            
             $objEntidad->setFhCreacion(new \DateTime());
-            $objEntidad->setFhActualizacion(new \DateTime());
+            $objEntidad->setFhActualizacion(new \DateTime());            
             $em->persist($objEntidad);
+            //$em->persist($objDetalle);
             $em->flush();
             $blnBandera = 1;
 
-            return $this->redirect($this->generateUrl('pgAgendaOrientador_mostrar', array('id' => $objEntidad->getCoAgendaOrientador(), 'blnBandera' => $blnBandera)));
+            return $this->redirect($this->generateUrl('pgAgenda_mostrar', array('id' => $objEntidad->getCoAgendaOrientador(), 'blnBandera' => $blnBandera)));
+        }
+        else {
+            return array(
+            'objEntidad' => $objEntidad,
+            'form'   => $form->createView(),
+            );
         }
 
         return array(
             'objEntidad' => $objEntidad,
             'form'   => $form->createView(),
-        );
-        
+        );        
     }
-
+    
     /**
-     * Genera una forma para crear una entidad de tipo clGrupoRol.
+     * Genera una forma para crear una entidad de tipo clAgendaOrientador.
      *
      * @param clAgendaOrientador $objEntidad La entidad
      *
@@ -91,19 +103,19 @@ class clAgendaOrientadorController extends Controller
     private function generarForma(clAgendaOrientador $objEntidad)
     {
         $form = $this->createForm(new clAgendaOrientadorType(), $objEntidad, array(
-            'action' => $this->generateUrl('pgAgendaOrientador_crear'),
+            'action' => $this->generateUrl('pgAgenda_crear'),
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Crear'));
+        $form->add('submit', 'submit', array('label' => 'Configurar'));
 
         return $form;        
     }
 
     /**
-     * Desplega un forma para crear una nueva entidad tipo clGrupoRol.
+     * Desplega un forma para crear una nueva entidad tipo clAgendaOrientador.
      *
-     * @Route("/registrar", name="pgAgendaOrientador_registrar")
+     * @Route("/registrar", name="pgAgenda_registrar")
      * @Method("GET")
      * @Template()
      */
@@ -117,11 +129,11 @@ class clAgendaOrientadorController extends Controller
             'form'   => $form->createView(),
         );              
     }
-
+    
     /**
-     * Muestra una entidad específica de tipo clAgendaOrientador.
+     * Muestra una entidad específica de tipo clAgendaOrientador y clDetallAgendaorientador.
      *
-     * @Route("/{id},{blnBandera}", name="pgAgendaOrientador_mostrar")
+     * @Route("/{id},{blnBandera}", name="pgAgenda_mostrar")
      * @Method("GET")
      * @Template()
      */
@@ -129,24 +141,25 @@ class clAgendaOrientadorController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $objEntidad = $em->getRepository('DsagacoBundle:clAgendaOrientador')->find($id);
+        $objEntidad = $em->getRepository('DsagacoBundle:clAgendaOrientador')->find($id);   
+        
 
         if (!$objEntidad) {
-            throw $this->createNotFoundException('Imposible encontrar el Área.');
+            throw $this->createNotFoundException('Imposible encontrar la Agenda del orientador.');
         }
 
-        $objEliminForma = $this->eliminarForma($id);
+        //$objEliminForma = $this->eliminarForma($id);
 
         return ['objEntidad' => $objEntidad,
             'blnBandera' => $blnBandera,
-            'delete_form' => $objEliminForma->createView(),
+            //'delete_form' => $objEliminForma->createView(),
             ];        
     }
-
+    
     /**
-     * Desplega la forma para actualizar una entidad de clAgendaOrientador existente.
+     * Desplega la forma para actualizar una entidad de clAgendaOrientador y clDetallAgendaorientador existente.
      *
-     * @Route("/{id}/editar", name="pgAgendaOrientador_editar")
+     * @Route("/{id}/editar", name="pgAgenda_editar")
      * @Method("GET")
      * @Template()
      */
@@ -157,21 +170,21 @@ class clAgendaOrientadorController extends Controller
         $objEntidad = $em->getRepository('DsagacoBundle:clAgendaOrientador')->find($id);
 
         if (!$objEntidad) {
-            throw $this->createNotFoundException('Imposible encontrar el área.');
+            throw $this->createNotFoundException('Imposible encontrar la agenda personalizada.');
         }
 
         $objEditarForma = $this->editarForma($objEntidad);
-        $objEliminForma = $this->eliminarForma($id);
+        //$objEliminForma = $this->eliminarForma($id);
 
         return array(
             'objEntidad'      => $objEntidad,
             'edit_form'   => $objEditarForma->createView(),
-            'delete_form' => $objEliminForma->createView(),
+            //'delete_form' => $objEliminForma->createView(),
         );        
     }
-
+    
     /**
-    * Crea una forma para actualizar una entidad de clAgendaOrientador.
+    * Crea una forma para actualizar una entidad de clAgendaOrientador y clDetallAgendaorientador.
     *
     * @param clAgendaOrientador $objEntidad La entidad
     *
@@ -180,7 +193,7 @@ class clAgendaOrientadorController extends Controller
     private function editarForma(clAgendaOrientador $objEntidad)
     {
         $form = $this->createForm(new clAgendaOrientadorType(), $objEntidad, array(
-            'action' => $this->generateUrl('pgAgendaOrientador_actualizar', array('id' => $objEntidad->getCoAgendaOrientador())),
+            'action' => $this->generateUrl('pgAgenda_actualizar', array('id' => $objEntidad->getCoAgendaOrientador())),
             'method' => 'PUT',
         ));
 
@@ -195,11 +208,11 @@ class clAgendaOrientadorController extends Controller
     }
     
     /**
-     * Edita una entidad de clAgendaOrientador existente.
+     * Edita una entidad de clAgendaOrientador y clDetallAgendaorientador existente.
      *
-     * @Route("/{id}", name="pgAgendaOrientador_actualizar")
+     * @Route("/{id}", name="pgAgenda_actualizar")
      * @Method("PUT")
-     * @Template("DsagacoBundle:clAgendaOrientador:editar.html.twig")
+     * @Template("CitaBundle:clAgenda:editar.html.twig")
      */
     public function actualizarAction(Request $objPeticion, $id)
     {
@@ -209,74 +222,30 @@ class clAgendaOrientadorController extends Controller
         $objEntidad = $em->getRepository('DsagacoBundle:clAgendaOrientador')->find($id);
 
         if (!$objEntidad) {
-            throw $this->createNotFoundException('Imposible encontrar el área.');
+            throw $this->createNotFoundException('Imposible encontrar la agenda personalizada.');
         }
 
-        $objEliminForma = $this->eliminarForma($id);
+        //$objEliminForma = $this->eliminarForma($id);
         $objEditarForma = $this->editarForma($objEntidad);
         $objEditarForma->handleRequest($objPeticion);
 
         if ($objEditarForma->isValid()) {
             $objEntidad->setFhActualizacion(new \DateTime());
+            // -- OJO si no funciona el crear es porque se añadió esta línea
+            $objEntidad->addDetallAgenda($objEntidad->getDetallAgenda());
+            $em->persist($objEntidad);
             $em->flush();
             
             $blnBandera = 2;
 
             //return $this->redirect($this->generateUrl('pgRol_editar', array('id' => $id)));
-            return $this->redirect($this->generateUrl('pgAgendaOrientador_mostrar', array('id' => $id, 'blnBandera' => $blnBandera)));
+            return $this->redirect($this->generateUrl('pgAgenda_mostrar', array('id' => $id, 'blnBandera' => $blnBandera)));
         }
 
         return array(
             'objEntidad'      => $objEntidad,
             'edit_form'   => $objEditarForma->createView(),
-            'delete_form' => $objEliminForma->createView(),
+            //'delete_form' => $objEliminForma->createView(),
         );        
     }
-    
-    /**
-     * Elimina una entidadde clAgendaOrientador.
-     *
-     * @Route("/{id}", name="pgAgendaOrientador_eliminar")
-     * @Method("DELETE")
-     */
-    public function eliminarAction(Request $objPeticion, $id)
-    {
-        $form = $this->eliminarForma($id);
-        $form->handleRequest($objPeticion);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $objPeticion = $em->getRepository('DsagacoBundle:clAgendaOrientador')->find($id);
-
-            if (!$objPeticion) {
-                throw $this->createNotFoundException('Imposible encontrar el área.');
-            }
-
-            $em->remove($objPeticion);
-            $em->flush();
-        }
-
-        return $this->redirect($this->generateUrl('pgAgendaOrientador'));        
-    }
-
-    /**
-     * Crea una forma para eliminar una entidad por el id de clAgendaOrientador.
-     *
-     * @param mixed $id id de la Entidad
-     *
-     * @return \Symfony\Component\Form\Form La Forma
-     */
-    private function eliminarForma($id)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('pgAgendaOrientador_eliminar', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('boton', 'submit', ['label' => ' ', 'button_class' => 'btn btn-xs glyphicon glyphicon-trash', 'attr' => ['data-toggle' => 'tooltip',
-                'data-placement' => 'bottom',
-                'title' => '',
-                'data-original-title' => 'Eliminar']])
-            ->getForm()
-        ;        
-    }
-    
 }
