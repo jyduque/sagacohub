@@ -1,3 +1,7 @@
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /
+
 info:
     resource: "@InfoBundle/Resources/config/routing.yml"
     prefix:   /
@@ -25,6 +29,9 @@ instrudvi:
 dsagaco:
     resource: "@DsagacoBundle/Resources/config/routing.yml"
     prefix:   /
+    
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
 pg_cita:
     path:     /cita/

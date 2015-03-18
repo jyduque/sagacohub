@@ -40,7 +40,8 @@
         "jquery/jquery":  "1.11.*",        
         "components/jquery": "1.11.*",
         "datatables/datatables": "1.10.4",
-        "oyejorge/less.php": "dev-master"        
+        "oyejorge/less.php": "dev-master",
+        "friendsofsymfony/user-bundle": "2.0.x-dev"        
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
