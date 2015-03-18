@@ -28,50 +28,6 @@ class clHorariCitaController extends Controller
      */
     public function indexAction(Request $objPeticion)
     {
-        //$em = $this->getDoctrine()->getManager();
-
-        //$objEntidad = $em->getRepository('DsagacoBundle:clHorariCita')->listar();        
-        
-                
-        //$objPaginador  = $this->get('knp_paginator');
-        //$objPagina = $objPaginador->
-          //      paginate($objEntidad, 
-            //            $objPeticion->query->get('page', 1)/*page number*/, 5/*limit per page*/);
-        
-        // set an array of custom parameters
-        //La clase pull-right envía el paginador a mano derecha
-        //$objPagina->setCustomParameters(array('class' => 'pull-right'));        
-        $arrDias = array(
-            "1" => "Lunes",
-            "2" => "Martes",
-            "3" => "Miércoles",
-            "4" => "Jueves",
-            "5" => "Viernes",
-            "6" => "Sábado",
-            "7" => "Domingo");
-        $arrSemana = [];
-        $i = 1;
-        $feDiaHoy = new \DateTime();  
-        $intDia = $feDiaHoy->format('N');
-        $feIteracion = new \DateTime();        
-        for ($i = 1; $i <= 7; $i++) {
-            $intDia = $feIteracion->format('N');
-            if ($intDia != 6 && $intDia != 7){               
-                $arrSemana[$intDia] = $feIteracion->format('d-m-Y');                              
-            }
-            $intAddDias = 'P'.$i.'D';
-            $feIteracion = $feDiaHoy->add(new \DateInterval($intAddDias)); 
-            $feDiaHoy = new \DateTime(); 
-        }
-        //var_dump($arrSemana);  
-        //die;
-
-        return ['arrDias' => $arrDias,
-            'objPagina' => $arrSemana];
-    } 
-    
-    public function copoiAction(Request $objPeticion)
-    {
         $em = $this->getDoctrine()->getManager();
 
         $objEntidad = $em->getRepository('DsagacoBundle:clHorariCita')->listar();        
@@ -94,7 +50,7 @@ class clHorariCitaController extends Controller
      *
      * @Route("/", name="pgHorariCita_crear")
      * @Method("POST")
-     * @Template("CitaBundle:clHorariCita:registrar.html.twig")
+     * @Template("DsagacoBundle:clHorariCita:registrar.html.twig")
      */
     public function crearAction(Request $objPeticion)
     {
@@ -238,7 +194,7 @@ class clHorariCitaController extends Controller
      *
      * @Route("/{id}", name="pgHorariCita_actualizar")
      * @Method("PUT")
-     * @Template("CitaBundle:clHorariCita:editar.html.twig")
+     * @Template("DsagacoBundle:clHorariCita:editar.html.twig")
      */
     public function actualizarAction(Request $objPeticion, $id)
     {
