@@ -231,6 +231,8 @@ class clAgendaController extends Controller
 
         if ($objEditarForma->isValid()) {
             $objEntidad->setFhActualizacion(new \DateTime());
+            // -- OJO si no funciona el crear es porque se añadió esta línea
+            $objEntidad->addDetallAgenda($objEntidad->getDetallAgenda());
             $em->persist($objEntidad);
             $em->flush();
             

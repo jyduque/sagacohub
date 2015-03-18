@@ -215,7 +215,7 @@ class clAgendaOrientador
     }
     
      
-    public function setDetallAgenda(ArrayCollection $detallAgenda)
+    public function setDetallAgenda(ArrayCollection $detallAgenda = null)
     {       
         foreach ($detallAgenda as $detalle) {
             $detalle->setCoAgendaOrientador($this);
@@ -223,6 +223,11 @@ class clAgendaOrientador
         $this->detallAgenda = $detallAgenda;
     }
     
+    /**
+     * Get detallAgenda
+     *
+     * @return \sagaco\DsagacoBundle\Entity\clDetallAgendaorientador 
+     */
     public function getDetallAgenda()
     {
         return $this->detallAgenda;
