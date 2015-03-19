@@ -33,13 +33,283 @@
         </div> {#-- Fin barra logo ---#}
 
         {# Menu #}
+        {#<div class="panel-body disable-links">
+            {#::before
+            <ul class="nav-tabs nav">
+                {#::before
+                <li class="active first">
+                    <a href="#menus-tabs">
+                        Cosa 1
+                    </a>
+                </li>
+                <li>
+                    <a href="#menus-tabs">
+                        Cosa 2
+                    </a>
+                <li>
+                    <a href="#menus-tabs">
+                        Cosa 3
+                    </a>
+                </li>
+                <li class="last dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        Opciones
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="menu_level_1 dropdown-menu">
+                        <li class="first">
+                            <a href="#menus-tabs">
+                                Enlistado 1
+                            </a>
+                        </li>
+                        <li class="last">
+                            <a href="#menus-tabs">
+                                Enlistado 2
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {#::after
+            </ul>
+            {#::after
+        </div>#}
+        
+        <nav class="navbar navbar-default" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="navbar-nav nav">
+                    <li class="last dropdown open">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+                            Administración 1
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="menu_level_1 dropdown-menu">
+                            <li class="first">
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgBenefiEstudinte/">
+                                    Beneficiario del estudiante
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgRol/">
+                                    Rol
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgOrientador/">
+                                    Orientador
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgTipoEntrevista/">
+                                    Tipo entrevista
+                                </a>
+                            </li>
+                            <li class="first">
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgMotivoConsulta/">
+                                    Motivo consulta
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgArea/">
+                                    Área
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgParentesco/">
+                                    Parentesco
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgGenero/">
+                                    Género
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgEstadoCivil/">
+                                    Estado civil
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgPais/">
+                                    País
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgEstado/">
+                                    Estado
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgMunicipio/">
+                                    Municipio
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgCiudad/">
+                                    Ciudad
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgPersona/">
+                                    Persona
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgSemestre/">
+                                    Semestre
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgEstadoCaso/">
+                                    Estado caso
+                                </a>
+                            </li>
+                            <li class="last">
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgDiaSemana/">
+                                    Dia semana
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="last dropdown open">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+                            Administración 2
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="menu_level_1 dropdown-menu">
+                            <li class="first">
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgDuracion/">
+                                    Duración
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgTipoPrueba/">
+                                    Tipo prueba
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgEstadoPrueba/">
+                                    Estado prueba
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgEstadoCita/">
+                                    Estado cita
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgConfigEntrevista/">
+                                    Configuración entrevista
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgTipoPregunta/">
+                                    Tipo pregunta
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgTipoInstitucion/">
+                                    Tipo institución
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgCarrera/">
+                                    Carrera
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgDviInteres/">
+                                    DVI interés
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgDviBaremo/">
+                                    DVI baremo
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgDviConfiguracion/">
+                                    DVI configuración
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgDviArea/">
+                                    DVI área
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgHollanSeccion/">
+                                    Holland sección
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgHollanLetra/">
+                                    Holland letra
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgHollanConfiguracion/">
+                                    Holland configuración
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgAngeliConfiguracion/">
+                                    Angelini configuración
+                                </a>
+                            </li>
+                            <li class="last">
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgAngeliInteres/">
+                                    Angelini interés
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="last dropdown open">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+                            Cita
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="menu_level_1 dropdown-menu">
+                            <li class="first">
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgAgenda/">
+                                    Agenda
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/sagaco/web/app_dev.php/pgHorariCita/">
+                                    Horario Citas
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            {#<div class="collapse navbar-collapse navbar-ex1-collapse">
+                knp_menu_render(leftNavbarMenu, { 'style': 'navbar' }) 
+                {# <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form> #}
+                {# {{ knp_menu_render('rigthNavbarMenu', {'nav_type': 'tabs'}) }} #}
+            {#</div><!-- /.navbar-collapse -->#}
+        </nav>
+                    
+                
+        </div> {#-- Fin Menu --#}
+        
+        {# Menu 
         <div class="row navbar-inverse">
             <div class="col-md-2">
               fasdfsddsfs  
             </div>
             <div class="col-md-8">fasdf</div>
             <div class="col-md-2">safa</div>
-        </div> {#-- Fin Menu --#}
+        </div> 
+        {#-- Fin Menu --#}
 
         {# Barra de ruta #}
         {% block ruta %}{% endblock %}{#-- Fin Barra de ruta --#}        
