@@ -28,19 +28,19 @@ class clHorariCitaController extends Controller
      */
     public function indexAction(Request $objPeticion)
     {
-        //$em = $this->getDoctrine()->getManager();
-
-        //$objEntidad = $em->getRepository('DsagacoBundle:clHorariCita')->listar();        
+        //Traer la consulta de tp_horari_cita. Se identifican que días de 
+        //semana NO está disponible
         
-                
-        //$objPaginador  = $this->get('knp_paginator');
-        //$objPagina = $objPaginador->
-          //      paginate($objEntidad, 
-            //            $objPeticion->query->get('page', 1)/*page number*/, 5/*limit per page*/);
+        $feInicio = new \DateTime(); //Inicio de semana (HOY)
+        $feFin = new \DateTime();    // Fin de semana    
+        $feFin = $feFin->add(new \DateInterval('P7D')); 
+        $intSemestre = 1; //Semestre 
         
-        // set an array of custom parameters
-        //La clase pull-right envía el paginador a mano derecha
-        //$objPagina->setCustomParameters(array('class' => 'pull-right'));        
+        $em = $this->getDoctrine()->getManager();
+        $objEntidadHorario = $em->getRepository('DsagacoBundle:clHorariCita')->fechaCitaPorSemana($feInicio, $feFin);
+        $objEntidadAgenda = $em->getRepository('DsagacoBundle:clDetallAgendaorientador')->detalleAgendaPorSemestre($intSemestre);
+        
+        // Arreglo de días de la semana
         $arrDias = array(
             "1" => "Lunes",
             "2" => "Martes",
@@ -49,6 +49,9 @@ class clHorariCitaController extends Controller
             "5" => "Viernes",
             "6" => "Sábado",
             "7" => "Domingo");
+        
+        // Cargar las fechas de la semana a partir de l día HOY hasta siete días después
+        
         $arrSemana = [];
         $i = 1;
         $feDiaHoy = new \DateTime();  
@@ -63,11 +66,41 @@ class clHorariCitaController extends Controller
             $feIteracion = $feDiaHoy->add(new \DateInterval($intAddDias)); 
             $feDiaHoy = new \DateTime(); 
         }
-        //var_dump($arrSemana);  
+        
+        //Generar calendario disponible
+        $arrCalendario = [];
+        $hInicio = new \DateTime('08:00:00'); //Inicio de hora (8:00:00)
+        $hIteracion = new \DateTime('08:00:00');
+        $hour = '08';
+        $minute = '00';
+        $second = '00';
+        
+        for ($i = 1; $i <= 10; $i++){
+            $arrCalendario[$i]['1']['1'] = $hIteracion->format('h:i a');
+            $hour = $hour + 1;
+            $hIteracion->setTime($hour, $minute, $second);
+            for($j = 2; $j <= 3; $j++){
+                $arrCalendario[$i][$j]['1'] = 'Prueba';
+                $arrCalendario[$i][$j]['2'] = 'Prueba1';
+                        
+            }
+        } 
+        
+       /* $arrCalendario['1']['1']['1'] = 'Jhan';
+        $arrCalendario['1']['1']['2'] = 'Jorge';
+        $arrCalendario['1']['2']['1'] = 'Prueba';
+        $arrCalendario['1']['2']['2'] = '';
+        $arrCalendario['1']['3']['1'] = '';*/
+        
+        
+        
+        //var_dump($arrCalendario);  
         //die;
 
         return ['arrDias' => $arrDias,
-            'objPagina' => $arrSemana];
+            'objPagina' => $arrSemana,
+            'arrCalendario' => $arrCalendario
+                ];
     } 
     
     public function copoiAction(Request $objPeticion)

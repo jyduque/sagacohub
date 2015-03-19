@@ -35,4 +35,33 @@ class clDetallAgendaorientadorRepository extends EntityRepository
             return null;
         }         
     }  
+    
+    public function detalleAgendaPorSemestre($intSemestre){
+        
+        /* Columna indexada */
+        $alias = "a";        
+ 
+        
+        /* DB table a usar */
+        $tableObjectName = 'DsagacoBundle:clDetallAgendaorientador';
+
+        /* Campo para ordenar */        
+        $txtOrden = 'hoInicio';
+        
+        $objConsulta = $this->getEntityManager()
+                ->createQuery('SELECT '
+                        . $alias . ', o '
+                        .' FROM '. $tableObjectName .' '. $alias
+                        .' JOIN a.coAgendaOrientador o'
+                        . ' WHERE o.coSemestre = :semestre'
+                        .' ORDER BY '. $alias .'.'. $txtOrden . ' ASC')
+                ->setParameter('semestre', $intSemestre)
+                //->setParameter('feFin', $feFin)
+                ;
+        try {
+            return $objConsulta->getArrayResult();  
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }         
+    }
 }

@@ -44,13 +44,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th> Hora </th>
-                                    {# sorting of properties based on query components #}
-                                    {% for tag in objPagina %}                                        
-                                        <th>{{ tag }}</th>
-                                    {% endfor %}                                   
-                                </tr>                            
+                                {% for i in 1..10 %} 
+                                    <tr>
+                                        {% for i in item1 arrCalendario %}                                        
+                                            <th>{% for key, item2 in item1 %}
+                                                    {{ attribute(item2, key).1 }}
+                                                {% endfor %}
+                                            </th>
+                                        {% endfor %}
+                                    </tr>  
+                                    
+                                {% endfor %} 
                             </tbody>
                         </table>
                     </div>                 

@@ -31,7 +31,7 @@ class clHorariCita
     private $feHorario;
 
     /**
-     * @var \DateTime
+     * @var time
      *
      * @ORM\Column(name="ho_inicio", type="time", nullable=false)
      */

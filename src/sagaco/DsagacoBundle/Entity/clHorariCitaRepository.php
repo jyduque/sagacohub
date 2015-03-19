@@ -13,24 +13,25 @@ use Doctrine\ORM\EntityRepository;
  */
 class clHorariCitaRepository extends EntityRepository
 { 
-    public function listar(){
+    public function fechaCitaPorSemana($feInicio, $feFin){
         
         /* Columna indexada */
-        $alias = "a";
-        $orientador =4;
-        
+        $alias = "a";      
+       
         /* DB table a usar */
         $tableObjectName = 'DsagacoBundle:clHorariCita';
 
         /* Campo para ordenar */        
-        $txtOrden = 'coHorariCita';
+        $txtOrden = 'feHorario';
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '
                         . $alias .
                         ' FROM '. $tableObjectName .' '. $alias 
-                        . ' WHERE '. $alias . '.coOrientador = '. $orientador
-                        .' ORDER BY '. $alias .'.'. $txtOrden . ' ASC');
+                        . ' WHERE '. $alias . '.feHorario BETWEEN :feInicio AND :feFin'
+                        .' ORDER BY '. $alias .'.'. $txtOrden . ' ASC')
+                ->setParameter('feInicio', $feInicio)
+                ->setParameter('feFin', $feFin);
         try {
             return $objConsulta->getArrayResult();  
         } catch (\Doctrine\ORM\NoResultException $e) {
