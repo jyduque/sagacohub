@@ -80,6 +80,12 @@ class clHorariCitaController extends Controller
             $hour = $hour + 1;
             $hIteracion->setTime($hour, $minute, $second);
             for($j = 2; $j <= 3; $j++){
+                /*foreach ($array as &$valor) {
+                    $valor = $valor * 2;
+                }*/
+                // Aquí se va hacer la lógica para tomar un orientador buscar su horario y ver si tiene disponibilidad acorde a la fecha.
+                // 
+                //Se puede hacer un is not in revisar la documentación
                 $arrCalendario[$i][$j]['1'] = 'Prueba';
                 $arrCalendario[$i][$j]['2'] = 'Prueba1';
                         

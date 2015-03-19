@@ -44,11 +44,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for i in 1..10 %} 
+                                {% for i,  item1 in arrCalendario %} 
                                     <tr>
-                                        {% for i in item1 arrCalendario %}                                        
-                                            <th>{% for key, item2 in item1 %}
-                                                    {{ attribute(item2, key).1 }}
+                                        {% for j, item2 in item1 %}                                        
+                                            <th>{% for key, item3 in item2 %}
+                                                    {# {{ attribute(item2, key).1 }}#}
+                                                    {{ arrCalendario[i][j][key] }}                                                    
                                                 {% endfor %}
                                             </th>
                                         {% endfor %}
