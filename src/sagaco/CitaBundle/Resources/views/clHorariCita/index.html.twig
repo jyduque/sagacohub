@@ -31,15 +31,15 @@
                                 <tr>
                                     <th></th>
                                     {# Días de la semana #}
-                                    {% for fecha in objPagina %}                                        
-                                        <th> {{arrDias[fecha|date('N')]}} </th>                                        
+                                    {% for dia in arrSemana %}                                        
+                                        <th> {{arrDias[dia|date('N')]}} </th>                                        
                                     {% endfor %}
                                 </tr>
                                 <tr>
                                     <th> Hora </th>
                                     {# Fecha #}
-                                    {% for tag in objPagina %}                                        
-                                        <th>{{ tag }}</th>
+                                    {% for fecha in arrSemana %}                                        
+                                        <th>{{ fecha|date('d-m-Y') }}</th>
                                     {% endfor %}
                                 </tr>
                             </thead>

@@ -63,6 +63,13 @@ class clDetallAgendaorientador
      * @ORM\Column(name="in_viernes", type="boolean", nullable=true)
      */
     private $inViernes;
+    
+    /** 
+     * @var string
+     * 
+     * @ORM\Column(name="nb_timezone", type="string") 
+     */
+    private $timezone;
 
      /**
       * Bidirectional - Many DetalleAgenda es generado por una AgendaOrientador (OWNING SIDE)
@@ -75,7 +82,13 @@ class clDetallAgendaorientador
      * @ORM\OrderBy({"hoInicio" = "ASC"})
      */
     private $coAgendaOrientador;
-
+    
+    public function __construct()
+    {    
+        $hoInicio = new \DateTime();
+        $this->hoInicio = $hoInicio;
+        $this->timezone = $hoInicio->getTimeZone()->getName();
+    }
     
     /**
      * Get coDetallAgendaorientador
@@ -107,6 +120,11 @@ class clDetallAgendaorientador
      */
     public function getHoInicio()
     {
+        return $this->hoInicio;
+       // if (!$this->localized) {
+            $this->hoInicio->setTimeZone(new \DateTimeZone($this->timezone));
+        //}
+        //return $this->created;
         return $this->hoInicio;
     }
     

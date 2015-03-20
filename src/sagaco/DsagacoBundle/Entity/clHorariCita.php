@@ -31,7 +31,7 @@ class clHorariCita
     private $feHorario;
 
     /**
-     * @var time
+     * @var \DateTime
      *
      * @ORM\Column(name="ho_inicio", type="time", nullable=false)
      */
@@ -68,13 +68,27 @@ class clHorariCita
      */
     private $coOrientador;
     
+    /** 
+     * @var string
+     * 
+     * @ORM\Column(name="nb_timezone", type="string") 
+     */
+    private $timezone;   
+    
     /**
      * One-To-One (INVERSE SIDE)
      * 
      * @ORM\OneToMany(targetEntity="clCita", mappedBy="coHorariCita", cascade={"persist", "remove"}, orphanRemoval=true)     
      * @Assert\Valid()
      */
-    private $refCita;   
+    private $refCita; 
+    
+    public function __construct()
+    {    
+        $hoInicio = new \DateTime();
+        $this->hoInicio = $hoInicio;
+        $this->timezone = $hoInicio->getTimeZone()->getName();
+    }
 
 
     /**
@@ -128,8 +142,18 @@ class clHorariCita
      *
      * @return \DateTime 
      */
+    /**
+     * Get hoInicio
+     *
+     * @return \DateTime 
+     */
     public function getHoInicio()
     {
+        return $this->hoInicio;
+       // if (!$this->localized) {
+            $this->hoInicio->setTimeZone(new \DateTimeZone($this->timezone));
+        //}
+        //return $this->created;
         return $this->hoInicio;
     }
 

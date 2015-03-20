@@ -13,7 +13,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class clHorariCitaRepository extends EntityRepository
 { 
-    public function fechaCitaPorSemana($feInicio, $feFin){
+    public function fechaCitaPorSemana($feInicio, $feFin, $objEntidadAgenda, $hHora){
         
         /* Columna indexada */
         $alias = "a";      
@@ -26,12 +26,17 @@ class clHorariCitaRepository extends EntityRepository
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '
-                        . $alias .
-                        ' FROM '. $tableObjectName .' '. $alias 
+                        . 'a.coHorariCita, a.feHorario, a.hoInicio' 
+                        . ' FROM '. $tableObjectName .' '. $alias 
                         . ' WHERE '. $alias . '.feHorario BETWEEN :feInicio AND :feFin'
-                        .' ORDER BY '. $alias .'.'. $txtOrden . ' ASC')
+                        . ' AND a.hoInicio = :hInicio'
+                        . ' AND a.coOrientador = :orientador'
+                        . ' ORDER BY '. $alias .'.'. $txtOrden . ' ASC')
                 ->setParameter('feInicio', $feInicio)
-                ->setParameter('feFin', $feFin);
+                ->setParameter('feFin', $feFin)
+                ->setParameter('hInicio', $hHora)
+                ->setParameter('orientador', $objEntidadAgenda)
+                ;
         try {
             return $objConsulta->getArrayResult();  
         } catch (\Doctrine\ORM\NoResultException $e) {
