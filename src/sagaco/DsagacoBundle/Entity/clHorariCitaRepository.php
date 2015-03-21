@@ -28,12 +28,13 @@ class clHorariCitaRepository extends EntityRepository
                 ->createQuery('SELECT '
                         . 'a.coHorariCita, a.feHorario, a.hoInicio' 
                         . ' FROM '. $tableObjectName .' '. $alias 
-                        . ' WHERE '. $alias . '.feHorario BETWEEN :feInicio AND :feFin'
+                        //. ' WHERE '. $alias . '.feHorario BETWEEN :feInicio AND :feFin'
+                        . ' WHERE '. $alias . '.feHorario = :feInicio'
                         . ' AND a.hoInicio = :hInicio'
                         . ' AND a.coOrientador = :orientador'
                         . ' ORDER BY '. $alias .'.'. $txtOrden . ' ASC')
                 ->setParameter('feInicio', $feInicio)
-                ->setParameter('feFin', $feFin)
+                //->setParameter('feFin', $feFin)
                 ->setParameter('hInicio', $hHora)
                 ->setParameter('orientador', $objEntidadAgenda)
                 ;

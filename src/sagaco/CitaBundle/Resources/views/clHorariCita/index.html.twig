@@ -29,17 +29,17 @@
                         <table class="table table-bordered table-striped table-condensed">
                             <thead>                            
                                 <tr>
-                                    <th></th>
+                                    <th class="sortable"></th>
                                     {# Días de la semana #}
                                     {% for dia in arrSemana %}                                        
-                                        <th> {{arrDias[dia|date('N')]}} </th>                                        
+                                        <th class="sortable"> {{arrDias[dia|date('N')]}} </th>                                        
                                     {% endfor %}
                                 </tr>
                                 <tr>
-                                    <th> Hora </th>
+                                    <th class="sortable"> Hora </th>
                                     {# Fecha #}
                                     {% for fecha in arrSemana %}                                        
-                                        <th>{{ fecha|date('d-m-Y') }}</th>
+                                        <th class="sortable">{{ fecha|date('d-m-Y') }}</th>
                                     {% endfor %}
                                 </tr>
                             </thead>
@@ -47,10 +47,17 @@
                                 {% for i,  item1 in arrCalendario %} 
                                     <tr>
                                         {% for j, item2 in item1 %}                                        
-                                            <th>{% for key, item3 in item2 %}
+                                            <th>
+                                                <ul class="unstyled">
+                                                    {% for key, item3 in item2 %}
                                                     {# {{ attribute(item2, key).1 }}#}
-                                                    {{ arrCalendario[i][j][key] }}                                                    
+                                                        {% if arrCalendario[i][j][key] != ' ' %}
+                                                        <li>                                                        
+                                                            <small>{{ arrCalendario[i][j][key] }}</small>
+                                                        </li> 
+                                                        {% endif %}
                                                 {% endfor %}
+                                                </ul>
                                             </th>
                                         {% endfor %}
                                     </tr>  

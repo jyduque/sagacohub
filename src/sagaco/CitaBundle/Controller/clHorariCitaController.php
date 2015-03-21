@@ -33,6 +33,7 @@ class clHorariCitaController extends Controller
         //semana NO está disponible
         
         $objEntidadHorario = new clHorariCita();
+        $objGuardaHorario = new clHorariCita();
         $objEntidadAgenda = new clDetallAgendaorientador();
         
         $feInicio = new \DateTime(); //Inicio de semana (HOY)
@@ -101,33 +102,36 @@ class clHorariCitaController extends Controller
                     //var_dump($objEntidadAgenda);
                     //die;  
                     $k = 1;
-                    foreach ($objEntidadAgenda as $key1 => $value) {                        
-                        foreach ($value as $key2 => $prueba) {
-                            $idDocente = $objEntidadAgenda[$key1][$key2];//El docente que tiene en su agenda personalizada el Día y la Hora
-                            //var_dump($objEntidadAgenda[$key1][$key2]);die;
+                    foreach ($objEntidadAgenda as $key1 => $value) { 
+                        foreach ($value as $idDocente) {                       
+                        
+                        //foreach ($value as $key2 => $prueba) {
+                            //$idDocente = $objEntidadAgenda[$key1][$key2];//El docente que tiene en su agenda personalizada el Día y la Hora
                             
-                            $objEntidadHorario = $em->getRepository('DsagacoBundle:clHorariCita')->fechaCitaPorSemana($feInicio, $feFin, $idDocente, $hIteracion);
                             
-                            if ($objEntidadHorario){ 
-                                foreach ($objEntidadHorario as $claveHorario => $valDocente) {
-                                    foreach ($valDocente as $claveDocente => $valHorario) {
-                                        var_dump($objEntidadHorario, $idDocente, $hIteracion);
-                                        $feOcupado = $objEntidadHorario[$claveHorario]['feHorario'];
-                                        $hOcupado = $objEntidadHorario[$claveHorario]['hoInicio'];
-                                        //var_dump($objEntidadHorario, $claveHorario, $claveDocente);
-                                        //var_dump($feOcupado->format('d-m-Y'), $fecha->format('d-m-Y'), $claveDocente);
-                                        if ( ((string)$fecha->format('d-m-Y') !=  (string)$feOcupado->format('d-m-Y')) && ((string)$hIteracion->format('h:i a') != (string)$hOcupado->format('h:i a'))){
+                            $objEntidadHorario = $em->getRepository('DsagacoBundle:clHorariCita')->fechaCitaPorSemana($fecha, $feFin, $idDocente, $hIteracion);
+                            var_dump($objEntidadHorario, $feInicio, $idDocente, $hIteracion);//die;
+                            
+                            if (!$objEntidadHorario){ 
+                                //foreach ($objEntidadHorario as $claveHorario => $valDocente) {
+                                    //foreach ($valDocente as $claveDocente => $valHorario) {
+                                        //var_dump($objEntidadHorario, $idDocente, $hIteracion);
+                                        //$feOcupado = $objEntidadHorario[$claveHorario]['feHorario'];
+                                        //$hOcupado = $objEntidadHorario[$claveHorario]['hoInicio'];
+                                        
+                                        //if ( ((string)$fecha->format('d-m-Y') !=  (string)$feOcupado->format('d-m-Y')) && ((string)$hIteracion->format('h:i a') != (string)$hOcupado->format('h:i a'))){
+                                            //var_dump($i, $j, $k, $idDocente);
                                             $arrCalendario[$i][$j][$k] = $idDocente;
-                                            $j = $j + 1; 
+                                            //$j = $j + 1; 
                                             $k = $k + 1;   
-                                            //var_dump($k);
-                                        }                                          
-                                    }                                   
-                                }    
+                                            
+                                       // }                                          
+                                    //}                                   
+                                //}    
                             }else{ //Hay disponibilidad para ese día y hora del docente $idDocente
                                 
-                                $arrCalendario[$i][$j][$k] = $idDocente;
-                                $j = $j + 1; 
+                                $arrCalendario[$i][$j][$k] = ' ';
+                                //$j = $j + 1; 
                                 $k = $k + 1; 
                                 
                             }
@@ -135,9 +139,10 @@ class clHorariCitaController extends Controller
                     }
                 } else { // No existen agendas personalizadas de ningún docente
                     $arrCalendario[$i][$j][$k] = ' ';
-                    $j = $j + 1;
+                    //$j = $j + 1;
                     $k = $k + 1;
                 }
+                $j = $j + 1;
             }            
             $hour = $hour + 1;
             $hIteracion->setTime($hour, $minute, $second);
