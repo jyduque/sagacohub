@@ -1,12 +1,12 @@
 {% extends '::plantilla.html.twig' %}
 
-{% block id 'cita' %}
+{% block id 'rol' %}
     {# Barra de ruta #}
     {% block ruta %}
     <div class="container navbar-blanca">                
         <ul class="breadcrumb-modi">
             <li><a href="#"><small>Inicio</small></a></li>
-            <li class="active"><small>Cita</small></li>
+            <li class="active"><small>Rol</small></li>
         </ul>                              
     </div> 
     {% endblock %}{#-- Fin Barra de ruta --#}
@@ -15,9 +15,9 @@
     {% block twigformulario %}
         <fieldset>
             {# Titulo del requisito #}
-            <legend>Listar citas
+            <legend>Listar rol
                 <div class="pull-right">
-                    <a href="{{ path('pgCita_registrar') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Solicitar">
+                    <a href="{{ path('pgCita_consultar') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Crear">
                         <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
                     </a>                          
                 </div>
@@ -31,13 +31,10 @@
                         <tr>
                             {# sorting of properties based on query components #}
                             <th>{{ knp_pagination_sortable(objPagina, 'Id', 'a.coCita') }}</th>
-                            <th{% if objPagina.isSorted('a.coArea') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Área de atención', 'a.coArea') }}</th>
-                            <th{% if objPagina.isSorted('a.coOrientador') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Docente', 'a.coOrientador') }}</th>
-                            <th{% if objPagina.isSorted('a.coEstadoCita') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Estado', 'a.coEstadoCita') }}</th>
-                            <th{% if objPagina.isSorted('a.feCita') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'F. Cita', 'a.feCita') }}</th>
-                            <th{% if objPagina.isSorted('a.hoCita') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Hora', 'a.hoCita') }}</th>
-                            <th{% if objPagina.isSorted('a.fhRegistCita') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Hora', 'a.fhRegistCita') }}</th>
-                                                           
+                            <th{% if objPagina.isSorted('a.coOrientador') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Orientador', 'a.coOrientador') }}</th>
+                            <th{% if objPagina.isSorted('a.coOrientador') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Persona', 'a.coOrientador') }}</th>
+                            <th>F. Creación</th>
+                            <th>F. Actualización</th>                                
                         </tr>
                     </thead>
                     <tbody>
@@ -48,13 +45,11 @@
                     {% endif %}
                     {% for objEntidad in objPagina %}
                         <tr {% if loop.index is odd %}class="color"{% endif %}>
-                            <td class="text-right"><a href="{{ path('pgCita', { 'id': objEntidad.coCita, 'blnBandera': '0'}) }}">{{ objEntidad.coCita }}</a></td>
+                            <td class="text-right"><a href="{{ path('pgCita_consultar', { 'id': objEntidad.coCita, 'blnBandera': '0'}) }}">{{ objEntidad.coCita }}</a></td>
                             <td>{{ objEntidad.coOrientador }}</td>
-                            <td>{{ objEntidad.coEstadoCita }}</td>
-                            <td>{% if objEntidad.feCita %}{{ objEntidad.feCita|date('d-m-Y') }}{% endif %}</td>
-                            <td>{% if objEntidad.hoCita %}{{ objEntidad.hoCita|date('h:i a') }}{% endif %}</td>
-                            <td>{% if objEntidad.fhRegistCita %}{{ objEntidad.fhRegistCita|date('d-m-Y') }}{% endif %}</td>
-                            
+                            <td>{{ objEntidad.coArea }}</td>
+                            <td>{% if objEntidad.fhCreacion %}{{ objEntidad.fhCreacion|date('d-m-Y H:i:s') }}{% endif %}</td>
+                            <td>{% if objEntidad.fhActualizacion %}{{ objEntidad.fhActualizacion|date('d-m-Y H:i:s') }}{% endif %}</td>                            
                         </tr>
                     {% endfor %}
                     </tbody>
