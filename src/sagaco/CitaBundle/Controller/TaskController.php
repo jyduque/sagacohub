@@ -69,13 +69,14 @@ class TaskController extends Controller {
         $tag2->name = 'tag2';
         $task->getTags()->add($tag2);
         // termina el código maniquí
-
+var_dump($task);
         $form = $this->createForm(new TaskType(), $task);
 
         // procesa el formulario en POST
         if ($request->isMethod('POST')) {
             $form->bind($request);
             if ($form->isValid()) {
+                var_dump($task);
                 // posiblemente hagas algún procesamiento del formulario,
                 // tal como guardar los objetos Task y Tag
             }

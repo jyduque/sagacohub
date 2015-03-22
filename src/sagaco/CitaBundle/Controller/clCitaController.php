@@ -8,6 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use sagaco\DsagacoBundle\Entity\clCita;
+use sagaco\DsagacoBundle\Entity\clArea;
+use sagaco\DsagacoBundle\Entity\clDisponCalendario;
 use sagaco\CitaBundle\Form\Frontend\clCitaType;
 
 /**
@@ -28,14 +30,17 @@ class clCitaController extends Controller
      */
     public function indexAction(Request $objPeticion)
     {
+        $inPersona = '5';
         $em = $this->getDoctrine()->getManager();
 
-        $objEntidad = $em->getRepository('DsagacoBundle:clCita')->listar();        
+        $objEntidad = $em->getRepository('DsagacoBundle:clCita')->listarCitasPorPersona($inPersona);  
+        
+        //var_dump($objEntidad);  die;
                 
         $objPaginador  = $this->get('knp_paginator');
         $objPagina = $objPaginador->
                 paginate($objEntidad, 
-                        $objPeticion->query->get('page', 1)/*page number*/, 5/*limit per page*/);
+                        $objPeticion->query->get('page', 1)/*page number*/, 10/*limit per page*/);
         
         // set an array of custom parameters
         //La clase pull-right envía el paginador a mano derecha
@@ -43,30 +48,33 @@ class clCitaController extends Controller
 
         return ['objPagina' => $objPagina
             ];
-    }
+    } 
     
     /**
      * Crea una entidad tipo clCita nueva.
      *
      * @Route("/", name="pgCita_crear")
      * @Method("POST")
-     * @Template("DsagacoBundle:clCita:registrar.html.twig")
+     * @Template("CitaBundle:clCita:registrar.html.twig")
      */
     public function crearAction(Request $objPeticion)
     {
         $objEntidad = new clCita();
+       // $txObservacion = 'Prueba';
+       // $objEntidad->setTxObservacion($txObservacion);
         $form = $this->generarForma($objEntidad);
+       // $form->bind($objPeticion);
         $form->handleRequest($objPeticion);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $objEntidad->setFhCreacion(new \DateTime());
-            $objEntidad->setFhActualizacion(new \DateTime());
+            //$objEntidad->setFhCreacion(new \DateTime());
+            //$objEntidad->setFhActualizacion(new \DateTime());
             $em->persist($objEntidad);
             $em->flush();
             $blnBandera = 1;
 
-            return $this->redirect($this->generateUrl('pgCita_mostrar', array('id' => $objEntidad->getCoCita(), 'blnBandera' => $blnBandera)));
+            return $this->redirect($this->generateUrl('pgCita_registrar', array('id' => $objEntidad->getCoCita(), 'blnBandera' => $blnBandera)));
         }
 
         return array(
@@ -77,9 +85,9 @@ class clCitaController extends Controller
     }
 
     /**
-     * Genera una forma para crear una entidad de tipo clGrupoRol.
+     * Genera una forma para crear una entidad de tipo clCita.
      *
-     * @param clCita $objEntidad La entidad
+     * @param ClCita $objEntidad La entidad
      *
      * @return \Symfony\Component\Form\Form La forma
      */
@@ -88,15 +96,15 @@ class clCitaController extends Controller
         $form = $this->createForm(new clCitaType(), $objEntidad, array(
             'action' => $this->generateUrl('pgCita_crear'),
             'method' => 'POST',
-        ));
+        ));        
 
-        $form->add('submit', 'submit', array('label' => 'Crear'));
+        $form->add('submit', 'submit', array('label' => 'Solicitar'));
 
         return $form;        
     }
 
     /**
-     * Desplega un forma para crear una nueva entidad tipo clGrupoRol.
+     * Desplega un forma para crear una nueva entidad tipo clCita.
      *
      * @Route("/registrar", name="pgCita_registrar")
      * @Method("GET")
@@ -104,174 +112,120 @@ class clCitaController extends Controller
      */
     public function registrarAction()
     {
+        $intSemestre = 1; //Semestre
         $objEntidad = new clCita();
+        $arrSemana = $this->cargarCalendCabecera();
+        $arrCalendario = $this->cargarCalendario($arrSemana, $intSemestre);
+        var_dump($arrCalendario);//die;
+        
         $form   = $this->generarForma($objEntidad);
 
         return array(
             'objEntidad' => $objEntidad,
+            'arrCalendario' => $arrCalendario,
+            'arrSemana' => $arrSemana,
             'form'   => $form->createView(),
         );              
     }
-
-    /**
-     * Muestra una entidad específica de tipo clCita.
-     *
-     * @Route("/{id},{blnBandera}", name="pgCita_mostrar")
-     * @Method("GET")
-     * @Template()
-     */
-    public function mostrarAction($id, $blnBandera)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $objEntidad = $em->getRepository('DsagacoBundle:clCita')->find($id);
-
-        if (!$objEntidad) {
-            throw $this->createNotFoundException('Imposible encontrar el Área.');
-        }
-
-        $objEliminForma = $this->eliminarForma($id);
-
-        return ['objEntidad' => $objEntidad,
-            'blnBandera' => $blnBandera,
-            'delete_form' => $objEliminForma->createView(),
-            ];        
-    }
-
-    /**
-     * Desplega la forma para actualizar una entidad de clCita existente.
-     *
-     * @Route("/{id}/editar", name="pgCita_editar")
-     * @Method("GET")
-     * @Template()
-     */
-    public function editarAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $objEntidad = $em->getRepository('DsagacoBundle:clCita')->find($id);
-
-        if (!$objEntidad) {
-            throw $this->createNotFoundException('Imposible encontrar el área.');
-        }
-
-        $objEditarForma = $this->editarForma($objEntidad);
-        $objEliminForma = $this->eliminarForma($id);
-
-        return array(
-            'objEntidad'      => $objEntidad,
-            'edit_form'   => $objEditarForma->createView(),
-            'delete_form' => $objEliminForma->createView(),
-        );        
-    }
-
-    /**
-    * Crea una forma para actualizar una entidad de clCita.
-    *
-    * @param clCita $objEntidad La entidad
-    *
-    * @return \Symfony\Component\Form\Form La forma
-    */
-    private function editarForma(clCita $objEntidad)
-    {
-        $form = $this->createForm(new clCitaType(), $objEntidad, array(
-            'action' => $this->generateUrl('pgCita_actualizar', array('id' => $objEntidad->getCoCita())),
-            'method' => 'PUT',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Actualizar'));
-        /*$form->add('submit', 'submit', ['label' => 'Actualizar', 'attr' => ['data-toggle' => 'tooltip',
-                'data-placement' => 'bottom',
-                'title' => '',
-                'data-original-title' => 'Actualizar']]);*/
-        
-
-        return $form;        
-    }
     
-    /**
-     * Edita una entidad de clCita existente.
-     *
-     * @Route("/{id}", name="pgCita_actualizar")
-     * @Method("PUT")
-     * @Template("DsagacoBundle:clCita:editar.html.twig")
-     */
-    public function actualizarAction(Request $objPeticion, $id)
-    {
-        $em = $this->getDoctrine()->getManager();
+    private function cargarCalendCabecera(){
         
-
-        $objEntidad = $em->getRepository('DsagacoBundle:clCita')->find($id);
-
-        if (!$objEntidad) {
-            throw $this->createNotFoundException('Imposible encontrar el área.');
-        }
-
-        $objEliminForma = $this->eliminarForma($id);
-        $objEditarForma = $this->editarForma($objEntidad);
-        $objEditarForma->handleRequest($objPeticion);
-
-        if ($objEditarForma->isValid()) {
-            $objEntidad->setFhActualizacion(new \DateTime());
-            $em->flush();
-            
-            $blnBandera = 2;
-
-            //return $this->redirect($this->generateUrl('pgRol_editar', array('id' => $id)));
-            return $this->redirect($this->generateUrl('pgCita_mostrar', array('id' => $id, 'blnBandera' => $blnBandera)));
-        }
-
-        return array(
-            'objEntidad'      => $objEntidad,
-            'edit_form'   => $objEditarForma->createView(),
-            'delete_form' => $objEliminForma->createView(),
-        );        
-    }
-    
-    /**
-     * Elimina una entidadde clCita.
-     *
-     * @Route("/{id}", name="pgCita_eliminar")
-     * @Method("DELETE")
-     */
-    public function eliminarAction(Request $objPeticion, $id)
-    {
-        $form = $this->eliminarForma($id);
-        $form->handleRequest($objPeticion);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $objPeticion = $em->getRepository('DsagacoBundle:clCita')->find($id);
-
-            if (!$objPeticion) {
-                throw $this->createNotFoundException('Imposible encontrar el área.');
+        //Cargar días de la semana
+        // Arreglo de días de la semana
+        $arrDias = array(
+            "1" => "Lunes",
+            "2" => "Martes",
+            "3" => "Miércoles",
+            "4" => "Jueves",
+            "5" => "Viernes",
+            "6" => "Sábado",
+            "7" => "Domingo");
+        
+        // Cargar las fechas de la semana en curso comenzando
+        // a partir de HOY
+        
+        $arrSemana = [];
+        $i = 1;
+        $feDiaHoy = new \DateTime();  
+        $intDia = $feDiaHoy->format('N');
+        $feIteracion = new \DateTime();        
+        for ($i = 1; $i <= 7; $i++) {
+            $intDia = $feIteracion->format('N');
+            if ($intDia != 6 && $intDia != 7){    
+                $arrSemana[$intDia]['dia'] = $arrDias[$intDia];
+                $arrSemana[$intDia]['fecha'] = $feIteracion;               
             }
-
-            $em->remove($objPeticion);
-            $em->flush();
+            $intAddDias = 'P'.$i.'D';
+            $feIteracion = $feDiaHoy->add(new \DateInterval($intAddDias)); 
+            $feDiaHoy = new \DateTime(); 
         }
-
-        return $this->redirect($this->generateUrl('pgCita'));        
-    }
-
-    /**
-     * Crea una forma para eliminar una entidad por el id de clCita.
-     *
-     * @param mixed $id id de la Entidad
-     *
-     * @return \Symfony\Component\Form\Form La Forma
-     */
-    private function eliminarForma($id)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('pgCita_eliminar', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('boton', 'submit', ['label' => ' ', 'button_class' => 'btn btn-xs glyphicon glyphicon-trash', 'attr' => ['data-toggle' => 'tooltip',
-                'data-placement' => 'bottom',
-                'title' => '',
-                'data-original-title' => 'Eliminar']])
-            ->getForm()
-        ;        
+       return $arrSemana;
     }
     
+    private function cargarCalendario($arrSemana, $intSemestre)
+    {  
+        
+        //Generar calendario disponible
+        $hIteracion = new \DateTime('08:00:00');
+        $fecha = new \DateTime();
+        $hour = '08';
+        $minute = '00';
+        $second = '00';
+        $em = $this->getDoctrine()->getManager();
+        
+        for ($i = 1; $i <= 10; $i++){
+            $arrCalendario[$i]['1']['1'] = $hIteracion->format('h:i a'); 
+            $j = 2; // La columna 1 representa la hora
+            foreach ($arrSemana as $value) {
+                $fecha = $value['fecha'];
+                $intDia = $fecha->format('N');
+                if ((string)$intDia == '3'){
+                    $nbCampo = 'inMiercoles';                  
+                }
+                else{
+                    $nbCampo = 'in'. $value['dia'];                    
+                }
+                    
+                $valCampo = 1; //Si el día a la hora es verdadero, entoces el Docente atiende a esa hora y el día según su agenda
+                $objEntidadAgenda = $em->getRepository('DsagacoBundle:clDetallAgendaorientador')->detalleAgendaPorSemestre($intSemestre, $hIteracion, $nbCampo, $valCampo);                
+                $k = 1;             
+                if ($objEntidadAgenda){
+                    $k = 1;
+                    foreach ($objEntidadAgenda as $key1 => $value) { 
+                        foreach ($value as $idDocente) {
+                            //$objOrientador = $em->getRepository('DsagacoBundle:clOrientador')->find($idDocente);
+                            $objEntidadHorario = $em->getRepository('DsagacoBundle:clCita')->fechaCitaPorSemana($fecha, $idDocente, $hIteracion);
+                            
+                            if (!$objEntidadHorario){
+                                //var_dump($fecha, $idDocente, $hIteracion); die;
+                                $arrCalendario[$i][$j][$k] = $idDocente;
+                                //$objGuardaHorario->setCoOrientador($objOrientador);
+                                //$objGuardaHorario->setFeHorario($fecha);                
+                                $k = $k + 1;
+                            }else{// No hay disponibilidad para ese día y hora del docente $idDocente
+                                
+                                $arrCalendario[$i][$j][$k] = ' ';
+                                //var_dump($i, $j, $k, $arrCalendario);// die;
+                                //$j = $j + 1; 
+                                $k = $k + 1; 
+                            }                         
+                        }
+                    }
+                    //var_dump($fecha, $hIteracion, $objEntidadAgenda); die;
+                    //var_dump($key, $value['dia']); die;
+                } else{
+                    // No existen agendas personalizadas de ningún docente
+                    $arrCalendario[$i][$j][$k] = ' ';
+                    //$j = $j + 1;
+                    $k = $k + 1;                    
+                }
+                $j = $j + 1;                
+            }
+            $hour = $hour + 1;
+            $hIteracion->setTime($hour, $minute, $second);
+        }
+        //var_dump($arrCalendario); die;
+        //var_dump($fecha, $value['fecha'], $value['dia'],$intDia, $nbCampo, $objEntidadAgenda); //die;
+        return $arrCalendario;   
+    }
 }

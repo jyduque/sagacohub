@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use sagaco\DsagacoBundle\Entity\clHorariCita;
 use sagaco\CitaBundle\Form\Frontend\clHorariCitaType;
 use sagaco\DsagacoBundle\Entity\clDetallAgendaorientador;
+use sagaco\DsagacoBundle\Entity\clOrientador;
 
 /**
  * Controlador de clHorariCita.
@@ -27,7 +28,7 @@ class clHorariCitaController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function indexAction(Request $objPeticion)
+    public function indexAction()
     {
         //Traer la consulta de tp_horari_cita. Se identifican que días de 
         //semana NO está disponible
@@ -35,6 +36,7 @@ class clHorariCitaController extends Controller
         $objEntidadHorario = new clHorariCita();
         $objGuardaHorario = new clHorariCita();
         $objEntidadAgenda = new clDetallAgendaorientador();
+        $objOrientador = new clOrientador();
         
         $feInicio = new \DateTime(); //Inicio de semana (HOY)
         $feFin = new \DateTime();    // Fin de semana    
@@ -83,7 +85,10 @@ class clHorariCitaController extends Controller
         $second = '00';
                 
         for ($i = 1; $i <= 10; $i++){
-            $arrCalendario[$i]['1']['1'] = $hIteracion->format('h:i a');            
+            $arrCalendario[$i]['1']['1'] = $hIteracion->format('h:i a'); 
+            $objGuardaHorario->setHoInicio($hIteracion->format('h:i a'));
+            //var_dump($objGuardaHorario);
+                   // die;
             //for($j = 2; $j <= 5; $j++){ 
             $j = 2;
             foreach ($arrSemana as $clave => $fecha) {                 
@@ -107,10 +112,12 @@ class clHorariCitaController extends Controller
                         
                         //foreach ($value as $key2 => $prueba) {
                             //$idDocente = $objEntidadAgenda[$key1][$key2];//El docente que tiene en su agenda personalizada el Día y la Hora
+                            //$objRRHH->getCoRecursHumano()
+                            $objOrientador = $em->getRepository('DsagacoBundle:clOrientador')->find($idDocente);
                             
                             
                             $objEntidadHorario = $em->getRepository('DsagacoBundle:clHorariCita')->fechaCitaPorSemana($fecha, $feFin, $idDocente, $hIteracion);
-                            var_dump($objEntidadHorario, $feInicio, $idDocente, $hIteracion);//die;
+                            //var_dump($objEntidadHorario, $feInicio, $idDocente, $hIteracion);//die;
                             
                             if (!$objEntidadHorario){ 
                                 //foreach ($objEntidadHorario as $claveHorario => $valDocente) {
@@ -122,13 +129,18 @@ class clHorariCitaController extends Controller
                                         //if ( ((string)$fecha->format('d-m-Y') !=  (string)$feOcupado->format('d-m-Y')) && ((string)$hIteracion->format('h:i a') != (string)$hOcupado->format('h:i a'))){
                                             //var_dump($i, $j, $k, $idDocente);
                                             $arrCalendario[$i][$j][$k] = $idDocente;
+                                            $objGuardaHorario->setCoOrientador($objOrientador);
+                                            $objGuardaHorario->setFeHorario($fecha);
+                                            
+                                            var_dump($objGuardaHorario);
+                                            //die;
                                             //$j = $j + 1; 
                                             $k = $k + 1;   
                                             
                                        // }                                          
                                     //}                                   
                                 //}    
-                            }else{ //Hay disponibilidad para ese día y hora del docente $idDocente
+                            }else{ // No hay disponibilidad para ese día y hora del docente $idDocente
                                 
                                 $arrCalendario[$i][$j][$k] = ' ';
                                 //$j = $j + 1; 
@@ -149,9 +161,11 @@ class clHorariCitaController extends Controller
         } 
         //var_dump($arrCalendario);
         //die;
+        //$em->persist($objGuardaHorario);
         return ['arrDias' => $arrDias,
             'arrSemana' => $arrSemana,
-            'arrCalendario' => $arrCalendario
+            'arrCalendario' => $arrCalendario,
+            'objGuardaHorario' => $objGuardaHorario
                 ];
     } 
     

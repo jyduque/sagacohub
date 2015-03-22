@@ -1,45 +1,42 @@
 <?php
 
-/**
- * Descripción de la clCitaType
- * La clase crea el formulario para los requerimientos:
- * - RF-01 Registrar Cita (Titular)
- * - RF-02 Registrar Cita (Beneficiario)
- * - RF-03 Reprogramar Cita
- * - RF-04 Consultar Cita
- * - RF-05 Eliminar Cita
- * - RF-06 Configurar Agenda Personalizada
- * - RF-07 Modificar Agenda Personalizada
- * - RF-08 Consultar Agenda Personalizada
- * - RF-09 Cancelar Cita
- * - RF-52 Listar Citas Programadas
- * - RF-53 Visualizar Detalle de Cita
- * - RF-56 Visualizar Horario Cita
- * @author Jorge Duque
- */
 namespace sagaco\CitaBundle\Form\Frontend;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+
 class clCitaType extends AbstractType
 {
     /**
-     * @param FormBuilderInterface $objConstructor
-     * @param array $arrOpcion
+     * @param FormBuilderInterface $builder
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $objConstructor, array $arrOpcion)
     {
         $objConstructor
-            // Suponiendo que el esta siendo usuario es un obrero de la UNET 
-            ->add('coPersona') //clRecursHumano para poner el primer nombre del asesorado (para este caso obrero)
-            ->add('coPersona') //clRecursHumano para poner el primer apellido del asesorado (para este caso obrero)
-            ->add('coHorariCita') //clHorariCita para poner la fecha de la cita
-            ->add('coHorariCita') // clHorariCita para poner la hora inicio de la cita
-            ->add('coHorariCita') // clHorariCita para poner la hora fin de la cita
-            ->add('coHorariCita') //clRecursHumano para poner el primer nombre del(de la) orentador(a)
-            ->add('coHorariCita'); //clRecursHumano para poner el primer apellido del(de la) orentador(a)
+            //->add('disponible', new clDisponCalendarioType(), array(
+                //'data_class' => 'sagaco\DsagacoBundle\Entity\clCita',
+            //    'mapped' => false
+            //))    
+            //->add('feCita')
+            //->add('hoCita')
+            //->add('coCitaReprogramada')
+            //->add('inCambioEspecialidad')
+            //->add('fhRegistCita')
+            ->add('txObservacion')
+            //->add('timezone')
+            //->add('fhCreacion')
+            //->add('fhActualizacion')
+            ->add('coArea')
+            //->add('coEstadoCita')
+            //->add('coPersona')
+            //->add('coOrientador')
+            ->add('idDocente', 'hidden', array(
+                'mapped' => false
+            ))    
+        ;
     }
     
     /**
