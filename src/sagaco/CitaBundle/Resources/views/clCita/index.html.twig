@@ -37,7 +37,7 @@
                             <th{% if objPagina.isSorted('a.feCita') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'F. Cita', 'a.feCita') }}</th>
                             <th{% if objPagina.isSorted('a.hoCita') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Hora', 'a.hoCita') }}</th>
                             <th{% if objPagina.isSorted('a.fhRegistCita') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Hora', 'a.fhRegistCita') }}</th>
-                            <th>Acción</th>                                
+                                                           
                         </tr>
                     </thead>
                     <tbody>
@@ -53,15 +53,8 @@
                             <td>{{ objEntidad.coEstadoCita }}</td>
                             <td>{% if objEntidad.feCita %}{{ objEntidad.feCita|date('d-m-Y') }}{% endif %}</td>
                             <td>{% if objEntidad.hoCita %}{{ objEntidad.hoCita|date('h:i a') }}{% endif %}</td>
-                            <td>{% if objEntidad.fhRegistCita %}{{ objEntidad.fhActualizacion|date('d-m-Y') }}{% endif %}</td>
-                            <td> 
-                                <a href="{{ path('pgCita', { 'id': objEntidad.coCita, 'blnBandera': '0' }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Mostrar detalle">
-                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                                </a>                                    
-                                <a href="{{ path('pgCita', { 'id': objEntidad.coCita }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar">
-                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                </a>                                 
-                            </td>
+                            <td>{% if objEntidad.fhRegistCita %}{{ objEntidad.fhRegistCita|date('d-m-Y') }}{% endif %}</td>
+                            
                         </tr>
                     {% endfor %}
                     </tbody>

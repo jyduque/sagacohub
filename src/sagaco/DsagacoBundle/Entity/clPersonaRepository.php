@@ -26,9 +26,9 @@ class clPersonaRepository extends EntityRepository
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '
-                        . $alias .
-                        ' FROM '. $tableObjectName .' '. $alias 
-                        .' ORDER BY '. $alias .'.'. $txtOrden . ' ASC');
+                        . $alias 
+                        . ' FROM '. $tableObjectName .' '. $alias 
+                        . ' ORDER BY '. $alias .'.'. $txtOrden . ' ASC');
         try {
             return $objConsulta->getArrayResult();  
         } catch (\Doctrine\ORM\NoResultException $e) {

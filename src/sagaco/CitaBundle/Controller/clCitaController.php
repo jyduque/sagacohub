@@ -30,17 +30,17 @@ class clCitaController extends Controller
      */
     public function indexAction(Request $objPeticion)
     {
-        $inPersona = '5';
+        $inPersona = '1';
         $em = $this->getDoctrine()->getManager();
 
         $objEntidad = $em->getRepository('DsagacoBundle:clCita')->listarCitasPorPersona($inPersona);  
         
-        //var_dump($objEntidad);  die;
+        //var_dump($objEntidad);  //die;
                 
         $objPaginador  = $this->get('knp_paginator');
         $objPagina = $objPaginador->
                 paginate($objEntidad, 
-                        $objPeticion->query->get('page', 1)/*page number*/, 10/*limit per page*/);
+                        $objPeticion->query->get('page', 1)/*page number*/, 5/*limit per page*/);
         
         // set an array of custom parameters
         //La clase pull-right envía el paginador a mano derecha
@@ -228,4 +228,33 @@ class clCitaController extends Controller
         //var_dump($fecha, $value['fecha'], $value['dia'],$intDia, $nbCampo, $objEntidadAgenda); //die;
         return $arrCalendario;   
     }
+    
+    /**
+     * Listar todas las activas del día que tiene un docente
+     *
+     * @Route("/consultar", name="pgCita_consultar")
+     * @Method("GET")
+     * @Template()
+     */
+    public function consultarAction(Request $objPeticion)
+    {
+        $inPersona = '2';
+        $em = $this->getDoctrine()->getManager();
+
+        $objEntidad = $em->getRepository('DsagacoBundle:clCita')->findAll();  
+        
+        //var_dump($objEntidad);  die;
+                
+        $objPaginador  = $this->get('knp_paginator');
+        $objPagina = $objPaginador->
+                paginate($objEntidad, 
+                        $objPeticion->query->get('page', 1)/*page number*/, 10/*limit per page*/);
+        
+        // set an array of custom parameters
+        //La clase pull-right envía el paginador a mano derecha
+        $objPagina->setCustomParameters(array('class' => 'pull-right'));        
+
+        return ['objPagina' => $objPagina
+            ];
+    } 
 }

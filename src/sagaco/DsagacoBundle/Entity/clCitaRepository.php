@@ -22,12 +22,13 @@ class clCitaRepository extends EntityRepository
         $tableObjectName = 'DsagacoBundle:clCita';
 
         /* Campo para ordenar */        
-        $txtOrden = 'coCita';
+        $txtOrden = 'feCita';
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '
-                        . $alias
+                        . $alias . ', o'
                         . ' FROM '. $tableObjectName .' '. $alias 
+                        . ' INNER JOIN a.coOrientador o'
                         . ' WHERE a.coPersona = :inPersona'
                         .' ORDER BY '. $alias .'.'. $txtOrden . ' ASC')
                 ->setParameter('inPersona', $inPersona);

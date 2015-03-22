@@ -30,7 +30,8 @@ class clPersonaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $objEntidad = $em->getRepository('DsagacoBundle:clPersona')->listar();        
+        $objEntidad = $em->getRepository('DsagacoBundle:clPersona')->findAll();   
+        //var_dump($objEntidad); //die;
                 
         $objPaginador  = $this->get('knp_paginator');
         $objPagina = $objPaginador->

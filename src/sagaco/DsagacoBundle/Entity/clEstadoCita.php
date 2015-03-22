@@ -153,4 +153,9 @@ class clEstadoCita
     {
         return $this->fhActualizacion;
     }
+    
+    public function __toString()
+    {
+        return $this->getNbEstadoCita();        
+    }
 }
