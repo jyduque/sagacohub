@@ -29,13 +29,66 @@
                 {{ form_start(form, { 'style': 'horizontal' }) }}
                     {{ form_errors(form, { 'global_errors': true }) }}
                     {{ form_row(form._token) }}
-                    {{ form_row(form.coPersona, {'label': 'Nombre'}) }}
-                    {{ form_row(form.coPersona, {'label': 'Apellido'}) }}                    
-                    {{ form_row(form.coHorariCita, {'label': 'Fecha'}) }}                    
-                    {{ form_row(form.coHorariCita, {'label': 'H. Inicio'}) }}                    
-                    {{ form_row(form.coHorariCita, {'label': 'H. Fin'}) }}                    
-                    {{ form_row(form.coHorariCita, {'label': 'N. Orientador'}) }}                    
-                    {{ form_row(form.coHorariCita, {'label': 'A. Orientador'}) }}                    
+                    {{ form_row(form.coArea, {'label': 'Área de atención', 'empty_value': 'Seleccione'}) }}
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-condensed">
+                            <caption>Calendario de disponibilidad de cita semanal</caption>
+                            <thead>                               
+                                    <tr class="sortable">  
+                                        <td></td>
+                                        {% for cabecera in arrSemana %}
+                                            <td> {{ attribute(cabecera, 'dia') }} </td>                                            
+                                        {% endfor %}
+                                    </tr>   
+                                    <tr class="sortable">                                       
+                                        <td>Hora</td>
+                                        {% for cabecera in arrSemana %}                                            
+                                            <td> {{ attribute(cabecera, 'fecha')|date('d-m-Y') }} </td>
+                                        {% endfor %}
+                                    </tr>     
+                            </thead>
+                            <tbody>
+                                {% for i,  item1 in arrCalendario %} 
+                                    <tr>
+                                        {% for j, item2 in item1 %}                                        
+                                            <th class="text-right">
+                                                {% if j != '1' %}
+                                                <ul class="list-unstyled">
+                                                {% endif %}
+                                                    {% for key, item3 in item2 %}
+                                                    {# {{ attribute(item2, key).1 }}#}
+                                                        
+                                                        {% if arrCalendario[i][j][key] != ' ' %}
+                                                            {% if j != '1' %}
+                                                                <li>                                  
+                                                                    <a href="{{ path('pgCita', { 'id': arrCalendario[i][j][key], 'blnBandera': '0'}) }}"><small>{{ arrCalendario[i][j][key].nbDocente }}</small></a></td>
+                                                                </li> 
+                                                            {% else %}
+                                                                <small>{{ arrCalendario[i][j][key] }}</small>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                {% endfor %}
+                                                {% if j != '1' %}
+                                                </ul>
+                                                {% endif %}
+                                            </th>
+                                        {% endfor %}
+                                    </tr>  
+                                    
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                    
+                                    
+                                    
+                    {{ form_row(form.txObservacion, {'label': 'Observación'}) }}                    
+                    
+                    <div>
+                        <p class="text-left">
+                            <small class="text-muted">(</small><small class="text-muted text-danger">*</small><small class="text-muted">) Campos obligatorios</small></p>
+                    </div>                        
                 {{ form_end(form) }}                
             </fieldset>         
             

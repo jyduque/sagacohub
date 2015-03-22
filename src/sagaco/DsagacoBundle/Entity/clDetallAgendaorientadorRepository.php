@@ -36,7 +36,7 @@ class clDetallAgendaorientadorRepository extends EntityRepository
         }         
     }  
     
-    public function detalleAgendaPorSemestre($intSemestre){
+    public function detalleAgendaPorSemestre($intSemestre, $hHora, $nbCampo, $valCampo){
         
         /* Columna indexada */
         $alias = "a";        
@@ -44,22 +44,44 @@ class clDetallAgendaorientadorRepository extends EntityRepository
         
         /* DB table a usar */
         $tableObjectName = 'DsagacoBundle:clDetallAgendaorientador';
+        $tableObjectName2 = 'DsagacoBundle:clDetallAgendaorientador';
+        
 
         /* Campo para ordenar */        
         $txtOrden = 'hoInicio';
+        //$hHora = $hour.':'.$minute.':'.$second;
+        //$hInicio = $hHora;
+        //$hInicio->setTime($hour, $minute, $second);
+        //$nbCampo = 'inLunes';
+        //$valCampo = '1';
+        
+        
+        //var_dump($hInicio);  
+        //die;
         
         $objConsulta = $this->getEntityManager()
-                ->createQuery('SELECT '
-                        . $alias . ', o '
-                        .' FROM '. $tableObjectName .' '. $alias
-                        .' JOIN a.coAgendaOrientador o'
+                ->createQuery('SELECT'
+                        . ' d.coOrientador '
+                        . ' FROM '. $tableObjectName .' '. $alias
+                        . ' INNER JOIN a.coAgendaOrientador o'
+                        . ' INNER JOIN o.coOrientador d'
+                        //. ' INNER JOIN d.coOrientador h'
                         . ' WHERE o.coSemestre = :semestre'
-                        .' ORDER BY '. $alias .'.'. $txtOrden . ' ASC')
+                        . ' AND a.hoInicio = :hInicio'
+                        . ' AND a.'.$nbCampo.' = :nbCampo'
+                        //. ' AND o.coOrientador in (SELECT h.coOrientador '
+                        //. ' FROM '. $tableObjectName2 .' h'
+                        //. ' WHERE h.hoInicio != :hInicio)'
+                        . ' ORDER BY '. $alias .'.'. $txtOrden . ' ASC')
                 ->setParameter('semestre', $intSemestre)
-                //->setParameter('feFin', $feFin)
+                ->setParameter('hInicio', $hHora)
+                ->setParameter('nbCampo', $valCampo)
                 ;
+       //var_dump($objConsulta); die;
         try {
-            return $objConsulta->getArrayResult();  
+            return $objConsulta->getArrayResult();
+           
+            
         } catch (\Doctrine\ORM\NoResultException $e) {
             return null;
         }         

@@ -207,7 +207,7 @@ class clControEstudio
     /**
      * @var string
      *
-     * @ORM\Column(name="nu_indice_acumulado", type="decimal", precision=1, scale=1, nullable=false)
+     * @ORM\Column(name="nu_indice_acumulado", type="decimal", precision=10, scale=1, nullable=false)
      */
     private $nuIndiceAcumulado;
 

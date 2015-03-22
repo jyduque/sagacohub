@@ -9,6 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use sagaco\DsagacoBundle\Entity\clHorariCita;
 use sagaco\CitaBundle\Form\Frontend\clHorariCitaType;
+use sagaco\DsagacoBundle\Entity\clDetallAgendaorientador;
+use sagaco\DsagacoBundle\Entity\clOrientador;
 
 /**
  * Controlador de clHorariCita.
@@ -26,19 +28,22 @@ class clHorariCitaController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function indexAction(Request $objPeticion)
+    public function indexAction()
     {
         //Traer la consulta de tp_horari_cita. Se identifican que días de 
         //semana NO está disponible
         
+        $objEntidadHorario = new clHorariCita();
+        $objGuardaHorario = new clHorariCita();
+        $objEntidadAgenda = new clDetallAgendaorientador();
+        $objOrientador = new clOrientador();
+        
         $feInicio = new \DateTime(); //Inicio de semana (HOY)
         $feFin = new \DateTime();    // Fin de semana    
         $feFin = $feFin->add(new \DateInterval('P7D')); 
-        $intSemestre = 1; //Semestre 
+        $intSemestre = 1; //Semestre
         
-        $em = $this->getDoctrine()->getManager();
-        $objEntidadHorario = $em->getRepository('DsagacoBundle:clHorariCita')->fechaCitaPorSemana($feInicio, $feFin);
-        $objEntidadAgenda = $em->getRepository('DsagacoBundle:clDetallAgendaorientador')->detalleAgendaPorSemestre($intSemestre);
+        $em = $this->getDoctrine()->getManager();      
         
         // Arreglo de días de la semana
         $arrDias = array(
@@ -60,52 +65,107 @@ class clHorariCitaController extends Controller
         for ($i = 1; $i <= 7; $i++) {
             $intDia = $feIteracion->format('N');
             if ($intDia != 6 && $intDia != 7){               
-                $arrSemana[$intDia] = $feIteracion->format('d-m-Y');                              
+                $arrSemana[$intDia] = $feIteracion;                              
             }
             $intAddDias = 'P'.$i.'D';
             $feIteracion = $feDiaHoy->add(new \DateInterval($intAddDias)); 
             $feDiaHoy = new \DateTime(); 
         }
+       // var_dump($arrSemana);die;
         
         //Generar calendario disponible
         $arrCalendario = [];
         $hInicio = new \DateTime('08:00:00'); //Inicio de hora (8:00:00)
         $hIteracion = new \DateTime('08:00:00');
+        $hHorario = new \DateTime();
+        $fecha = new \DateTime();
+        $feOcupado = new \DateTime();
         $hour = '08';
         $minute = '00';
         $second = '00';
-        
+                
         for ($i = 1; $i <= 10; $i++){
-            $arrCalendario[$i]['1']['1'] = $hIteracion->format('h:i a');
+            $arrCalendario[$i]['1']['1'] = $hIteracion->format('h:i a'); 
+            $objGuardaHorario->setHoInicio($hIteracion->format('h:i a'));
+            //var_dump($objGuardaHorario);
+                   // die;
+            //for($j = 2; $j <= 5; $j++){ 
+            $j = 2;
+            foreach ($arrSemana as $clave => $fecha) {                 
+                //$no = $fecha->format('N');
+                if ($clave == '3'){
+                    $nbCampo = 'inMiercoles';                  
+                }
+                else{
+                    $nbCampo = 'in'. $arrDias[$clave];                    
+                } 
+                
+                $valCampo = 1; //Si el día a la hora es verdadero, entoces el Docente atiende a esa hora y el día según su agenda
+                $objEntidadAgenda = $em->getRepository('DsagacoBundle:clDetallAgendaorientador')->detalleAgendaPorSemestre($intSemestre, $hIteracion, $nbCampo, $valCampo);                
+                $k = 1;             
+                if ($objEntidadAgenda){ 
+                    //var_dump($objEntidadAgenda);
+                    //die;  
+                    $k = 1;
+                    foreach ($objEntidadAgenda as $key1 => $value) { 
+                        foreach ($value as $idDocente) {                       
+                        
+                        //foreach ($value as $key2 => $prueba) {
+                            //$idDocente = $objEntidadAgenda[$key1][$key2];//El docente que tiene en su agenda personalizada el Día y la Hora
+                            //$objRRHH->getCoRecursHumano()
+                            $objOrientador = $em->getRepository('DsagacoBundle:clOrientador')->find($idDocente);
+                            
+                            
+                            $objEntidadHorario = $em->getRepository('DsagacoBundle:clHorariCita')->fechaCitaPorSemana($fecha, $feFin, $idDocente, $hIteracion);
+                            //var_dump($objEntidadHorario, $feInicio, $idDocente, $hIteracion);//die;
+                            
+                            if (!$objEntidadHorario){ 
+                                //foreach ($objEntidadHorario as $claveHorario => $valDocente) {
+                                    //foreach ($valDocente as $claveDocente => $valHorario) {
+                                        //var_dump($objEntidadHorario, $idDocente, $hIteracion);
+                                        //$feOcupado = $objEntidadHorario[$claveHorario]['feHorario'];
+                                        //$hOcupado = $objEntidadHorario[$claveHorario]['hoInicio'];
+                                        
+                                        //if ( ((string)$fecha->format('d-m-Y') !=  (string)$feOcupado->format('d-m-Y')) && ((string)$hIteracion->format('h:i a') != (string)$hOcupado->format('h:i a'))){
+                                            //var_dump($i, $j, $k, $idDocente);
+                                            $arrCalendario[$i][$j][$k] = $idDocente;
+                                            $objGuardaHorario->setCoOrientador($objOrientador);
+                                            $objGuardaHorario->setFeHorario($fecha);
+                                            
+                                            var_dump($objGuardaHorario);
+                                            //die;
+                                            //$j = $j + 1; 
+                                            $k = $k + 1;   
+                                            
+                                       // }                                          
+                                    //}                                   
+                                //}    
+                            }else{ // No hay disponibilidad para ese día y hora del docente $idDocente
+                                
+                                $arrCalendario[$i][$j][$k] = ' ';
+                                //$j = $j + 1; 
+                                $k = $k + 1; 
+                                
+                            }
+                        }                    
+                    }
+                } else { // No existen agendas personalizadas de ningún docente
+                    $arrCalendario[$i][$j][$k] = ' ';
+                    //$j = $j + 1;
+                    $k = $k + 1;
+                }
+                $j = $j + 1;
+            }            
             $hour = $hour + 1;
             $hIteracion->setTime($hour, $minute, $second);
-            for($j = 2; $j <= 3; $j++){
-                /*foreach ($array as &$valor) {
-                    $valor = $valor * 2;
-                }*/
-                // Aquí se va hacer la lógica para tomar un orientador buscar su horario y ver si tiene disponibilidad acorde a la fecha.
-                // 
-                //Se puede hacer un is not in revisar la documentación
-                $arrCalendario[$i][$j]['1'] = 'Prueba';
-                $arrCalendario[$i][$j]['2'] = 'Prueba1';
-                        
-            }
         } 
-        
-       /* $arrCalendario['1']['1']['1'] = 'Jhan';
-        $arrCalendario['1']['1']['2'] = 'Jorge';
-        $arrCalendario['1']['2']['1'] = 'Prueba';
-        $arrCalendario['1']['2']['2'] = '';
-        $arrCalendario['1']['3']['1'] = '';*/
-        
-        
-        
-        //var_dump($arrCalendario);  
+        //var_dump($arrCalendario);
         //die;
-
+        //$em->persist($objGuardaHorario);
         return ['arrDias' => $arrDias,
-            'objPagina' => $arrSemana,
-            'arrCalendario' => $arrCalendario
+            'arrSemana' => $arrSemana,
+            'arrCalendario' => $arrCalendario,
+            'objGuardaHorario' => $objGuardaHorario
                 ];
     } 
     
