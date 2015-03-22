@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use sagaco\DsagacoBundle\Entity\clCita;
 use sagaco\DsagacoBundle\Entity\clArea;
-use sagaco\DsagacoBundle\Entity\clDisponCalendario;
+use sagaco\DsagacoBundle\Entity\clOrientador;
 use sagaco\CitaBundle\Form\Frontend\clCitaType;
 
 /**
@@ -116,7 +116,7 @@ class clCitaController extends Controller
         $objEntidad = new clCita();
         $arrSemana = $this->cargarCalendCabecera();
         $arrCalendario = $this->cargarCalendario($arrSemana, $intSemestre);
-        var_dump($arrCalendario);//die;
+        //var_dump($arrCalendario);//die;
         
         $form   = $this->generarForma($objEntidad);
 
@@ -166,6 +166,7 @@ class clCitaController extends Controller
     {  
         
         //Generar calendario disponible
+        $objOrientador = new clOrientador();
         $hIteracion = new \DateTime('08:00:00');
         $fecha = new \DateTime();
         $hour = '08';
@@ -197,22 +198,22 @@ class clCitaController extends Controller
                             $objEntidadHorario = $em->getRepository('DsagacoBundle:clCita')->fechaCitaPorSemana($fecha, $idDocente, $hIteracion);
                             
                             if (!$objEntidadHorario){
-                                //var_dump($fecha, $idDocente, $hIteracion); die;
-                                $arrCalendario[$i][$j][$k] = $idDocente;
+                                $objOrientador = $em->getRepository('DsagacoBundle:clOrientador')->find($idDocente);
+                                $arrCalendario[$i][$j][$k]['idDocente'] = $idDocente;
+                                $arrCalendario[$i][$j][$k]['nbDocente'] = $objOrientador->getCoRecursHumano()->getTxPrimerNombre() . ' ' . $objOrientador->getCoRecursHumano()->getTxPrimerApellido();
+                                $arrCalendario[$i][$j][$k]['feCitaProgramada'] = $fecha;
+                                $arrCalendario[$i][$j][$k]['hoCitaProgramada'] = $hIteracion;
+                                //var_dump($i, $j, $k, $arrCalendario[$i][$j][$k]['nbDocente'], $objOrientador->getCoOrientador());// die;
                                 //$objGuardaHorario->setCoOrientador($objOrientador);
                                 //$objGuardaHorario->setFeHorario($fecha);                
                                 $k = $k + 1;
                             }else{// No hay disponibilidad para ese día y hora del docente $idDocente
                                 
-                                $arrCalendario[$i][$j][$k] = ' ';
-                                //var_dump($i, $j, $k, $arrCalendario);// die;
-                                //$j = $j + 1; 
+                                $arrCalendario[$i][$j][$k] = ' ';                                 
                                 $k = $k + 1; 
                             }                         
                         }
                     }
-                    //var_dump($fecha, $hIteracion, $objEntidadAgenda); die;
-                    //var_dump($key, $value['dia']); die;
                 } else{
                     // No existen agendas personalizadas de ningún docente
                     $arrCalendario[$i][$j][$k] = ' ';
@@ -223,8 +224,7 @@ class clCitaController extends Controller
             }
             $hour = $hour + 1;
             $hIteracion->setTime($hour, $minute, $second);
-        }
-        //var_dump($arrCalendario); die;
+        }        
         //var_dump($fecha, $value['fecha'], $value['dia'],$intDia, $nbCampo, $objEntidadAgenda); //die;
         return $arrCalendario;   
     }
