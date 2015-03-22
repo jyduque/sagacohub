@@ -30,10 +30,10 @@ class clMotivoConsultaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        //$objEntidad = $em->getRepository('DsagacoBundle:clMotivoConsulta')->listar();    
+        $objEntidad = $em->getRepository('DsagacoBundle:clMotivoConsulta')->listar();    
         
         
-        $objEntidad = $em->getRepository('DsagacoBundle:clMotivoConsulta')->findAll();        
+        //$objEntidad = $em->getRepository('DsagacoBundle:clMotivoConsulta')->findAll();        
         
         
                 

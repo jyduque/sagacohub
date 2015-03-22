@@ -6,7 +6,7 @@
     <div class="container navbar-blanca">                
         <ul class="breadcrumb-modi">
             <li><a href="#"><small>Inicio</small></a></li>
-            <li><a href="{{ path('pgOrientador') }}"><small>Orientador</small></a></li>
+            <li><a href="{{ path('pgOrientador') }}"><small>Docente</small></a></li>
             <li class="active"><small>Detalle</small></li>
         </ul>                              
     </div> 
@@ -17,7 +17,7 @@
         
             <fieldset>
                 {# Titulo del requisito #}
-                <legend>Detalle orientador
+                <legend>Detalle docente
                     <div class="pull-right">
                         {{ form(delete_form) }}
                     </div> 
@@ -43,10 +43,6 @@
                         <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.txProfesion }}</div>                    
                     </div>
                     <div class='form-group'>
-                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Carrera atendida</strong></div>
-                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.txCarrerAtendida }}</div>                    
-                    </div>
-                    <div class='form-group'>
                         <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Periodo de vigencia</strong></div>
                         <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.txPeriodVigencia }}</div>                    
                     </div>
@@ -55,8 +51,12 @@
                         <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.txComentario }}</div>                    
                     </div>
                     <div class='form-group'>
-                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Nombre del orientador</strong></div>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Docente</strong></div>
                         <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coRecursHumano }}</div>                    
+                    </div>
+                    <div class='form-group'>
+                        <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Cambio de especialidad</strong></div>
+                        <div class='col-xs-7 col-sm-10 col-md-10 col-lg-10'>{{ objEntidad.coCarrera }}</div>                    
                     </div>
                     <div class='form-group'>
                         <div class='text-right col-xs-5 col-sm-2 col-md-2 col-lg-2'><strong>Fecha de creación</strong></div>

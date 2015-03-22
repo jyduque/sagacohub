@@ -30,7 +30,6 @@
                             <thead>                            
                                 <tr>
                                     {# sorting of properties based on query components #}
-                                    <th>{{ knp_pagination_sortable(objPagina, 'Id', 'a.coDviBaremo') }}</th>
                                     <th{% if objPagina.isSorted('a.nuDviRespuesta') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Respuestas', 'a.nbGrupoRol') }}</th>
                                     <th{% if objPagina.isSorted('a.inIntere1') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, '1', 'a.nbGrupoRol') }}</th>
                                     <th{% if objPagina.isSorted('a.inIntere2') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, '2', 'a.nbGrupoRol') }}</th>
@@ -56,7 +55,6 @@
                             <tbody>
                             {% for objEntidad in objPagina %}
                                 <tr {% if loop.index is odd %}class="color"{% endif %}>
-                                    <td class="text-right"><a href="{{ path('pgDviBaremo_mostrar', { 'id': objEntidad.coDviBaremo, 'blnBandera': '0'}) }}">{{ objEntidad.coDviBaremo }}</a></td>
                                     <td>{{ objEntidad.nuDviRespuesta }}</td>
                                     <td>{{ objEntidad.inIntere1 }}</td>
                                     <td>{{ objEntidad.inIntere2 }}</td>

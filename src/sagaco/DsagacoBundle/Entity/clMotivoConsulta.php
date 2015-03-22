@@ -50,6 +50,7 @@ class clMotivoConsulta
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="co_area", referencedColumnName="co_area")
      * })
+     * @ORM\OrderBy({"nbArea" = "ASC"})
      */
     private $coArea;
 

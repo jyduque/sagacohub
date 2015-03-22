@@ -45,7 +45,7 @@ class clAreaController extends Controller
         $objPaginador  = $this->get('knp_paginator');
         $objPagina = $objPaginador->
                 paginate($objEntidad, 
-                        $objPeticion->query->get('page', 1)/*page number*/, 5/*limit per page*/);
+                        $objPeticion->query->get('page', 1)/*page number*/, 7/*limit per page*/);
         
         // set an array of custom parameters
         //La clase pull-right envía el paginador a mano derecha

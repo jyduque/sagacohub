@@ -32,13 +32,6 @@ class clOrientador
     /**
      * @var string
      *
-     * @ORM\Column(name="tx_carrer_atendida", type="string", length=50, nullable=false)
-     */
-    private $txCarrerAtendida;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="tx_period_vigencia", type="string", length=50, nullable=false)
      */
     private $txPeriodVigencia;
@@ -74,7 +67,15 @@ class clOrientador
      */
     private $coRecursHumano;
 
-
+    /**
+     * @var \ESagaco.tbCarrera
+     *
+     * @ORM\ManyToOne(targetEntity="clCarrera")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="co_carrera", referencedColumnName="co_carrera")
+     * })
+     */
+    private $coCarrera;
 
     /**
      * Get coOrientador
@@ -107,29 +108,6 @@ class clOrientador
     public function getTxProfesion()
     {
         return $this->txProfesion;
-    }
-
-    /**
-     * Set txCarrerAtendida
-     *
-     * @param string $txCarrerAtendida
-     * @return clOrientador
-     */
-    public function setTxCarrerAtendida($txCarrerAtendida)
-    {
-        $this->txCarrerAtendida = $txCarrerAtendida;
-
-        return $this;
-    }
-
-    /**
-     * Get txCarrerAtendida
-     *
-     * @return string 
-     */
-    public function getTxCarrerAtendida()
-    {
-        return $this->txCarrerAtendida;
     }
 
     /**
@@ -250,5 +228,28 @@ class clOrientador
     public function __toString()
     {
         return $this->coRecursHumano->getTxPrimerNombre().' '.$this->coRecursHumano->getTxPrimerApellido();
+    }
+    
+        /**
+     * Set coCarrera
+     *
+     * @param \sagaco\DsagacoBundle\Entity\clCarrera $coCarrera
+     * @return clOrientador
+     */
+    public function setCoCarrera(\sagaco\DsagacoBundle\Entity\clCarrera $coCarrera = null)
+    {
+        $this->coCarrera = $coCarrera;
+
+        return $this;
+    }
+
+    /**
+     * Get coCarrera
+     *
+     * @return \sagaco\DsagacoBundle\Entity\clCarrera 
+     */
+    public function getCoCarrera()
+    {
+        return $this->coCarrera;
     }
 }

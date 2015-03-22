@@ -35,7 +35,7 @@ class clDviBaremoController extends Controller
         $objPaginador  = $this->get('knp_paginator');
         $objPagina = $objPaginador->
                 paginate($objEntidad, 
-                        $objPeticion->query->get('page', 1)/*page number*/, 10/*limit per page*/);
+                        $objPeticion->query->get('page', 1)/*page number*/, 113/*limit per page*/);
         
         // set an array of custom parameters
         //La clase pull-right envía el paginador a mano derecha

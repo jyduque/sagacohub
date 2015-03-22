@@ -6,7 +6,7 @@
     <div class="container navbar-blanca">                
         <ul class="breadcrumb-modi">
             <li><a href="#"><small>Inicio</small></a></li>
-            <li><a href="{{ path('pgOrientador') }}"><small>Orientador</small></a></li>
+            <li><a href="{{ path('pgOrientador') }}"><small>Docente</small></a></li>
             <li class="active"><small>Actualizar</small></li>
         </ul>                              
     </div> 
@@ -17,7 +17,7 @@
         
         <fieldset>
             {# Titulo del requisito #}
-            <legend>Actualizar orientador
+            <legend>Actualizar docente
                 <div class="pull-right">
                     {{ form(delete_form) }}
                 </div> 
@@ -34,10 +34,10 @@
                 {{ form_errors(edit_form, { 'global_errors': true }) }}
                 {{ form_row(edit_form._token) }}
                 {{ form_row(edit_form.txProfesion, {'label': 'Profesión'}) }}                    
-                {{ form_row(edit_form.txCarrerAtendida, {'label': 'Carrera atendida'}) }}
                 {{ form_row(edit_form.txPeriodVigencia, {'label': 'Periodo de vigencia'}) }}
                 {{ form_row(edit_form.txComentario, {'label': 'Comentario'}) }}                    
-                {{ form_row(edit_form.coRecursHumano, {'label': 'Nombre del orientador'}) }} 
+                {{ form_row(edit_form.coRecursHumano, {'label': 'Docente'}) }} 
+                {{ form_row(edit_form.coCarrera, {'label': 'Cambio de especialidad'}) }}
                 <div>
                     <p class="text-left">
                         <small class="text-muted">(</small><small class="text-muted text-danger">*</small><small class="text-muted">) Campos obligatorios</small></p>

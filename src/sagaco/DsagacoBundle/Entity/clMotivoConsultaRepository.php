@@ -23,14 +23,15 @@ class clMotivoConsultaRepository extends EntityRepository
         $tableObjectName = 'DsagacoBundle:clMotivoConsulta';
 
         /* Campo para ordenar */        
-        $txtOrden = 'coMotivoConsulta';
+        $txtOrden = 'nbArea';
         
         $objConsulta = $this->getEntityManager()
                 ->createQuery('SELECT '
                         . $aliasTabla1 .', '.$aliasTabla2
                         .' FROM '. $tableObjectName .' '. $aliasTabla1 
                         .' JOIN '. $aliasTabla1 .'.coArea '. $aliasTabla2                        
-                        .' ORDER BY '. $aliasTabla1 .'.'. $txtOrden . ' ASC');
+                        .' ORDER BY '. $aliasTabla2 .'.'. $txtOrden . ' ASC'
+                        );                       
         try {
             return $objConsulta->getArrayResult();  
         } catch (\Doctrine\ORM\NoResultException $e) {

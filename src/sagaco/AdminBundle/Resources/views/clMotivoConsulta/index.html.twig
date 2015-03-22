@@ -42,7 +42,7 @@
                             {% for objEntidad in objPagina %}
                                 <tr {% if loop.index is odd %}class="color"{% endif %}>
                                     <td class="text-right"><a href="{{ path('pgMotivoConsulta_mostrar', { 'id': objEntidad.coMotivoConsulta, 'blnBandera': '0'}) }}">{{ objEntidad.coMotivoConsulta }}</a></td>
-                                    <td>{{ objEntidad.coArea }}</td>
+                                    <td>{{ objEntidad.coArea.nbArea }}</td>
                                     <td>{{ objEntidad.nbMotivoConsulta }}</td>
                                     <td>{% if objEntidad.fhCreacion %}{{ objEntidad.fhCreacion|date('d-m-Y H:i:s') }}{% endif %}</td>
                                     <td>{% if objEntidad.fhActualizacion %}{{ objEntidad.fhActualizacion|date('d-m-Y H:i:s') }}{% endif %}</td>

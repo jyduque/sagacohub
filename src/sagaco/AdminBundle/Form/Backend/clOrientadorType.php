@@ -26,10 +26,10 @@ class clOrientadorType extends AbstractType
     {
         $objConstructor
             ->add('txProfesion')
-            ->add('txCarrerAtendida')
             ->add('txPeriodVigencia')
             ->add('txComentario')
-            ->add('coRecursHumano');
+            ->add('coRecursHumano')
+            ->add('coCarrera');
     }
     
     /**

@@ -6,7 +6,7 @@
     <div class="container navbar-blanca">                
         <ul class="breadcrumb-modi">
             <li><a href="#"><small>Inicio</small></a></li>
-            <li class="active"><small>Orientador</small></li>
+            <li class="active"><small>Docente</small></li>
         </ul>                              
     </div> 
     {% endblock %}{#-- Fin Barra de ruta --#}
@@ -15,7 +15,7 @@
     {% block twigformulario %}
         <fieldset>
             {# Titulo del requisito #}
-            <legend>Listar orientador
+            <legend>Listar docente
                 <div class="pull-right">
                     <a href="{{ path('pgOrientador_registrar') }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Crear">
                         <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
@@ -31,10 +31,10 @@
                             {# sorting of properties based on query components #}
                             <th>{{ knp_pagination_sortable(objPagina, 'Id', 'a.coOrientador') }}</th>
                             <th>{% if objPagina.isSorted('a.txProfesion') %} class="sorted"{% endif %}{{ knp_pagination_sortable(objPagina, 'Profesión', 'a.nbGrupoRol') }}</th>
-                            <th>{% if objPagina.isSorted('a.txCarrerAtendida') %} class="sorted"{% endif %}{{ knp_pagination_sortable(objPagina, 'Carrera atendida', 'a.nbGrupoRol') }}</th>
                             <th>{% if objPagina.isSorted('a.txPeriodVigencia') %} class="sorted"{% endif %}{{ knp_pagination_sortable(objPagina, 'Periodo de vigencia', 'a.nbGrupoRol') }}</th>
                             <th>{% if objPagina.isSorted('a.txComentario') %} class="sorted"{% endif %}{{ knp_pagination_sortable(objPagina, 'Comentario', 'a.nbGrupoRol') }}</th>
-                            <th>{% if objPagina.isSorted('a.coRecursHumano') %} class="sorted"{% endif %}{{ knp_pagination_sortable(objPagina, 'Orientador', 'a.nbGrupoRol') }}</th>
+                            <th>{% if objPagina.isSorted('a.coRecursHumano') %} class="sorted"{% endif %}{{ knp_pagination_sortable(objPagina, 'Docente', 'a.nbGrupoRol') }}</th>
+                            <th>{% if objPagina.isSorted('a.coCarrera') %} class="sorted"{% endif %}{{ knp_pagination_sortable(objPagina, 'Cambio de especialidad', 'a.nbGrupoRol') }}</th>
                             <th>F. Creación</th>
                             <th>F. Actualización</th>
                             <th>Acción</th>                                
@@ -50,10 +50,10 @@
                         <tr {% if loop.index is odd %}class="color"{% endif %}>
                             <td class="text-right"><a href="{{ path('pgOrientador_mostrar', { 'id': objEntidad.coOrientador, 'blnBandera': '0'}) }}">{{ objEntidad.coOrientador }}</a></td>
                             <td>{{ objEntidad.txProfesion }}</td>
-                            <td>{{ objEntidad.txCarrerAtendida }}</td>
                             <td>{{ objEntidad.txPeriodVigencia }}</td>
                             <td>{{ objEntidad.txComentario }}</td>
                             <td>{{ objEntidad.coRecursHumano }}</td>
+                            <td>{{ objEntidad.coCarrera }}</td>
                             <td>{% if objEntidad.fhCreacion %}{{ objEntidad.fhCreacion|date('d-m-Y H:i:s') }}{% endif %}</td>
                             <td>{% if objEntidad.fhActualizacion %}{{ objEntidad.fhActualizacion|date('d-m-Y H:i:s') }}{% endif %}</td>
                             <td> 
