@@ -52,19 +52,28 @@
                                     <tr>
                                         {% for j, item2 in item1 %}                                        
                                             <th>
+                                                {% if j != '1' %}
                                                 <ul class="unstyled">
+                                                {% endif %}
                                                     {% for key, item3 in item2 %}
                                                     {# {{ attribute(item2, key).1 }}#}
+                                                        
                                                         {% if arrCalendario[i][j][key] != ' ' %}
-                                                        <li>                                                        
-                                                            <small>{{ arrCalendario[i][j][key] }}</small>
-                                                            <a href="{{ path('pgAgenda', { 'id': arrCalendario[i][j][key], 'blnBandera': '0' }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Mostrar detalle">
-                                                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                                                            </a>
-                                                        </li> 
+                                                            {% if j != '1' %}
+                                                                <li>                                                        
+                                                                    <small>{{ arrCalendario[i][j][key] }}</small>
+                                                                    <a href="{{ path('pgCita', { 'id': arrCalendario[i][j][key], 'blnBandera': '0' }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Mostrar detalle">
+                                                                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                                                    </a>
+                                                                </li> 
+                                                            {% else %}
+                                                                <small>{{ arrCalendario[i][j][key] }}</small>
+                                                            {% endif %}
                                                         {% endif %}
                                                 {% endfor %}
+                                                {% if j != '1' %}
                                                 </ul>
+                                                {% endif %}
                                             </th>
                                         {% endfor %}
                                     </tr>  
