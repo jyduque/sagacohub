@@ -31,10 +31,11 @@ class clCitaController extends Controller
      */
     public function indexAction(Request $objPeticion)
     {
-        $inPersona = '1';
+        $inPersona = '1'; //Debe venir de las variables de sesión
         $em = $this->getDoctrine()->getManager();
 
-        $objEntidad = $em->getRepository('DsagacoBundle:clCita')->listarCitasPorPersona($inPersona);  
+        //$objEntidad = $em->getRepository('DsagacoBundle:clCita')->listarCitasPorPersona($inPersona);
+        $objEntidad = $em->getRepository('DsagacoBundle:clCita')->findBy(array('coPersona'=>$inPersona)); 
         
         //var_dump($objEntidad);  //die;
                 
@@ -244,10 +245,10 @@ class clCitaController extends Controller
      */
     public function consultarAction(Request $objPeticion)
     {
-        $inPersona = '2';
+        $inDocente = '1'; //Debe venir de las variables de sesión
         $em = $this->getDoctrine()->getManager();
 
-        $objEntidad = $em->getRepository('DsagacoBundle:clCita')->findAll();  
+        $objEntidad = $em->getRepository('DsagacoBundle:clCita')->findBy(array('coOrientador' => $inDocente));  
         
         //var_dump($objEntidad);  die;
                 

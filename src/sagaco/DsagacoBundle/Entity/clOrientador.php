@@ -223,12 +223,7 @@ class clOrientador
     public function getCoRecursHumano()
     {
         return $this->coRecursHumano;
-    }
-    
-    public function __toString()
-    {
-        return $this->coRecursHumano->getTxPrimerNombre().' '.$this->coRecursHumano->getTxPrimerApellido();
-    }
+    }   
     
         /**
      * Set coCarrera
@@ -251,5 +246,10 @@ class clOrientador
     public function getCoCarrera()
     {
         return $this->coCarrera;
+    }
+    
+    public function __toString()
+    {
+        return $this->coRecursHumano->getTxPrimerNombre().' '.$this->coRecursHumano->getTxPrimerApellido();
     }
 }

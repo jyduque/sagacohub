@@ -31,12 +31,13 @@
                         <tr>
                             {# sorting of properties based on query components #}
                             <th>{{ knp_pagination_sortable(objPagina, 'Id', 'a.coCita') }}</th>
-                            <th{% if objPagina.isSorted('a.coArea') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Área de atención', 'a.coArea') }}</th>
-                            <th{% if objPagina.isSorted('a.coOrientador') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Docente', 'a.coOrientador') }}</th>
+                            <th{% if objPagina.isSorted('a.coArea') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Área', 'a.coArea') }}</th>
+                            <th{% if objPagina.isSorted('a.coOrientador') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Docente', 'a.coOrientador') }}</th>                            
                             <th{% if objPagina.isSorted('a.coEstadoCita') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Estado', 'a.coEstadoCita') }}</th>
-                            <th{% if objPagina.isSorted('a.feCita') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'F. Cita', 'a.feCita') }}</th>
+                            <th{% if objPagina.isSorted('a.feCita') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'F. Cita programada', 'a.feCita') }}</th>
                             <th{% if objPagina.isSorted('a.hoCita') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Hora', 'a.hoCita') }}</th>
-                            <th{% if objPagina.isSorted('a.fhRegistCita') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Hora', 'a.fhRegistCita') }}</th>
+                            <th{% if objPagina.isSorted('a.fhRegistCita') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'F. Registro', 'a.fhRegistCita') }}</th>
+                            <th>Acción</th>   
                                                            
                         </tr>
                     </thead>
@@ -48,13 +49,21 @@
                     {% endif %}
                     {% for objEntidad in objPagina %}
                         <tr {% if loop.index is odd %}class="color"{% endif %}>
-                            <td class="text-right"><a href="{{ path('pgCita', { 'id': objEntidad.coCita, 'blnBandera': '0'}) }}">{{ objEntidad.coCita }}</a></td>
-                            <td>{{ objEntidad.coOrientador }}</td>
+                            <td class="text-right"><a href="{{ path('pgCita_consultar', { 'id': objEntidad.coCita, 'blnBandera': '0'}) }}">{{ objEntidad.coCita }}</a></td>
+                            <td>{{ objEntidad.coArea }}</td>
+                            <td>{{ objEntidad.coOrientador }}</td>                            
                             <td>{{ objEntidad.coEstadoCita }}</td>
                             <td>{% if objEntidad.feCita %}{{ objEntidad.feCita|date('d-m-Y') }}{% endif %}</td>
                             <td>{% if objEntidad.hoCita %}{{ objEntidad.hoCita|date('h:i a') }}{% endif %}</td>
-                            <td>{% if objEntidad.fhRegistCita %}{{ objEntidad.fhRegistCita|date('d-m-Y') }}{% endif %}</td>
-                            
+                            <td>{% if objEntidad.fhRegistCita %}{{ objEntidad.fhRegistCita|date('d-m-Y h:i a') }}{% endif %}</td>
+                            <td> 
+                                <a href="{{ path('pgCita', { 'id': objEntidad.coCita, 'blnBandera': '0' }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Mostrar detalle">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                </a>                                    
+                                <a href="{{ path('pgCita', { 'id': objEntidad.coCita }) }}" class="btn btn-xs" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                </a>                                 
+                            </td>                            
                         </tr>
                     {% endfor %}
                     </tbody>
