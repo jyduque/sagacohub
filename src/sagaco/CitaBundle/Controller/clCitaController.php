@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use sagaco\DsagacoBundle\Entity\clCita;
 use sagaco\DsagacoBundle\Entity\clArea;
 use sagaco\DsagacoBundle\Entity\clOrientador;
+use sagaco\DsagacoBundle\Entity\clSemestre;
 use sagaco\CitaBundle\Form\Frontend\clCitaType;
 
 /**
@@ -112,7 +113,12 @@ class clCitaController extends Controller
      */
     public function registrarAction()
     {
-        $intSemestre = 1; //Semestre
+        $objSemestre = new clSemestre();
+        $em = $this->getDoctrine()->getManager();
+        $objSemestre = $em->getRepository('DsagacoBundle:clSemestre')->findOneBy(array('inActivo' => '1'));
+            
+        $intSemestre = $objSemestre->getCoSemestre(); //Semestre
+        //var_dump($intSemestre); //die;
         $objEntidad = new clCita();
         $arrSemana = $this->cargarCalendCabecera();
         $arrCalendario = $this->cargarCalendario($arrSemana, $intSemestre);
