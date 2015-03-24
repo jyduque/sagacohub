@@ -245,7 +245,7 @@ class clCitaController extends Controller
      */
     public function consultarAction(Request $objPeticion)
     {
-        $inDocente = '1'; //Debe venir de las variables de sesión
+        $inDocente = '2'; //Debe venir de las variables de sesión
         $em = $this->getDoctrine()->getManager();
 
         $objEntidad = $em->getRepository('DsagacoBundle:clCita')->findBy(array('coOrientador' => $inDocente));  
