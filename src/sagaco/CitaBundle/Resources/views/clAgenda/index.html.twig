@@ -30,7 +30,7 @@
                         <tr>
                             {# sorting of properties based on query components #}
                             <th>{{ knp_pagination_sortable(objPagina, 'Id', 'a.coAgendaOrientador') }}</th>
-                            <th{% if objPagina.isSorted('a.coSemestre') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Semestr', 'a.coSemestre') }}</th>
+                            <th{% if objPagina.isSorted('a.coSemestre') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Semestre', 'a.coSemestre') }}</th>
                             <th{% if objPagina.isSorted('a.coDuracion') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(objPagina, 'Sesión', 'a.coDuracion') }}</th>                                    
                             <th>F. Creación</th>
                             <th>F. Actualización</th>

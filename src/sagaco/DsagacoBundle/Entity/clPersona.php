@@ -133,7 +133,7 @@ class clPersona
     public function __toString()
     {
         if($this->getInEstudiante() == true){
-            return $this->coControEstudio->getTxPrimerNombre().' '.$this->coRecursHumano->getTxPrimerApellido();
+            return $this->coControEstudio->getTxPrimerNombre().' '.$this->coControEstudio->getTxPrimerApellido();
             
         }else {
             return $this->coRecursHumano->getTxPrimerNombre().' '.$this->coRecursHumano->getTxPrimerApellido();
