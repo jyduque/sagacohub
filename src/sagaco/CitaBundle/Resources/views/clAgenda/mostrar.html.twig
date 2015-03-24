@@ -90,11 +90,11 @@
                                 {% for j in cIni..horaDif %} 
                                 <tr>
                                     <td>{{ hora|date('h:i a') }}</td>
-                                    <td>{{ j }}</td>
-                                    <td>{{ cIni }}</td>
-                                    <td>{{ horaDif }}</td>
-                                    <td>{{ i }}</td>
-                                    <td>{{ detalle.hoInicio|date('h:i a') }}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>   
                                 {% set hora = (hora1+(sesion*(iteracion+i))) %}
                                 {% set i = i+1 %}
@@ -110,7 +110,7 @@
                                         </a>
                                     </td>  
                                 {% else %}
-                                    <td>{{ j }}</td>                                           
+                                    <td></td>                                           
                                 {% endif %}
                                 {% if detalle.inMartes == 1 %}
                                     <td class="success text-center">
@@ -146,7 +146,7 @@
                                         </a>
                                     </td>  
                                 {% else %}
-                                    <td>{{ i }}</td>                                           
+                                    <td></td>                                           
                                 {% endif %}
                             </tr> 
                             {% set hora = (hora1+(sesion*(iteracion+i))) %}
@@ -158,9 +158,9 @@
                             {% for j in cIni..cFin %} 
                             <tr>
                                 <td>{{ hora|date('h:i a') }}</td>
-                                <td>{{ cIni }}</td>
-                                <td>{{ j }}</td>
-                                <td>{{ cFin }}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                             </tr>   

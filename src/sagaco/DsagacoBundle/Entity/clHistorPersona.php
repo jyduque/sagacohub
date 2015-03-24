@@ -7,8 +7,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ESagaco.tpHistorPersona
  *
- * @ORM\Table(name="e_sagaco.tp_histor_persona", indexes={@ORM\Index(name="IDX_FB36AA5F60F526BB", columns={"co_ciudad"}), @ORM\Index(name="IDX_FB36AA5F1A0F11FF", columns={"co_persona"})})
+ * @ORM\Table(name="e_sagaco.tp_histor_persona", indexes={@ORM\Index(name="IDX_FB36AA5F60F526BB", columns={"co_orientador"}), @ORM\Index(name="IDX_FB36AA5F1A0F11FF", columns={"co_persona"})})
  * @ORM\Entity(repositoryClass="sagaco\DsagacoBundle\Entity\clHistorPersonaRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class clHistorPersona
 {
@@ -35,20 +36,34 @@ class clHistorPersona
      * @ORM\Column(name="fe_inicio", type="date", nullable=false)
      */
     private $feInicio;
+    
+    public function __construct()
+    {    
+        $feInicio = new \DateTime();
+        $this->feInicio = $feInicio;
+        $this->timezone = $feInicio->getTimeZone()->getName();
+    }
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fe_cierre", type="date", nullable=false)
+     * @ORM\Column(name="fe_cierre", type="date", nullable=true)
      */
     private $feCierre;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_estudia", type="boolean", nullable=false)
+     * @ORM\Column(name="in_estudia", type="boolean", nullable=true)
      */
     private $inEstudia;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="in_solici_espontanea", type="boolean", nullable=true)
+     */
+    private $inSoliciEspontanea;
 
     /**
      * @var string
@@ -60,7 +75,7 @@ class clHistorPersona
     /**
      * @var boolean
      *
-     * @ORM\Column(name="in_trabaja", type="boolean", nullable=false)
+     * @ORM\Column(name="in_trabaja", type="boolean", nullable=true)
      */
     private $inTrabaja;
 
@@ -91,6 +106,13 @@ class clHistorPersona
      * @ORM\Column(name="tx_observacion", type="string", length=255, nullable=true)
      */
     private $txObservacion;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tx_sugerido", type="string", length=255, nullable=true)
+     */
+    private $txSugerido;
 
     /**
      * @var \DateTime
@@ -107,16 +129,6 @@ class clHistorPersona
     private $fhActualizacion;
 
     /**
-     * @var \ESagaco.tbCiudad
-     *
-     * @ORM\ManyToOne(targetEntity="clCiudad")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="co_ciudad", referencedColumnName="co_ciudad")
-     * })
-     */
-    private $coCiudad;
-
-    /**
      * @var \ESagaco.tbPersona
      *
      * @ORM\ManyToOne(targetEntity="clPersona")
@@ -125,6 +137,23 @@ class clHistorPersona
      * })
      */
     private $coPersona;
+    
+    /** 
+     * @var string
+     * 
+     * @ORM\Column(name="nb_timezone", type="string") 
+     */
+    private $timezone; 
+    
+    /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="clOrientador")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="co_orientador", referencedColumnName="co_orientador")
+     * })
+     */
+    private $coOrientador;
 
 
 
@@ -170,7 +199,6 @@ class clHistorPersona
     public function setFeInicio($feInicio)
     {
         $this->feInicio = $feInicio;
-
         return $this;
     }
 
@@ -181,6 +209,8 @@ class clHistorPersona
      */
     public function getFeInicio()
     {
+        return $this->feInicio;
+        $this->feInicio->setTimeZone(new \DateTimeZone($this->timezone));
         return $this->feInicio;
     }
 
@@ -193,7 +223,6 @@ class clHistorPersona
     public function setFeCierre($feCierre)
     {
         $this->feCierre = $feCierre;
-
         return $this;
     }
 
@@ -204,6 +233,8 @@ class clHistorPersona
      */
     public function getFeCierre()
     {
+        return $this->feCierre;
+        $this->feCierre->setTimeZone(new \DateTimeZone($this->timezone));
         return $this->feCierre;
     }
 
@@ -228,6 +259,29 @@ class clHistorPersona
     public function getInEstudia()
     {
         return $this->inEstudia;
+    }
+    
+    /**
+     * Set inSoliciEspontanea
+     *
+     * @param boolean $inSoliciEspontanea
+     * @return clHistorPersona
+     */
+    public function setInSoliciEspontanea($inSoliciEspontanea)
+    {
+        $this->inSoliciEspontanea = $inSoliciEspontanea;
+
+        return $this;
+    }
+
+    /**
+     * Get inSoliciEspontanea
+     *
+     * @return boolean 
+     */
+    public function getInSoliciEspontanea()
+    {
+        return $this->inSoliciEspontanea;
     }
 
     /**
@@ -367,6 +421,29 @@ class clHistorPersona
     {
         return $this->txObservacion;
     }
+    
+    /**
+     * Set txSugerido
+     *
+     * @param string $txSugerido
+     * @return clHistorPersona
+     */
+    public function setTxSugerido($txSugerido)
+    {
+        $this->txSugerido = $txSugerido;
+
+        return $this;
+    }
+
+    /**
+     * Get txSugerido
+     *
+     * @return string 
+     */
+    public function getTxSugerido()
+    {
+        return $this->txSugerido;
+    }
 
     /**
      * Set fhCreacion
@@ -377,7 +454,6 @@ class clHistorPersona
     public function setFhCreacion($fhCreacion)
     {
         $this->fhCreacion = $fhCreacion;
-
         return $this;
     }
 
@@ -388,6 +464,8 @@ class clHistorPersona
      */
     public function getFhCreacion()
     {
+        return $this->fhCreacion;
+        $this->fhCreacion->setTimeZone(new \DateTimeZone($this->timezone));
         return $this->fhCreacion;
     }
 
@@ -400,7 +478,6 @@ class clHistorPersona
     public function setFhActualizacion($fhActualizacion)
     {
         $this->fhActualizacion = $fhActualizacion;
-
         return $this;
     }
 
@@ -412,30 +489,9 @@ class clHistorPersona
     public function getFhActualizacion()
     {
         return $this->fhActualizacion;
-    }
-
-    /**
-     * Set coCiudad
-     *
-     * @param \sagaco\DsagacoBundle\Entity\clCiudad $coCiudad
-     * @return clHistorPersona
-     */
-    public function setCoCiudad(\sagaco\DsagacoBundle\Entity\clCiudad $coCiudad = null)
-    {
-        $this->coCiudad = $coCiudad;
-
-        return $this;
-    }
-
-    /**
-     * Get coCiudad
-     *
-     * @return \sagaco\DsagacoBundle\Entity\clCiudad 
-     */
-    public function getCoCiudad()
-    {
-        return $this->coCiudad;
-    }
+        $this->fhActualizacion->setTimeZone(new \DateTimeZone($this->timezone));
+        return $this->fhActualizacion;
+    }   
 
     /**
      * Set coPersona
@@ -458,5 +514,50 @@ class clHistorPersona
     public function getCoPersona()
     {
         return $this->coPersona;
+    }
+    
+    /**
+     * Set coOrientador
+     *
+     * @param \sagaco\DsagacoBundle\Entity\clOrientador $coOrientador
+     * @return clHistorPersona
+     */
+    public function setCoOrientador(\sagaco\DsagacoBundle\Entity\clOrientador $coOrientador = null)
+    {
+        $this->coOrientador = $coOrientador;
+
+        return $this;
+    }
+
+    /**
+     * Get coOrientador
+     *
+     * @return \sagaco\DsagacoBundle\Entity\clOrientador 
+     */
+    public function getCoOrientador()
+    {
+        return $this->coOrientador;
+    }
+    
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        //Se registra la fechas de creación, actualización e inicio de la Historia de la 
+        //persona, esto sólo ocurre la primera vez que se crea la historia de citas
+        $this->setFhCreacion(new \DateTime);
+        $this->setFhActualizacion(new \DateTime);
+        $this->setFeInicio(new \DateTime);  
+        $this->setInActivo(true);
+    }
+    
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        //Se actualiza la fechas de actualización de una entidad
+        $this->setFhActualizacion(new \DateTime);
     }
 }
