@@ -61,7 +61,8 @@
                                                         {% if arrCalendario[i][j][key] != ' ' %}
                                                             {% if j != '1' %}
                                                                 <li>                                  
-                                                                    <a href="{{ path('pgCita', { 'id': arrCalendario[i][j][key], 'blnBandera': '0'}) }}"><small>{{ arrCalendario[i][j][key].nbDocente }}</small></a></td>
+                                                                    
+                                                                    <a href="javascript:void(0)" onclick="addCita.call(this)"><small>{{ arrCalendario[i][j][key].nbDocente }}</small></a>
                                                                 </li> 
                                                             {% else %}
                                                                 <small>{{ arrCalendario[i][j][key] }}</small>
@@ -94,3 +95,13 @@
             
         
     {% endblock %}{#-- Fin Campos de la Forma #}
+
+    {% javascripts  %}
+    <script type="text/javascript" >
+function addCita(){
+    alert('hola');
+   
+}
+ </script>
+{% endjavascripts %}
+
