@@ -62,7 +62,7 @@
                                                             {% if j != '1' %}
                                                                 <li>                                  
                                                                     
-                                                                    <a href="javascript:void(0)" onclick="addCita.call(this)"><small>{{ arrCalendario[i][j][key].nbDocente }}</small></a>
+                                                                    <a href="javascript:void(0)" onclick="addCita.apply(this,['{{arrCalendario[i][j][key].idDocente}}'])"><small>{{ arrCalendario[i][j][key].nbDocente }}</small></a>
                                                                 </li> 
                                                             {% else %}
                                                                 <small>{{ arrCalendario[i][j][key] }}</small>
@@ -96,12 +96,17 @@
         
     {% endblock %}{#-- Fin Campos de la Forma #}
 
-    {% javascripts  %}
-    <script type="text/javascript" >
-function addCita(){
-    alert('hola');
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+    function addCita(id){
+    alert('hola'+id);
+    $('form[name=sagaco_citabundle_clCitatype]').submit();
    
-}
- </script>
-{% endjavascripts %}
+} 
+</script>
+{% endblock %}
 
